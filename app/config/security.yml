@@ -1,0 +1,2 @@
+imports:
+    - { resource: "@VeniceAppBundle/Resources/config/security.yml" }

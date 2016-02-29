@@ -1,0 +1,41 @@
+#imports:
+#    resource: venice/admin_routing.yml
+#    resource: venice/app_routing.yml
+
+VeniceAppBundle:
+    resource: venice/app_routing.yml
+
+VeniceAdminBundle:
+    resource: venice/admin_routing.yml
+
+VeniceFrontBundle:
+    resource: venice/front_routing.yml
+
+#venice_admin_routing_controllers:
+#    resource: "../../vendor/modpreneur/venice/src/Venice/AdminBundle/Controller"
+#    type: annotation
+#
+#
+#venice_app_routing_controllers:
+#    resource: "../../vendor/modpreneur/venice/src/Venice/AppBundle/Controller"
+#    type: annotation
+#
+#
+#venice_front_routing_controllers:
+#    resource: "../../vendor/modpreneur/venice/src/Venice/FrontBundle/Controller"
+#    type: annotation
+#
+#project_admin:
+#    resource: "@AdminBundle/Controller"
+#    type: annotation
+
+#VeniceAppBundle:
+#    resource: "@VeniceAppBundle/Resources/config/routing.yml"
+#
+#VeniceAdminBundle:
+#    resource: "@VeniceAdminBundle/Resources/config/routing.yml"
+
+
+#project_admin:
+#    resource: "@AdminBundle/Controller"
+#    type: annotation
