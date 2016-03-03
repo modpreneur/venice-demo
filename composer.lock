@@ -8,17 +8,68 @@
     "content-hash": "5d53e2022f92ccce109a64d0677c2709",
     "packages": [
         {
-            "name": "aws/aws-sdk-php",
-            "version": "3.15.5",
+            "name": "asm89/twig-cache-extension",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "e6d8b291b45009b310a174bcabad3de1c864e176"
+                "url": "https://github.com/asm89/twig-cache-extension.git",
+                "reference": "76a801d6da8e1a1015af974d93df4ade0dda7267"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/e6d8b291b45009b310a174bcabad3de1c864e176",
-                "reference": "e6d8b291b45009b310a174bcabad3de1c864e176",
+                "url": "https://api.github.com/repos/asm89/twig-cache-extension/zipball/76a801d6da8e1a1015af974d93df4ade0dda7267",
+                "reference": "76a801d6da8e1a1015af974d93df4ade0dda7267",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "twig/twig": "~1.0"
+            },
+            "require-dev": {
+                "doctrine/cache": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander",
+                    "email": "iam.asm89@gmail.com"
+                }
+            ],
+            "description": "Cache fragments of templates directly within Twig.",
+            "homepage": "https://github.com/asm89/twig-cache-extension",
+            "keywords": [
+                "cache",
+                "extension",
+                "twig"
+            ],
+            "time": "2016-02-14 13:52:38"
+        },
+        {
+            "name": "aws/aws-sdk-php",
+            "version": "3.15.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aws/aws-sdk-php.git",
+                "reference": "599824c35ce324efb55d17dba4ecaf121f7bec94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/599824c35ce324efb55d17dba4ecaf121f7bec94",
+                "reference": "599824c35ce324efb55d17dba4ecaf121f7bec94",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +136,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-02-25 22:52:38"
+            "time": "2016-03-02 00:38:23"
         },
         {
             "name": "behat/transliterator",
@@ -1255,6 +1306,66 @@
             "time": "2015-11-11 03:28:32"
         },
         {
+            "name": "emanueleminotto/twig-cache-bundle",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EmanueleMinotto/TwigCacheBundle.git",
+                "reference": "0eb46e72727717c1a83206560d4adfa8bc627fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EmanueleMinotto/TwigCacheBundle/zipball/0eb46e72727717c1a83206560d4adfa8bc627fd1",
+                "reference": "0eb46e72727717c1a83206560d4adfa8bc627fd1",
+                "shasum": ""
+            },
+            "require": {
+                "asm89/twig-cache-extension": "^1.0"
+            },
+            "require-dev": {
+                "doctrine/cache": "^1.4",
+                "matthiasnoback/symfony-dependency-injection-test": "^0.7.6",
+                "phpunit/phpunit": "^4.4|^5.0",
+                "symfony/framework-bundle": "^2.6|^3.0",
+                "symfony/twig-bundle": "^2.6|^3.0"
+            },
+            "suggest": {
+                "itinance/doctrine-cache-adapter-with-site-context": "a Cache Adapter used to respect the current site context in a white-label/multi-site environment"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ],
+                "psr-4": {
+                    "EmanueleMinotto\\TwigCacheBundle\\": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emanuele Minotto",
+                    "email": "minottoemanuele@gmail.com"
+                }
+            ],
+            "description": "Symfony 2 Bundle for asm89/twig-cache-extension",
+            "keywords": [
+                "bundle",
+                "cache",
+                "symfony",
+                "twig"
+            ],
+            "time": "2016-01-30 13:04:44"
+        },
+        {
             "name": "friendsofsymfony/rest-bundle",
             "version": "1.7.7",
             "target-dir": "FOS/RestBundle",
@@ -1346,12 +1457,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "e770bfa2fd0fc665f55cd7cfeb34bddeffb892f4"
+                "reference": "a39d000577d735444bee97de9f5ee382e3f85fa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/e770bfa2fd0fc665f55cd7cfeb34bddeffb892f4",
-                "reference": "e770bfa2fd0fc665f55cd7cfeb34bddeffb892f4",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/a39d000577d735444bee97de9f5ee382e3f85fa1",
+                "reference": "a39d000577d735444bee97de9f5ee382e3f85fa1",
                 "shasum": ""
             },
             "require": {
@@ -1407,7 +1518,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-02-11 16:30:08"
+            "time": "2016-03-01 11:42:24"
         },
         {
             "name": "fzaninotto/faker",
@@ -2162,16 +2273,16 @@
         },
         {
             "name": "knplabs/gaufrette",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "9d52413665284f9c96e0cef399fc14e68ac0aa5a"
+                "reference": "1696386ca66f2f046dea7892cf1f85fd82b5b68e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/9d52413665284f9c96e0cef399fc14e68ac0aa5a",
-                "reference": "9d52413665284f9c96e0cef399fc14e68ac0aa5a",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/1696386ca66f2f046dea7892cf1f85fd82b5b68e",
+                "reference": "1696386ca66f2f046dea7892cf1f85fd82b5b68e",
                 "shasum": ""
             },
             "require": {
@@ -2182,11 +2293,11 @@
                 "aws/aws-sdk-php": "~2",
                 "doctrine/dbal": ">=2.3",
                 "dropbox-php/dropbox-php": "*",
-                "google/apiclient": "~1.1",
+                "google/apiclient": "~1.1.3",
                 "herzult/php-ssh": "*",
                 "microsoft/windowsazure": "dev-master",
                 "mikey179/vfsstream": "~1.2.0",
-                "phpseclib/phpseclib": "dev-master",
+                "phpseclib/phpseclib": "^2.0",
                 "phpspec/phpspec": "2.0.*",
                 "phpunit/phpunit": "3.7.*",
                 "rackspace/php-opencloud": "1.9.*"
@@ -2212,7 +2323,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.2.x-dev"
+                    "dev-master": "0.4.x-dev"
                 }
             },
             "autoload": {
@@ -2242,7 +2353,7 @@
                 "filesystem",
                 "media"
             ],
-            "time": "2015-05-26 08:25:40"
+            "time": "2016-03-03 09:36:22"
         },
         {
             "name": "knplabs/knp-gaufrette-bundle",
@@ -2532,7 +2643,7 @@
             "dist": {
                 "type": "path",
                 "url": "../venice/",
-                "reference": "b8a30be012ef69d4e98562c98abde663fcc9bf52",
+                "reference": "647f6332d3f5e54d719d256cd915d62c9569dac1",
                 "shasum": null
             },
             "require": {
@@ -2623,16 +2734,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.17.2",
+            "version": "1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24"
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
                 "shasum": ""
             },
             "require": {
@@ -2661,6 +2772,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
@@ -2670,7 +2782,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -2696,7 +2808,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-10-14 12:51:02"
+            "time": "2016-03-01 18:00:40"
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -3025,16 +3137,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "b0e69d10852716b2ccbdff69c75c477637220790"
+                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/b0e69d10852716b2ccbdff69c75c477637220790",
-                "reference": "b0e69d10852716b2ccbdff69c75c477637220790",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
+                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
                 "shasum": ""
             },
             "require": {
@@ -3069,7 +3181,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-02-06 03:52:05"
+            "time": "2016-02-29 17:25:04"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -3284,16 +3396,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "3.2.1",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "a58f95ae76fe201b571fad3e8370a50c4368678c"
+                "reference": "fe33716763b604ade4cb442c0794f5bd5ad73004"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/a58f95ae76fe201b571fad3e8370a50c4368678c",
-                "reference": "a58f95ae76fe201b571fad3e8370a50c4368678c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/fe33716763b604ade4cb442c0794f5bd5ad73004",
+                "reference": "fe33716763b604ade4cb442c0794f5bd5ad73004",
                 "shasum": ""
             },
             "require": {
@@ -3317,7 +3429,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2.x-dev"
+                    "dev-master": "3.3.x-dev"
                 }
             },
             "autoload": {
@@ -3343,7 +3455,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-02-18 07:31:12"
+            "time": "2016-03-03 08:49:08"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3525,16 +3637,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.2.9",
+            "version": "5.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b12b9c37e382c096b93c3f26e7395775f59a5eea"
+                "reference": "37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b12b9c37e382c096b93c3f26e7395775f59a5eea",
-                "reference": "b12b9c37e382c096b93c3f26e7395775f59a5eea",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1",
+                "reference": "37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1",
                 "shasum": ""
             },
             "require": {
@@ -3546,7 +3658,7 @@
                 "myclabs/deep-copy": "~1.3",
                 "php": "^5.6 || ^7.0",
                 "phpspec/prophecy": "^1.3.1",
-                "phpunit/php-code-coverage": "^3.2.1",
+                "phpunit/php-code-coverage": "^3.3.0",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": ">=1.0.6",
@@ -3595,7 +3707,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-02-19 11:43:07"
+            "time": "2016-03-03 08:52:58"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4310,16 +4422,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.13",
+            "version": "v3.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "bf6be511f4f66d368baeb2cab617203d73cccf4e"
+                "reference": "cccf975c565ccd835bddc30a8fea5cdfe3357bf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/bf6be511f4f66d368baeb2cab617203d73cccf4e",
-                "reference": "bf6be511f4f66d368baeb2cab617203d73cccf4e",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/cccf975c565ccd835bddc30a8fea5cdfe3357bf1",
+                "reference": "cccf975c565ccd835bddc30a8fea5cdfe3357bf1",
                 "shasum": ""
             },
             "require": {
@@ -4368,7 +4480,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2016-02-12 08:17:23"
+            "time": "2016-03-01 10:50:07"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -4665,20 +4777,20 @@
         },
         {
             "name": "symfony/monolog-bundle",
-            "version": "v2.8.2",
+            "version": "v2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "84785c4d44801c4dd82829fa2e1820cacfe2c46f"
+                "reference": "27c2e3eaec7a0ba3462f99ea92678cbfc7b146e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/84785c4d44801c4dd82829fa2e1820cacfe2c46f",
-                "reference": "84785c4d44801c4dd82829fa2e1820cacfe2c46f",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/27c2e3eaec7a0ba3462f99ea92678cbfc7b146e4",
+                "reference": "27c2e3eaec7a0ba3462f99ea92678cbfc7b146e4",
                 "shasum": ""
             },
             "require": {
-                "monolog/monolog": "~1.8",
+                "monolog/monolog": "~1.12",
                 "php": ">=5.3.2",
                 "symfony/config": "~2.3|~3.0",
                 "symfony/dependency-injection": "~2.3|~3.0",
@@ -4692,7 +4804,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8.x-dev"
+                    "dev-master": "2.9.x-dev"
                 }
             },
             "autoload": {
@@ -4720,7 +4832,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2015-11-17 10:02:29"
+            "time": "2016-03-01 17:53:42"
         },
         {
             "name": "symfony/polyfill-intl-icu",
@@ -5195,15 +5307,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "291ae45d0cf13db69391c9997854249f93f353d2"
+                "reference": "afe8a2fa261a5810722fb14b96db8606a0eeed16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/291ae45d0cf13db69391c9997854249f93f353d2",
-                "reference": "291ae45d0cf13db69391c9997854249f93f353d2",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/afe8a2fa261a5810722fb14b96db8606a0eeed16",
+                "reference": "afe8a2fa261a5810722fb14b96db8606a0eeed16",
                 "shasum": ""
             },
             "require": {
+                "emanueleminotto/twig-cache-bundle": "^1.0",
                 "modpreneur/bowtie": "dev-master",
                 "nette/utils": "~2.3",
                 "php": ">=5.6",
@@ -5243,7 +5356,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2016-02-26 14:47:16"
+            "time": "2016-03-03 09:33:18"
         },
         {
             "name": "trinity/framework",
@@ -5251,12 +5364,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity.git",
-                "reference": "4777d07604e36afc50f69b8b81802a73f3f08ffa"
+                "reference": "3306e067b881b8bae5653527655b9ff6a8b75782"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity/zipball/4777d07604e36afc50f69b8b81802a73f3f08ffa",
-                "reference": "4777d07604e36afc50f69b8b81802a73f3f08ffa",
+                "url": "https://api.github.com/repos/modpreneur/trinity/zipball/3306e067b881b8bae5653527655b9ff6a8b75782",
+                "reference": "3306e067b881b8bae5653527655b9ff6a8b75782",
                 "shasum": ""
             },
             "require": {
@@ -5300,7 +5413,7 @@
                 }
             ],
             "description": "Trinity Framework",
-            "time": "2016-02-26 13:00:57"
+            "time": "2016-03-02 18:39:32"
         },
         {
             "name": "trinity/grid",
@@ -5485,28 +5598,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-settings.git",
-                "reference": "472db11b7079f9dfa2e4f3b1efabdd7fc22a94aa"
+                "reference": "0922c2e1317b051f3d8c3c0dd26ff78744457449"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/472db11b7079f9dfa2e4f3b1efabdd7fc22a94aa",
-                "reference": "472db11b7079f9dfa2e4f3b1efabdd7fc22a94aa",
+                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/0922c2e1317b051f3d8c3c0dd26ff78744457449",
+                "reference": "0922c2e1317b051f3d8c3c0dd26ff78744457449",
                 "shasum": ""
             },
             "require": {
-                "doctrine/doctrine-bundle": "~1.6",
                 "doctrine/orm": "~2.5",
                 "php": ">=7",
-                "sensio/framework-extra-bundle": "^3.0",
-                "symfony/twig-bundle": "~2.8|~3.0",
-                "twig/extensions": "~1.3"
+                "symfony/config": "~2.8|~3.0",
+                "symfony/dependency-injection": "~2.8|~3.0",
+                "symfony/http-kernel": "~2.8|~3.0",
+                "twig/extensions": "~1.3",
+                "twig/twig": "~1.20"
             },
             "require-dev": {
+                "doctrine/doctrine-bundle": "~1.6",
                 "fzaninotto/faker": "~1.5",
                 "mockery/mockery": "~0.9",
                 "phpunit/phpunit": "~5.1",
                 "symfony/browser-kit": "~2.8|~3.0",
                 "symfony/form": "~3",
+                "symfony/twig-bundle": "~2.8|~3.0",
                 "symfony/validator": "~3",
                 "symfony/var-dumper": "~3.0"
             },
@@ -5535,7 +5651,7 @@
                 }
             ],
             "description": "Trinity Settings bundle",
-            "time": "2016-02-09 14:49:11"
+            "time": "2016-03-03 15:16:01"
         },
         {
             "name": "twig/extensions",
