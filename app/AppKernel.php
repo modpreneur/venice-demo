@@ -10,6 +10,7 @@ class AppKernel extends Venice\AppBundle\Kernel\VeniceKernel
 
         $veniceBundles[] = new \AppBundle\AppBundle();
         $veniceBundles[] = new \AdminBundle\AdminBundle();
+        $veniceBundles[] = new \BunnyBundle\BunnyBundle();
 
         return $veniceBundles;
     }

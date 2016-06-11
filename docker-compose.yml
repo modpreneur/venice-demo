@@ -1,5 +1,6 @@
 web:
   build: .
+  dockerfile: docker/dev/Dockerfile
   links:
     - mysql:database
     - redis:redis
@@ -13,7 +14,7 @@ web:
 mysql:
   image: mysql/mysql-server:5.7
   ports:
-    - 3305:3306
+    - 3306:3306
   environment:
     - MYSQL_ROOT_PASSWORD=my-secret-pw -d
     - MYSQL_DATABASE=venice
@@ -23,7 +24,7 @@ mysql:
 redis:
   build: ./docker/redis/
   ports:
-    - 6382:6379
+    - 6385:6379
   volumes:
     - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
   restart: always

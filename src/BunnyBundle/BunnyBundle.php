@@ -6,13 +6,15 @@
  * Time: 15:36
  */
 
-namespace AppBundle;
+namespace BunnyBundle;
 
 
-class AppBundle extends \Symfony\Component\HttpKernel\Bundle\Bundle
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+
+class BunnyBundle extends Bundle
 {
     public function getParent()
     {
-        return "VeniceAppBundle";
+        return 'VeniceBunnyBundle';
     }
 }

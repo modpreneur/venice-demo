@@ -2,8 +2,25 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-
     - { resource: "@VeniceAppBundle/Resources/config/config.yml" }
 
 # You can override default configuration here or in the enviroment files (config_dev, config_prod).
 # Confiruration in the enviroment files will override configuration defined here
+trinity_messages:
+    sender_identification: "client_3"
+
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/DoctrineMigrations
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
+
+trinity_logger:
+    elastic_logs:
+        elastic_host: 'necktie_elasticsearch_1'
+
+
+parameters: #todo: necktie?!
+    trinity.search.doctrine_prefix: "NecktieAppBundle"
+    trinity.search.namespace: "Necktie\\AppBundle\\Entity"

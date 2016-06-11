@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "modpreneur/venice": "dev-venice-framework"
+        "modpreneur/venice": "dev-master"
     },
     "require-dev": {
     },
