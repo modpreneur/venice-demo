@@ -1,3 +1,0 @@
-front:
-    resource: "@VeniceFrontBundle/Controller"
-    type:     annotation

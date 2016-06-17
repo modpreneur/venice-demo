@@ -17,8 +17,5 @@ cp -v $CP_OPTION vendor/modpreneur/venice/docker-compose.yml docker-compose.yml 
 cp -v $CP_OPTION vendor/modpreneur/venice/Dockerfile Dockerfile #only once
 cp -v $CP_OPTION -R vendor/modpreneur/venice/Docker . #only non existing files
 cp -v $CP_OPTION -R vendor/modpreneur/venice/js web #only non existing files
-cp -v vendor/modpreneur/venice/src/Venice/AppBundle/Resources/config/routing.yml app/config/venice/app_routing.yml #always override
-cp -v vendor/modpreneur/venice/src/Venice/AdminBundle/Resources/config/routing.yml app/config/venice/admin_routing.yml #always override
-cp -v vendor/modpreneur/venice/src/Venice/FrontBundle/Resources/config/routing.yml app/config/venice/front_routing.yml #always override
 
 echo "Done"
