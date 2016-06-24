@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "511659f07317b1fb97dae41d13248e56",
+    "hash": "27a5c41ea607820a0a45d09322d541d9",
     "content-hash": "4d9edb34d5a36261404164cf19198c03",
     "packages": [
         {
@@ -60,16 +60,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.18.18",
+            "version": "3.18.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "68b9d0b7e007782bc0f2633cdf5a4a6bf08aaafc"
+                "reference": "e5a901dd3a42d0c46a90ee37a174938cd0ce55bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/68b9d0b7e007782bc0f2633cdf5a4a6bf08aaafc",
-                "reference": "68b9d0b7e007782bc0f2633cdf5a4a6bf08aaafc",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/e5a901dd3a42d0c46a90ee37a174938cd0ce55bf",
+                "reference": "e5a901dd3a42d0c46a90ee37a174938cd0ce55bf",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-06-14 20:35:03"
+            "time": "2016-06-23 23:17:52"
         },
         {
             "name": "behat/transliterator",
@@ -583,27 +583,29 @@
         },
         {
             "name": "doctrine/data-fixtures",
-            "version": "v1.1.1",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a"
+                "reference": "b3cae5efef97191a08d53d733260f7eb667c16e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/bd44f6b6e40247b6530bc8abe802e4e4d914976a",
-                "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/b3cae5efef97191a08d53d733260f7eb667c16e4",
+                "reference": "b3cae5efef97191a08d53d733260f7eb667c16e4",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.2",
-                "php": ">=5.3.2"
+                "php": "^5.6 || ^7.0"
             },
             "conflict": {
                 "doctrine/orm": "< 2.4"
             },
             "require-dev": {
-                "doctrine/orm": "~2.4"
+                "doctrine/dbal": "^2.5.4",
+                "doctrine/orm": "^2.5.4",
+                "phpunit/phpunit": "^5.4.6"
             },
             "suggest": {
                 "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
@@ -613,7 +615,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -636,7 +638,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2015-03-30 12:14:13"
+            "time": "2016-06-20 18:08:26"
         },
         {
             "name": "doctrine/dbal",
@@ -1574,12 +1576,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "d1fccc6335b74beca94525551cacc06b256ed261"
+                "reference": "298f27ce696deaa6ecd72e6ba563f892a17e0512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/d1fccc6335b74beca94525551cacc06b256ed261",
-                "reference": "d1fccc6335b74beca94525551cacc06b256ed261",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/298f27ce696deaa6ecd72e6ba563f892a17e0512",
+                "reference": "298f27ce696deaa6ecd72e6ba563f892a17e0512",
                 "shasum": ""
             },
             "require": {
@@ -1635,7 +1637,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-05-27 12:14:43"
+            "time": "2016-06-21 10:34:42"
         },
         {
             "name": "fzaninotto/faker",
@@ -2138,6 +2140,153 @@
             "time": "2014-01-12 16:20:24"
         },
         {
+            "name": "jms-serializer/serializer",
+            "version": "1.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jms-serializer/serializer.git",
+                "reference": "e418b616562445438d51a284ae71bb328133f694"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jms-serializer/serializer/zipball/e418b616562445438d51a284ae71bb328133f694",
+                "reference": "e418b616562445438d51a284ae71bb328133f694",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "1.*",
+                "doctrine/instantiator": "~1.0.3",
+                "jms/metadata": "~1.1",
+                "jms/parser-lib": "1.*",
+                "php": ">=5.5.0",
+                "phpcollection/phpcollection": "~0.1"
+            },
+            "conflict": {
+                "twig/twig": "<1.12"
+            },
+            "replace": {
+                "jms/serializer": "1.*"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.1",
+                "doctrine/phpcr-odm": "~1.3",
+                "jackalope/jackalope-doctrine-dbal": "1.*",
+                "phpunit/phpunit": "~4.0",
+                "propel/propel1": "~1.7",
+                "symfony/filesystem": "2.*",
+                "symfony/form": "~2.1",
+                "symfony/translation": "~2.0",
+                "symfony/validator": "~2.0",
+                "symfony/yaml": "2.*",
+                "twig/twig": "~1.12|~2.0"
+            },
+            "suggest": {
+                "symfony/yaml": "Required if you'd like to serialize data to YAML format."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JMS\\Serializer\\": "src/",
+                    "JMS\\Serializer\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Library for (de-)serializing data of any complexity; supports XML, JSON, and YAML.",
+            "homepage": "http://jmsyst.com/libs/serializer",
+            "keywords": [
+                "deserialization",
+                "jaxb",
+                "json",
+                "serialization",
+                "xml"
+            ],
+            "time": "2016-05-03 11:37:27"
+        },
+        {
+            "name": "jms-serializer/serializer-bundle",
+            "version": "1.1.0",
+            "target-dir": "JMS/SerializerBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jms-serializer/JMSSerializerBundle.git",
+                "reference": "3e396c980545350c2efb65a50041d2a9f9d6562e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jms-serializer/JMSSerializerBundle/zipball/3e396c980545350c2efb65a50041d2a9f9d6562e",
+                "reference": "3e396c980545350c2efb65a50041d2a9f9d6562e",
+                "shasum": ""
+            },
+            "require": {
+                "jms/serializer": "^1.0.0",
+                "php": ">=5.4.0",
+                "phpoption/phpoption": "^1.1.0",
+                "symfony/framework-bundle": "~2.3|~3.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/orm": "*",
+                "symfony/browser-kit": "*",
+                "symfony/class-loader": "*",
+                "symfony/css-selector": "*",
+                "symfony/finder": "*",
+                "symfony/form": "*",
+                "symfony/process": "*",
+                "symfony/stopwatch": "*",
+                "symfony/twig-bundle": "*",
+                "symfony/validator": "*",
+                "symfony/yaml": "*"
+            },
+            "suggest": {
+                "jms/di-extra-bundle": "Required to get lazy loading (de)serialization visitors, ~1.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\SerializerBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Allows you to easily serialize, and deserialize data of any complexity",
+            "homepage": "http://jmsyst.com/bundles/JMSSerializerBundle",
+            "keywords": [
+                "deserialization",
+                "jaxb",
+                "json",
+                "serialization",
+                "xml"
+            ],
+            "time": "2015-11-10 12:26:42"
+        },
+        {
             "name": "jms/metadata",
             "version": "1.5.1",
             "source": {
@@ -2225,79 +2374,6 @@
             "time": "2012-11-18 18:08:43"
         },
         {
-            "name": "jms/serializer",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "fe13a1f993ea3456e195b7820692f2eb2b6bbb48"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/fe13a1f993ea3456e195b7820692f2eb2b6bbb48",
-                "reference": "fe13a1f993ea3456e195b7820692f2eb2b6bbb48",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/annotations": "1.*",
-                "doctrine/instantiator": "~1.0.3",
-                "jms/metadata": "~1.1",
-                "jms/parser-lib": "1.*",
-                "php": ">=5.4.0",
-                "phpcollection/phpcollection": "~0.1"
-            },
-            "conflict": {
-                "twig/twig": "<1.12"
-            },
-            "require-dev": {
-                "doctrine/orm": "~2.1",
-                "doctrine/phpcr-odm": "~1.0.1",
-                "jackalope/jackalope-doctrine-dbal": "1.0.*",
-                "phpunit/phpunit": "~4.0",
-                "propel/propel1": "~1.7",
-                "symfony/filesystem": "2.*",
-                "symfony/form": "~2.1",
-                "symfony/translation": "~2.0",
-                "symfony/validator": "~2.0",
-                "symfony/yaml": "2.*",
-                "twig/twig": "~1.12|~2.0"
-            },
-            "suggest": {
-                "symfony/yaml": "Required if you'd like to serialize data to YAML format."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "JMS\\Serializer": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache2"
-            ],
-            "authors": [
-                {
-                    "name": "Johannes M. Schmitt",
-                    "email": "schmittjoh@gmail.com"
-                }
-            ],
-            "description": "Library for (de-)serializing data of any complexity; supports XML, JSON, and YAML.",
-            "homepage": "http://jmsyst.com/libs/serializer",
-            "keywords": [
-                "deserialization",
-                "jaxb",
-                "json",
-                "serialization",
-                "xml"
-            ],
-            "time": "2015-10-27 09:24:41"
-        },
-        {
             "name": "jms/serializer-bundle",
             "version": "1.1.0",
             "target-dir": "JMS/SerializerBundle",
@@ -2373,12 +2449,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/froala/KMSFroalaEditorBundle.git",
-                "reference": "c25b14a8d979254752349433ed20b378e6f12f7e"
+                "reference": "6ed66a57be7766c6f30e42f52b0bfa2e69788758"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/froala/KMSFroalaEditorBundle/zipball/c25b14a8d979254752349433ed20b378e6f12f7e",
-                "reference": "c25b14a8d979254752349433ed20b378e6f12f7e",
+                "url": "https://api.github.com/repos/froala/KMSFroalaEditorBundle/zipball/6ed66a57be7766c6f30e42f52b0bfa2e69788758",
+                "reference": "6ed66a57be7766c6f30e42f52b0bfa2e69788758",
                 "shasum": ""
             },
             "require": {
@@ -2417,7 +2493,7 @@
                 "froala",
                 "wysiwyg"
             ],
-            "time": "2016-06-08 00:01:07"
+            "time": "2016-06-22 11:08:16"
         },
         {
             "name": "knplabs/doctrine-behaviors",
@@ -2695,16 +2771,16 @@
         },
         {
             "name": "knplabs/knp-menu-bundle",
-            "version": "v2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenuBundle.git",
-                "reference": "90aff8e39274d1225dfa3bb7b1dd4e47b7312dca"
+                "reference": "42ff1953c3a79d0b31aba2ece8c03fbd70e7f1ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/90aff8e39274d1225dfa3bb7b1dd4e47b7312dca",
-                "reference": "90aff8e39274d1225dfa3bb7b1dd4e47b7312dca",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/42ff1953c3a79d0b31aba2ece8c03fbd70e7f1ca",
+                "reference": "42ff1953c3a79d0b31aba2ece8c03fbd70e7f1ca",
                 "shasum": ""
             },
             "require": {
@@ -2748,7 +2824,7 @@
             "keywords": [
                 "menu"
             ],
-            "time": "2015-12-15 12:06:23"
+            "time": "2016-06-21 06:53:03"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2857,7 +2933,7 @@
             "dist": {
                 "type": "path",
                 "url": "../venice",
-                "reference": "86e6ce32f4d4b903e96b70a78985d42f1df4bfe7",
+                "reference": "b0aeb5c3e83369a098813aa7d2cce9a6354c640c",
                 "shasum": null
             },
             "require": {
@@ -2889,6 +2965,7 @@
                 "symfony/symfony": "~3",
                 "trinity/admin": "dev-master@dev",
                 "trinity/bunny-bundle": "dev-master@dev",
+                "trinity/core-entities": "dev-master",
                 "trinity/framework": "dev-master@dev",
                 "trinity/grid": "dev-master@dev",
                 "trinity/logger": "dev-master@dev",
@@ -2896,6 +2973,7 @@
                 "trinity/notification": "dev-master@dev",
                 "trinity/search": "dev-master@dev",
                 "trinity/settings": "dev-master@dev",
+                "trinity/utils": "dev-master@dev",
                 "twig/extensions": "~1.3",
                 "whiteoctober/breadcrumbs-bundle": "^1.2"
             },
@@ -2922,18 +3000,12 @@
             },
             "scripts": {
                 "post-install-cmd": [
-                    "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-                    "php bin/console doctrine:migrations:migrate --no-interaction",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
                 ],
                 "post-update-cmd": [
-                    "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-                    "php bin/console doctrine:migrations:migrate --no-interaction",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
@@ -3126,26 +3198,27 @@
         },
         {
             "name": "nette/utils",
-            "version": "v2.3.9",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "f6586f827292bd35c8593df943437f2247ba5337"
+                "reference": "c455ade9f24a1f99aa81772516764045296b8ca0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/f6586f827292bd35c8593df943437f2247ba5337",
-                "reference": "f6586f827292bd35c8593df943437f2247ba5337",
+                "url": "https://api.github.com/repos/nette/utils/zipball/c455ade9f24a1f99aa81772516764045296b8ca0",
+                "reference": "c455ade9f24a1f99aa81772516764045296b8ca0",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.1"
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "nette/nette": "<2.2"
             },
             "require-dev": {
-                "nette/tester": "~1.0"
+                "nette/tester": "~2.0",
+                "tracy/tracy": "^2.3"
             },
             "suggest": {
                 "ext-gd": "to use Image",
@@ -3154,6 +3227,11 @@
                 "ext-mbstring": "to use Strings::lower() etc..."
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -3177,7 +3255,7 @@
             ],
             "description": "Nette Utility Classes",
             "homepage": "https://nette.org",
-            "time": "2016-04-21 09:36:23"
+            "time": "2016-06-17 13:15:10"
         },
         {
             "name": "ocramius/package-versions",
@@ -3954,16 +4032,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.4.5",
+            "version": "5.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "744a50838ef373be00fb658ce9544905cf587c17"
+                "reference": "2f1fc94b77ea6418bd6a06c64a1dac0645fbce59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/744a50838ef373be00fb658ce9544905cf587c17",
-                "reference": "744a50838ef373be00fb658ce9544905cf587c17",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2f1fc94b77ea6418bd6a06c64a1dac0645fbce59",
+                "reference": "2f1fc94b77ea6418bd6a06c64a1dac0645fbce59",
                 "shasum": ""
             },
             "require": {
@@ -4028,7 +4106,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-06-15 07:20:05"
+            "time": "2016-06-16 06:01:15"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4091,16 +4169,16 @@
         },
         {
             "name": "predis/predis",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "0e17edbefb50c6cbd1acc4a6f6ef06399deb1af2"
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/0e17edbefb50c6cbd1acc4a6f6ef06399deb1af2",
-                "reference": "0e17edbefb50c6cbd1acc4a6f6ef06399deb1af2",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
                 "shasum": ""
             },
             "require": {
@@ -4137,7 +4215,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2016-06-01 22:06:21"
+            "time": "2016-06-16 16:22:20"
         },
         {
             "name": "psr/cache",
@@ -4573,16 +4651,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "7ae5513327cb536431847bcc0c10edba2701064e"
+                "reference": "42c4c2eec485ee3e159ec9884f95b431287edde4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/7ae5513327cb536431847bcc0c10edba2701064e",
-                "reference": "7ae5513327cb536431847bcc0c10edba2701064e",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/42c4c2eec485ee3e159ec9884f95b431287edde4",
+                "reference": "42c4c2eec485ee3e159ec9884f95b431287edde4",
                 "shasum": ""
             },
             "require": {
@@ -4590,12 +4668,13 @@
                 "sebastian/recursion-context": "~1.0"
             },
             "require-dev": {
+                "ext-mbstring": "*",
                 "phpunit/phpunit": "~4.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -4635,7 +4714,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2015-06-21 07:55:53"
+            "time": "2016-06-17 09:04:28"
         },
         {
             "name": "sebastian/global-state",
@@ -4874,16 +4953,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.6",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0"
+                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/ffe306d09c1f2bad721237f63b2169d1b78253d0",
-                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
+                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
                 "shasum": ""
             },
             "require": {
@@ -4922,7 +5001,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2016-04-25 20:50:31"
+            "time": "2016-06-23 16:11:33"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -5076,12 +5155,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/snc/SncRedisBundle.git",
-                "reference": "17f457c3ff716569fe7ef3b48e5582d7a55a44d3"
+                "reference": "b8aa1a966b32c4fba6b7dac4532d5eeb1d890afb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/snc/SncRedisBundle/zipball/17f457c3ff716569fe7ef3b48e5582d7a55a44d3",
-                "reference": "17f457c3ff716569fe7ef3b48e5582d7a55a44d3",
+                "url": "https://api.github.com/repos/snc/SncRedisBundle/zipball/b8aa1a966b32c4fba6b7dac4532d5eeb1d890afb",
+                "reference": "b8aa1a966b32c4fba6b7dac4532d5eeb1d890afb",
                 "shasum": ""
             },
             "require": {
@@ -5091,7 +5170,7 @@
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
-                "phpunit/phpunit": "4.7.*",
+                "phpunit/phpunit": "4.8.*",
                 "predis/predis": "^1.0",
                 "symfony/console": "^2.7 || ^3.0",
                 "symfony/phpunit-bridge": "^2.7 || ^3.0"
@@ -5133,7 +5212,7 @@
                 "redis",
                 "symfony"
             ],
-            "time": "2016-06-15 13:55:24"
+            "time": "2016-06-17 11:50:26"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -5861,12 +5940,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "2ce830c839afbaba18c3f52b6ea706269850c2fe"
+                "reference": "d91acaaa43fe5d62a54d570bf50bb71f7a1a309f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/2ce830c839afbaba18c3f52b6ea706269850c2fe",
-                "reference": "2ce830c839afbaba18c3f52b6ea706269850c2fe",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/d91acaaa43fe5d62a54d570bf50bb71f7a1a309f",
+                "reference": "d91acaaa43fe5d62a54d570bf50bb71f7a1a309f",
                 "shasum": ""
             },
             "require": {
@@ -5911,67 +5990,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2016-06-15 13:12:18"
-        },
-        {
-            "name": "trinity/bunny",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/modpreneur/trinity-bunny.git",
-                "reference": "c940e68775bde130d18e3c8aa920da3b6261e40d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-bunny/zipball/c940e68775bde130d18e3c8aa920da3b6261e40d",
-                "reference": "c940e68775bde130d18e3c8aa920da3b6261e40d",
-                "shasum": ""
-            },
-            "require": {
-                "aws/aws-sdk-php": "~3.11",
-                "bunny/bunny": "~0.2",
-                "doctrine/doctrine-bundle": "~1.6",
-                "doctrine/orm": "~2.5",
-                "php": ">=7",
-                "sensio/framework-extra-bundle": "^3.0",
-                "symfony/symfony": "~2.8 | ~3.0"
-            },
-            "require-dev": {
-                "codeception/codeception": "~2.2",
-                "fzaninotto/faker": "~1.5",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~5.4",
-                "symfony/browser-kit": "~2.8|~3.0",
-                "symfony/form": "~3",
-                "symfony/validator": "~3",
-                "symfony/var-dumper": "~3.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Trinity\\Bundle\\BunnyBundle\\": "BunnyBundle"
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Trinity Team",
-                    "email": "info@modpreneur.com"
-                }
-            ],
-            "description": "Trinity Bunny bundle",
-            "time": "2016-06-09 12:35:17"
+            "time": "2016-06-23 15:20:05"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -6012,17 +6031,69 @@
             "time": "2016-06-08 15:43:03"
         },
         {
+            "name": "trinity/core-entities",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/modpreneur/trinity-core-entities.git",
+                "reference": "16a4a574a93ca80e2b06809d0adb407fb9f019c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/modpreneur/trinity-core-entities/zipball/16a4a574a93ca80e2b06809d0adb407fb9f019c1",
+                "reference": "16a4a574a93ca80e2b06809d0adb407fb9f019c1",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/data-fixtures": "~1",
+                "doctrine/doctrine-bundle": "~1.6",
+                "doctrine/orm": "~2.5",
+                "friendsofsymfony/user-bundle": "dev-master",
+                "jms-serializer/serializer": "~1",
+                "knplabs/doctrine-behaviors": "~1.2",
+                "php": ">=7",
+                "symfony/monolog-bundle": "~2.8",
+                "symfony/validator": "~3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Trinity\\Component\\EntityCore\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tomas Jancar",
+                    "email": "jancar@modpreneur.com"
+                }
+            ],
+            "description": "Trinity Framework",
+            "time": "2016-06-23 13:01:49"
+        },
+        {
             "name": "trinity/framework",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity.git",
-                "reference": "e650014236f861d8b8c07cff8c006828ee895a3a"
+                "reference": "58f6634189e7effe6815d20e10a745991c711847"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity/zipball/e650014236f861d8b8c07cff8c006828ee895a3a",
-                "reference": "e650014236f861d8b8c07cff8c006828ee895a3a",
+                "url": "https://api.github.com/repos/modpreneur/trinity/zipball/58f6634189e7effe6815d20e10a745991c711847",
+                "reference": "58f6634189e7effe6815d20e10a745991c711847",
                 "shasum": ""
             },
             "require": {
@@ -6069,7 +6140,7 @@
                 }
             ],
             "description": "Trinity Framework",
-            "time": "2016-06-14 15:02:41"
+            "time": "2016-06-21 11:02:01"
         },
         {
             "name": "trinity/grid",
@@ -6077,20 +6148,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-grid.git",
-                "reference": "92ecee014210ba88671966a52a3edb3f64ba3a6c"
+                "reference": "64cd39b7062a904d206de2d85bb8b2baba2445ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/92ecee014210ba88671966a52a3edb3f64ba3a6c",
-                "reference": "92ecee014210ba88671966a52a3edb3f64ba3a6c",
+                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/64cd39b7062a904d206de2d85bb8b2baba2445ae",
+                "reference": "64cd39b7062a904d206de2d85bb8b2baba2445ae",
                 "shasum": ""
             },
             "require": {
+                "doctrine/cache": "~1",
                 "doctrine/doctrine-fixtures-bundle": "~2.3",
                 "jms/serializer-bundle": "~1.1",
+                "knplabs/doctrine-behaviors": "~1.3",
                 "php": ">=7",
                 "sensio/framework-extra-bundle": "~3.0",
-                "symfony/framework-bundle": "~2.8 | ~3.0",
+                "symfony/browser-kit": "~3",
+                "symfony/form": "~3",
+                "symfony/security-bundle": "~3",
+                "symfony/twig-bundle": "~3",
                 "trinity/logger": "dev-master",
                 "trinity/search": "dev-master",
                 "trinity/settings": "dev-master",
@@ -6128,7 +6204,7 @@
                 }
             ],
             "description": "Trinity Grid bundle",
-            "time": "2016-06-15 13:23:57"
+            "time": "2016-06-24 08:33:30"
         },
         {
             "name": "trinity/logger",
@@ -6136,12 +6212,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "a4064ddf6d69f9a00a2a44d904c7103272ae76f7"
+                "reference": "474c7bb0d7e8756e4f6e6412dd2cc3c81d66e189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/a4064ddf6d69f9a00a2a44d904c7103272ae76f7",
-                "reference": "a4064ddf6d69f9a00a2a44d904c7103272ae76f7",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/474c7bb0d7e8756e4f6e6412dd2cc3c81d66e189",
+                "reference": "474c7bb0d7e8756e4f6e6412dd2cc3c81d66e189",
                 "shasum": ""
             },
             "require": {
@@ -6182,7 +6258,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2016-06-15 10:15:10"
+            "time": "2016-06-16 11:23:40"
         },
         {
             "name": "trinity/messages",
@@ -6190,12 +6266,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-messages.git",
-                "reference": "ab2a4aaf2ec04bf967dc9994a18acdc7071e2768"
+                "reference": "b72072eb92c5f9538e69d774c5a62ddcdcfea34b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-messages/zipball/ab2a4aaf2ec04bf967dc9994a18acdc7071e2768",
-                "reference": "ab2a4aaf2ec04bf967dc9994a18acdc7071e2768",
+                "url": "https://api.github.com/repos/modpreneur/trinity-messages/zipball/b72072eb92c5f9538e69d774c5a62ddcdcfea34b",
+                "reference": "b72072eb92c5f9538e69d774c5a62ddcdcfea34b",
                 "shasum": ""
             },
             "require": {
@@ -6227,7 +6303,7 @@
                 }
             ],
             "description": "Trinity Messages bundle",
-            "time": "2016-06-14 15:05:03"
+            "time": "2016-06-21 12:51:22"
         },
         {
             "name": "trinity/notification",
@@ -6235,12 +6311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-notifications.git",
-                "reference": "63b647ed3714dea1a08ac1dcfd4c68d1c7daa3b4"
+                "reference": "d8134f41718a6d2b41c9ee8f315e3f691b0c67ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/63b647ed3714dea1a08ac1dcfd4c68d1c7daa3b4",
-                "reference": "63b647ed3714dea1a08ac1dcfd4c68d1c7daa3b4",
+                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/d8134f41718a6d2b41c9ee8f315e3f691b0c67ab",
+                "reference": "d8134f41718a6d2b41c9ee8f315e3f691b0c67ab",
                 "shasum": ""
             },
             "require": {
@@ -6253,7 +6329,6 @@
                 "symfony/console": "~2.8 | ~3",
                 "symfony/event-dispatcher": "~2.8 | ~3",
                 "symfony/form": "~2.8 | ~3",
-                "trinity/bunny": "dev-master#9e01ca4a",
                 "trinity/bunny-bundle": "dev-master",
                 "trinity/logger": "dev-master",
                 "trinity/messages": "dev-master",
@@ -6295,7 +6370,7 @@
                 }
             ],
             "description": "Trinity Notification bundle",
-            "time": "2016-06-15 12:52:14"
+            "time": "2016-06-23 08:45:53"
         },
         {
             "name": "trinity/search",
@@ -6303,34 +6378,44 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-search.git",
-                "reference": "83285fe5e3c54a563005e6e9e1909f95f3359e3f"
+                "reference": "8437023e5c8c869bd24d1cf833a320c4aa894bc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-search/zipball/83285fe5e3c54a563005e6e9e1909f95f3359e3f",
-                "reference": "83285fe5e3c54a563005e6e9e1909f95f3359e3f",
+                "url": "https://api.github.com/repos/modpreneur/trinity-search/zipball/8437023e5c8c869bd24d1cf833a320c4aa894bc3",
+                "reference": "8437023e5c8c869bd24d1cf833a320c4aa894bc3",
                 "shasum": ""
             },
             "require": {
-                "doctrine/doctrine-bundle": "~1",
+                "doctrine/data-fixtures": "~1.1",
                 "doctrine/orm": "~2.5",
                 "friendsofsymfony/rest-bundle": "~1.7",
-                "jms/serializer-bundle": "~1.1",
-                "knplabs/doctrine-behaviors": "~1",
+                "jms-serializer/serializer-bundle": "~1.1",
                 "php": ">=7",
                 "sensio/framework-extra-bundle": "~3.0",
-                "symfony/framework-bundle": "~2.8 | ~3.0",
-                "symfony/symfony": "~3.0",
+                "symfony/config": "~2.8 | ~3.0",
+                "symfony/dependency-injection": "~2.8 | ~3.0",
+                "symfony/http-kernel": "~2.8 | ~3.0",
+                "symfony/property-access": "~2.8 | ~3.0",
+                "symfony/property-info": "~2.8 | ~3.0",
+                "symfony/routing": "~2.8 | ~3.0",
+                "symfony/serializer": "~2.8 | ~3.0",
+                "symfony/validator": "~2.8 | ~3.0",
                 "trinity/utils": "dev-master"
             },
             "require-dev": {
-                "doctrine/doctrine-fixtures-bundle": "~2",
-                "fzaninotto/faker": "^1.5",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "5.1.*",
-                "satooshi/php-coveralls": "1.0.*",
-                "sensio/generator-bundle": "~3.0",
-                "symfony/var-dumper": "~3.0"
+                "doctrine/doctrine-bundle": "~1.6",
+                "fzaninotto/faker": "~1.5",
+                "knplabs/doctrine-behaviors": "~1.3",
+                "phpunit/phpunit": "~5.0",
+                "satooshi/php-coveralls": "~1.0",
+                "symfony/browser-kit": "~2.8 | ~3.0",
+                "symfony/console": "~2.8 | ~3.0",
+                "symfony/debug": "~2.8 | ~3.0",
+                "symfony/form": "~2.8 | ~3.0",
+                "symfony/security-bundle": "~2.8 | ~3.0",
+                "symfony/twig-bundle": "~2.8 | ~3.0",
+                "symfony/var-dumper": "~2.8 | ~3.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -6357,7 +6442,7 @@
                 }
             ],
             "description": "Trinity Search bundle",
-            "time": "2016-06-15 12:25:12"
+            "time": "2016-06-24 11:39:29"
         },
         {
             "name": "trinity/settings",
@@ -6365,12 +6450,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-settings.git",
-                "reference": "db99ad418b9e17c68385c522b29e03c50e387c4d"
+                "reference": "c8ad4bd3a171114dd19fadd56383e4ee7745939b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/db99ad418b9e17c68385c522b29e03c50e387c4d",
-                "reference": "db99ad418b9e17c68385c522b29e03c50e387c4d",
+                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/c8ad4bd3a171114dd19fadd56383e4ee7745939b",
+                "reference": "c8ad4bd3a171114dd19fadd56383e4ee7745939b",
                 "shasum": ""
             },
             "require": {
@@ -6419,7 +6504,7 @@
                 }
             ],
             "description": "Trinity Settings bundle",
-            "time": "2016-06-15 09:04:54"
+            "time": "2016-06-24 08:37:16"
         },
         {
             "name": "trinity/utils",
@@ -6427,21 +6512,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-utils.git",
-                "reference": "1b10eaae797d3a00cdbf141ac9a81396952cd7ba"
+                "reference": "eda3922312188284cb350caa02e6a14ceb65bbf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-utils/zipball/1b10eaae797d3a00cdbf141ac9a81396952cd7ba",
-                "reference": "1b10eaae797d3a00cdbf141ac9a81396952cd7ba",
+                "url": "https://api.github.com/repos/modpreneur/trinity-utils/zipball/eda3922312188284cb350caa02e6a14ceb65bbf0",
+                "reference": "eda3922312188284cb350caa02e6a14ceb65bbf0",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7",
-                "symfony/framework-bundle": "~2.8 | ~3"
+                "php": ">=7"
             },
             "require-dev": {
-                "phpunit/phpunit": "5.*",
-                "satooshi/php-coveralls": "1.0.*"
+                "doctrine/annotations": "~1.2",
+                "phpunit/phpunit": "~5.0",
+                "satooshi/php-coveralls": "~1.0",
+                "symfony/http-kernel": "~2.8|~3.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -6451,7 +6537,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Trinity\\Bundle\\UtilsBundle\\": ""
+                    "Trinity\\Component\\Utils\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -6468,7 +6554,7 @@
                 }
             ],
             "description": "Trinity Utils bundle",
-            "time": "2016-06-15 13:52:00"
+            "time": "2016-06-16 18:43:11"
         },
         {
             "name": "twig/extensions",
