@@ -6,6 +6,7 @@ var path = require('path');
 var exec = require('child_process').exec;
 
 var bundlesPath = './bundles';
+//TODO:
 var trinityMasterHashPath = './jspm_packages/github/modpreneur/trinityJS@master/.jspm-hash';
 var infoFile = './scripts/.bundle-info';
 

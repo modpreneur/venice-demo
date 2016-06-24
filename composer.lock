@@ -60,16 +60,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.18.20",
+            "version": "3.18.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "e5a901dd3a42d0c46a90ee37a174938cd0ce55bf"
+                "reference": "2ffb032afe91b143293f75b48ec7593659c66ddb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/e5a901dd3a42d0c46a90ee37a174938cd0ce55bf",
-                "reference": "e5a901dd3a42d0c46a90ee37a174938cd0ce55bf",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2ffb032afe91b143293f75b48ec7593659c66ddb",
+                "reference": "2ffb032afe91b143293f75b48ec7593659c66ddb",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-06-23 23:17:52"
+            "time": "2016-06-21 21:41:45"
         },
         {
             "name": "behat/transliterator",
@@ -2140,83 +2140,6 @@
             "time": "2014-01-12 16:20:24"
         },
         {
-            "name": "jms-serializer/serializer",
-            "version": "1.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jms-serializer/serializer.git",
-                "reference": "e418b616562445438d51a284ae71bb328133f694"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jms-serializer/serializer/zipball/e418b616562445438d51a284ae71bb328133f694",
-                "reference": "e418b616562445438d51a284ae71bb328133f694",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/annotations": "1.*",
-                "doctrine/instantiator": "~1.0.3",
-                "jms/metadata": "~1.1",
-                "jms/parser-lib": "1.*",
-                "php": ">=5.5.0",
-                "phpcollection/phpcollection": "~0.1"
-            },
-            "conflict": {
-                "twig/twig": "<1.12"
-            },
-            "replace": {
-                "jms/serializer": "1.*"
-            },
-            "require-dev": {
-                "doctrine/orm": "~2.1",
-                "doctrine/phpcr-odm": "~1.3",
-                "jackalope/jackalope-doctrine-dbal": "1.*",
-                "phpunit/phpunit": "~4.0",
-                "propel/propel1": "~1.7",
-                "symfony/filesystem": "2.*",
-                "symfony/form": "~2.1",
-                "symfony/translation": "~2.0",
-                "symfony/validator": "~2.0",
-                "symfony/yaml": "2.*",
-                "twig/twig": "~1.12|~2.0"
-            },
-            "suggest": {
-                "symfony/yaml": "Required if you'd like to serialize data to YAML format."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "JMS\\Serializer\\": "src/",
-                    "JMS\\Serializer\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache2"
-            ],
-            "authors": [
-                {
-                    "name": "Johannes M. Schmitt",
-                    "email": "schmittjoh@gmail.com"
-                }
-            ],
-            "description": "Library for (de-)serializing data of any complexity; supports XML, JSON, and YAML.",
-            "homepage": "http://jmsyst.com/libs/serializer",
-            "keywords": [
-                "deserialization",
-                "jaxb",
-                "json",
-                "serialization",
-                "xml"
-            ],
-            "time": "2016-05-03 11:37:27"
-        },
-        {
             "name": "jms-serializer/serializer-bundle",
             "version": "1.1.0",
             "target-dir": "JMS/SerializerBundle",
@@ -2372,6 +2295,79 @@
             ],
             "description": "A library for easily creating recursive-descent parsers.",
             "time": "2012-11-18 18:08:43"
+        },
+        {
+            "name": "jms/serializer",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/serializer.git",
+                "reference": "fe13a1f993ea3456e195b7820692f2eb2b6bbb48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/fe13a1f993ea3456e195b7820692f2eb2b6bbb48",
+                "reference": "fe13a1f993ea3456e195b7820692f2eb2b6bbb48",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "1.*",
+                "doctrine/instantiator": "~1.0.3",
+                "jms/metadata": "~1.1",
+                "jms/parser-lib": "1.*",
+                "php": ">=5.4.0",
+                "phpcollection/phpcollection": "~0.1"
+            },
+            "conflict": {
+                "twig/twig": "<1.12"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.1",
+                "doctrine/phpcr-odm": "~1.0.1",
+                "jackalope/jackalope-doctrine-dbal": "1.0.*",
+                "phpunit/phpunit": "~4.0",
+                "propel/propel1": "~1.7",
+                "symfony/filesystem": "2.*",
+                "symfony/form": "~2.1",
+                "symfony/translation": "~2.0",
+                "symfony/validator": "~2.0",
+                "symfony/yaml": "2.*",
+                "twig/twig": "~1.12|~2.0"
+            },
+            "suggest": {
+                "symfony/yaml": "Required if you'd like to serialize data to YAML format."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\Serializer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Library for (de-)serializing data of any complexity; supports XML, JSON, and YAML.",
+            "homepage": "http://jmsyst.com/libs/serializer",
+            "keywords": [
+                "deserialization",
+                "jaxb",
+                "json",
+                "serialization",
+                "xml"
+            ],
+            "time": "2015-10-27 09:24:41"
         },
         {
             "name": "jms/serializer-bundle",
@@ -2753,7 +2749,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -2932,8 +2928,8 @@
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "../venice",
-                "reference": "b0aeb5c3e83369a098813aa7d2cce9a6354c640c",
+                "url": "../venice/",
+                "reference": "fa8eb1242fcbd0b7a2b2ce6f8cbb14b3b5049a2a",
                 "shasum": null
             },
             "require": {
@@ -2965,7 +2961,6 @@
                 "symfony/symfony": "~3",
                 "trinity/admin": "dev-master@dev",
                 "trinity/bunny-bundle": "dev-master@dev",
-                "trinity/core-entities": "dev-master",
                 "trinity/framework": "dev-master@dev",
                 "trinity/grid": "dev-master@dev",
                 "trinity/logger": "dev-master@dev",
@@ -2973,7 +2968,6 @@
                 "trinity/notification": "dev-master@dev",
                 "trinity/search": "dev-master@dev",
                 "trinity/settings": "dev-master@dev",
-                "trinity/utils": "dev-master@dev",
                 "twig/extensions": "~1.3",
                 "whiteoctober/breadcrumbs-bundle": "^1.2"
             },
@@ -3000,12 +2994,18 @@
             },
             "scripts": {
                 "post-install-cmd": [
+                    "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                    "php bin/console doctrine:migrations:migrate --no-interaction",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
                 ],
                 "post-update-cmd": [
+                    "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                    "php bin/console doctrine:migrations:migrate --no-interaction",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
@@ -4953,16 +4953,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.7",
+            "version": "v5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a"
+                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
-                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/ffe306d09c1f2bad721237f63b2169d1b78253d0",
+                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0",
                 "shasum": ""
             },
             "require": {
@@ -5001,7 +5001,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2016-06-23 16:11:33"
+            "time": "2016-04-25 20:50:31"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -5940,12 +5940,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "d91acaaa43fe5d62a54d570bf50bb71f7a1a309f"
+                "reference": "bacd6f3c9481c313be6a0a34db72afce44032196"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/d91acaaa43fe5d62a54d570bf50bb71f7a1a309f",
-                "reference": "d91acaaa43fe5d62a54d570bf50bb71f7a1a309f",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/bacd6f3c9481c313be6a0a34db72afce44032196",
+                "reference": "bacd6f3c9481c313be6a0a34db72afce44032196",
                 "shasum": ""
             },
             "require": {
@@ -5990,7 +5990,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2016-06-23 15:20:05"
+            "time": "2016-06-21 16:20:22"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -6029,58 +6029,6 @@
             ],
             "description": "Symfony bundle that makes using RabbitMQ easy. Without meta classes.",
             "time": "2016-06-08 15:43:03"
-        },
-        {
-            "name": "trinity/core-entities",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/modpreneur/trinity-core-entities.git",
-                "reference": "16a4a574a93ca80e2b06809d0adb407fb9f019c1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-core-entities/zipball/16a4a574a93ca80e2b06809d0adb407fb9f019c1",
-                "reference": "16a4a574a93ca80e2b06809d0adb407fb9f019c1",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/data-fixtures": "~1",
-                "doctrine/doctrine-bundle": "~1.6",
-                "doctrine/orm": "~2.5",
-                "friendsofsymfony/user-bundle": "dev-master",
-                "jms-serializer/serializer": "~1",
-                "knplabs/doctrine-behaviors": "~1.2",
-                "php": ">=7",
-                "symfony/monolog-bundle": "~2.8",
-                "symfony/validator": "~3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Trinity\\Component\\EntityCore\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tomas Jancar",
-                    "email": "jancar@modpreneur.com"
-                }
-            ],
-            "description": "Trinity Framework",
-            "time": "2016-06-23 13:01:49"
         },
         {
             "name": "trinity/framework",
@@ -6148,25 +6096,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-grid.git",
-                "reference": "64cd39b7062a904d206de2d85bb8b2baba2445ae"
+                "reference": "9482bc1fb025ab0ac850d8e1d4b98afb073c214f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/64cd39b7062a904d206de2d85bb8b2baba2445ae",
-                "reference": "64cd39b7062a904d206de2d85bb8b2baba2445ae",
+                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/9482bc1fb025ab0ac850d8e1d4b98afb073c214f",
+                "reference": "9482bc1fb025ab0ac850d8e1d4b98afb073c214f",
                 "shasum": ""
             },
             "require": {
-                "doctrine/cache": "~1",
                 "doctrine/doctrine-fixtures-bundle": "~2.3",
                 "jms/serializer-bundle": "~1.1",
                 "knplabs/doctrine-behaviors": "~1.3",
                 "php": ">=7",
                 "sensio/framework-extra-bundle": "~3.0",
-                "symfony/browser-kit": "~3",
-                "symfony/form": "~3",
-                "symfony/security-bundle": "~3",
-                "symfony/twig-bundle": "~3",
+                "symfony/framework-bundle": "~2.8 | ~3.0",
                 "trinity/logger": "dev-master",
                 "trinity/search": "dev-master",
                 "trinity/settings": "dev-master",
@@ -6204,7 +6148,7 @@
                 }
             ],
             "description": "Trinity Grid bundle",
-            "time": "2016-06-24 08:33:30"
+            "time": "2016-06-22 14:20:40"
         },
         {
             "name": "trinity/logger",
@@ -6311,12 +6255,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-notifications.git",
-                "reference": "d8134f41718a6d2b41c9ee8f315e3f691b0c67ab"
+                "reference": "14e3512167a20c697f4f22635c9dc94a22db2e95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/d8134f41718a6d2b41c9ee8f315e3f691b0c67ab",
-                "reference": "d8134f41718a6d2b41c9ee8f315e3f691b0c67ab",
+                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/14e3512167a20c697f4f22635c9dc94a22db2e95",
+                "reference": "14e3512167a20c697f4f22635c9dc94a22db2e95",
                 "shasum": ""
             },
             "require": {
@@ -6370,7 +6314,7 @@
                 }
             ],
             "description": "Trinity Notification bundle",
-            "time": "2016-06-23 08:45:53"
+            "time": "2016-06-23 06:51:19"
         },
         {
             "name": "trinity/search",
@@ -6378,12 +6322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-search.git",
-                "reference": "8437023e5c8c869bd24d1cf833a320c4aa894bc3"
+                "reference": "1d0df380e1b09dc422c5e89e670cf5cc0303c333"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-search/zipball/8437023e5c8c869bd24d1cf833a320c4aa894bc3",
-                "reference": "8437023e5c8c869bd24d1cf833a320c4aa894bc3",
+                "url": "https://api.github.com/repos/modpreneur/trinity-search/zipball/1d0df380e1b09dc422c5e89e670cf5cc0303c333",
+                "reference": "1d0df380e1b09dc422c5e89e670cf5cc0303c333",
                 "shasum": ""
             },
             "require": {
@@ -6442,7 +6386,7 @@
                 }
             ],
             "description": "Trinity Search bundle",
-            "time": "2016-06-24 11:39:29"
+            "time": "2016-06-20 09:39:48"
         },
         {
             "name": "trinity/settings",
@@ -6450,12 +6394,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-settings.git",
-                "reference": "c8ad4bd3a171114dd19fadd56383e4ee7745939b"
+                "reference": "aadfd4820341afbc2166e9e92cd30c70824abd40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/c8ad4bd3a171114dd19fadd56383e4ee7745939b",
-                "reference": "c8ad4bd3a171114dd19fadd56383e4ee7745939b",
+                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/aadfd4820341afbc2166e9e92cd30c70824abd40",
+                "reference": "aadfd4820341afbc2166e9e92cd30c70824abd40",
                 "shasum": ""
             },
             "require": {
@@ -6504,7 +6448,7 @@
                 }
             ],
             "description": "Trinity Settings bundle",
-            "time": "2016-06-24 08:37:16"
+            "time": "2016-06-21 14:05:38"
         },
         {
             "name": "trinity/utils",

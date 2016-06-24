@@ -5,7 +5,7 @@
 import Gateway from 'trinity/Gateway';
 
 // Used for switching similar forms and copying it's data from form to form
-var FormChanger = {
+export default class FormChanger {
     /**
      * Call the "url" to get a form which will be inserted into "parentElement".
      * After inserting the form the data from old form are copied to the new form.
@@ -15,44 +15,42 @@ var FormChanger = {
      * @param {string}   url              Url which will be used to get the form
      * @param {function} afterFormChange  Function which is called after the refreshing is done
      */
-    refreshForm(parentElement, url, afterFormChange) {
-        var formChanger = this;
+    static refreshForm(parentElement, url, afterFormChange) {
         //call api and get form
-        Gateway.get('/app_dev.php'+url, {}, function (response) {
+        Gateway.get(url, {}, function (response) {
             //save data from old form
-            var oldHtml = parentElement.innerHTML;
+            let oldHtml = parentElement.innerHTML;
 
             // If the element already contains a form
             // Change the form to the new form and copy the data
             if (oldHtml.includes("<form")) {
-                var oldForm = parentElement.getElementsByTagName("form")[0];
+                let oldForm = parentElement.getElementsByTagName("form")[0];
 
-                parentElement.innerHTML = response;
-                var newForm = parentElement.getElementsByTagName("form")[0];
+                parentElement.innerHTML = response.text;
+                let newForm = parentElement.getElementsByTagName("form")[0];
 
                 //copy data to new form
-                formChanger.copyFormData(oldForm, newForm);
+                FormChanger.copyFormData(oldForm, newForm);
 
             } else {
-                parentElement.innerHTML = response;
+                parentElement.innerHTML = response.text;
             }
-
             if (typeof afterFormChange === 'function') {
                 afterFormChange();
             }
         });
-    },
+    }
 
-    copyFormData(oldForm, newForm) {
-        var oldInputs = this.getFormInputs(oldForm);
-        var newInputs = this.getFormInputs(newForm);
+    static copyFormData(oldForm, newForm) {
+        let oldInputs = FormChanger.getFormInputs(oldForm);
+        let newInputs = FormChanger.getFormInputs(newForm);
 
-        for (var newFormInput of newInputs) {
-            var newInputName = this.getShortInputName(newFormInput);
+        for (let newFormInput of newInputs) {
+            let newInputName = FormChanger.getShortInputName(newFormInput);
 
-            for (var oldInput of oldInputs) {
+            for (let oldInput of oldInputs) {
                 //if the input names are the same
-                if (newInputName !== "[_token]" && newInputName === this.getShortInputName(oldInput)) {
+                if (newInputName !== "[_token]" && newInputName === FormChanger.getShortInputName(oldInput)) {
                     if('checkbox' === newFormInput.getAttribute('type')) {
                         newFormInput.checked = oldInput.checked;
                     } else {
@@ -61,25 +59,25 @@ var FormChanger = {
                 }
             }
         }
-    },
+    }
 
-    getShortInputName(formInput) {
+    static getShortInputName(formInput) {
         // e.g. free_product[name]
-        var formInputFullName = formInput.getAttribute('name');
+        let formInputFullName = formInput.getAttribute('name');
 
-        var leftSquareBracketIndex = formInputFullName.indexOf('[');
-        var rightSquareBracketIndex = formInputFullName.indexOf(']');
+        let leftSquareBracketIndex = formInputFullName.indexOf('[');
+        let rightSquareBracketIndex = formInputFullName.indexOf(']');
 
         // e.g name
         return formInputFullName.substr(leftSquareBracketIndex, rightSquareBracketIndex);
-    },
+    }
 
-    getFormInputs(form) {
-        var inputs = Array.prototype.slice.call(form.getElementsByTagName("input"));
-        var textAreas = Array.prototype.slice.call(form.getElementsByTagName("textarea"));
-        var formName = form.getAttribute('name');
-        var formTextAreas = [];
-        var formInputs = [];
+    static getFormInputs(form) {
+        let inputs = Array.prototype.slice.call(form.getElementsByTagName("input"));
+        let textAreas = Array.prototype.slice.call(form.getElementsByTagName("textarea"));
+        let formName = form.getAttribute('name');
+        let formTextAreas = [];
+        let formInputs = [];
 
         inputs.forEach(function(input){
             //check if the input contains id of the form
@@ -95,14 +93,10 @@ var FormChanger = {
             }
         });
 
-
         //convert node list of textareas and push it to the end of inputs
         return formInputs.concat(formTextAreas);
     }
-};
-
-export default FormChanger;
-
+}
 
 
 

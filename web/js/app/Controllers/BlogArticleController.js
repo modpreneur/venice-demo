@@ -1,11 +1,12 @@
 /**
  * Created by Jakub Fajkus on 10.12.15.
  */
-import events from 'trinity/utils/closureEvents';
 import Controller from 'trinity/Controller';
 import VeniceForm from '../Libraries/VeniceForm';
-import Slugify from '../Libraries/Slugify';
+import {handleHandleGeneration} from '../Libraries/GlobalLib';
 import TrinityTab from 'trinity/components/TrinityTab';
+import Events from 'trinity/utils/Events';
+import $ from 'jquery';
 
 export default class BlogArticleController extends Controller {
 
@@ -20,17 +21,16 @@ export default class BlogArticleController extends Controller {
         //On tabs load
         $scope.trinityTab.addListener('tab-load', function (e) {
 
-        if(e.id == "tab2") {
-            let form = e.element.q('form');
-
             $scope.veniceForms = $scope.veniceForms || {};
-            $scope.veniceForms[e.id] = new VeniceForm(form);
+            if(e.id == 'tab2') {
+                let form = e.element.q('form');
 
-            let settingsString = q("#blog_article_content").getAttribute("data-settings");
-            $("#blog_article_content").froalaEditor(JSON.parse(settingsString));
+                $scope.veniceForms[e.id] = new VeniceForm(form);
+                let article = $('#blog_article_content');
+                article.froalaEditor(JSON.parse(article[0].getAttribute('data-settings')));
 
-            this.handleHandleGeneration();
-        }
+                BlogArticleController._handleHandleGeneration();
+            }
         }, this);
     }
 
@@ -39,23 +39,16 @@ export default class BlogArticleController extends Controller {
      * @param $scope
      */
     newAction($scope) {
-        $scope.form = new VeniceForm(q('form[name="blog_article"]'), VeniceForm.formType.NEW);
+        $scope.form = new VeniceForm($('form[name="blog_article"]')[0], VeniceForm.formType.NEW);
 
-        let settingsString = q("#blog_article_content").getAttribute("data-settings");
-
-        $("#blog_article_content").froalaEditor(JSON.parse(settingsString));
-
-        this.handleHandleGeneration();
+        let article = $('#blog_article_content');
+        console.log(article);
+        // article.froalaEditor(JSON.parse(article[0].getAttribute('data-settings')));
+        //
+        BlogArticleController._handleHandleGeneration();
     }
 
-    handleHandleGeneration() {
-        var titleField = q.id('blog_article_title');
-        var handleField = q.id('blog_article_handle');
-
-        if (titleField && handleField) {
-            events.listen(titleField, 'input', function () {
-                Slugify.slugify(titleField, handleField);
-            });
-        }
+    static _handleHandleGeneration() {
+        return handleHandleGeneration($('#blog-article-form').attr('data-slugify'),$('#blog_article_title')[0], $('#blog_article_handle')[0]);
     }
 }

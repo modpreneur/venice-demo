@@ -6,7 +6,7 @@ import events from 'trinity/utils/closureEvents';
 import Controller from 'trinity/Controller';
 import VeniceForm from '../Libraries/VeniceForm';
 import TrinityTab from 'trinity/components/TrinityTab';
-import Slugify from '../Libraries/Slugify';
+// import Slugify from '../Libraries/Slugify';
 import FormChanger from '../Libraries/FormChanger';
 import Gateway from 'trinity/Gateway';
 

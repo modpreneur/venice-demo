@@ -1,46 +1,62 @@
 {
   "name": "Venice",
-  "version": "0.0.1",
+  "version": "02.0.0",
   "description": "JS part of Venice",
   "author": "fiser@modpreneur.com",
-  "prefix": "web/js",
+  "private": true,
   "contributors": [],
-  "main": "web/js/app/main.js",
-  "directories": {
-    "lib": "./lib",
-    "packages": "jspm_packages"
-  },
   "keywords": [
     "modpreneur",
     "venice"
   ],
-  "scripts": {
-    "build-trinity": "jspm bundle trinity - lodash ./bundles/trinity.bundle.js --inject",
-    "build-vendor": "jspm bundle lodash + jquery ./bundles/vendor.bundle.min.js --inject --minify",
-    "controllers": "nodejs ./scripts/buildControllers.js",
-    "build": "nodejs ./scripts/buildControllers.js && jspm bundle-sfx app/main.js ./venice.bundle.min.js --minify"
+  "main": "web/js/app/main.js",
+  "directories": {
+    "lib": "./lib",
+    "packages": "node_modules"
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "comment-devDependecies": "You need to have installed jspm globally - docker will install it automacally. It CANNOT be defined in devDependecies locally.",
-  "private": true,
-  "license": "MIT",
-  "jspm": {
-    "directories": {
-      "lib": "./lib"
-    },
-    "dependencies": {
-      "async": "npm:async@^1.5.0",
-      "flux": "npm:flux@^2.1.1",
-      "jquery": "github:components/jquery@^2.1.4",
-      "lodash": "npm:lodash@^3.10.1",
-      "mousetrap": "npm:mousetrap@^1.5.3",
-      "trinity": "github:modpreneur/trinityJS@master"
-    },
-    "devDependencies": {
-      "babel": "npm:babel-core@^5.8.24",
-      "babel-runtime": "npm:babel-runtime@^5.8.24",
-      "core-js": "npm:core-js@^1.1.4"
-    }
+  "scripts": {
+    "start": "webpack -w",
+    "build": "npm run controllers && env NODE_ENV=production webpack",
+    "lint": "npm run controllers && env NODE_ENV=lint webpack -w",
+    "update": "npm update && env NODE_ENV=dev webpack",
+    "dev": "env NODE_ENV=dev webpack",
+    "controllers": "nodejs ./scripts/buildControllers.js"
+  },
+  "dependencies": {
+    "Base64": "^1.0.0",
+    "dragula": "^3.6.8",
+    "fbemitter": "^2.0.2",
+    "flux": "^2.1.1",
+    "history": "2.1.0",
+    "jquery": "^2.2.3",
+    "lodash": "^4.11.1",
+    "moment": "^2.13.0",
+    "mousetrap": "^1.5.3",
+    "react": "^15.0.2",
+    "react-addons-create-fragment": "^15.0.2",
+    "react-addons-css-transition-group": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-dropzone": "^3.4.0",
+    "react-paginate": "^2.0.1",
+    "react-widgets": "^3.2.4",
+    "trinity": "git+https://git@github.com/modpreneur/trinityJS.git#master"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.7.6",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.8.0",
+    "eslint-loader": "^1.3.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "less": "^2.6.1",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "uglify-loader": "^1.3.0",
+    "webpack": "^1.12.15",
+    "webpack-dev-server": "^1.14.1"
   }
 }

@@ -2,10 +2,8 @@
  * Created by Jakub Fajkus on 28.12.15.
  */
 
-import events from 'trinity/utils/closureEvents';
 import Controller from 'trinity/Controller';
 import TrinityTab from 'trinity/components/TrinityTab';
-import Collection from 'trinity/Collection';
 import _ from 'lodash';
 import VeniceForm from '../Libraries/VeniceForm';
 
@@ -20,22 +18,14 @@ export default class ContetntController extends Controller {
 
         //On tabs load
         $scope.trinityTab.addListener('tab-load', function(e) {
-            let form = e.element.q('form');
-            if(form){
+            if(e.id === 'tab2') {
+                let form = e.element.q('form');
                 $scope.veniceForms = $scope.veniceForms || {};
                 $scope.veniceForms[e.id] = new VeniceForm(form);
+                $scope.veniceForms['tab2'].success(()=>{
+                    $scope.trinityTab.reload('tab1');
+                });
             }
-
         }, this);
     }
-
-
-    /**
-     * New user
-     * @param $scope
-     */
-    newAction($scope) {
-        $scope.form = new VeniceForm(q('form[name="user"]'), VeniceForm.formType.NEW);
-    }
-
 }
