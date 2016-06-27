@@ -11,28 +11,8 @@ module.exports = {
     },
     // Bigger file but faster compiling
     devtool: 'eval-cheap-module-source-map',
+    // devtool: 'source-map',
     module: {
-        /*preLoaders: [
-            {
-                test: /\.jsx?$/,
-                loader: 'eslint-loader',
-                exclude: /(node_modules)/,
-                query: {
-                    parserOptions: {
-                        ecmaVersion: 6,
-                        sourceType: 'module',
-                        ecmaFeatures: {
-                            jsx: true,
-                            experimentalObjectRestSpread: true
-                        }
-                    },
-                    rules:{
-                        semi: 2,
-                        quotes: [1, 'single']
-                    }
-                }
-            }
-        ],*/
         loaders: [
             {
                 test: /\.css$/,
@@ -45,24 +25,31 @@ module.exports = {
             {
                 test: /\.jsx$/,
                 exclude: /(node_modules)/,
+                // loader: require.resolve('babel-loader'),
                 loader: 'babel',
                 query: {
                     presets: [
+                        // require.resolve('babel-preset-es2015'),
+                        // require.resolve('babel-preset-stage-2'),
+                        // require.resolve('babel-preset-react')
                         'es2015',
-                        'react',
-                        'stage-2'
+                        'stage-2',
+                        'react'
                     ]
                 }
             },
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
+                // loader: require.resolve('babel-loader'),
                 loader: 'babel',
                 query: {
                     presets: [
+                        // require.resolve('babel-preset-es2015'),
+                        // require.resolve('babel-preset-stage-2'),
                         'es2015',
                         'stage-2'
-                    ]
+                    ],
                 }
             }
         ]
@@ -72,10 +59,17 @@ module.exports = {
             DEVELOPMENT: true
         })
     ],
+    // POUZE PRO VYVOJ VENICE-DEMO S VENICE-JS
+    resolve: {
+        root: path.join(__dirname, '../node_modules'),
+        alias: {
+            'venice-js': 'venice-js/src'
+        }
+    },
     resolveLoader: {
         root: path.join(__dirname, './node_modules')
     },
-    // For faster build 
+    // For faster build
     externals: {
         'lodash': '_',
         'jquery': '$',

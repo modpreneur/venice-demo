@@ -15,15 +15,15 @@ configure({
 
 let Application = new App(routes, controllers, {env: 'dev'});
 
-Application.start(function (isRoute){
+Application.start(isRoute => {
     console.log('App Loaded!');
     if(!isRoute){
         console.log('INFO: This route doesn\'t have any controller!');
     }
     removeLoadingBar();
-}, function (err){
+}, err => {
     console.error(err);
-    let bar = q('.header-loader .bar');
+    let bar = document.querySelector('.header-loader .bar');
     if(bar){
         bar.style.backgroundColor = "#f00";
     }
@@ -31,14 +31,14 @@ Application.start(function (isRoute){
 
 
 function removeLoadingBar() {
-    let bars = qAll('.header-loader .bar');
+    let bars = document.querySelectorAll('.header-loader .bar');
     if(bars.length > 0){
-        _.map(bars, function(bar){
+        _.map(bars, bar => {
             bar.className += ' bar-end';
         });
         let timeoutID = null;
         timeoutID = setTimeout(function(){
-            q('.header-loader').style.display = 'none';
+            document.querySelector('.header-loader').style.display = 'none';
             clearTimeout(timeoutID);
         }, 2000);
     }

@@ -16,11 +16,10 @@
   },
   "scripts": {
     "start": "webpack -w",
-    "build": "npm run controllers && env NODE_ENV=production webpack",
-    "lint": "npm run controllers && env NODE_ENV=lint webpack -w",
+    "build": "env NODE_ENV=production webpack",
+    "lint": "env NODE_ENV=lint webpack -w",
     "update": "npm update && env NODE_ENV=dev webpack",
-    "dev": "env NODE_ENV=dev webpack",
-    "controllers": "nodejs ./scripts/buildControllers.js"
+    "dev": "env NODE_ENV=dev webpack"
   },
   "dependencies": {
     "fbemitter": "^2.0.2",
