@@ -3,10 +3,11 @@
  */
 
 
-import Events from 'trinity/utils/Events';
+import Gateway from 'trinity/Gateway';
 import VeniceForm from '../Libraries/VeniceForm';
 import TrinityTab from 'trinity/components/TrinityTab';
 import {handleHandleGeneration} from '../Libraries/GlobalLib';
+import {messageService} from 'trinity/Services';
 import _ from 'lodash';
 import Controller from 'trinity/Controller';
 import $ from 'jquery';
@@ -42,6 +43,36 @@ export default class ProductController extends Controller {
                         $scope.trinityTab.reload('tab1');
                     });
                 } break;
+                case 'tab4':{
+                    window.setAsDefault = function(id){ //this way work in grids so i let it this way
+                        let currentTarget=$(`#${id}`)[0];
+
+                        currentTarget.style.display='none';
+
+                        let billingPlanId = id.substr(id.lastIndexOf('-')+1);
+                        q.id('loading-icon-for-default-id-'+billingPlanId).style.display='block';
+
+                        Gateway.putJSON(currentTarget.dataset.href, null, function (response) {
+                            let pins = $('.set-default');
+                            _.each($('.is-default'), (isD,id) => {
+                                if(isD.style.display === 'block'){
+                                    isD.style.display = 'none';
+                                    pins[id].style.display = 'block';
+                                    return false;
+                                }
+                            });
+                            $(`#loading-icon-for-default-id-${billingPlanId}`).css( 'display','none' );
+                            $(`#is-default-id-${billingPlanId}`).css( 'display','block' );
+                            messageService(response.body.message,'success');
+                            $scope.trinityTab.reload('tab1');
+                        }, function (error) {
+                            messageService('Default billing plan could not be changed.', 'warning');
+                            $(`#loading-icon-for-default-id-${billingPlanId}`).style.display = 'none';
+                            currentTarget.style.display='block';
+                        });
+                    };
+
+                }
             }
         }, this);
 
