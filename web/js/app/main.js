@@ -6,24 +6,12 @@ import routes from './routes.js';
 import _ from 'lodash';
 import controllers from './controllers.js';
 import App from 'trinity/App';
-import Mousetrap from 'mousetrap';
 
-// Add shortcuts @TODO: move it to some global controller
-Mousetrap.bind('ctrl+alt+n', function () {
-    var newEntryButton = q('.new-entry');
-    if (newEntryButton) {
-        window.location.assign(newEntryButton.getAttribute('href'));
-    }
-});
 
-// window.settings = {
-//     environment: 'prod',
-//     debug: false
-// };
+
 let Application = new App(routes, controllers);
-console.log('aaaaa')
-// window.App = new AppBuilder(routes, controllers, settings);
-// App.start();
+
+
 Application.start(function () {
     console.log('app running');
 }, function (err) {

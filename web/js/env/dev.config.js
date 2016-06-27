@@ -83,7 +83,6 @@ module.exports = {
         'react-dom': 'ReactDOM',
         'history' : 'History',
         'flux': 'Flux',
-        'dragula' : 'dragula',
-        'moment': 'moment',
+        'moment': 'moment'
     }
 };
