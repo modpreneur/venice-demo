@@ -11,10 +11,14 @@
     "prefer-stable": true,
     "repositories": [
         {
-            "type": "path",
-            "url": "../venice",
+            "type": "vcs",
+            "url": "git@github.com:modpreneur/venice.git",
             "options": {
-                "symlink": false
+                "ssh2": {
+                    "username": "Jakub-Fajkus",
+                    "pubkey_file": "/root/.ssh/id_rsa.pub",
+                    "privkey_file": "/root/.ssh/id_rsa"
+                }
             }
         }
     ],
