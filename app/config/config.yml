@@ -15,12 +15,6 @@ doctrine_migrations:
     table_name: migration_versions
     name: Application Migrations
 
-
-trinity_logger:
-    elastic_logs:
-        elastic_host: 'necktie_elasticsearch_1'
-
-
 parameters: #todo: necktie?!
     trinity.search.doctrine_prefix: "NecktieAppBundle"
     trinity.search.namespace: "Necktie\\AppBundle\\Entity"

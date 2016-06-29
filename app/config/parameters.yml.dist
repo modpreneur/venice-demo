@@ -34,3 +34,5 @@ parameters:
     rabbit_user: ~
     rabbit_password: ~
     client_identification: "client_3"
+
+    elasticsearch_host: "elasticsearch:9201"
