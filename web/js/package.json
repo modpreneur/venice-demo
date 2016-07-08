@@ -19,6 +19,7 @@
     "build": "env NODE_ENV=production webpack",
     "lint": "env NODE_ENV=lint webpack -w",
     "update": "npm update && env NODE_ENV=dev webpack",
+    "mac-update": "",
     "dev": "env NODE_ENV=dev webpack"
   },
   "dependencies": {
@@ -36,7 +37,8 @@
     "react-dropzone": "^3.4.0",
     "react-paginate": "^2.0.1",
     "react-widgets": "^3.2.4",
-    "trinity": "git+https://git@github.com/modpreneur/trinityJS.git#master"
+    "trinity": "git+https://git@github.com/modpreneur/trinityJS.git#master",
+    "venice-js": "git+https://0d32fb07daa0f4172c50f1df2cd6eae4f51c231e:x-oauth-basic@github.com/modpreneur/venice-js.git#master"
   },
   "devDependencies": {
     "babel": "^6.5.2",

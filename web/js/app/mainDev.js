@@ -25,7 +25,7 @@ Application.start(isRoute => {
     console.error(err);
     let bar = document.querySelector('.header-loader .bar');
     if(bar){
-        bar.style.backgroundColor = "#f00";
+        bar.style.backgroundColor = '#f00';
     }
 });
 
