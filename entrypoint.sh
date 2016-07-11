@@ -7,4 +7,6 @@ mkdir -p /var/app/var/logs
 chmod -R 0777 /var/app/var/cache
 chmod -R 0777 /var/app/var/logs
 
+composer config github-oauth.github.com "dmxjZWs6NjgwOGM3MzVkZDkwMDZjNjBiOWRmM2RjYjc5MTI5OGUwMjkxNjgzZg=="
+
 exec apache2-foreground
