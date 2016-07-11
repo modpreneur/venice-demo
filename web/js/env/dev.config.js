@@ -24,7 +24,7 @@ module.exports = {
             },
             {
                 test: /\.jsx$/,
-                exclude: /(node_modules)/,
+                exclude: /(node_modules)(?!\/venice-js)/,
                 // loader: require.resolve('babel-loader'),
                 loader: 'babel',
                 query: {
@@ -40,7 +40,7 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /(node_modules)/,
+                exclude: /(node_modules)(?!\/venice-js)/,
                 // loader: require.resolve('babel-loader'),
                 loader: 'babel',
                 query: {
