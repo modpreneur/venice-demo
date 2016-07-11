@@ -18,7 +18,7 @@
     "start": "webpack -w",
     "build": "tput setaf 1; echo \"This takes a lot of time\"; tput sgr0; env NODE_ENV=production webpack",
     "update": "npm update && env NODE_ENV=dev webpack",
-    "do-all": "npm run update && npm run build",
+    "all": "npm run update && npm run build",
     "dev": "env NODE_ENV=dev webpack"
   },
   "dependencies": {

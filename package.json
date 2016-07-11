@@ -2,7 +2,7 @@
   "name": "Venice",
   "description": "Created just for update script",
   "scripts": {
-    "build": "cd web/js && npm run do-all"
+    "build": "cd web/js && npm run all"
   },
   "private": true,
   "dependencies": {}
