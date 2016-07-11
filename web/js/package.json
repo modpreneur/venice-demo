@@ -16,10 +16,9 @@
   },
   "scripts": {
     "start": "webpack -w",
-    "build": "env NODE_ENV=production webpack",
-    "lint": "env NODE_ENV=lint webpack -w",
+    "build": "tput setaf 1; echo \"This takes a lot of time\"; tput sgr0; env NODE_ENV=production webpack",
     "update": "npm update && env NODE_ENV=dev webpack",
-    "mac-update": "",
+    "do-all": "npm run update && npm run build",
     "dev": "env NODE_ENV=dev webpack"
   },
   "dependencies": {

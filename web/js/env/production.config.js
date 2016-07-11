@@ -11,36 +11,7 @@ module.exports = {
         filename: 'venice.bundle.min.js'
     },
     module: {
-        // preLoaders: [
-        //     {
-        //         test: /\.jsx?$/,
-        //         loader: 'eslint-loader?{rules:{quotes:["error", "double"]}}',
-        //         exclude: /(node_modules)/,
-        //         query: {
-        //             parserOptions: {
-        //                 ecmaVersion: 6,
-        //                 sourceType: 'module',
-        //                 ecmaFeatures: {
-        //                     jsx: true,
-        //                     experimentalObjectRestSpread: true
-        //                 }
-        //             },
-        //             rules:{
-        //                 semi: 2,
-        //                 quotes: ['error', 'double']
-        //             }
-        //         }
-        //     }
-        // ],
         loaders: [
-            // {
-            //     test: /\.css$/,
-            //     loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-            // },
-            // {
-            //     test: /\.less$/,
-            //     loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
-            // },
             {
                 test: /\.css$/,
                 loader: 'style!css-loader'
@@ -51,12 +22,23 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules)/,
+                exclude: /(node_modules)(?!\/venice-js)/,
                 loader: 'babel',
                 query: {
                     presets: [
                         'es2015',
                         'react',
+                        'stage-2'
+                    ]
+                }
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules)(?!\/venice-js)/,
+                loader: 'babel',
+                query: {
+                    presets: [
+                        'es2015',
                         'stage-2'
                     ]
                 }
@@ -71,9 +53,6 @@ module.exports = {
             },
             DEVELOPMENT: false
         }),
-        // new ExtractTextPlugin('venice.styles.min.css', {
-        //     allChunks: true
-        // }),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,

@@ -29,9 +29,6 @@ module.exports = {
                 loader: 'babel',
                 query: {
                     presets: [
-                        // require.resolve('babel-preset-es2015'),
-                        // require.resolve('babel-preset-stage-2'),
-                        // require.resolve('babel-preset-react')
                         'es2015',
                         'stage-2',
                         'react'
@@ -41,15 +38,12 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules)(?!\/venice-js)/,
-                // loader: require.resolve('babel-loader'),
                 loader: 'babel',
                 query: {
                     presets: [
-                        // require.resolve('babel-preset-es2015'),
-                        // require.resolve('babel-preset-stage-2'),
                         'es2015',
                         'stage-2'
-                    ],
+                    ]
                 }
             }
         ]
@@ -61,10 +55,7 @@ module.exports = {
     ],
     // POUZE PRO VYVOJ VENICE-DEMO S VENICE-JS
     resolve: {
-        root: path.join(__dirname, '../node_modules'),
-        alias: {
-            'venice-js': 'venice-js/src'
-        }
+        root: path.join(__dirname, '../node_modules')
     },
     resolveLoader: {
         root: path.join(__dirname, './node_modules')
