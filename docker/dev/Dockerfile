@@ -15,6 +15,8 @@ RUN cd web/js \
     && jspm install -y \
     && nodejs ./scripts/buildBundles.js
 
+composer config -g github-oauth.github.com 9b41dc4199ceb4611598caa882e06115931d85f8
+
 RUN chmod +x ./docker/dev/entrypoint.sh
 
 ENTRYPOINT ["sh", "./docker/dev/entrypoint.sh", "service postfix start"]
