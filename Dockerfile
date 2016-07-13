@@ -52,7 +52,7 @@ WORKDIR /var/app
 RUN curl -sS https://getcomposer.org/installer | php \
     && cp composer.phar /usr/bin/composer
 
-/urs/bin/composer config -g github-oauth.github.com 9b41dc4199ceb4611598caa882e06115931d85f8
+RUN composer config -g github-oauth.github.com 9b41dc4199ceb4611598caa882e06115931d85f8
 
 # Install app
 RUN rm -rf /var/app/*
