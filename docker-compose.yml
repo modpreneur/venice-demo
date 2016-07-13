@@ -14,7 +14,7 @@ web:
 mysql:
   image: mysql/mysql-server:5.7
   ports:
-    - 3306:3306
+    - 3307:3307
   environment:
     - MYSQL_ROOT_PASSWORD=my-secret-pw -d
     - MYSQL_DATABASE=venice
