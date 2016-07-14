@@ -4,6 +4,8 @@ mkdir -p /var/app/var/cache
 mkdir -p /var/app/var/logs
 mkdir -p /var/app/web/compiled
 
+RUN composer config -g github-oauth.github.com 9b41dc4199ceb4611598caa882e06115931d85f8
+
 composer run-script post-install-cmd --no-interaction
 
 bin/console assetic:dump 
