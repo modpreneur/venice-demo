@@ -1,5 +1,6 @@
 web:
   build: .
+  dockerfile: docker/dev/Dockerfile
   links:
     - mysql:database
     - redis:redis
