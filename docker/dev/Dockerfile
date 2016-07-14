@@ -11,9 +11,7 @@ RUN docker-php-ext-install pdo_mysql
 RUN apt-get install cron
 
 RUN cd web/js \
-    && jspm config registries.github.auth "dmxjZWs6NjgwOGM3MzVkZDkwMDZjNjBiOWRmM2RjYjc5MTI5OGUwMjkxNjgzZg==" \
-    && jspm install -y \
-    && nodejs ./scripts/buildBundles.js
+    && npm install
 
 RUN chmod +x ./docker/dev/entrypoint.sh
 
