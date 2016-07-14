@@ -60,16 +60,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.18.27",
+            "version": "3.18.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "8cc3d3231d9fb9da528205f3b905097a37ac3df3"
+                "reference": "c75d3ba185d5db6998124fa1a99a63e5d529b247"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8cc3d3231d9fb9da528205f3b905097a37ac3df3",
-                "reference": "8cc3d3231d9fb9da528205f3b905097a37ac3df3",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c75d3ba185d5db6998124fa1a99a63e5d529b247",
+                "reference": "c75d3ba185d5db6998124fa1a99a63e5d529b247",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-07-07 23:09:15"
+            "time": "2016-07-13 20:34:06"
         },
         {
             "name": "behat/transliterator",
@@ -2933,12 +2933,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "4f144d8143a5c356a1c519e6582bb4230a8aacad"
+                "reference": "6604001167c730b3d681389120139f9e61e73cd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/4f144d8143a5c356a1c519e6582bb4230a8aacad",
-                "reference": "4f144d8143a5c356a1c519e6582bb4230a8aacad",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/6604001167c730b3d681389120139f9e61e73cd2",
+                "reference": "6604001167c730b3d681389120139f9e61e73cd2",
                 "shasum": ""
             },
             "require": {
@@ -3027,7 +3027,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-07-11 11:35:36"
+            "time": "2016-07-14 08:41:05"
         },
         {
             "name": "monolog/monolog",
@@ -5948,12 +5948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "eabe192c0741c192d1bf85048b15572aea762a86"
+                "reference": "67ef1edc2f8880efc2a1ab316049bd55d90d02d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/eabe192c0741c192d1bf85048b15572aea762a86",
-                "reference": "eabe192c0741c192d1bf85048b15572aea762a86",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/67ef1edc2f8880efc2a1ab316049bd55d90d02d1",
+                "reference": "67ef1edc2f8880efc2a1ab316049bd55d90d02d1",
                 "shasum": ""
             },
             "require": {
@@ -5998,7 +5998,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2016-07-11 14:07:48"
+            "time": "2016-07-14 06:28:48"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -6208,12 +6208,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-grid.git",
-                "reference": "f6cbbeddc3eeefd1c6c5c0424ccab525baa50afb"
+                "reference": "4e322fd8e83536fbd474ec88b3040cad396604ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/f6cbbeddc3eeefd1c6c5c0424ccab525baa50afb",
-                "reference": "f6cbbeddc3eeefd1c6c5c0424ccab525baa50afb",
+                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/4e322fd8e83536fbd474ec88b3040cad396604ba",
+                "reference": "4e322fd8e83536fbd474ec88b3040cad396604ba",
                 "shasum": ""
             },
             "require": {
@@ -6265,7 +6265,7 @@
                 }
             ],
             "description": "Trinity Grid bundle",
-            "time": "2016-07-11 07:58:50"
+            "time": "2016-07-12 12:14:43"
         },
         {
             "name": "trinity/logger",
@@ -6273,12 +6273,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "3508b69666487609e0341d0c45930bebcd6594ba"
+                "reference": "3057c7db025790ecfc4b9bdb48851edd4f399b47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/3508b69666487609e0341d0c45930bebcd6594ba",
-                "reference": "3508b69666487609e0341d0c45930bebcd6594ba",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/3057c7db025790ecfc4b9bdb48851edd4f399b47",
+                "reference": "3057c7db025790ecfc4b9bdb48851edd4f399b47",
                 "shasum": ""
             },
             "require": {
@@ -6319,7 +6319,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2016-07-11 10:05:08"
+            "time": "2016-07-12 12:18:05"
         },
         {
             "name": "trinity/messages",
@@ -6327,12 +6327,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-messages.git",
-                "reference": "478328c237a05232d5a31456cada0c3bd64e3d34"
+                "reference": "92a539324a9788ddca6e47ddde5f02b12b34c697"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-messages/zipball/478328c237a05232d5a31456cada0c3bd64e3d34",
-                "reference": "478328c237a05232d5a31456cada0c3bd64e3d34",
+                "url": "https://api.github.com/repos/modpreneur/trinity-messages/zipball/92a539324a9788ddca6e47ddde5f02b12b34c697",
+                "reference": "92a539324a9788ddca6e47ddde5f02b12b34c697",
                 "shasum": ""
             },
             "require": {
@@ -6364,7 +6364,7 @@
                 }
             ],
             "description": "Trinity Messages bundle",
-            "time": "2016-07-07 18:36:01"
+            "time": "2016-07-12 08:53:03"
         },
         {
             "name": "trinity/notification",
@@ -6372,12 +6372,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-notifications.git",
-                "reference": "5f6f5baa9b5b2b2a4828a628c67bbfb3282c6181"
+                "reference": "bd34a9a643e2cca54ac87e6e561bebdca08b2127"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/5f6f5baa9b5b2b2a4828a628c67bbfb3282c6181",
-                "reference": "5f6f5baa9b5b2b2a4828a628c67bbfb3282c6181",
+                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/bd34a9a643e2cca54ac87e6e561bebdca08b2127",
+                "reference": "bd34a9a643e2cca54ac87e6e561bebdca08b2127",
                 "shasum": ""
             },
             "require": {
@@ -6433,7 +6433,7 @@
                 }
             ],
             "description": "Trinity Notification bundle",
-            "time": "2016-06-30 10:26:29"
+            "time": "2016-07-13 16:37:42"
         },
         {
             "name": "trinity/search",
@@ -6441,12 +6441,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-search.git",
-                "reference": "2e536467f10ebd6183348eafd6617ed93816e4f3"
+                "reference": "6196ec53dff14a7eb00d447b9e0d5bfe44bc2e7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-search/zipball/2e536467f10ebd6183348eafd6617ed93816e4f3",
-                "reference": "2e536467f10ebd6183348eafd6617ed93816e4f3",
+                "url": "https://api.github.com/repos/modpreneur/trinity-search/zipball/6196ec53dff14a7eb00d447b9e0d5bfe44bc2e7e",
+                "reference": "6196ec53dff14a7eb00d447b9e0d5bfe44bc2e7e",
                 "shasum": ""
             },
             "require": {
@@ -6505,7 +6505,7 @@
                 }
             ],
             "description": "Trinity Search bundle",
-            "time": "2016-07-11 12:50:47"
+            "time": "2016-07-13 15:18:21"
         },
         {
             "name": "trinity/settings",
