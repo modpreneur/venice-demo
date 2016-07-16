@@ -2936,12 +2936,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "97e795b47dcad2d541dc861319ce794781427236"
+                "reference": "d935e11055aae39376eeea1601ece4472fc57132"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/97e795b47dcad2d541dc861319ce794781427236",
-                "reference": "97e795b47dcad2d541dc861319ce794781427236",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/d935e11055aae39376eeea1601ece4472fc57132",
+                "reference": "d935e11055aae39376eeea1601ece4472fc57132",
                 "shasum": ""
             },
             "require": {
@@ -3032,7 +3032,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-07-16 08:15:23"
+            "time": "2016-07-16 08:28:59"
         },
         {
             "name": "monolog/monolog",
@@ -6377,12 +6377,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-notifications.git",
-                "reference": "bd34a9a643e2cca54ac87e6e561bebdca08b2127"
+                "reference": "204a8054ecc888936bd5fc75eb88843baa28ef02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/bd34a9a643e2cca54ac87e6e561bebdca08b2127",
-                "reference": "bd34a9a643e2cca54ac87e6e561bebdca08b2127",
+                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/204a8054ecc888936bd5fc75eb88843baa28ef02",
+                "reference": "204a8054ecc888936bd5fc75eb88843baa28ef02",
                 "shasum": ""
             },
             "require": {
@@ -6438,7 +6438,7 @@
                 }
             ],
             "description": "Trinity Notification bundle",
-            "time": "2016-07-13 16:37:42"
+            "time": "2016-07-16 08:40:49"
         },
         {
             "name": "trinity/search",
