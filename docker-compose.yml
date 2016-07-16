@@ -7,6 +7,7 @@ web:
     - elasticsearch:elasticsearch
   ports:
     - "8888:80"
+    - "9003:9003"
   expose:
     - "8888"
   volumes:
