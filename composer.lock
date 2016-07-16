@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "881d2ed4ed1f28b277e3468765c9e75b",
+    "hash": "2516d3c09d2797c3da7e679413d81194",
     "content-hash": "dce79f5fc679d138fbcdb9ebad066762",
     "packages": [
         {
@@ -2936,12 +2936,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "5ef39d0c72b022edc4d298973f23cc5117f00d5a"
+                "reference": "97e795b47dcad2d541dc861319ce794781427236"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/5ef39d0c72b022edc4d298973f23cc5117f00d5a",
-                "reference": "5ef39d0c72b022edc4d298973f23cc5117f00d5a",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/97e795b47dcad2d541dc861319ce794781427236",
+                "reference": "97e795b47dcad2d541dc861319ce794781427236",
                 "shasum": ""
             },
             "require": {
@@ -3010,12 +3010,14 @@
             "scripts": {
                 "post-install-cmd": [
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                    "php bin/console venice:elastic:migration",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
                 ],
                 "post-update-cmd": [
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                    "php bin/console venice:elastic:migration",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
                     "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
@@ -3030,7 +3032,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-07-16 07:15:29"
+            "time": "2016-07-16 08:15:23"
         },
         {
             "name": "monolog/monolog",
