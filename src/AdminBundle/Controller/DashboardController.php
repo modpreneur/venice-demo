@@ -21,8 +21,6 @@ class DashboardController extends VeniceDashboardController
      */
     public function indexAction(Request $request)
     {
-        dump("Overriden controller action");
-
         return parent::indexAction($request);
     }
 
