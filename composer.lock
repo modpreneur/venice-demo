@@ -2936,12 +2936,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "746ac972c45c9a2389c190389b546a2e130eab4b"
+                "reference": "bb663723c9ae031765959c47f83a4d78019b3a39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/746ac972c45c9a2389c190389b546a2e130eab4b",
-                "reference": "746ac972c45c9a2389c190389b546a2e130eab4b",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/bb663723c9ae031765959c47f83a4d78019b3a39",
+                "reference": "bb663723c9ae031765959c47f83a4d78019b3a39",
                 "shasum": ""
             },
             "require": {
@@ -3032,7 +3032,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-07-16 09:51:29"
+            "time": "2016-07-16 10:30:45"
         },
         {
             "name": "monolog/monolog",
