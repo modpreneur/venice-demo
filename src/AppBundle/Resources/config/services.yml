@@ -1,0 +1,42 @@
+services:
+    app.notification.form.product:
+        class: AppBundle\Form\Notification\ProductType
+        parent: venice.app.notification.form.product
+        tags:
+            - { name: form.type }
+
+    app.notification.form.user:
+        class: AppBundle\Form\Notification\UserType
+        parent: venice.app.notification.form.user
+        tags:
+            - { name: form.type }
+
+    app.notification.form.billing_plan:
+        class: AppBundle\Form\Notification\BillingPlanType
+        parent: venice.app.notification.form.billing_plan
+        tags:
+            - { name: form.type }
+
+    app.notification.form.product_access:
+        class: AppBundle\Form\Notification\ProductAccessType
+        parent: venice.app.notification.form.product_access
+        tags:
+            - { name: form.type }
+
+    app.form.standard_product:
+        class: AppBundle\Form\Product\StandardProductType
+        parent: venice.admin.form.standard_product
+        tags:
+            - { name: form.type }
+
+    app.form.roles:
+        class:  AppBundle\Form\User\RolesType
+        parent: venice.admin.form.user.roles
+        tags:
+            - { name: form.type }
+
+    app.form.content.video:
+        class: AppBundle\Form\Content\VideoContentType
+        parent: venice.admin.form.video_content
+        tags:
+            - { name: form.type }

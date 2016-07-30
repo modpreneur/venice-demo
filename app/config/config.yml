@@ -15,6 +15,126 @@ doctrine_migrations:
     table_name: migration_versions
     name: Application Migrations
 
+trinity_notification:
+    forms:
+        product: AppBundle\Form\Notification\ProductType
+        billing-plan: AppBundle\Form\Notification\BillingPlanType
+        user: AppBundle\Form\Notification\UserType
+        product-access: AppBundle\Form\Notification\ProductAccessType
+    entities:
+        product: AppBundle\Entity\Product\StandardProduct
+        billing-plan: AppBundle\Entity\BillingPlan
+        user: AppBundle\Entity\User
+        product-access: AppBundle\Entity\ProductAccess
+
+venice_app:
+
+    # You can define which form should be used for which entity
+    # By this configuration you state that the entity with class "key" should use form with class "value"
+    # format: "key": "value"
+    #         entity class : form class
+    # By defining this you can define forms even for the framework entities
+    # There MUST be entry for each extended(overrided) entity!
+    entity_forms:
+        AppBundle\Entity\BillingPlan: AppBundle\Form\BillingPlanType
+        AppBundle\Entity\BlogArticle: AppBundle\Form\BlogArticleType
+        AppBundle\Entity\Content\Content: AppBundle\Form\Content\ContentType
+        AppBundle\Entity\Content\ContentInGroup: AppBundle\Form\Content\ContentInGroupType
+        AppBundle\Entity\Content\GroupContent: AppBundle\Form\Content\GroupContentType
+        AppBundle\Entity\Content\HtmlContent: AppBundle\Form\Content\HtmlContentType
+        AppBundle\Entity\Content\IframeContent: AppBundle\Form\Content\IframeContentType
+        AppBundle\Entity\Content\Mp3Content: AppBundle\Form\Content\Mp3ContentType
+        AppBundle\Entity\Content\PdfContent: AppBundle\Form\Content\PdfContentType
+        AppBundle\Entity\Content\VideoContent: AppBundle\Form\Content\VideoContentType
+        AppBundle\Entity\Product\FreeProduct: AppBundle\Form\Product\FreeProductType
+        AppBundle\Entity\Product\Product: AppBundle\Form\Product\ProductType
+        AppBundle\Entity\Product\StandardProduct: AppBundle\Form\Product\StandardProductType
+        AppBundle\Entity\ProductAccess: AppBundle\Form\ProductAccessType
+        AppBundle\Entity\User: Venice\AppBundle\Form\User\UserType
+
+    forms_override:
+        # The RolesType from the framework is going to be replaced with RolesType from the application
+        Venice\AppBundle\Form\User\RolesType: AppBundle\Form\User\RolesType
+
+    # Define which entity from the framework is extenderd by which entity from application
+    # This is used by framework while working with entities.
+    # When trying to create e.g. User entity it looks right there to determine which class it should use.
+    entity_override:
+        Venice\AppBundle\Entity\BillingPlan: AppBundle\Entity\BillingPlan
+        Venice\AppBundle\Entity\BlogArticle: AppBundle\Entity\BlogArticle
+        Venice\AppBundle\Entity\Content\Content: AppBundle\Entity\Content\Content
+        Venice\AppBundle\Entity\Content\ContentInGroup: AppBundle\Entity\Content\ContentInGroup
+        Venice\AppBundle\Entity\Content\GroupContent: AppBundle\Entity\Content\GroupContent
+        Venice\AppBundle\Entity\Content\HtmlContent: AppBundle\Entity\Content\HtmlContent
+        Venice\AppBundle\Entity\Content\IframeContent: AppBundle\Entity\Content\IframeContent
+        Venice\AppBundle\Entity\Content\Mp3Content: AppBundle\Entity\Content\Mp3Content
+        Venice\AppBundle\Entity\Content\PdfContent: AppBundle\Entity\Content\PdfContent
+        Venice\AppBundle\Entity\Content\VideoContent: AppBundle\Entity\Content\VideoContent
+        Venice\AppBundle\Entity\Product\FreeProduct: AppBundle\Entity\Product\FreeProduct
+        Venice\AppBundle\Entity\Product\Product: AppBundle\Entity\Product\Product
+        Venice\AppBundle\Entity\Product\StandardProduct: AppBundle\Entity\Product\StandardProduct
+        Venice\AppBundle\Entity\ProductAccess: AppBundle\Entity\ProductAccess
+        Venice\AppBundle\Entity\User: AppBundle\Entity\User
+
+
+    entity_mapping:
+    # By defining this section you do not have to define annotation:
+    # @DiscriminatorMap({"html" = "HtmlContent", "pdf" = "PdfContent", ...})
+    # On each framework entity. That would be unreal because there would have to be class names from the application.
+#    CONTENTS ########################################################################
+        content:
+            entity: Venice\AppBundle\Entity\Content\Content
+            map:
+                demo_group_content: AppBundle\Entity\Content\GroupContent
+                demo_html_content: AppBundle\Entity\Content\HtmlContent
+                demo_iframe_content: AppBundle\Entity\Content\IframeContent
+                demo_mp3_content: AppBundle\Entity\Content\Mp3Content
+                demo_pdf_content: AppBundle\Entity\Content\PdfContent
+                demo_video_content: AppBundle\Entity\Content\VideoContent
+#    PRODUCTS ########################################################################
+        product:
+            entity: Venice\AppBundle\Entity\Product\Product
+            map:
+                demo_standard_product: AppBundle\Entity\Product\StandardProduct
+                demo_free_product: AppBundle\Entity\Product\FreeProduct
+                demo_client_product: AppBundle\Entity\Product\ClientProduct
+
+#    OTHERS ########################################################################
+        user:
+            entity: Venice\AppBundle\Entity\User
+            map:
+                demo_user: AppBundle\Entity\User
+
+        product_access:
+            entity: Venice\AppBundle\Entity\ProductAccess
+            map:
+                demo_product_access: AppBundle\Entity\ProductAccess
+
+        billing_plan:
+            entity: Venice\AppBundle\Entity\BillingPlan
+            map:
+                demo_billing_plan: AppBundle\Entity\BillingPlan
+
+        blog_article:
+            entity: Venice\AppBundle\Entity\BlogArticle
+            map:
+                demo_blog_article: AppBundle\Entity\BlogArticle
+
+        content_product:
+            entity: Venice\AppBundle\Entity\ContentProduct
+            map:
+                demo_content_product: AppBundle\Entity\ContentProduct
+
+        oauth_token:
+            entity: Venice\AppBundle\Entity\OAuthToken
+            map:
+                demo_oauth_token: AppBundle\Entity\OAuthToken
+
+        content_in_group:
+            entity: Venice\AppBundle\Entity\Content\ContentInGroup
+            map:
+                demo_content_in_group: AppBundle\Entity\Content\ContentInGroup
+
 parameters: #todo: necktie?!
     trinity.search.doctrine_prefix: "NecktieAppBundle"
     trinity.search.namespace: "Necktie\\AppBundle\\Entity"

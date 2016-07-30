@@ -6,3 +6,7 @@ VeniceAdminBundle:
 
 VeniceFrontBundle:
     resource: "@VeniceFrontBundle/Resources/config/routing.yml"
+
+AdminBundle:
+    resource: "@AdminBundle/Controller"
+    type:     annotation
