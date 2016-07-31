@@ -23,20 +23,98 @@ services:
         tags:
             - { name: form.type }
 
+    app.form.content_in_group:
+        class: AppBundle\Form\Content\ContentInGroupType
+        parent: "venice.app.form.content_in_group"
+        tags:
+            - { name: form.type }
+
+    app.form.content_product_with_hidden_content:
+        class: AppBundle\Form\ContentProduct\ContentProductTypeWithHiddenContent
+        parent: "venice.app.form.content_product_with_hidden_content"
+        tags:
+            - { name: form.type }
+
+    app.form.content_product_with_hidden_product:
+        class: AppBundle\Form\ContentProduct\ContentProductTypeWithHiddenProduct
+        parent: "venice.app.form.content_product_with_hidden_product"
+        tags:
+            - { name: form.type }
+
+    app.form.group_content:
+        class: AppBundle\Form\Content\GroupContentType
+        parent: "venice.app.form.group_content"
+        tags:
+            - { name: form.type }
+
+    app.form.html_content:
+        class: AppBundle\Form\Content\HtmlContentType
+        parent: "venice.app.form.html_content"
+        tags:
+            - { name: form.type }
+
+    app.form.mp3_content:
+        class: AppBundle\Form\Content\Mp3ContentType
+        parent: "venice.app.form.mp3_content"
+        tags:
+            - { name: form.type }
+
+    app.form.pdf_content:
+        class: AppBundle\Form\Content\PdfContentType
+        parent: "venice.app.form.pdf_content"
+        tags:
+            - { name: form.type }
+
+    app.form.iframe_content:
+        class: AppBundle\Form\Content\IframeContentType
+        parent: "venice.app.form.iframe_content"
+        tags:
+            - { name: form.type }
+
+    app.form.video_content:
+        class: AppBundle\Form\Content\VideoContentType
+        parent: "venice.app.form.video_content"
+        tags:
+            - { name: form.type }
+
+    app.form.free_product:
+        class: AppBundle\Form\Product\FreeProductType
+        parent: "venice.app.form.free_product"
+        tags:
+            - { name: form.type }
+
     app.form.standard_product:
         class: AppBundle\Form\Product\StandardProductType
-        parent: venice.admin.form.standard_product
+        parent: "venice.app.form.standard_product"
         tags:
             - { name: form.type }
 
-    app.form.roles:
-        class:  AppBundle\Form\User\RolesType
-        parent: venice.admin.form.user.roles
+    app.form.user:
+        class: AppBundle\Form\User\UserType
+        parent: "venice.app.form.user"
         tags:
             - { name: form.type }
 
-    app.form.content.video:
-        class: AppBundle\Form\Content\VideoContentType
-        parent: venice.admin.form.video_content
+    app.form.user.roles:
+        class: AppBundle\Form\User\RolesType
+        parent: "venice.app.form.user.roles"
+        tags:
+            - { name: form.type }
+
+    app.form.billing_plan:
+        class: AppBundle\Form\BillingPlanType
+        parent: "venice.app.form.billing_plan"
+        tags:
+            - { name: form.type }
+
+    app.form.blog_article:
+        class: AppBundle\Form\BlogArticleType
+        parent: "venice.app.form.blog_article"
+        tags:
+            - { name: form.type }
+
+    app.form.product_access:
+        class: AppBundle\Form\ProductAccessType
+        parent: "venice.app.form.product_access"
         tags:
             - { name: form.type }
