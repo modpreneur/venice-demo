@@ -27,4 +27,22 @@ class User extends \Venice\AppBundle\Entity\User
      * @ORM\Column(type="string")
      */
     protected $UserChild;
+
+    /**
+     * @return mixed
+     */
+    public function getUserChild()
+    {
+        return $this->UserChild;
+    }
+
+    /**
+     * @param mixed $UserChild
+     */
+    public function setUserChild($UserChild)
+    {
+        $this->UserChild = $UserChild;
+    }
+
+
 }

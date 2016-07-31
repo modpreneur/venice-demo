@@ -22,4 +22,22 @@ class ContentProduct extends \Venice\AppBundle\Entity\ContentProduct
      * @ORM\Column(type="string")
      */
     protected $ContentProductChild;
+
+    /**
+     * @return mixed
+     */
+    public function getContentProductChild()
+    {
+        return $this->ContentProductChild;
+    }
+
+    /**
+     * @param mixed $ContentProductChild
+     */
+    public function setContentProductChild($ContentProductChild)
+    {
+        $this->ContentProductChild = $ContentProductChild;
+    }
+
+
 }

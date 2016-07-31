@@ -21,4 +21,22 @@ class HtmlContent extends \Venice\AppBundle\Entity\Content\HtmlContent
      * @ORM\Column(type="string")
      */
     protected $HtmlContentChild;
+
+    /**
+     * @return mixed
+     */
+    public function getHtmlContentChild()
+    {
+        return $this->HtmlContentChild;
+    }
+
+    /**
+     * @param mixed $HtmlContentChild
+     */
+    public function setHtmlContentChild($HtmlContentChild)
+    {
+        $this->HtmlContentChild = $HtmlContentChild;
+    }
+
+
 }

@@ -22,4 +22,22 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
      * @ORM\Column(type="string")
      */
     protected $VideoContentChild;
+
+    /**
+     * @return mixed
+     */
+    public function getVideoContentChild()
+    {
+        return $this->VideoContentChild;
+    }
+
+    /**
+     * @param mixed $VideoContentChild
+     */
+    public function setVideoContentChild($VideoContentChild)
+    {
+        $this->VideoContentChild = $VideoContentChild;
+    }
+
+
 }

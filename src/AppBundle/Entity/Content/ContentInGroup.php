@@ -21,4 +21,22 @@ class ContentInGroup extends \Venice\AppBundle\Entity\Content\ContentInGroup
      * @ORM\Column(type="string")
      */
     protected $ContentInGroupChild;
+
+    /**
+     * @return mixed
+     */
+    public function getContentInGroupChild()
+    {
+        return $this->ContentInGroupChild;
+    }
+
+    /**
+     * @param mixed $ContentInGroupChild
+     */
+    public function setContentInGroupChild($ContentInGroupChild)
+    {
+        $this->ContentInGroupChild = $ContentInGroupChild;
+    }
+
+
 }

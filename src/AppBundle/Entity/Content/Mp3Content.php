@@ -22,4 +22,22 @@ class Mp3Content extends \Venice\AppBundle\Entity\Content\Mp3Content
      * @ORM\Column(type="string")
      */
     protected $Mp3ContentChild;
+
+    /**
+     * @return mixed
+     */
+    public function getMp3ContentChild()
+    {
+        return $this->Mp3ContentChild;
+    }
+
+    /**
+     * @param mixed $Mp3ContentChild
+     */
+    public function setMp3ContentChild($Mp3ContentChild)
+    {
+        $this->Mp3ContentChild = $Mp3ContentChild;
+    }
+
+
 }

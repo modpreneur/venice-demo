@@ -23,4 +23,22 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
      */
     protected $PdfContentChild;
 
+    /**
+     * @return mixed
+     */
+    public function getPdfContentChild()
+    {
+        return $this->PdfContentChild;
+    }
+
+    /**
+     * @param mixed $PdfContentChild
+     */
+    public function setPdfContentChild($PdfContentChild)
+    {
+        $this->PdfContentChild = $PdfContentChild;
+    }
+
+
+
 }

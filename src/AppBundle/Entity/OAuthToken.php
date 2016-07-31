@@ -21,4 +21,22 @@ class OAuthToken extends \Venice\AppBundle\Entity\OAuthToken
      * @ORM\Column(type="string")
      */
     protected $OAuthTokenChild;
+
+    /**
+     * @return mixed
+     */
+    public function getOAuthTokenChild()
+    {
+        return $this->OAuthTokenChild;
+    }
+
+    /**
+     * @param mixed $OAuthTokenChild
+     */
+    public function setOAuthTokenChild($OAuthTokenChild)
+    {
+        $this->OAuthTokenChild = $OAuthTokenChild;
+    }
+
+
 }

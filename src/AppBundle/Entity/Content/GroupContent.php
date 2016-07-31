@@ -20,4 +20,22 @@ class GroupContent extends \Venice\AppBundle\Entity\Content\GroupContent
      * @ORM\Column(type="string")
      */
     protected $GroupContentChild;
+
+    /**
+     * @return mixed
+     */
+    public function getGroupContentChild()
+    {
+        return $this->GroupContentChild;
+    }
+
+    /**
+     * @param mixed $GroupContentChild
+     */
+    public function setGroupContentChild($GroupContentChild)
+    {
+        $this->GroupContentChild = $GroupContentChild;
+    }
+
+
 }
