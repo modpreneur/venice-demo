@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Class BillingPlanType
  */
-class BillingPlanType //extends \AppBundle\Form\Notification\BillingPlanType
+class BillingPlanType extends \Venice\AppBundle\Form\Notification\BillingPlanType
 {
     /**
      * {@inheritdoc}
