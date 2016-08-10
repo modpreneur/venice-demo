@@ -16,8 +16,8 @@
             "options": {
                 "ssh2": {
                     "username": "Jakub-Fajkus",
-                    "pubkey_file": "/root/.ssh/id_rsa.pub",
-                    "privkey_file": "/root/.ssh/id_rsa"
+                    "pubkey_file": "~/.ssh/id_rsa.pub",
+                    "privkey_file": "~/.ssh/id_rsa"
                 }
             }
         }

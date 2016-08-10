@@ -1,0 +1,6 @@
+services:
+    admin.listener.menu.config:
+        class: AdminBundle\Services\MenuListener
+        parent: "venice.admin.listener.menu.config"
+        tags:
+            - { name: kernel.event_listener, event: trinity.main_menu.configure, method: onMenuConfigure }
