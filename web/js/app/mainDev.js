@@ -1,10 +1,12 @@
-/**
- * Created by fisa on 10/16/15.
- */
+'use strict';
+
 import _ from 'lodash';
-import routes from './routes.js';
+import $ from 'jquery';
+import 'Base64'; // Adds widow.atob() and window.btoa() IE9 support
+import 'trinity/devTools';
+import routes from './routes';
+import controllers from './controllers';
 import App from 'trinity/App';
-import controllers from './controllers.js';
 import {configure} from 'trinity/Gateway';
 
 // Gateway configuration - Xdebug purposes
@@ -13,34 +15,37 @@ configure({
     fileTimeout: 60000
 });
 
-let Application = new App(routes, controllers, {env: 'dev'});
+// Extends jquery
+$.id = document.getElementById.bind(document);
+// Externals for debug
+window.$ = $;
+window._ = _;
 
-Application.start(isRoute => {
-    console.log('App Loaded!');
-    if(!isRoute){
-        console.log('INFO: This route doesn\'t have any controller!');
-    }
+let Application = new App(routes, controllers, {
+    env: 'dev',
+    globalController: 'Global'
+});
+
+Application.start(function (){
     removeLoadingBar();
-}, err => {
+}, function (err){
     console.error(err);
-    let bar = document.querySelector('.header-loader .bar');
+    let bar = $('.header-loader .bar')[0];
     if(bar){
-        bar.style.backgroundColor = '#f00';
+        bar.style.backgroundColor = "#f00";
     }
 });
 
 
 function removeLoadingBar() {
-    let bars = document.querySelectorAll('.header-loader .bar');
-    if(bars.length > 0){
-        _.map(bars, bar => {
-            bar.className += ' bar-end';
-        });
+    let $bars = $('.header-loader .bar');
+    if(!_.isEmpty($bars)){
+        $bars.addClass('bar-end');
+
         let timeoutID = null;
-        timeoutID = setTimeout(function(){
-            document.querySelector('.header-loader').style.display = 'none';
+        timeoutID = setTimeout(()=>{
+            $('.header-loader')[0].style.display = 'none';
             clearTimeout(timeoutID);
-        }, 2000);
+        }, 5000);
     }
 }
-

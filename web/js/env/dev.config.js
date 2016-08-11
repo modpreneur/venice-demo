@@ -4,16 +4,42 @@ let path = require('path');
 let webpack = require('webpack');
 
 module.exports = {
-    entry: path.join(__dirname, '../app/mainDev.js'),
+    entry: {
+        venice: path.join(__dirname, '../app/mainDev.js'),
+        vendor: [
+            'lodash',
+            'jquery',
+            'dragula',
+            'moment',
+            'Base64',
+            'fileapi',
+            'history',
+            'fbemitter',
+            'flux',
+            'react',
+            'react-dom',
+            'react-addons-css-transition-group',
+            'react-addons-create-fragment',
+            'react-dropzone',
+            'react-paginate',
+            'react-widgets',
+            // 'query-builder'
+            path.join(__dirname, '../lib/query-builder.js')
+        ]
+    },
     output: {
         path: path.join(__dirname, '../dist'),
-        filename: 'venice.bundle.js'
+        filename: '[name].bundle.js'
     },
     // Bigger file but faster compiling
     devtool: 'eval-cheap-module-source-map',
     // devtool: 'source-map',
     module: {
         loaders: [
+            {
+                test: /\.es6\.html$/,
+                loader: 'babel?presets[]=es2015!template-string'
+            },
             {
                 test: /\.css$/,
                 loader: 'style!css-loader'
@@ -23,21 +49,25 @@ module.exports = {
                 loader: 'style!css-loader!less-loader'
             },
             {
+                test:/\.json$/,
+                exclude: /(node_modules)/,
+                loader: 'json'
+            },
+            {
                 test: /\.jsx$/,
-                exclude: /(node_modules)(?!\/venice-js)/,
-                // loader: require.resolve('babel-loader'),
+                exclude: [/(node_modules)(?!\/venice-js)/,/(query-builder)/ ],
                 loader: 'babel',
                 query: {
                     presets: [
                         'es2015',
-                        'stage-2',
-                        'react'
+                        'react',
+                        'stage-2'
                     ]
                 }
             },
             {
                 test: /\.js$/,
-                exclude: /(node_modules)(?!\/venice-js)/,
+                exclude: [/(node_modules)(?!\/venice-js)/,/(query-builder)/],
                 loader: 'babel',
                 query: {
                     presets: [
@@ -51,23 +81,13 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             DEVELOPMENT: true
-        })
+        }),
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
     ],
-    // POUZE PRO VYVOJ VENICE-DEMO S VENICE-JS
-    resolve: {
+    resolve:{
         root: path.join(__dirname, '../node_modules')
     },
     resolveLoader: {
-        root: path.join(__dirname, './node_modules')
-    },
-    // For faster build
-    externals: {
-        'lodash': '_',
-        'jquery': '$',
-        'react': 'React',
-        'react-dom': 'ReactDOM',
-        'history' : 'History',
-        'flux': 'Flux',
-        'moment': 'moment'
+        root: path.join(__dirname, '../node_modules')
     }
 };

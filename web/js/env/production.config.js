@@ -5,24 +5,31 @@ let webpack = require('webpack');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: path.join(__dirname, '../app/main.js'),
+    entry: {
+        venice: path.join(__dirname, '../app/main.js')
+    },
     output: {
         path: path.join(__dirname, '../dist'),
-        filename: 'venice.bundle.min.js'
+        filename: '[name].bundle.min.js'
     },
     module: {
         loaders: [
             {
                 test: /\.css$/,
-                loader: 'style!css-loader'
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             },
             {
                 test: /\.less$/,
-                loader: 'style!css-loader!less-loader'
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
             },
             {
-                test: /\.jsx?$/,
-                exclude: /(node_modules)(?!\/venice-js)/,
+                test:/\.json$/,
+                exclude: /(node_modules)/,
+                loader: 'json'
+            },
+            {
+                test: /\.jsx$/,
+                exclude: [/(node_modules)(?!\/venice-js)/,/(query-builder)/ ],
                 loader: 'babel',
                 query: {
                     presets: [
@@ -34,7 +41,7 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /(node_modules)(?!\/venice-js)/,
+                exclude: [/(node_modules)(?!\/venice-js)/,/(query-builder)/],
                 loader: 'babel',
                 query: {
                     presets: [
@@ -57,13 +64,16 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             comments: false
-        })
+        }),
+        new ExtractTextPlugin('venice.styles.min.css', {
+            allChunks: true
+        }),
 
     ],
     resolve:{
-
+        root: path.join(__dirname, '../node_modules')
     },
     resolveLoader: {
-        root: path.join(__dirname, './node_modules')
+        root: path.join(__dirname, '../node_modules')
     }
 };

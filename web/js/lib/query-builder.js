@@ -8,7 +8,7 @@
  */
 
 // // Imported by Fisa
-import $ from 'jquery';
+var $ = require('jquery');
 
 
 /**
