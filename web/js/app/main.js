@@ -1,18 +1,18 @@
 'use strict';
 
-import _ from 'lodash';
 import $ from 'jquery';
 import 'Base64'; // Adds widow.atob() and window.btoa() IE9 support
 import routes from './routes.js';
 import controllers from './controllers.js';
 import App from 'trinity/App';
+import globalScript from './Libraries/GlobalScript';
 
 // Extends jquery
 $.id = document.getElementById.bind(document);
 
-let Application = new App(routes, controllers, {
-    globalController: 'Global'
-});
+let Application = new App(routes, controllers);
+
+Application.addPreBOOTScript(globalScript);
 
 Application.start(function() {
     removeLoadingBar();
@@ -24,6 +24,16 @@ Application.start(function() {
     }
 });
 
+
+
+if(DEVELOPMENT){
+    require('trinity/Gateway').configure({
+        timeout: 60000,
+        fileTimeout: 60000
+    });
+    window.$ = $;
+    window._ = require('lodash');
+}
 
 function removeLoadingBar() {
     let $bars = $('.header-loader .bar');
