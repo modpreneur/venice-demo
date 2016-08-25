@@ -9,12 +9,6 @@ imports:
 trinity_messages:
     sender_identification: "client_3"
 
-doctrine_migrations:
-    dir_name: %kernel.root_dir%/DoctrineMigrations
-    namespace: Application\Migrations
-    table_name: migration_versions
-    name: Application Migrations
-
 trinity_notification:
     forms:
         product: AppBundle\Form\Notification\ProductType
