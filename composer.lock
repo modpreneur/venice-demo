@@ -2750,12 +2750,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "e41c55f10ec3e18479c7c7f0c551aa6c72ab0aa1"
+                "reference": "b59799bcfab52536486932acec9c26c8af7c7c4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/e41c55f10ec3e18479c7c7f0c551aa6c72ab0aa1",
-                "reference": "e41c55f10ec3e18479c7c7f0c551aa6c72ab0aa1",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/b59799bcfab52536486932acec9c26c8af7c7c4d",
+                "reference": "b59799bcfab52536486932acec9c26c8af7c7c4d",
                 "shasum": ""
             },
             "require": {
@@ -2772,6 +2772,7 @@
                 "knplabs/knp-gaufrette-bundle": "~0.3",
                 "knplabs/knp-menu-bundle": "~2.1",
                 "modpreneur/bowtie": "dev-master@dev",
+                "ocramius/package-versions": "~1.1",
                 "oyejorge/less.php": "~1.7",
                 "php": "~7.0",
                 "phpunit/phpunit": "^5.5",
@@ -2845,7 +2846,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-08-25 11:33:03"
+            "time": "2016-08-25 11:56:10"
         },
         {
             "name": "monolog/monolog",
@@ -3082,6 +3083,53 @@
             "description": "Nette Utility Classes",
             "homepage": "https://nette.org",
             "time": "2016-06-17 13:15:10"
+        },
+        {
+            "name": "ocramius/package-versions",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ocramius/PackageVersions.git",
+                "reference": "4b2bfc8128db95b533303942b0d5b332bffa07c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ocramius/PackageVersions/zipball/4b2bfc8128db95b533303942b0d5b332bffa07c6",
+                "reference": "4b2bfc8128db95b533303942b0d5b332bffa07c6",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": "~7.0"
+            },
+            "require-dev": {
+                "composer/composer": "^1.2.0",
+                "phpunit/phpunit": "^5.4.7"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "PackageVersions\\Installer",
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PackageVersions\\": "src/PackageVersions"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
+            "time": "2016-07-25 07:13:56"
         },
         {
             "name": "oyejorge/less.php",
