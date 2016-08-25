@@ -5,7 +5,7 @@ let webpack = require('webpack');
 
 module.exports = {
     entry: {
-        venice: path.join(__dirname, '../app/mainDev.js'),
+        venice: path.join(__dirname, '../app/main.js'),
         vendor: [
             'lodash',
             'jquery',
