@@ -6128,12 +6128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-notifications.git",
-                "reference": "5c960ef2c1a37db4a0777d905e52ecb4c46377f7"
+                "reference": "52a68f5a6f83dc283d65735dd87dc398b62a37dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/5c960ef2c1a37db4a0777d905e52ecb4c46377f7",
-                "reference": "5c960ef2c1a37db4a0777d905e52ecb4c46377f7",
+                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/52a68f5a6f83dc283d65735dd87dc398b62a37dc",
+                "reference": "52a68f5a6f83dc283d65735dd87dc398b62a37dc",
                 "shasum": ""
             },
             "require": {
