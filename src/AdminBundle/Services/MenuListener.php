@@ -20,7 +20,7 @@ class MenuListener
         $menu = $event->getMenu('sidebar');
 
         $menu
-            ->addChild('Child menu item', array('route' => 'admin_dashboard'))
+            ->addChild('Child menu item', ['route' => 'admin_product_index'])
             ->setAttribute('icon', 'trinity trinity-home')
             ->setExtra('orderNumber', 5);
 
