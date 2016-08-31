@@ -63,16 +63,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.19.2",
+            "version": "3.19.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3cb90413129da42c9d3289d542bee0ae1049892c"
+                "reference": "1fdf5ec8743575a01d5953a84cd1d9438ce36d1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3cb90413129da42c9d3289d542bee0ae1049892c",
-                "reference": "3cb90413129da42c9d3289d542bee0ae1049892c",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1fdf5ec8743575a01d5953a84cd1d9438ce36d1a",
+                "reference": "1fdf5ec8743575a01d5953a84cd1d9438ce36d1a",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-08-23 20:58:48"
+            "time": "2016-08-30 17:56:50"
         },
         {
             "name": "behat/transliterator",
@@ -1573,16 +1573,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.21",
+            "version": "v2.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "dcaab46a25e1baeb5142c3e25d5b6fd495ced504"
+                "reference": "b8188801bafc420b86908ee5229a5e92143ce514"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/dcaab46a25e1baeb5142c3e25d5b6fd495ced504",
-                "reference": "dcaab46a25e1baeb5142c3e25d5b6fd495ced504",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/b8188801bafc420b86908ee5229a5e92143ce514",
+                "reference": "b8188801bafc420b86908ee5229a5e92143ce514",
                 "shasum": ""
             },
             "require": {
@@ -1648,7 +1648,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2016-08-17 16:52:00"
+            "time": "2016-08-30 18:42:36"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2750,12 +2750,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "fd2ecb37f14c4c878e3b8889e75d5b49582276af"
+                "reference": "4d298585984037d9d3cc315cac75f810bbaabf04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/fd2ecb37f14c4c878e3b8889e75d5b49582276af",
-                "reference": "fd2ecb37f14c4c878e3b8889e75d5b49582276af",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/4d298585984037d9d3cc315cac75f810bbaabf04",
+                "reference": "4d298585984037d9d3cc315cac75f810bbaabf04",
                 "shasum": ""
             },
             "require": {
@@ -2846,7 +2846,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-08-27 07:21:20"
+            "time": "2016-08-29 15:03:45"
         },
         {
             "name": "monolog/monolog",
@@ -5703,12 +5703,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "1212a4a9645dfc3484068ee3392ef50c9e385be3"
+                "reference": "841a2d86225bf877a6e8ca89e68551de418a3a63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/1212a4a9645dfc3484068ee3392ef50c9e385be3",
-                "reference": "1212a4a9645dfc3484068ee3392ef50c9e385be3",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/841a2d86225bf877a6e8ca89e68551de418a3a63",
+                "reference": "841a2d86225bf877a6e8ca89e68551de418a3a63",
                 "shasum": ""
             },
             "require": {
@@ -5753,7 +5753,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2016-08-14 17:39:31"
+            "time": "2016-08-30 12:40:54"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -6128,12 +6128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-notifications.git",
-                "reference": "52a68f5a6f83dc283d65735dd87dc398b62a37dc"
+                "reference": "99bb273510be5bb196fee60bb0c4aac5a84ca00c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/52a68f5a6f83dc283d65735dd87dc398b62a37dc",
-                "reference": "52a68f5a6f83dc283d65735dd87dc398b62a37dc",
+                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/99bb273510be5bb196fee60bb0c4aac5a84ca00c",
+                "reference": "99bb273510be5bb196fee60bb0c4aac5a84ca00c",
                 "shasum": ""
             },
             "require": {
@@ -6189,7 +6189,7 @@
                 }
             ],
             "description": "Trinity Notification bundle",
-            "time": "2016-08-14 13:16:07"
+            "time": "2016-08-28 09:27:37"
         },
         {
             "name": "trinity/search",
@@ -6627,20 +6627,23 @@
         },
         {
             "name": "willdurand/negotiation",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Negotiation.git",
-                "reference": "a8ce6da7acdf07351ccd6a9359c571ebc0725a21"
+                "reference": "1ebc51dd6d47f4037b0d2493335304e5aea50ab6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/a8ce6da7acdf07351ccd6a9359c571ebc0725a21",
-                "reference": "a8ce6da7acdf07351ccd6a9359c571ebc0725a21",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/1ebc51dd6d47f4037b0d2493335304e5aea50ab6",
+                "reference": "1ebc51dd6d47f4037b0d2493335304e5aea50ab6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5"
             },
             "type": "library",
             "extra": {
@@ -6672,7 +6675,7 @@
                 "header",
                 "negotiation"
             ],
-            "time": "2015-11-21 14:23:02"
+            "time": "2016-08-30 11:08:41"
         }
     ],
     "packages-dev": [],
