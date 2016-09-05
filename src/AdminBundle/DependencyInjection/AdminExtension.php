@@ -7,17 +7,19 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * Class AdminExtension.
+ */
 class AdminExtension extends Extension
 {
     /**
      * Loads a specific configuration.
      *
-     * @param array            $config An array of configuration values
+     * @param array            $config    An array of configuration values
      * @param ContainerBuilder $container A ContainerBuilder instance
      *
      * @throws \InvalidArgumentException When provided tag is not defined in this extension
-     *
-     * @api
+     * @throws \Exception
      */
     public function load(array $config, ContainerBuilder $container)
     {

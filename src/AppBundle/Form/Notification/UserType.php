@@ -6,12 +6,13 @@ use AppBundle\Entity\User;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class UserType
+ * Class UserType.
  */
 class UserType extends \Venice\AppBundle\Form\Notification\UserType
 {
     /**
      * @param OptionsResolver $resolver
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)

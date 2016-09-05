@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 22.10.15
- * Time: 20:32
+ * Time: 20:32.
  */
-
 namespace AppBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -29,7 +28,6 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
         $this->StandardProductChild = 'standard product from application';
     }
 
-
     /**
      * @ORM\Column(type="string")
      */
@@ -50,7 +48,4 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
     {
         $this->StandardProductChild = $StandardProductChild;
     }
-
-
-
 }

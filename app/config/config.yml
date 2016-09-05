@@ -15,6 +15,7 @@ trinity_notification:
         billing-plan: AppBundle\Form\Notification\BillingPlanType
         user: AppBundle\Form\Notification\UserType
         product-access: AppBundle\Form\Notification\ProductAccessType
+    # do not forget to define this config if you have overriden the entities!
     entities:
         product: AppBundle\Entity\Product\StandardProduct
         billing-plan: AppBundle\Entity\BillingPlan

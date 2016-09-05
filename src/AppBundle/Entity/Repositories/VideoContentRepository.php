@@ -3,9 +3,8 @@
 namespace AppBundle\Entity\Repositories;
 
 /**
- * VideoContentRepository
+ * VideoContentRepository.
  */
 class VideoContentRepository extends \Venice\AppBundle\Entity\Repositories\VideoContentRepository
 {
-
 }

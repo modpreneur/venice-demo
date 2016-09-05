@@ -15,23 +15,22 @@ use Venice\AppBundle\Entity\Product\StandardProduct;
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 29.04.16
- * Time: 9:58
+ * Time: 9:58.
  */
 
 /**
- *
  * Scenario1:
  * Necktie: Create a new product
- * Venice: => product and billing plan are created and properly associated
+ * Venice: => product and billing plan are created and properly associated.
  *
  * Class TestCommand
- * @package AppBundle\Command
  */
 class TestCommand extends ContainerAwareCommand
 {
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|null|void
      */
     public function execute(InputInterface $input, OutputInterface $output)
@@ -61,20 +60,18 @@ MESSAGE;
         /** @var StandardProduct $product */
         $product = $entities[1];
 
-        if($product->getDefaultBillingPlan() !== $bp || $bp->getProduct() !== $product) {
-            dump("XXXXXXXXXXXXXXXXXXXX FAILED XXXXXXXXXXXXXXXXXXXX ");
+        if ($product->getDefaultBillingPlan() !== $bp || $bp->getProduct() !== $product) {
+            dump('XXXXXXXXXXXXXXXXXXXX FAILED XXXXXXXXXXXXXXXXXXXX ');
         } else {
-            dump("OOOOOOOOOOOOOOOOOOOOOOOO OK OOOOOOOOOOOOOOOOOOOOOOOO");
+            dump('OOOOOOOOOOOOOOOOOOOOOOOO OK OOOOOOOOOOOOOOOOOOOOOOOO');
         }
 
-
-        $em = $this->getContainer()->get("doctrine.orm.entity_manager");
+        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         $em->remove($bp);
         $em->remove($product);
         $em->flush();
-        $output->writeln("readed!");
+        $output->writeln('readed!');
     }
-
 
     protected function configure()
     {

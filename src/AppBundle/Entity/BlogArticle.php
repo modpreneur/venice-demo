@@ -3,13 +3,11 @@
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 02.10.15
- * Time: 17:47
+ * Time: 17:47.
  */
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\BlogArticleRepository")
@@ -37,6 +35,4 @@ class BlogArticle extends \Venice\AppBundle\Entity\BlogArticle
     {
         $this->BlogArticleChild = $BlogArticleChild;
     }
-
-
 }

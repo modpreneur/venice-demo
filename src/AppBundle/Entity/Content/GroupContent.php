@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 30.11.15
- * Time: 16:03
+ * Time: 16:03.
  */
-
 namespace AppBundle\Entity\Content;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -36,6 +35,4 @@ class GroupContent extends \Venice\AppBundle\Entity\Content\GroupContent
     {
         $this->GroupContentChild = $GroupContentChild;
     }
-
-
 }

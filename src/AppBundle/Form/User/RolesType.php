@@ -6,13 +6,13 @@ use AppBundle\Entity\User;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class RolesType
- * @package AppBundle\Form\User
+ * Class RolesType.
  */
 class RolesType extends \Venice\AppBundle\Form\User\RolesType
 {
     /**
      * @param OptionsResolver $resolver
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)

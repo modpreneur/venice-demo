@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 04.10.15
- * Time: 13:07
+ * Time: 13:07.
  */
-
 namespace AppBundle\Entity\Content;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -13,8 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\PdfContentRepository")
  * Class PdfContent
- *
- * @package AppBundle\Entity\Content
  */
 class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
 {
@@ -38,7 +35,4 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
     {
         $this->PdfContentChild = $PdfContentChild;
     }
-
-
-
 }

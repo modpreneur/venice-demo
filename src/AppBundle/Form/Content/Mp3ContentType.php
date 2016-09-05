@@ -6,13 +6,13 @@ use AppBundle\Entity\Content\Mp3Content;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class Mp3ContentType
- * @package AppBundle\Form\Content
+ * Class Mp3ContentType.
  */
 class Mp3ContentType extends \Venice\AppBundle\Form\Content\Mp3ContentType
 {
     /**
      * @param OptionsResolver $resolver
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)

@@ -3,9 +3,8 @@
 namespace AppBundle\Entity\Repositories;
 
 /**
- * BlogArticleRepository
+ * BlogArticleRepository.
  */
 class BlogArticleRepository extends \Venice\AppBundle\Entity\Repositories\BlogArticleRepository
 {
-
 }

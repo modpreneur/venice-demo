@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 04.10.15
- * Time: 14:49
+ * Time: 14:49.
  */
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -13,8 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\ContentProductRepository")
  * Class ContentProduct
- *
- * @package AppBundle\Entity
  */
 class ContentProduct extends \Venice\AppBundle\Entity\ContentProduct
 {
@@ -38,6 +35,4 @@ class ContentProduct extends \Venice\AppBundle\Entity\ContentProduct
     {
         $this->ContentProductChild = $ContentProductChild;
     }
-
-
 }

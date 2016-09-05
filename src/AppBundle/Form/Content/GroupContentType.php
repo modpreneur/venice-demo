@@ -6,13 +6,13 @@ use AppBundle\Entity\Content\GroupContent;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class GroupContentType
- * @package AppBundle\Form\Content
+ * Class GroupContentType.
  */
 class GroupContentType extends \Venice\AppBundle\Form\Content\GroupContentType
 {
     /**
      * @param OptionsResolver $resolver
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)

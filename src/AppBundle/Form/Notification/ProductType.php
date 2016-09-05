@@ -7,13 +7,13 @@ use AppBundle\Entity\Product\StandardProduct;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ProductType
- * @package AppBundle\Form\Notification
+ * Class ProductType.
  */
 class ProductType extends \Venice\AppBundle\Form\Notification\ProductType
 {
     /**
      * {@inheritdoc}
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)

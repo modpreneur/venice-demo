@@ -7,8 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class BlogArticleType
- * @package AppBundle\Form
+ * Class BlogArticleType.
  */
 class BlogArticleType extends \Venice\AppBundle\Form\BlogArticleType
 {
@@ -19,10 +18,9 @@ class BlogArticleType extends \Venice\AppBundle\Form\BlogArticleType
         $builder->add('BlogArticleChild');
     }
 
-
-
     /**
      * @param OptionsResolver $resolver
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)

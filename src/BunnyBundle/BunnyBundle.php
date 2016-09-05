@@ -3,11 +3,9 @@
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 26.02.16
- * Time: 15:36
+ * Time: 15:36.
  */
-
 namespace BunnyBundle;
-
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

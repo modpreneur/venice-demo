@@ -9,30 +9,27 @@ use Trinity\NotificationBundle\Entity\Message;
 use Trinity\NotificationBundle\Event\DisableNotificationEvent;
 use Trinity\NotificationBundle\Event\Events;
 use Trinity\NotificationBundle\Exception\AssociationEntityNotFoundException;
-use Venice\AppBundle\Entity\BillingPlan;
-use Venice\AppBundle\Entity\Product\StandardProduct;
 
 /**
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 29.04.16
- * Time: 9:58
+ * Time: 9:58.
  */
 
 /**
  * Scenario2:
  * Necktie: edit product which is not synchronized
- * Venice: => throws AssociationEntityNotFoundException
+ * Venice: => throws AssociationEntityNotFoundException.
  *
  * Class Test2Command
- * @package AppBundle\Command
- *
  */
 class Test2Command extends ContainerAwareCommand
 {
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|null|void
      */
     public function execute(InputInterface $input, OutputInterface $output)
@@ -53,16 +50,15 @@ class Test2Command extends ContainerAwareCommand
 MESSAGE;
 
         $message = Message::unpack($message);
-        try{
+        try {
             $entities = $reader->read($message);
-            dump("XXXXXXXXXXXXXXXXXXXX FAILED XXXXXXXXXXXXXXXXXXXX ");
-        } catch(AssociationEntityNotFoundException $e) {
-            dump("OOOOOOOOOOOOOOOOOOOOOOOO OK OOOOOOOOOOOOOOOOOOOOOOOO");
+            dump('XXXXXXXXXXXXXXXXXXXX FAILED XXXXXXXXXXXXXXXXXXXX ');
+        } catch (AssociationEntityNotFoundException $e) {
+            dump('OOOOOOOOOOOOOOOOOOOOOOOO OK OOOOOOOOOOOOOOOOOOOOOOOO');
         }
 
-        $output->writeln("readed!");
+        $output->writeln('readed!');
     }
-
 
     protected function configure()
     {

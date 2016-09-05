@@ -3,9 +3,8 @@
 namespace AppBundle\Entity\Repositories;
 
 /**
- * BillingPlanRepository
+ * BillingPlanRepository.
  */
 class ContentInGroupRepository extends \Venice\AppBundle\Entity\Repositories\ContentInGroupRepository
 {
-
 }

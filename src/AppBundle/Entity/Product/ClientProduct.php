@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity\Product;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Venice\AppBundle\Entity\Product\Product;
 
@@ -10,7 +9,6 @@ use Venice\AppBundle\Entity\Product\Product;
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\StandardProductRepository")
  *
  * Class ClientProduct
- * @package AppBundle\Entity\Product
  */
 class ClientProduct extends Product
 {
@@ -18,7 +16,6 @@ class ClientProduct extends Product
      * @ORM\Column(type="string")
      */
     protected $ClientProductChild;
-
 
     public function __construct()
     {
@@ -44,7 +41,7 @@ class ClientProduct extends Product
     }
 
     /**
-     * Get the product type string
+     * Get the product type string.
      *
      * @return string
      */

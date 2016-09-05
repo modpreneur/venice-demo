@@ -3,7 +3,7 @@
 namespace AppBundle\Entity\Repositories;
 
 /**
- * GroupContentRepository
+ * GroupContentRepository.
  */
 class GroupContentRepository extends \Venice\AppBundle\Entity\Repositories\GroupContentRepository
 {

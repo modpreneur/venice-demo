@@ -7,12 +7,13 @@ use AppBundle\Entity\Product\StandardProduct;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class BillingPlanType
+ * Class BillingPlanType.
  */
 class BillingPlanType extends \Venice\AppBundle\Form\Notification\BillingPlanType
 {
     /**
      * {@inheritdoc}
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)

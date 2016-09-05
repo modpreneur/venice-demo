@@ -5,9 +5,8 @@ namespace AppBundle\Entity\Repositories;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * OAuthTokenRepository
+ * OAuthTokenRepository.
  */
 class OAuthTokenRepository extends EntityRepository
 {
-
 }

@@ -2,16 +2,17 @@
 
 namespace AppBundle\Form\ContentProduct;
 
+use AppBundle\Entity\ContentProduct;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ContentProductTypeWithHiddenProduct
- * @package AppBundle\Form\ContentProduct
+ * Class ContentProductTypeWithHiddenProduct.
  */
 class ContentProductTypeWithHiddenProduct extends \Venice\AppBundle\Form\ContentProduct\ContentProductTypeWithHiddenProduct
 {
     /**
      * @param OptionsResolver $resolver
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)

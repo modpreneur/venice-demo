@@ -7,22 +7,19 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Trinity\NotificationBundle\Event\DisableNotificationEvent;
 use Trinity\NotificationBundle\Event\Events;
-use Venice\AppBundle\Entity\BillingPlan;
-use Venice\AppBundle\Entity\Product\StandardProduct;
 
 /**
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 29.04.16
- * Time: 9:58
+ * Time: 9:58.
  */
-
-
 class Test3Command extends ContainerAwareCommand
 {
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|null|void
      */
     public function execute(InputInterface $input, OutputInterface $output)
@@ -31,7 +28,7 @@ class Test3Command extends ContainerAwareCommand
 
         $dispatcher = $this->getContainer()->get('event_dispatcher');
         if ($dispatcher->hasListeners(Events::DISABLE_NOTIFICATION)) {
-            dump("DISAVBLE");
+            dump('DISAVBLE');
             $event = new DisableNotificationEvent();
             $dispatcher->dispatch(
                 Events::DISABLE_NOTIFICATION,
@@ -45,14 +42,13 @@ MESSAGE;
 
         $entities = $reader->read($message);
 
-        $em = $this->getContainer()->get("doctrine.orm.entity_manager");
+        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         foreach ($entities as $entity) {
             $em->remove($entity);
         }
         $em->flush();
-        $output->writeln("readed!");
+        $output->writeln('readed!');
     }
-
 
     protected function configure()
     {

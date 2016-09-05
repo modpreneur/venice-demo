@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: Jakub Fajkus
  * Date: 02.10.15
- * Time: 17:36
+ * Time: 17:36.
  */
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -18,8 +17,6 @@ use Trinity\NotificationBundle\Annotations as N;
  * @N\Source(columns="necktieId, username, email, firstName, lastName, avatar, locked, phoneNumber, website, country, region, city, addressLine1, addressLine2, postalCode")
  * Users cannot be created on client so there is no need to use POST
  * @N\Methods(types={"put", "delete"})
- *
- * @package AppBundle\Entity
  */
 class User extends \Venice\AppBundle\Entity\User
 {
@@ -43,6 +40,4 @@ class User extends \Venice\AppBundle\Entity\User
     {
         $this->UserChild = $UserChild;
     }
-
-
 }

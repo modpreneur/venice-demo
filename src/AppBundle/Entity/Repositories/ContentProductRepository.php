@@ -3,7 +3,7 @@
 namespace AppBundle\Entity\Repositories;
 
 /**
- * ContentProductRepository
+ * ContentProductRepository.
  */
 class ContentProductRepository extends \Venice\AppBundle\Entity\Repositories\ContentProductRepository
 {

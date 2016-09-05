@@ -5,15 +5,17 @@ namespace AdminBundle\Services;
 use Trinity\AdminBundle\Event\MenuEvent;
 
 /**
- * This listener extends the Venice MenuListener
+ * This listener extends the Venice MenuListener.
  *
  * Class MenuListener
- * @package AdminBundle\Services
  */
 class MenuListener
 {
     /**
      * @param MenuEvent $event
+     *
+     * @throws \InvalidArgumentException
+     * @throws \Trinity\AdminBundle\Exception\MenuException
      */
     public function onMenuConfigure(MenuEvent $event)
     {
@@ -23,6 +25,5 @@ class MenuListener
             ->addChild('Child menu item', ['route' => 'admin_product_index'])
             ->setAttribute('icon', 'trinity trinity-home')
             ->setExtra('orderNumber', 5);
-
     }
 }

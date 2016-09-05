@@ -8,12 +8,13 @@ use AppBundle\Entity\User;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ProductAccessType
+ * Class ProductAccessType.
  */
 class ProductAccessType extends \Venice\AppBundle\Form\Notification\ProductAccessType
 {
     /**
      * {@inheritdoc}
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)

@@ -3,7 +3,7 @@
 namespace AppBundle\Entity\Repositories;
 
 /**
- * FreeProductRepository
+ * FreeProductRepository.
  */
 class FreeProductRepository extends \Venice\AppBundle\Entity\Repositories\FreeProductRepository
 {
