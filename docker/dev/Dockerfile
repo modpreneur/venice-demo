@@ -1,12 +1,12 @@
-FROM modpreneur/necktie-dev:1.0
+FROM modpreneur/necktie-dev:1.0.2
 
 MAINTAINER Jakub Fajkus <fajkus@modpreneur.com>
 
 # Install app
 ADD . /var/app
 
-RUN cd web/js \
-    && npm install
+#RUN cd web/js \
+#    && npm install
 
 EXPOSE 80 9003
 
