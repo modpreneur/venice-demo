@@ -25,13 +25,13 @@ Application.start(function() {
 });
 
 
-
+window.$ = $;
+window.jQuery = $;
 if(DEVELOPMENT){
     require('trinity/Gateway').configure({
         timeout: 60000,
         fileTimeout: 60000
     });
-    window.$ = $;
     window._ = require('lodash');
 }
 

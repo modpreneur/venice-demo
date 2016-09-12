@@ -6,7 +6,8 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        venice: path.join(__dirname, '../app/main.js')
+        venice: path.join(__dirname, '../app/main.js'),
+        froala: 'venice-js/mainFroala.js'
     },
     output: {
         path: path.join(__dirname, '../dist'),

@@ -25,7 +25,8 @@ module.exports = {
             'react-widgets',
             // 'query-builder'
             path.join(__dirname, '../lib/query-builder.js')
-        ]
+        ],
+        froala: 'venice-js/mainFroala.js'
     },
     output: {
         path: path.join(__dirname, '../dist'),
