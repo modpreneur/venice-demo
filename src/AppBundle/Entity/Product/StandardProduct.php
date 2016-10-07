@@ -12,11 +12,10 @@ use Trinity\NotificationBundle\Annotations as N;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\StandardProductRepository")
- * @N\Source(columns="necktieId, name, description, defaultBillingPlan")
+ * @N\Source(columns="necktieId, name, description")
  * Creating products on client is not allowed because creating billing plans is not allowed
  * @N\Methods(types={"put", "delete"})
  * @N\Url(postfix="product")
- *
  * Class StandardProduct
  */
 class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct

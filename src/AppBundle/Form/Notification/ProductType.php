@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form\Notification;
 
-use AppBundle\Entity\BillingPlan;
 use AppBundle\Entity\Product\StandardProduct;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,6 +20,5 @@ class ProductType extends \Venice\AppBundle\Form\Notification\ProductType
         parent::configureOptions($resolver);
 
         $resolver->setDefault('data_class', StandardProduct::class);
-        $resolver->setDefault('billingPlanClass', BillingPlan::class);
     }
 }
