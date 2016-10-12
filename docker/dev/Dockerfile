@@ -1,4 +1,4 @@
-FROM modpreneur/necktie-dev:1.0.2
+FROM modpreneur/necktie-dev:1.0.9
 
 MAINTAINER Jakub Fajkus <fajkus@modpreneur.com>
 
