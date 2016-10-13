@@ -1,11 +1,8 @@
-FROM modpreneur/necktie:1.0
+FROM modpreneur/necktie:1.0.4
 
 MAINTAINER Jakub Fajkus <fajkus@modpreneur.com>
 
-# Install app
 ADD . /var/app
-#[RuntimeException] The .git directory is missing from dev packages
-#RUN composer install --optimize-autoloader --no-scripts --prefer-dist --no-interaction \
 
 EXPOSE 80 9003
 
