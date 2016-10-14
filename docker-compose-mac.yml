@@ -34,4 +34,4 @@ services:
   mysql:
     extends:
       file: docker-compose.yml
-      service: postgres
+      service: mysql
