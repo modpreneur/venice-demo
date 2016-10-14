@@ -5,10 +5,10 @@ MAINTAINER Jakub Fajkus <fajkus@modpreneur.com>
 # Install app
 ADD . /var/app
 
-#RUN cd web/js \
-#    && npm install
+RUN cd web/js \
+    && npm install
 
 EXPOSE 80 9003
 
 RUN chmod +x ./docker/dev/entrypoint.sh
-ENTRYPOINT ["sh", "./docker/dev/entrypoint.sh", "service postfix start"]
+ENTRYPOINT ["sh", "./docker/dev/entrypoint.sh"]

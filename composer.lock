@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "542910c01434f02867b888a0d1d24cfd",
+    "hash": "e43bda4d10fe22c57ac2852aab2b762d",
     "content-hash": "ac5cc6db4d7ab8740c0b1f71ecc82789",
     "packages": [
         {
@@ -63,16 +63,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.19.14",
+            "version": "3.19.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2d0c88883dac2f8dd21825b51ef1f04e04073f8f"
+                "reference": "83e9522a0a1abce0b1a0c2971428a5bd975a212d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2d0c88883dac2f8dd21825b51ef1f04e04073f8f",
-                "reference": "2d0c88883dac2f8dd21825b51ef1f04e04073f8f",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/83e9522a0a1abce0b1a0c2971428a5bd975a212d",
+                "reference": "83e9522a0a1abce0b1a0c2971428a5bd975a212d",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-10-12 21:32:40"
+            "time": "2016-10-13 18:56:16"
         },
         {
             "name": "behat/transliterator",
@@ -5813,12 +5813,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "6f08a6bbae829d5c0ca491e87b3e2a05fd8ba193"
+                "reference": "c63331fee7fe670ddfd9447d653af9eca5a925d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/6f08a6bbae829d5c0ca491e87b3e2a05fd8ba193",
-                "reference": "6f08a6bbae829d5c0ca491e87b3e2a05fd8ba193",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/c63331fee7fe670ddfd9447d653af9eca5a925d5",
+                "reference": "c63331fee7fe670ddfd9447d653af9eca5a925d5",
                 "shasum": ""
             },
             "require": {
@@ -5863,7 +5863,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2016-10-12 14:27:21"
+            "time": "2016-10-14 10:39:40"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -5909,12 +5909,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-core-entities.git",
-                "reference": "0a335c53ec8bfe3b2c196efb05821159c335c708"
+                "reference": "d463e10868c5b7b5401d76bffe6b20147fa1c57d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-core-entities/zipball/0a335c53ec8bfe3b2c196efb05821159c335c708",
-                "reference": "0a335c53ec8bfe3b2c196efb05821159c335c708",
+                "url": "https://api.github.com/repos/modpreneur/trinity-core-entities/zipball/d463e10868c5b7b5401d76bffe6b20147fa1c57d",
+                "reference": "d463e10868c5b7b5401d76bffe6b20147fa1c57d",
                 "shasum": ""
             },
             "require": {
@@ -5954,7 +5954,7 @@
                 }
             ],
             "description": "Trinity Framework",
-            "time": "2016-10-04 07:58:33"
+            "time": "2016-10-13 13:52:00"
         },
         {
             "name": "trinity/core-interfaces",
@@ -6738,16 +6738,16 @@
         },
         {
             "name": "willdurand/negotiation",
-            "version": "v2.1.0",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Negotiation.git",
-                "reference": "bc814293b153f543c99c89d94c8cc07b3259eef9"
+                "reference": "1f210db45723b21edd69f39794662b8d64656b93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/bc814293b153f543c99c89d94c8cc07b3259eef9",
-                "reference": "bc814293b153f543c99c89d94c8cc07b3259eef9",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/1f210db45723b21edd69f39794662b8d64656b93",
+                "reference": "1f210db45723b21edd69f39794662b8d64656b93",
                 "shasum": ""
             },
             "require": {
@@ -6759,7 +6759,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -6786,7 +6786,7 @@
                 "header",
                 "negotiation"
             ],
-            "time": "2016-09-21 11:26:55"
+            "time": "2016-10-14 09:17:47"
         }
     ],
     "packages-dev": [],

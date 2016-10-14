@@ -114,12 +114,25 @@ function killDinghyHttpProxy {
 
 function buildWeb {
     echo "Building web..."
-    docker-compose build
+
+    if [[ "$OS" = "Darwin" ]]
+    then
+        docker-compose -f docker-compose-mac.yml build
+    else
+        echo "USER_ID=$UID" > docker/.env
+        docker-compose build
+    fi
 }
 
 function runWeb {
     echo "Starting web..."
-    docker-compose up
+    if [[ "$OS" = "Darwin" ]]
+    then
+        docker-compose -f docker-compose-mac.yml up
+    else
+        echo "USER_ID=$UID" > docker/.env
+        docker-compose up
+    fi
 }
 
 # Param 1: Container

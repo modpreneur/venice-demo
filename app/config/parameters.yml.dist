@@ -7,7 +7,7 @@ parameters:
     necktie_client_id: 3_1opf66rtd32848cw8s00k0wcs0k0sg4so4g8o08ogw0g8gg4k4
     necktie_client_short_id: 3
     necktie_client_secret: 2l3ytusjnzc48gcog0skk88880soss4kc4gwgs0s408cgwwkww
-    necktie_url: 'http://192.168.99.100/app_dev.php' #without trailing backslash!
+    necktie_url: 'necktie_web_1/app_dev.php' #without trailing backslash!
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
