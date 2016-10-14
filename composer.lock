@@ -2841,16 +2841,16 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "92cdc9c5abface475c8120dd0b12a06161118d42"
+                "reference": "5cde63daef583b362c2e41274c48516798ddcff2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/92cdc9c5abface475c8120dd0b12a06161118d42",
-                "reference": "92cdc9c5abface475c8120dd0b12a06161118d42",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/5cde63daef583b362c2e41274c48516798ddcff2",
+                "reference": "5cde63daef583b362c2e41274c48516798ddcff2",
                 "shasum": ""
             },
             "require": {
-                "aws/aws-sdk-php": "*",
+                "aws/aws-sdk-php": "~3.11",
                 "cocur/slugify": "~2.1",
                 "doctrine/doctrine-bundle": "~1.6",
                 "doctrine/orm": "~2.5",
@@ -2869,7 +2869,7 @@
                 "predis/predis": "~1.1",
                 "sensio/distribution-bundle": "~5.0",
                 "sensio/framework-extra-bundle": "~3.0",
-                "snc/redis-bundle": "dev-master",
+                "snc/redis-bundle": "~2.0",
                 "stof/doctrine-extensions-bundle": "~1.2",
                 "symfony/assetic-bundle": "~2.8",
                 "symfony/monolog-bundle": "~2.9",
@@ -2936,7 +2936,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-10-07 13:16:32"
+            "time": "2016-10-14 15:10:24"
         },
         {
             "name": "monolog/monolog",
@@ -5018,16 +5018,16 @@
         },
         {
             "name": "snc/redis-bundle",
-            "version": "dev-master",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/snc/SncRedisBundle.git",
-                "reference": "c90589e5b68aa2fb82a6884957656175d8289c16"
+                "reference": "b8aa1a966b32c4fba6b7dac4532d5eeb1d890afb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/snc/SncRedisBundle/zipball/c90589e5b68aa2fb82a6884957656175d8289c16",
-                "reference": "c90589e5b68aa2fb82a6884957656175d8289c16",
+                "url": "https://api.github.com/repos/snc/SncRedisBundle/zipball/b8aa1a966b32c4fba6b7dac4532d5eeb1d890afb",
+                "reference": "b8aa1a966b32c4fba6b7dac4532d5eeb1d890afb",
                 "shasum": ""
             },
             "require": {
@@ -5079,7 +5079,7 @@
                 "redis",
                 "symfony"
             ],
-            "time": "2016-09-16 15:25:46"
+            "time": "2016-06-17 11:50:26"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
