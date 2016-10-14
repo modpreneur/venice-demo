@@ -31,8 +31,8 @@
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "php bin/console doctrine:schema:update --force --no-interaction",
-            "php bin/console venice:elastic:migration",
+            "php bin/console doctrine:schema:update --force --no-interaction --env=prod",
+            "php bin/console venice:elastic:migration --env=prod",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",

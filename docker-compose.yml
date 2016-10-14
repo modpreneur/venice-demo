@@ -19,7 +19,7 @@ services:
       - .:/var/app
 
   mysql:
-    image: mysql/mysql-server:5.7
+    image: mysql/mysql-server:8.0
     ports:
       - 3308:3306
     environment:
