@@ -38,8 +38,7 @@ services:
     restart: always
 
   elasticsearch:
-    image: elasticsearch:latest
-  #  build: ./docker/elasticSearch
+    image: elasticsearch:2.4
     ports:
   #    - 9300:9300
       - 9201:9200
