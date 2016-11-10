@@ -10,8 +10,8 @@ export default oldRoutes.concat([
     //     action: 'Example.new'
     // },
     // {
-    //     path: '/admin/example/tabs:id(/)',
-    //     action: 'Example.tabs'
+    //     path: '/admin(/)',
+    //     action: 'Example.new'
     // }
 ]);
 

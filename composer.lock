@@ -63,16 +63,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.19.22",
+            "version": "3.19.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "04d2a027cac94674b52dfb4d68667bfe225b0fb5"
+                "reference": "fbfb87734e5d298b40354ac7fb3f95d0f72ad16e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/04d2a027cac94674b52dfb4d68667bfe225b0fb5",
-                "reference": "04d2a027cac94674b52dfb4d68667bfe225b0fb5",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/fbfb87734e5d298b40354ac7fb3f95d0f72ad16e",
+                "reference": "fbfb87734e5d298b40354ac7fb3f95d0f72ad16e",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-11-02 22:24:48"
+            "time": "2016-11-03 20:28:28"
         },
         {
             "name": "behat/transliterator",
@@ -587,16 +587,16 @@
         },
         {
             "name": "doctrine/data-fixtures",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "b3cae5efef97191a08d53d733260f7eb667c16e4"
+                "reference": "17fa5bfe6ff52e35cb3d9ec37c934a2f4bd1fa2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/b3cae5efef97191a08d53d733260f7eb667c16e4",
-                "reference": "b3cae5efef97191a08d53d733260f7eb667c16e4",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/17fa5bfe6ff52e35cb3d9ec37c934a2f4bd1fa2e",
+                "reference": "17fa5bfe6ff52e35cb3d9ec37c934a2f4bd1fa2e",
                 "shasum": ""
             },
             "require": {
@@ -642,7 +642,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2016-06-20 18:08:26"
+            "time": "2016-09-20 10:07:57"
         },
         {
             "name": "doctrine/dbal",
@@ -1251,16 +1251,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v2.2.2",
+            "version": "v2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "2f54f5c5301075b993da5505e406d2a4d6113222"
+                "reference": "588ede911141543f5b43e9f605931d5e6490a3d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/2f54f5c5301075b993da5505e406d2a4d6113222",
-                "reference": "2f54f5c5301075b993da5505e406d2a4d6113222",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/588ede911141543f5b43e9f605931d5e6490a3d6",
+                "reference": "588ede911141543f5b43e9f605931d5e6490a3d6",
                 "shasum": ""
             },
             "require": {
@@ -1301,7 +1301,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2016-10-17 19:43:19"
+            "time": "2016-11-04 17:59:06"
         },
         {
             "name": "emanueleminotto/twig-cache-bundle",
@@ -1457,12 +1457,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "f3002436abeac555104069f4562d284d23d06dab"
+                "reference": "3015f0965b74704362f9b2006646781d4613bcdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f3002436abeac555104069f4562d284d23d06dab",
-                "reference": "f3002436abeac555104069f4562d284d23d06dab",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/3015f0965b74704362f9b2006646781d4613bcdd",
+                "reference": "3015f0965b74704362f9b2006646781d4613bcdd",
                 "shasum": ""
             },
             "require": {
@@ -1526,7 +1526,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-11-03 15:42:43"
+            "time": "2016-11-08 13:35:42"
         },
         {
             "name": "fzaninotto/faker",
@@ -2721,7 +2721,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -3288,16 +3288,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "c0125896dbb151380ab47e96c621741e79623beb"
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/c0125896dbb151380ab47e96c621741e79623beb",
-                "reference": "c0125896dbb151380ab47e96c621741e79623beb",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
                 "shasum": ""
             },
             "require": {
@@ -3332,7 +3332,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-10-17 15:23:22"
+            "time": "2016-11-07 23:38:38"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -5268,16 +5268,16 @@
         },
         {
             "name": "symfony/monolog-bundle",
-            "version": "2.11.1",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "e7caf4936c7be82bc6d68df87f1d23a0d5bf6e00"
+                "reference": "6acef3bd201c4f35e42e52dedf1fe088f30e07e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/e7caf4936c7be82bc6d68df87f1d23a0d5bf6e00",
-                "reference": "e7caf4936c7be82bc6d68df87f1d23a0d5bf6e00",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/6acef3bd201c4f35e42e52dedf1fe088f30e07e8",
+                "reference": "6acef3bd201c4f35e42e52dedf1fe088f30e07e8",
                 "shasum": ""
             },
             "require": {
@@ -5324,7 +5324,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2016-04-13 16:21:01"
+            "time": "2016-11-06 18:54:50"
         },
         {
             "name": "symfony/polyfill-intl-icu",
@@ -5816,12 +5816,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "4d7f3ccb7633866240167b4865b9de25a15d4552"
+                "reference": "91928f6d7b8fcc2e860cf2797c9f056e2572d213"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/4d7f3ccb7633866240167b4865b9de25a15d4552",
-                "reference": "4d7f3ccb7633866240167b4865b9de25a15d4552",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/91928f6d7b8fcc2e860cf2797c9f056e2572d213",
+                "reference": "91928f6d7b8fcc2e860cf2797c9f056e2572d213",
                 "shasum": ""
             },
             "require": {
@@ -5866,7 +5866,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2016-11-02 13:53:54"
+            "time": "2016-11-08 16:01:40"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -6012,12 +6012,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity.git",
-                "reference": "49c3276e0a816e2303a33c19be1e684433b5db2a"
+                "reference": "cb09749b97896b466fc3b5853aba3d19ef6fcf03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity/zipball/49c3276e0a816e2303a33c19be1e684433b5db2a",
-                "reference": "49c3276e0a816e2303a33c19be1e684433b5db2a",
+                "url": "https://api.github.com/repos/modpreneur/trinity/zipball/cb09749b97896b466fc3b5853aba3d19ef6fcf03",
+                "reference": "cb09749b97896b466fc3b5853aba3d19ef6fcf03",
                 "shasum": ""
             },
             "require": {
@@ -6068,7 +6068,7 @@
                 }
             ],
             "description": "Trinity Framework",
-            "time": "2016-10-24 09:01:37"
+            "time": "2016-11-08 11:15:50"
         },
         {
             "name": "trinity/grid",

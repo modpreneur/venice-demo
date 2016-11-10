@@ -10,13 +10,23 @@ import globalScript from './Libraries/GlobalScript';
 // Extends jquery
 $.id = document.getElementById.bind(document);
 
+window.$ = $;
+window.jQuery = $;
+if(DEVELOPMENT){
+    require('trinity/Gateway').configure({
+        timeout: 30000,
+        fileTimeout: 30000
+    });
+    window._ = require('lodash');
+}
+
 let Application = new App(routes, controllers);
 
 Application.addPreBOOTScript(globalScript);
 
-Application.start(function() {
+Application.start(() => {
     removeLoadingBar();
-}, function (err){
+}, (err) => {
     console.error(err);
     let bar = $('.header-loader .bar')[0];
     if(bar){
@@ -24,16 +34,6 @@ Application.start(function() {
     }
 });
 
-
-window.$ = $;
-window.jQuery = $;
-if(DEVELOPMENT){
-    require('trinity/Gateway').configure({
-        timeout: 60000,
-        fileTimeout: 60000
-    });
-    window._ = require('lodash');
-}
 
 function removeLoadingBar() {
     let $bars = $('.header-loader .bar');
