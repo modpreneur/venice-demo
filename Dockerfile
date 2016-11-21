@@ -1,4 +1,4 @@
-FROM modpreneur/apache-framework:0.9
+FROM modpreneur/apache-framework:1.0.2
 
 MAINTAINER Jakub Fajkus <fajkus@modpreneur.com>
 
@@ -9,4 +9,4 @@ RUN apt-get update && apt-get -y install supervisor
 EXPOSE 80 9003
 
 RUN chmod +x entrypoint.sh
-ENTRYPOINT ["sh", "entrypoint.sh", "service postfix start"]
+ENTRYPOINT ["sh", "entrypoint.sh"]

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3c0b15fbb50be08cce62c7dbebd25841",
-    "content-hash": "ac5cc6db4d7ab8740c0b1f71ecc82789",
+    "hash": "900f7edca759eacf877c61ac783f86ee",
+    "content-hash": "67bcfe90c7f4b8dd0ad24463180c4d58",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -2837,20 +2837,20 @@
         },
         {
             "name": "modpreneur/venice",
-            "version": "dev-master",
+            "version": "dev-VENICE-1-add-custom-description-to-product",
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "5cde63daef583b362c2e41274c48516798ddcff2"
+                "reference": "c3d58c65e31bba20227e1b0a6567654a7973d018"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/5cde63daef583b362c2e41274c48516798ddcff2",
-                "reference": "5cde63daef583b362c2e41274c48516798ddcff2",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/c3d58c65e31bba20227e1b0a6567654a7973d018",
+                "reference": "c3d58c65e31bba20227e1b0a6567654a7973d018",
                 "shasum": ""
             },
             "require": {
-                "aws/aws-sdk-php": "~3.11",
+                "aws/aws-sdk-php": "*",
                 "cocur/slugify": "~2.1",
                 "doctrine/doctrine-bundle": "~1.6",
                 "doctrine/orm": "~2.5",
@@ -2869,7 +2869,7 @@
                 "predis/predis": "~1.1",
                 "sensio/distribution-bundle": "~5.0",
                 "sensio/framework-extra-bundle": "~3.0",
-                "snc/redis-bundle": "~2.0",
+                "snc/redis-bundle": "dev-master",
                 "stof/doctrine-extensions-bundle": "~1.2",
                 "symfony/assetic-bundle": "~2.8",
                 "symfony/monolog-bundle": "~2.9",
@@ -2933,10 +2933,10 @@
             ],
             "description": "Venice framework",
             "support": {
-                "source": "https://github.com/modpreneur/venice/tree/master",
+                "source": "https://github.com/modpreneur/venice/tree/VENICE-1-add-custom-description-to-product",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-10-14 15:10:24"
+            "time": "2016-10-13 08:23:21"
         },
         {
             "name": "monolog/monolog",
@@ -5018,16 +5018,16 @@
         },
         {
             "name": "snc/redis-bundle",
-            "version": "2.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/snc/SncRedisBundle.git",
-                "reference": "b8aa1a966b32c4fba6b7dac4532d5eeb1d890afb"
+                "reference": "c90589e5b68aa2fb82a6884957656175d8289c16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/snc/SncRedisBundle/zipball/b8aa1a966b32c4fba6b7dac4532d5eeb1d890afb",
-                "reference": "b8aa1a966b32c4fba6b7dac4532d5eeb1d890afb",
+                "url": "https://api.github.com/repos/snc/SncRedisBundle/zipball/c90589e5b68aa2fb82a6884957656175d8289c16",
+                "reference": "c90589e5b68aa2fb82a6884957656175d8289c16",
                 "shasum": ""
             },
             "require": {
@@ -5079,7 +5079,7 @@
                 "redis",
                 "symfony"
             ],
-            "time": "2016-06-17 11:50:26"
+            "time": "2016-09-16 15:25:46"
         },
         {
             "name": "stof/doctrine-extensions-bundle",

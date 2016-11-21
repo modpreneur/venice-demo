@@ -23,7 +23,7 @@
         }
     ],
     "require": {
-        "modpreneur/venice": "dev-master"
+        "modpreneur/venice": "dev-VENICE-1-add-custom-description-to-product"
     },
     "require-dev": {
     },
