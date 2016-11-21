@@ -35,4 +35,4 @@ parameters:
     rabbit_password: ef5b49b117296008d7a256e81b16472d772a373f23a7ea7d59057cc713970a7e
     client_identification: "client_3"
 
-    elasticsearch_host: "elasticsearch:9201"
+    elasticsearch_host: "elasticsearch:9200"

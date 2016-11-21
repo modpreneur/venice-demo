@@ -58,9 +58,12 @@ fi
     --drop-database             Drop database
     --migrate-database          Migrate database
     --recreate-database         Drop, create and migrate database
+
+    --clear-elastic             Clear all elastic documents
     --cache-logs-clear          Clear cache and logs
     --redis-flush               Flush Redis
-
+    --clear-containers          Clear Docker containers
+    --redis-doctrine-flush      Clear doctrine cache(DB 1)
     --install                   Install Docker (Mac OS only)
 
     --version                   Show script version information
@@ -78,16 +81,16 @@ function prepareDinghy {
         then
             DINGHY_STATUS=$(dinghy status 2>&1);
 
-            if [[ $DINGHY_STATUS == *"stopped"* || $DINGHY_STATUS == *"Stopped"* ]]
+            if [[ $DINGHY_STATUS == *"running"* || $DINGHY_STATUS == *"Running"* ]]
             then
+                #echo "Dinghy is already running."
+                DINGHY_CMD="dinghy shellinit"
+            else
                 echo "Starting dinghy..."
                 DINGHY_CMD="dinghy up"
-            else
-                echo "Dinghy is already running."
-                DINGHY_CMD="dinghy shellinit"
             fi
 
-            echo "Setting environment variables..."
+            #echo "Setting environment variables..."
 
             IFS=$'\n'
             for COMMAND in `eval $DINGHY_CMD " | grep 'export DOCKER_'"`
@@ -97,7 +100,7 @@ function prepareDinghy {
             done
             unset IFS
 
-            echo "Environment variables were set."
+            #echo "Environment variables were set."
     fi
 }
 
@@ -143,7 +146,7 @@ function runCommand {
     IFS=$'\n'
     for CONT_ID in $(docker ps 2> /dev/null | grep "$1" | cut -d ' ' -f 1)
     do
-        echo "Connecting to container ($CONT_ID)..."
+        #echo "Connecting to container ($CONT_ID)..."
         eval "docker exec -it $CONT_ID ${2-bash}"
         VM_CONNECTED=true
     done
@@ -209,13 +212,33 @@ function clearCacheAndLogs {
     runCommand "_web" "bash -c 'rm -r $PATH_CACHE/dev/; rm -r $PATH_CACHE/prod; rm $PATH_LOGS/dev.log; rm $PATH_LOGS/test.log'"
 }
 
+function redisDoctrineFlush {
+    runCommand "redis" "bash -c \"redis-cli -a necktie_pass -n 1 FLUSHDB\""
+
+}
+
+
+function clearElasticCommand {
+    prepareDinghy
+    runCommand "_web" "bash -c 'php $PATH_CONSOLE necktie:elastic:migrations --clean-start'"
+}
+
+
 function redisFlush {
     runRedisCommand "FLUSHALL"
 }
 
 #Param 1: command
 function runRedisCommand {
-    runCommand "redis" "bash -c \"redis-cli '$1'\""
+    runCommand "redis" "bash -c \"redis-cli -a necktie_pass '$1'\""
+}
+
+function clearContainers {
+    docker rmi $(docker images -q -f dangling=true)
+}
+
+function listContainers {
+    docker ps
 }
 
 function install {
@@ -232,7 +255,7 @@ function installMac {
     TOTAL="12"
 
     printf "${ORANGE}[ 1/$TOTAL] Downloading Virtualbox...${NC}\n"
-    curl "http://download.virtualbox.org/virtualbox/5.0.10/VirtualBox-5.0.10-104061-OSX.dmg" -o "VirtualBox-5.0.10-104061-OSX.dmg"
+    curl "http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-OSX.dmg" -o "VirtualBox-5.0.10-104061-OSX.dmg"
 
     printf "${ORANGE}[ 2/$TOTAL] Mounting volume...${NC}\n"
     hdiutil mount VirtualBox-5.0.10-104061-OSX.dmg
@@ -250,10 +273,11 @@ function installMac {
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
     printf "${ORANGE}[ 7/$TOTAL] Installing dinghy...${NC}\n"
-    brew install https://github.com/codekitchen/dinghy/raw/v4.0.7/dinghy.rb
+    brew tap codekitchen/dinghy
+    brew install dinghy
 
     printf "${ORANGE}[ 8/$TOTAL] Downloading Docker Toolbox...${NC}\n"
-    curl -L "https://github.com/docker/toolbox/releases/download/v1.9.1c/DockerToolbox-1.9.1c.pkg" -o "DockerToolbox-1.9.1c.pkg"
+    curl -L "https://github.com/docker/toolbox/releases/download/v1.9.1i/DockerToolbox-1.9.1i.pkg" -o "DockerToolbox-1.9.1c.pkg"
 
     printf "${ORANGE}[ 9/$TOTAL] Installing Docker Toolbox...${NC}\n"
     sudo installer -pkg ./DockerToolbox-1.9.1c.pkg -target /
@@ -373,10 +397,34 @@ elif [ "$1" = "--cache-logs-clear" ]
     then
         clearCacheAndLogs
 
+elif [ "$1" = "--clear-elastic" ]
+    then
+        clearElasticCommand
+
 elif [ "$1" = "--redis-flush" ]
     then
         prepareDinghy
         redisFlush
+
+elif [ "$1" = "--redis-doctrine-flush" ]
+    then
+        prepareDinghy
+        redisDoctrineFlush
+
+elif [ "$1" = "--clear-containers" ]
+    then
+        prepareDinghy
+        clearContainers
+
+elif [ "$1" = "ps" ]
+    then
+        prepareDinghy
+        listContainers
+
+elif [ "$1" = "exec" ]
+    then
+        prepareDinghy
+        runCommand $3 $4
 
 elif [ "$1" = "--install" ]
     then
@@ -389,6 +437,11 @@ elif [ "$1" = "--help" ]
 elif [ "$1" = "--version" ]
     then
         showVersion
+
+elif [ "$1" = "--clear-images" ]
+    then
+        prepareDinghy
+        runCommand "docker rmi -f $(docker images -q -f dangling=true)"
 
 elif [ -n "$1" ]
     then
