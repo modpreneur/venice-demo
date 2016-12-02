@@ -52,12 +52,12 @@ switch (process.env.NODE_ENV){
     } break;
 }
 
-// __addTrinityJSAlias(config);
+__addTrinityJSAlias(config);
 
 module.exports = config;
 
-// function __addTrinityJSAlias(conf){
-//     conf.resolve = conf.resolve || {};
-//     conf.resolve.alias = conf.resolve.alias || {};
-//     conf.resolve.alias.trinity = path.join(__dirname, './venice-js');
-// }
+function __addTrinityJSAlias(conf){
+    conf.resolve = conf.resolve || {};
+    conf.resolve.alias = conf.resolve.alias || {};
+    conf.resolve.alias['venice-js'] = path.join(__dirname, './venice-js');
+}
