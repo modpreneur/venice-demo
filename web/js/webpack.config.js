@@ -52,8 +52,7 @@ switch (process.env.NODE_ENV){
     } break;
 }
 
-__addTrinityJSAlias(config);
-
+// __addTrinityJSAlias(config);
 module.exports = config;
 
 function __addTrinityJSAlias(conf){
