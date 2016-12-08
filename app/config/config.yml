@@ -10,17 +10,21 @@ trinity_messages:
     sender_identification: "client_3"
 
 trinity_notification:
-    forms:
-        product: AppBundle\Form\Notification\ProductType
-        billing-plan: AppBundle\Form\Notification\BillingPlanType
-        user: AppBundle\Form\Notification\UserType
-        product-access: AppBundle\Form\Notification\ProductAccessType
     # do not forget to define this config if you have overriden the entities!
     entities:
         product: AppBundle\Entity\Product\StandardProduct
         billing-plan: AppBundle\Entity\BillingPlan
         user: AppBundle\Entity\User
         product-access: AppBundle\Entity\ProductAccess
+        pay-system: Venice\AppBundle\Entity\PaySystem
+        pay-system-vendor: Venice\AppBundle\Entity\PaySystemVendor
+    forms:
+        product: AppBundle\Form\Notification\ProductType
+        billing-plan: AppBundle\Form\Notification\BillingPlanType
+        user: AppBundle\Form\Notification\UserType
+        product-access: AppBundle\Form\Notification\ProductAccessType
+        pay-system: Venice\AppBundle\Form\Notification\PaySystemType
+        pay-system-vendor: Venice\AppBundle\Form\Notification\PaySystemVendorType
 
 venice_app:
 
