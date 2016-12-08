@@ -1,4 +1,4 @@
-FROM modpreneur/apache-framework:1.0.2
+FROM modpreneur/apache-framework:1.0.3
 
 MAINTAINER Jakub Fajkus <fajkus@modpreneur.com>
 
