@@ -9,6 +9,12 @@ imports:
 trinity_messages:
     sender_identification: "client_3"
 
+
+twig:
+  form_themes:
+    - 'TrinityAdminBundle:Form:bowtie_form_layout.html.twig'
+    - 'TrinityAdminBundle:Form:color_layout.html.twig'
+
 trinity_notification:
     # do not forget to define this config if you have overriden the entities!
     entities:
