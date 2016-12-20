@@ -2848,12 +2848,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "15abcf939d0d32dde86d0d2b7d2011571eea663d"
+                "reference": "73193b6f9d9120062b2f50ab7070399b51bd75e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/15abcf939d0d32dde86d0d2b7d2011571eea663d",
-                "reference": "15abcf939d0d32dde86d0d2b7d2011571eea663d",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/73193b6f9d9120062b2f50ab7070399b51bd75e4",
+                "reference": "73193b6f9d9120062b2f50ab7070399b51bd75e4",
                 "shasum": ""
             },
             "require": {
@@ -2942,7 +2942,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-12-20 09:45:49"
+            "time": "2016-12-20 15:52:43"
         },
         {
             "name": "monolog/monolog",
@@ -3648,16 +3648,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "903fd6318d0a90b4770a009ff73e4a4e9c437929"
+                "reference": "c14196e64a78570034afd0b7a9f3757ba71c2a0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/903fd6318d0a90b4770a009ff73e4a4e9c437929",
-                "reference": "903fd6318d0a90b4770a009ff73e4a4e9c437929",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c14196e64a78570034afd0b7a9f3757ba71c2a0a",
+                "reference": "c14196e64a78570034afd0b7a9f3757ba71c2a0a",
                 "shasum": ""
             },
             "require": {
@@ -3707,7 +3707,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-11-28 16:00:31"
+            "time": "2016-12-20 15:22:42"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -6153,12 +6153,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "12b84bd04dd7f7ed92c8e14f0ede7780b82726dc"
+                "reference": "265f745956afd0a1c485334392e76573f5cfe0a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/12b84bd04dd7f7ed92c8e14f0ede7780b82726dc",
-                "reference": "12b84bd04dd7f7ed92c8e14f0ede7780b82726dc",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/265f745956afd0a1c485334392e76573f5cfe0a0",
+                "reference": "265f745956afd0a1c485334392e76573f5cfe0a0",
                 "shasum": ""
             },
             "require": {
@@ -6202,7 +6202,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2016-12-16 18:07:57"
+            "time": "2016-12-20 13:03:27"
         },
         {
             "name": "trinity/messages",
