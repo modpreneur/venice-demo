@@ -2848,12 +2848,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "e64515175015e389d143851fe056df67e2a8f2c2"
+                "reference": "15abcf939d0d32dde86d0d2b7d2011571eea663d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/e64515175015e389d143851fe056df67e2a8f2c2",
-                "reference": "e64515175015e389d143851fe056df67e2a8f2c2",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/15abcf939d0d32dde86d0d2b7d2011571eea663d",
+                "reference": "15abcf939d0d32dde86d0d2b7d2011571eea663d",
                 "shasum": ""
             },
             "require": {
@@ -2942,7 +2942,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2016-12-20 14:51:25"
+            "time": "2016-12-20 09:45:49"
         },
         {
             "name": "monolog/monolog",
@@ -6153,12 +6153,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "265f745956afd0a1c485334392e76573f5cfe0a0"
+                "reference": "12b84bd04dd7f7ed92c8e14f0ede7780b82726dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/265f745956afd0a1c485334392e76573f5cfe0a0",
-                "reference": "265f745956afd0a1c485334392e76573f5cfe0a0",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/12b84bd04dd7f7ed92c8e14f0ede7780b82726dc",
+                "reference": "12b84bd04dd7f7ed92c8e14f0ede7780b82726dc",
                 "shasum": ""
             },
             "require": {
@@ -6202,7 +6202,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2016-12-20 13:03:27"
+            "time": "2016-12-16 18:07:57"
         },
         {
             "name": "trinity/messages",
