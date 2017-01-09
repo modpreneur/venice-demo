@@ -3,6 +3,7 @@ version: '2'
 services:
 
   web:
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile
@@ -20,6 +21,7 @@ services:
 
 
   elasticsearch:
+    restart: always
     extends:
       file: docker-compose.yml
       service: elasticsearch
@@ -32,6 +34,7 @@ services:
 
 
   mysql:
+    restart: always
     extends:
       file: docker-compose.yml
       service: mysql
