@@ -1,0 +1,44 @@
+// Navbar module
+@import "variables";
+
+.navbar {
+    width: 100%;
+    padding-top: @space-small;
+    padding-bottom: @space-small;
+    font-size: 0; //must be, eliminate gap between li
+}
+
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar ul li {
+    display: inline;
+    white-space: pre;
+}
+
+.navbar ul li a {
+  font-size: @font-size-base;
+    padding: @space-small @space-small * 2;
+  color: @color-secondary;
+}
+
+//EXAMPLE
+/*
+<div class="navbar">
+  <ul>
+      <li>
+        <a href="">
+          navlist 1
+        </a>
+      </li>
+      <li>
+        <a href="">
+          navlist 2
+        </a>
+      </li>
+    </ul>
+  </div>
+*/

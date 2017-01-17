@@ -1,0 +1,280 @@
+/*
+    GRID.less -> grid system, row, span, div
+    VARIABLES:
+
+    @columns
+    @responsive
+    @column-padding-vertical
+    @column-padding-horizontal
+    @column-margin-vertical
+    @column-margin-horizontal
+    @threshold-big
+    @threshold-medium
+    @threshold-small
+    @container-big
+    @container-medium
+    @container-small
+*/
+
+@import "variables";
+
+// Clearfix
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+.clearfix {
+    &:before,
+    &:after {
+        content: " "; // 1
+        display: table; // 2
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+/* !!!! MOST IMPORTANT !!!! */
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.side-bar {
+  margin-bottom: -50000px;
+  padding-bottom: 50000px;
+  position: fixed;
+}
+
+/* CONTAINERS */
+.container-fixed() {
+    margin-right: auto;
+    margin-left: auto;
+    &:extend(.clearfix all);
+}
+
+.container {
+    .container-fixed();
+    overflow: hidden;
+}
+
+/*FULL WIDTH CONTAINER*/
+.container-fluid {
+  .container-fixed();
+  width: 100%;
+}
+
+/* ROW */
+.row {
+    width: 100%;
+    &:extend(.clearfix all);
+}
+
+
+/* SPANS */
+.span {
+    .display-block;
+    .relative;
+    padding: @column-padding-vertical @column-padding-horizontal;
+    margin: @column-margin-vertical @column-margin-horizontal;
+    min-height: 1px;
+    //    border: 1px solid red;
+}
+
+.span-none-pading {
+  .display-block;
+  .relative;
+  margin: @column-margin-vertical @column-margin-horizontal;
+  min-height: 1px;
+}
+
+// NON RESPONSIVE LAYOUT
+.grid-generate-columns-nonresponsive(@number-of-columns) when (@responsive = false) {
+    .grid-generate-columns(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+        .grid-generate-columns(@number-of-columns; @size - 1);
+
+        .span-@{size} {
+            .span;
+            .pull-left;
+            width: (100% / @number-of-columns) * @size;
+        }
+        .span-none-pading-@{size} {
+          .span-none-pading;
+          .pull-left;
+          width: (100% / @number-of-columns) * @size;
+        }
+    }
+
+    .grid-generate-offset(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+        .grid-generate-offset(@number-of-columns; @size - 1);
+
+        .offset-@{size} {
+            margin-left: (100% / @number-of-columns) * @size;
+        }
+    }
+
+    .container {
+        width: @container-big;
+    }
+
+    .grid-generate-columns(@number-of-columns);
+    .grid-generate-offset(@number-of-columns);
+}
+
+// RESPONSIVE layout
+.grid-generate-columns-responsive(@number-of-columns) when (@responsive = true) {
+    .grid-generate-columns(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+        .grid-generate-columns(@number-of-columns; @size - 1);
+
+        // small span keep everywhere, dont use media query
+        .span-small-@{size} {
+            .span;
+            .pull-left;
+            width: (100% / @number-of-columns) * @size;
+        }
+      .span-none-pading-small-@{size} {
+        .span-none-pading;
+        .pull-left;
+        width: (100% / @number-of-columns) * @size;
+      }
+
+        .span-medium-@{size} {
+            .span;
+        }
+      .span-none-pading-medium-@{size} {
+        .span-none-pading;
+      }
+
+        .span-large-@{size} {
+            .span;
+        }
+      .span-none-pading-large-@{size} {
+        .span-none-pading;
+      }
+
+    }
+
+    // offsets
+    .offset-small-0 {
+        margin-left: 0;
+    }
+
+    .grid-generate-offsets(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+        .grid-generate-offsets(@number-of-columns; @size - 1);
+
+        // offsets
+        .offset-small-@{size} {
+            margin-left: (100% / @number-of-columns) * @size;
+        }
+    }
+
+    .grid-generate-columns(@number-of-columns);
+    .grid-generate-offsets(@number-of-columns);
+
+    @media (min-width: @threshold-medium) {
+        .offset-medium-0 {
+            margin-left: 0;
+        }
+
+        .grid-generate-medium-spans(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+            .grid-generate-medium-spans(@number-of-columns; @size - 1);
+            // spans
+            .span-medium-@{size} {
+                .pull-left;
+                width: (100% / @number-of-columns) * @size;
+            }
+          .span-none-pading-medium-@{size} {
+            .pull-left;
+            width: (100% / @number-of-columns) * @size;
+          }
+
+            .offset-medium-@{size} {
+                margin-left: (100% / @number-of-columns) * @size;
+            }
+        }
+        .grid-generate-medium-spans(@number-of-columns);
+    }
+
+    @media (min-width: @threshold-big) {
+        .offset-large-0 {
+            margin-left: 0;
+        }
+
+        .grid-generate-large-spans(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+            .grid-generate-large-spans(@number-of-columns; @size - 1);
+            // spans
+            .span-large-@{size} {
+                .pull-left;
+                width: (100% / @number-of-columns) * @size;
+            }
+          .span-none-pading-large-@{size} {
+            .pull-left;
+            width: (100% / @number-of-columns) * @size;
+          }
+
+            .offset-large-@{size} {
+                margin-left: (100% / @number-of-columns) * @size;
+            }
+        }
+        .grid-generate-large-spans(@number-of-columns);
+    }
+
+
+    // container
+    .container {
+        @media (min-width: @threshold-small) {
+//            width: @container-small;
+            width: 100%;
+        }
+        @media (min-width: @threshold-medium) {
+//            width: @container-medium;
+
+            width: 100%;
+        }
+        @media (min-width: @threshold-big) {
+            width: @container-big;
+        }
+    }
+
+}
+
+// kick the generator
+.grid-generate-columns-responsive(@columns);
+.grid-generate-columns-nonresponsive(@columns);
+
+// block align
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+// block display
+.display-block {
+    display: block;
+}
+
+.display-inline {
+    display: inline;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+// position
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}

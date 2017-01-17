@@ -1,0 +1,35 @@
+<div class="block-notification">
+    <input type="radio" id="notification" class="display-none" name="radio-header-navigation"/>
+    <label for="notification" class="label-messenger">
+        <i class="ff-ring">
+            <i class="ff-circle-negative">
+                <span class="number-notification">{{ count }}</span>
+            </i>
+        </i>
+    </label>
+    <div class="notification-box">
+        <div class="notification-header">Notifications</div>
+        <div class="wrapper-notifi">
+            {% for message in 0..4 %}
+                <a href="">
+                    <div class="notifi">
+                        <div class="display-inline-block">
+                            {#<img src="{{ asset('Resources/public/images/site/notifi-icon.svg') }}" alt="profile image"/>#}
+                            <object
+                               type="image/svg+xml"
+                               height="14"
+                               width="24"
+                               data="{{ asset('Resources/public/images/site//notifi-icon.svg') }}">
+                            </object>
+                        </div>
+                        <div class="notifi-content">
+                            <div class="name">Flo Rida</div>
+                            <p>Hey you! It's time to continue with your FLO FIT program which contains 8 weeks and a lot of Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis, dolores ducimus eius facilis fugiat incidunt, laborum libero minima natus, nesciunt praesentium quibusdam quidem quisquam saepe sint veritatis? Ab, fugiat!</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <a class="read-all" href="">Read all messages</a>
+    </div>
+</div>

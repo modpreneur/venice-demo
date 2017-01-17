@@ -1,0 +1,1916 @@
+@import "page";
+
+@media (max-width: 1199px) {
+  .download-mobile-app {
+    h1 {
+      padding: 27px 0 27px 220px;
+      width: 100%;
+      max-width: 500px;
+      small {
+        display: none;
+      }
+    }
+  }
+  .dashboard-main-content {
+    .widgets {
+      &.widget-both {
+        .download-mobile-app {
+          background-position: left -30px top 0;
+          h1 {
+            padding-left: 190px;
+            max-width: 100%;
+          }
+          .download {
+            left: 190px;
+          }
+        }
+      }
+    }
+  }
+
+  .signup-body {
+    &.after-trial-extension-body {
+      .login-main {
+        .login {
+          margin: 4vw auto 20px;
+        }
+      }
+    }
+  }
+}
+@media (width: 768px) and (height: 1024px) {
+  .signup-body {
+    &.after-trial-extension-body {
+      .login-main {
+        .login {
+          margin: 10vh auto 20px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1120px) {
+  .dashboard-main-content {
+    .widgets {
+      &.widget-both {
+        .download-mobile-app {
+          background-position: left -80px top 0;
+          h1 {
+            padding-left: 130px;
+          }
+          .download {
+            left: 130px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 370px) {
+  .dashboard-main-content {
+    .message {
+      padding: 14px 10px;
+    }
+  }
+  body.login-page {
+      padding-bottom: 270px !important;
+  }
+}
+@media (min-width: 768px) {
+  .jumbotron.jumbotron-dashboard-flomersion h1 {
+    position: relative;
+    left: 65px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .jumbotron.jumbotron-dashboard {
+//    background: url("../images/site/jumbotron-dashboard-downloads-medium.jpg") no-repeat top center;
+    .button-primary {
+      font-size: 18px;
+      padding: 8px 31px;
+      top: -15px;
+      &:before {
+        background-size: 90%;
+        left: -235px;
+        top: -52px;
+      }
+    }
+    .flo-title {
+      font-size: 31px;
+      line-height: 1.1;
+      top: 60px;
+      position: relative;
+    }
+  }
+  body.login-page {
+    .login-main {
+      .register {
+        .another {
+          margin-top: 20px;
+          display: block;
+          text-align: center;
+        }
+        .robot {
+          margin-top: 10px;
+          white-space: nowrap;
+          display: block;
+          text-align: center;
+        }
+        .login-arrow {
+          display: none;
+        }
+        .button-register {
+          margin-top: 20px;
+        }
+        .cards {
+          display: block;
+          margin: auto;
+        }
+      }
+    }
+  }
+  .messenger-block-box {
+    padding: 0 10px 0 20px !important;
+  }
+  .social-box {
+    padding: 0 20px 0 10px !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding-bottom: 155px !important;
+  }
+  .logout-header {
+    display: none;
+  }
+  .dashboard-main-content {
+    .double-box-span {
+      float: none !important;
+    }
+  }
+  .jumbotron {
+    height: 285px;
+    .header-filter {
+      height: 285px;
+      overflow: hidden;
+    }
+    .main-header-profile {
+      .abs-center {
+        top: 65%;
+      }
+      .span-medium-12.margin-top-50 {
+        margin-top: 4px !important;
+        text-align: center;
+      }
+      .span-medium-12.text-right.margin-top-100 {
+        text-align: center !important;
+        margin-top: 100px !important;
+      }
+      .span-small-12.offset-small-6.offset-medium-0.margin-top-50 {
+        margin-top: 0 !important;
+      }
+    }
+    &.jumbotron-dashboard {
+      background: url("../images/site/jumbotron-mobile-bg.jpeg") no-repeat top center;
+      .flo-title {
+        font-size: 25px;
+        line-height: 1.4;
+      }
+      .button-primary {
+        font-size: 18px;
+        padding: 5px 32px;
+        position: relative;
+        z-index: 3;
+        top: -90px;
+        &:before {
+          display: none;
+        }
+        &:after {
+          content: "";
+          background: url("../images/site/jumbotron-florida-mobile.png") no-repeat;
+          width: 217px;
+          height: 203px;
+          position: absolute;
+          display: inline-block;
+          bottom: -28px;
+          right: -173px;
+          z-index: -1;
+        }
+      }
+    }
+    .main-header {
+      height: 73px;
+      .header-profile-link {
+        padding: 13px 0;
+      }
+      .header-nick {
+        .vertical-hr {
+          display: none;
+        }
+      }
+      .ff-flofitlogo {
+        font-size: 50px;
+        z-index: 4;
+        top: 12px;
+        left: 0;
+      }
+      .label-main-navigation {
+        display: none;
+      }
+      .full-menu {
+//        display: none !important;
+      }
+      header {
+        #main-navigation-mobile:checked ~ .close-side-bar {
+          display: block;
+        }
+        .close-side-bar {
+          height: 100%;
+          width: 100%;
+          left: 0;
+          right: 0;
+          top: 0;
+          z-index: 5;
+          position: fixed;
+          display: none;
+        }
+        &> .pull-right {
+          display: none;
+        }
+      }
+      .label-main-navigation-mobile {
+        display: inline-block !important;
+        padding: 17px 19px 17px 35px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        .animate(all 600ms linear);
+        &> i {
+          font-size: 35px;
+        }
+      }
+      #main-navigation-mobile:checked ~ .full-menu-mobile {
+        right: 0;
+        .animate(500ms);
+      }
+      .full-menu-mobile {
+        .animate(500ms);
+        display: block !important;
+        background-color: #002444;
+        position: fixed;
+        overflow: scroll;
+        height: 100%;
+        top: 0;
+        right: -262px;
+        width: 262px;
+        min-height: 100%;
+        z-index: 11;
+        .menu-header-mobile {
+          label {
+            right: 180px;
+          }
+          #profileHeaderUserBlock {
+            text-align: right;
+            display: block !important;
+          }
+        }
+        .menu-item-mobile {
+          border-top: solid 1px #103251;
+          border-bottom: solid 1px #103251;
+          margin-top: -1px;
+          &.notification-push,
+          &.messages-push {
+            a,
+            label {
+              &:after {
+                font-family: "ff";
+                content: "\e62a";
+                display: inline-block;
+                position: absolute;
+                right: 15px;
+                top: 0;
+                font-size: 10px;
+                color: #00aeef;
+              }
+            }
+          }
+          a,
+          label {
+            position: relative;
+            color: #FFFFFF;
+            .font-roboto();
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 50px;
+            display: inline-block;
+            width: 100%;
+            span {
+              color: #FFFFFF;
+              .font-roboto();
+              font-size: 15px;
+              font-weight: lighter;
+              width: 100%;
+            }
+            i {
+              font-size: 22px;
+              margin-right: 16px;
+              margin-left: 30px;
+              &:before {
+                vertical-align: sub;
+              }
+            }
+          }
+          .sub-show {
+            display: none;
+            background-color: rgba(16, 50, 81, 0.5);
+            a {
+              border-top: solid 1px #103251;
+              span {
+                color: #FFFFFF;
+                .font-roboto();
+                font-size: 14px;
+                font-weight: lighter;
+              }
+              &:before {
+                content: "";
+                display: inline-block;
+                position: relative;
+                width: 7px;
+                height: 2px;
+                background-color: #00aeef;
+                margin-left: 37px;
+                margin-right: 23px;
+                vertical-align: middle;
+              }
+            }
+          }
+          .sub-input:checked + label {
+            background-color: #103251;
+            span {
+              color: #00aeef;
+            }
+          }
+          .sub-input:checked ~ .sub-show {
+            display: block;
+          }
+        }
+        .button-logout {
+          border-radius: 5px;
+          background-color: #103251;
+          border-color: #103251;
+          color: #ffffff;
+          .font-roboto();
+          font-size: 15px;
+          font-weight: lighter;
+          padding: 7px 53px;
+          margin: 40px 0;
+        }
+      }
+    }
+    .main-menu {
+      display: none;
+    }
+  }
+  .profile-settings {
+    margin: 0 -20px;
+    .profile-settings-main {
+      margin-bottom: 50px;
+    }
+    .profile-settings-link {
+      padding-bottom: 0;
+      span {
+          padding: 0 0 20px;
+      }
+    }
+    .profile-settings-info {
+      margin-left: 42px;
+      span {
+        padding: 20px 0;
+        line-height: 1.618;
+      }
+      &.social-icons-profile {
+        margin-left: 42px;
+      }
+      .button-functional {
+//        margin-left: 0 !important;
+//        top: 19px;
+//        position: relative;
+      }
+    }
+  }
+  .bg-activity {
+    .widget-box {
+      margin-bottom: 20px;
+    }
+  }
+  .trinity-ajax {
+    text-align: center;
+  }
+  .profile-settings .profile-settings-content > div {
+    text-align: center;
+  }
+  .disable-padding-medium {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .blog-content {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .header-blog-detail > div {
+    height: 63px;
+  }
+  .newsletters {
+    .news {
+      & > div {
+        text-align: center;
+      }
+    }
+  }
+  .blog-new-article {
+    margin-top: 110px;
+    p {
+      display: none;
+    }
+    a.button-functional {
+      margin-top: 2%;
+    }
+  }
+  .downloads-dashboard-main-content {
+    .downloads-dashboard {
+      padding: 0;
+      position: relative;
+      margin-bottom: 20px;
+      &:first-of-type {
+        .a-name {
+          top: 25px;
+        }
+      }
+      .left {
+        float: none;
+        width: 100%;
+        padding: 0;
+        img {
+          &.access-play-button {
+            .abs-center();
+            width: auto;
+            height: auto;
+            display: block !important;
+          }
+        }
+        .buy-button,
+        .wait-button {
+          .abs-center();
+          z-index: 3;
+          font-size: 28px;
+          font-weight: lighter;
+          padding: 10px 58px;
+        }
+        .wait-button {
+          cursor: default;
+          font-size: 19px;
+          padding: 10px 35px;
+        }
+        .a-thumbnail {
+          margin-bottom: -6px;
+          pointer-events: none;
+          &.access {
+            pointer-events: auto;
+          }
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            box-shadow: inset 0 32px 33px rgba(0, 0, 0, 0.66), inset 0 -40px 33px rgba(0,0,0,0.66);
+          }
+        }
+        .a-name {
+          width: 100%;
+          position: absolute;
+          top: 10px;
+          left: 0;
+          z-index: 3;
+          span {
+            color: #fff;
+            font-weight: normal;
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .right {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        line-height: 54px;
+        i {
+          display: inline-block !important;
+          color: #fff;
+          font-size: 18px;
+          z-index: 3;
+        }
+        span {
+          color: #fff;
+          font-size: 14px;
+          font-weight: lighter;
+          z-index: 3;
+          &.h-divider {
+            margin: 0;
+            &:before {
+              display: none;
+            }
+          }
+        }
+      }
+      .left.left-pdf {
+        width: auto;
+        float: left;
+        i {
+          font-size: 25px;
+        }
+        .name {
+          color: #124c81;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1;
+        }
+      }
+      .right.right-pdf {
+        position: relative;
+        .button-primary {
+          font-size: 14px;
+          padding: 6px 12px;
+          font-weight: normal;
+        }
+        span {
+          display: none;
+        }
+      }
+      &.download {
+        min-height: auto;
+      }
+  }
+  #workout-videos,
+  #videos {
+    .block-title {
+      .block-left {
+        display: block;
+        float: none;
+        text-align: center;
+        width: auto;
+      }
+      .block-center, .block-right {
+        display: none;
+        text-align: center;
+        width: auto;
+      }
+    }
+  }
+  #workouts,
+  #books-and-training-calendars {
+    .block-title {
+      .block-center {
+        display: block;
+        float: none;
+      }
+      .block-left, .block-right {
+        display: none;
+      }
+    }
+  }
+  #books-and-training-calendars,
+  #meal-plans {
+    .downloads-dashboard {
+      min-height: auto;
+      margin-bottom: 0;
+    }
+  }
+  }
+  #recomended, #add-ons,
+  #meal-plans {
+    .block-title {
+      .block-right {
+        display: block;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .block-center, .block-left {
+        display: none;
+      }
+    }
+  }
+  body.login-page {
+    text-align: center;
+    padding-bottom: 0 !important;
+    .login-main {
+      .login {
+        .button-facebook,
+        .button-twitter {
+          display: inline-block;
+          &:after {
+            content:"\A";
+            white-space:pre;
+          }
+          i {
+            top: 0;
+            height: 49px;
+          }
+        }
+        .button-twitter{
+          top: 40px;
+        }
+        .forgot {
+          margin-top: 90px;
+          font-size: 17px;
+          font-weight: lighter;
+        }
+      }
+      i {
+        //margin-bottom: 20px;
+      }
+      .register {
+        padding: 35px 0;
+        max-height: none;
+        .login-arrow {
+          display: none;
+        }
+        .another {
+          margin-top: 0;
+          line-height: 53px;
+        }
+        .button-register {
+          display: inline;
+          &:after {
+            content:"\A";
+            white-space:pre;
+          }
+        }
+        .robot {
+          font-weight: 300;
+          margin: 30px 0;
+        }
+        img {
+          margin-top: 20px;
+        }
+      }
+    }
+    .florida-guarantee {
+      img {
+        display: none;
+      }
+    }
+    .main-footer {
+      position: relative;
+    }
+  }
+  .jumbotron.jumbotron-seven-days,
+  .jumbotron.jumbotron-core,
+  .jumbotron.jumbotron-nutrition,
+  .jumbotron.jumbotron-platinum {
+    .header-filter {
+      padding-top: 0 !important;
+    }
+  }
+  .landing-page {
+    #product-preview {
+      .block-title {
+        .block-left {
+          display: block;
+          float: none;
+        }
+        .block-center,
+        .block-right {
+          display: none;
+        }
+      }
+    }
+  }
+  .jumbotron.jumbotron-core {
+    .header-filter {
+      padding-top: 100px;
+    }
+  }
+  .social-media-header .main-header-profile .container img {
+    width: 280px;
+  }
+  #articles {
+    .button-row {
+      text-align: left;
+    }
+  }
+  .product-list-box {
+    padding: 0 20px !important;
+    .widget-box {
+      height: auto !important;
+    }
+    .widget-body {
+      height: auto !important;
+    }
+    .product-item {
+      height: auto !important;
+      h1 {
+        top: 50% !important;
+        font-size: 48px !important;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .product-list-box-2 {
+    div {
+      > div {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+    .product-item {
+      h1 {
+        top: 38% !important;
+        right: 40px;
+        font-size: 46px !important;
+      }
+    }
+  }
+  .double-box-span, .blog-box, .messenger-block-box, .social-box {
+    padding: 0 20px !important;
+  }
+  .jumbotron.jumbotron-platinum-club {
+      background: url("../images/site/jumbotron-platinum-club-cover.jpg") no-repeat top left -520px;
+    height: 290px !important;
+    background-size: 1338px;
+    padding-top: 0;
+    .header-filter {
+      padding-top: 0;
+    }
+  }
+  .jumbotron.dashboard-without-platinum {
+    background: url("../images/site/jumbotron-platinum-club-clear.jpg") no-repeat top center;
+    height: 77px;
+    .section.main-header-profile {
+      display: none;
+    }
+    .flo-title {
+      font-size: 68px;
+      line-height: 52px;
+      margin-top: -40px;
+    }
+    .button-primary {
+      top: -35px;
+      &:before {
+        display: none;
+      }
+    }
+    p {
+      font-size: 31px;
+      line-height: 29px;
+      margin-right: 0;
+    }
+  }
+  .downloads-dashboard-main-content {
+    .block-title {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+  }
+  .jumbotron.jumbotron-flofit {
+    .main-header-profile .abs-center {
+      text-align: center;
+      left: 50%;
+      img {
+        display: none;
+      }
+      h1 {
+        text-align: center;
+        font-size: 70px;
+        line-height: 55px;
+        margin-top: -20px;
+      }
+    }
+  }
+  .jumbotron .main-header-profile .button-send-mess {
+    top: -9px;
+    position: relative;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .main-footer {
+    height: auto !important;
+    .block {
+      height: auto !important;
+      .block-left {
+        position: relative !important;
+        p {
+          padding-top: 14px;
+          padding-bottom: 0;
+        }
+      }
+      .block-right {
+        width: 100% !important;
+        .navbar {
+          padding: 14px 0;
+          overflow: hidden;
+        }
+      }
+      .block-center {
+        width: 100% !important;
+        padding-bottom: 10px;
+        i {
+          line-height: 1;
+        }
+      }
+    }
+  }
+  .jumbotron.jumbotron-dashboard {
+    .main-header-profile {
+      display: none;
+    }
+  }
+  .jumbotron.jumbotron-shipping {
+    .headline-button {
+      margin-top: 0 !important;
+    }
+  }
+  .flomersion-database {
+    text-align: center;
+    .hr {
+      //margin-bottom: 20px;
+    }
+    p {
+      line-height: 1.618;
+    }
+    .button {
+      margin: 20px auto 0;
+    }
+  }
+  .start-guilde {
+    .section-03 {
+      img.absolute {
+        display: none;
+      }
+    }
+  }
+  #overlay {
+    .wrapper {
+      padding-top: 40px;
+      h2 {
+        font-size: 30px;
+      }
+      h3 {
+        font-size: 21px;
+        line-height: 1.618;
+      }
+      h4 {
+        font-size: 26px;
+        margin-top: 10px;
+      }
+      p {
+        font-size: 18px;
+        line-height: 1.618;
+      }
+    }
+  }
+}
+@media (max-width: 900px) {
+  .jumbotron .main-header .full-menu .double-menu .menus.menus-social {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 6%;
+    width: 46%;
+  }
+  .jumbotron .main-header .full-menu .double-menu .menus.menus-right {
+    margin-left: 6%;
+  }
+  .downloads-dashboard-main-content .downloads-dashboard .right i {
+    display: none;
+  }
+  .jumbotron.jumbotron-seven-days {
+      background: url("../images/site/jumbotron-seven-days-cover.jpg") no-repeat top left -770px;
+    height: 413px !important;
+    .header-filter {
+      padding-top: 100px;
+    }
+  }
+  .jumbotron.jumbotron-core {
+      background: url("../images/site/jumbotron-core-cover.jpg") no-repeat top left -441px;
+    height: 290px !important;
+    background-size: 1338px;
+    .header-filter {
+      padding-top: 145px;
+    }
+  }
+  .jumbotron.jumbotron-nutrition {
+    background: url("../images/site/jumbotron-nutrition-cover.jpg") no-repeat top left -770px;
+  height: 413px !important;
+    .header-filter {
+      padding-top: 100px;
+    }
+  }
+  .jumbotron.jumbotron-platinum {
+    background: url("../images/site/jumbotron-platinum-cover.jpg") no-repeat top left -710px;
+  height: 413px !important;
+    .header-filter {
+      padding-top: 100px;
+    }
+  }
+  .jumbotron.jumbotron-flofit {
+    h1 {
+      font-size: 94px;
+      line-height: 76px;
+    }
+  }
+  .platinum-club-plan {
+    .scroll {
+      min-width: 0;
+    }
+    .item {
+      border: solid 1px #00477C;
+      height: 60px;
+      width: 60px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      &.disable {
+        border-color: #afafaf;
+        span {
+          color: #afafaf;
+        }
+      }
+      &.current,
+      &.current_ancestor {
+        border: none;
+        i {
+          font-size: 60px;
+          display: inline-block;
+          &:before {
+            content: "\e649";
+          }
+        }
+        span {
+          font-size: 28px;
+          top: 64%;
+          font-weight: 300;
+          color: #fff;
+          &.module {
+            font-size: 14px;
+            top: 13px;
+          }
+        }
+        &.disable {
+          span {
+            color: #fff;
+          }
+        }
+      }
+      i {
+        display: none;
+      }
+      span {
+        color: #00477C;
+      }
+    }
+  }
+}
+@media screen and (max-width: 930px) {
+  .product-list-box.product-list-box-2 h1 {
+    font-size: 46px;
+  }
+}
+@media screen and (min-width: 920px) and (max-width: 1023px) {
+  .jumbotron.jumbotron-dashboard {
+    .flo-title {
+      font-size: 37px;
+      top: 40px;
+    }
+  }
+}
+@media (max-width: 1023px) {
+  .dashboard-main-content {
+    .widgets {
+      &.widget-both {
+        .download-mobile-app {
+          background-position: left -100px top 0;
+          h1 {
+            padding-left: 110px;
+          }
+          .download {
+            left: 110px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 960px) {
+  .profile-settings .profile-settings-info {
+    span {
+      margin: 0 10px 0 0;
+      &:nth-of-type(even) {
+        margin: 0 10px 0 0;
+        padding: 0;
+        border: none;
+      }
+      i {
+        float: left;
+        margin: 0 10px 0 0;
+      }
+    }
+    &.info-social {
+      span {
+        padding-top: 21px;
+        padding-bottom: 21px;
+      }
+    }
+  }
+  .blog-new-article {
+    p {
+      max-width: 90%;
+    }
+  }
+  .download-mobile-app {
+    h1 {
+      max-width: 100%;
+//      padding-right: 160px;
+
+      text-align: center;
+      padding-right: 0;
+    }
+    .download {
+      padding: 10px 0;
+      width: 100%;
+      right: 0;
+//      text-align: right;
+      padding-right: 20px;
+      max-width: 100%;
+      top: 50px;
+
+      padding-left: 220px;
+      text-align: center;
+      a {
+        margin-top: 0;
+
+        margin-left: 22px;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+    img {
+      max-height: 40px;
+    }
+  }
+  .dashboard-main-content {
+    .widgets {
+      &.widget-both {
+        .download-mobile-app {
+          background-position: left -200px top 0;
+          padding: 0;
+          h1 {
+            font-size: 18px;
+            line-height: 1.1;
+            text-align: center;
+            padding: 17px 26px;
+          }
+          .download {
+            display: block;
+            position: static;
+            margin: 0;
+            max-width: 100%;
+            text-align: center;
+            a {
+              display: inline-block;
+              margin-top: 0;
+              &:first-child {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 895px) {
+  .download-mobile-app {
+    h1 {
+      text-align: left;
+      padding-right: 160px;
+    }
+    .download {
+      top: 0;
+      max-width: 180px;
+      padding-right: 33px;
+      padding-left: 0;
+      text-align: right;
+      a {
+        margin-top: 10px;
+        &:first-child {
+          margin-top: 0;
+          margin-left: 22px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 668px) {
+  .download-mobile-app {
+    background-position: right center;
+    h1 {
+      padding-left: 20px;
+    }
+  }
+}
+@media screen and (max-width: 1023px) {
+  .downloads-dashboard-main-content .recomended .span-col {
+    margin: auto;
+    float: none !important;
+    display: inline-block !important;
+  }
+  .profile-settings .profile-settings-main .vector {
+    display: none;
+  }
+  .header-blog-detail {
+    a.button {
+      margin-bottom: 20px;
+    }
+  }
+  #recomended, #add-ons {
+    .recomended-item {
+      min-height: 400px;
+      .recomended-hover {
+        background-color: transparent;
+        box-shadow: inset 0 -250px 120px #ffffff;
+        top: 0;
+        padding-top: 52%;
+        .divider {
+          display: none;
+        }
+        p {
+          color: #00aeef;
+          font-size: 14px;
+          max-height: 95px;
+          height: auto;
+        }
+      }
+      .inside-title {
+        bottom: 50%;
+        color: #00477c;
+        font-size: 28px;
+      }
+    }
+  }
+  .dashboard-main-content .widget-box {
+    height: 368px !important;
+    &.double-box {
+      overflow: hidden;
+    }
+  }
+  .dashboard-main-content {
+    .social-box {
+      .message {
+        min-height: 79px;
+      }
+    }
+    .widget-box {
+      .widget-body {
+        height: 309px !important;
+      }
+    }
+  }
+  .dashboard-main-content .blog-box .message {
+      min-height: 153px;
+  }
+  .desktop-image {
+    display: none;
+  }
+  .desktop-negative-image {
+    display: inline-block;
+  }
+  .jumbotron.jumbotron-shipping {
+    .headline-button {
+      margin-top: 40px;
+    }
+  }
+  .flomersion-database {
+    h2 {
+      font-size: 50px;
+    }
+    p {
+      font-size: 13px;
+      font-weight: 500;
+      &:before {
+        display: none;
+      }
+    }
+  }
+  body {
+    padding-bottom: 155px;
+  }
+  .main-footer {
+    height: 170px;
+    .block {
+      position: relative;
+      height: 170px;
+      .block-left {
+        width: 100%;
+        max-width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        p {
+          max-width: 530px;
+          width: 100%;
+          margin: auto;
+          line-height: 1.6;
+          span {
+            display: block;
+          }
+        }
+      }
+      .block-center {
+        width: 40%;
+      }
+      .block-right {
+        width: 60%;
+      }
+    }
+  }
+  body.login-page {
+    .main-footer {
+      height: auto !important;
+    }
+    .block-left {
+      position: relative !important;
+    }
+    .block-center {
+      position: relative !important;
+    }
+    .block-right {
+      position: relative !important;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .dashboard-main-content {
+    .widgets {
+      &.widget-both {
+        #dashboard-mobile-qsg {
+          .mobile-app-padding {
+            padding-right: 20px;
+          }
+        }
+        #dashboard-mobile-adv {
+          .mobile-app-padding {
+            padding-left: 20px;
+          }
+        }
+        .mobile-app-padding {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .vlog-main-content {
+    .blog-detail-content {
+      margin-top: 200px;
+    }
+  }
+  .downloads-dashboard-main-content {
+    &.content-4-block {
+      .block {
+        &.block-title {
+          &:after {
+          }
+          .hr {
+          }
+          .block-1, .block-2, .block-3, .block-4 {
+            text-align: center;
+          }
+          .block-1 {
+            display: block;
+          }
+          .block-2 {
+            display: block;
+          }
+          .block-3 {
+            display: block;
+          }
+          .block-4 {
+            display: none;
+          }
+        }
+      }
+      #videos {
+        .block {
+          &.block-title {
+            .block-2, .block-3 {
+              display: none;
+            }
+          }
+        }
+      }
+      #workouts {
+        .block {
+          &.block-title {
+            .block-1, .block-3 {
+              display: none;
+            }
+          }
+        }
+      }
+      #meal-plans {
+        .block {
+          &.block-title {
+            .block-1, .block-2 {
+              display: none;
+            }
+          }
+        }
+      }
+      #supplement-database {
+        .block {
+          &.block-title {
+            .block-1, .block-2, .block-3 {
+              display: none;
+            }
+            .block-4 {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+  .signup-body {
+    padding-bottom: 300px !important;
+    .login-main .ff-flofitlogo {
+      margin-bottom: 20px;
+    }
+  }
+  .signup-2 {
+    .wrapper {
+      p {
+        line-height: 1.3;
+        margin-bottom: 20px;
+        font-size: 29px;
+      }
+      .smaller {
+        font-size: 20px;
+      }
+    }
+  }
+  .upsell-text {
+    .button-agree, .button-no {
+      margin: 0 20px 20px;
+    }
+    .border {
+      padding-top: 20px;
+    }
+  }
+  .header-main-logo {
+    .already-have-account {
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .profile-settings .profile-settings-main .profile-settings-edit {
+    opacity: 1;
+  }
+  .span-vector {
+    display: none !important;
+  }
+  .product-list-box .widget-body .product-item {
+    img {
+        opacity: 0.4;
+    }
+    h1 {
+        opacity: 1;
+      font-size: 60px;
+    }
+  }
+}
+@media screen and (max-width: 880px) {
+  .main-footer {
+    .block {
+      .block-center {
+        width: 30%;
+      }
+      .block-right {
+        width: 70%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 479px) {
+  .profile-settings {
+    .profile-settings-info {
+      .public-profile-link {
+        display: none;
+      }
+      .button-functional {
+        position: absolute;
+        top: -28px;
+        left: 220px;
+        margin: 0 !important;
+      }
+    }
+  }
+  .newsletters .news > div {
+    text-align: center;
+  }
+  .platinum-club-plan {
+    overflow: auto;
+    padding: 40px 0;
+    .scroll {
+      width: 200px;
+      margin: auto;
+    }
+  }
+  .download-mobile-app {
+    height: auto;
+    background-size: 580px 100%;
+    background-color: #EEEAE9;
+    padding: 0;
+    h1 {
+      padding-right: 20px;
+      text-align: center;
+    }
+    .download {
+      position: relative;
+      max-width: 100%;
+      left: 0;
+      right: 0;
+      top: 0;
+      padding: 0 20px;
+      text-align: center;
+      a {
+        margin-bottom: 20px;
+        margin-top: 0;
+      }
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .profile-settings {
+    .sub-label {
+      padding-left: 50px;
+    }
+    .double-row {
+      .sub-label {
+        margin-top: 4px;
+      }
+    }
+  }
+  .desktop-negative-image {
+    display: none;
+  }
+}
+@media (max-width: 479px) {
+  .display-none-mini {
+      display: none !important;
+  }
+  body.login-page {
+    .login-main i {
+      display: none;
+    }
+    .login {
+      label {
+        width: 80%;
+        input {
+          width: 100%;
+        }
+      }
+    }
+    .login-main {
+      .register {
+        .another {
+          white-space: normal;
+        }
+      }
+      &.reset-pass {
+        .login {
+          label {
+            width: 100%;
+            input {
+              width: 100%;
+              max-width: 300px;
+            }
+          }
+          .input-login {
+            width: 100%;
+            max-width: 300px;
+          }
+          input#_submit{
+            width: 100%;
+            max-width: 300px;
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+          }
+        }
+      }
+      .login {
+        .button-facebook,
+        .button-google {
+          display: block;
+          max-width: 220px;
+          margin: 0 auto 10px;
+        }
+      }
+    }
+  }
+  .error-page .error-text span {
+    margin: auto;
+  }
+  .product-list-box.product-list-box-2 h1 {
+    left: 0;
+    right: 0 !important;
+    top: 50% !important;
+  }
+  .product-list-box.product-list-box-2 .product-item-platinum h1 {
+    top: 33% !important;
+  }
+  .jumbotron.jumbotron-platinum-club {
+    background: url("../images/site/jumbotron-platinum-club-clear.jpg") no-repeat top center;
+    .headline-button {
+      margin-top: 60px !important;
+    }
+  }
+  .navbar ul li {
+    display: block;
+    overflow: hidden;
+    a:after {
+      display: none !important;
+    }
+  }
+  body {
+    padding-bottom: 300px !important;
+  }
+}
+@media (max-width: 440px) {
+  #books-and-training-calendars {
+    .left, .right {
+      float: none;
+      width: 100%;
+    }
+    .right {
+      text-align: center;
+    }
+  }
+}
+@media (max-width: 550px) {
+  .main-footer .navbar ul li a {
+    font-size: 12px;
+  }
+}
+@media (max-width: 570px) {
+  .jumbotron.jumbotron-seven-days,
+  .jumbotron.jumbotron-core,
+  .jumbotron.jumbotron-nutrition {
+      background: url("../images/site/jumbotron-clear.jpg") no-repeat top center;
+    .headline-button {
+      width: 100%;
+      margin-top: 0 !important;
+    }
+  }
+  .jumbotron.jumbotron-core {
+    .headline-button {
+      margin-top: 50px !important;
+    }
+  }
+  .jumbotron.dashboard-without-platinum {
+    .flo-title,
+    .button-start-now {
+      text-align: center;
+      display: block;
+      p {
+        display: none;
+      }
+      .button-primary {
+        top: 10px;
+      }
+    }
+  }
+
+}
+@media (max-width: 580px) {
+  .jumbotron.jumbotron-platinum {
+      background: url("../images/site/jumbotron-clear.jpg") no-repeat top center;
+    .headline-button {
+      width: 100%;
+      margin-top: 0 !important;
+    }
+  }
+  .start-guilde {
+    .wrapper {
+      padding-top: 40px;
+      margin: 40px auto 0;
+      header {
+        p {
+          font-size: 28px;
+          line-height: 1.418;
+        }
+        i {
+          padding: 20px 0;
+          font-size: 43px;
+        }
+      }
+      section {
+        .circle {
+          font-size: 40px;
+          width: 70px;
+          height: 70px;
+          line-height: 75px;
+        }
+        h1 {
+          font-size: 28px;
+          line-height: 1.1;
+          padding: 20px 0;
+        }
+        p {
+          font-size: 17px;
+          line-height: 1.318;
+          padding-bottom: 20px;
+        }
+        i {
+          padding: 20px 0;
+          font-size: 43px;
+        }
+      }
+      footer {
+        height: auto;
+        background: none;
+        margin: auto;
+        padding: 30px 20px;
+        span {
+          position: relative;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 479px) {
+  .start-guilde {
+    .wrapper {
+      margin: 40px auto 0;
+      header {
+        h1 {
+          font-size: 44px;
+          margin-bottom: 20px;
+        }
+        p {
+          font-size: 19px;
+          line-height: 1.418;
+        }
+        i {
+          padding: 20px 0;
+          font-size: 43px;
+        }
+      }
+      section {
+        .circle {
+          font-size: 40px;
+          width: 70px;
+          height: 70px;
+          line-height: 75px;
+        }
+        h1 {
+          font-size: 28px;
+          line-height: 1.1;
+          padding: 20px 0;
+        }
+        p {
+          font-size: 17px;
+          line-height: 1.318;
+          padding-bottom: 20px;
+        }
+        i {
+          padding: 20px 0;
+          font-size: 43px;
+        }
+      }
+    }
+  }
+  .download-mobile-app .download a:first-child {
+    margin-left: 0;
+  }
+  .jumbotron {
+    &.jumbotron-survey {
+      h1 {
+        font-size: 36px;
+      }
+    }
+  }
+  .survey {
+    p {
+      font-size: 27px;
+      line-height: 1.218;
+      padding-bottom: 0;
+    }
+  }
+  #overlay {
+    .wrapper {
+      background: #002A52;
+      padding-top: 20px;
+      margin-top: 70px;
+      h3 {
+        font-size: 18px;
+      }
+      h4 {
+        font-size: 22px;
+        margin-top: 10px;
+      }
+      p {
+        color: #ffffff;
+        margin-top: 20px;
+      }
+    }
+  }
+  #passwordChangePopup {
+    .wrapper {
+      margin-top: 70px;
+      background: #002F56;
+      padding: 60px 20px 30px;
+      .form-left {
+        width: 100% !important;
+      }
+      .form-right {
+        width: 100% !important;
+      }
+      h2 {
+        font-size: 25px;
+      }
+      input {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  #upgrade-overlay {
+    .wrapper {
+      h2 {
+        font-size: 30px;
+      }
+      p {
+        font-size: 16px;
+        line-height: 1.418;
+        .mobile-block {
+          display: block;
+        }
+      }
+      .button {
+        font-size: 17px;
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+  .signup-body {
+    padding-bottom: 350px !important;
+    .sign-up-form .group label {
+      display: table;
+      width: auto;
+    }
+    .login {
+      label {
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .signup-2 {
+    .wrapper {
+      p {
+        font-size: 20px;
+      }
+      .smaller {
+        font-size: 17px;
+      }
+    }
+  }
+  .upsell-text {
+    .button-agree, .button-no {
+      margin: 0 auto 20px;
+    }
+    .text-login {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .box {
+      ul {
+        font-size: 18px;
+      }
+      p {
+        font-size: 17px;
+      }
+    }
+  }
+}
+@media (max-width: 400px) {
+  .product-list-box-2 i {
+    display: none !important;
+  }
+  .double-box-span, .blog-box, .messenger-block-box, .social-box, .product-list-box, .mobile-app-padding {
+    padding: 0 !important;
+  }
+  .jumbotron.dashboard-without-platinum {
+    .flo-title {
+      font-size: 55px;
+      line-height: 47px;
+    }
+  }
+  .jumbotron.jumbotron-flofit .main-header-profile .abs-center h1 {
+    font-size: 50px;
+    line-height: 38px;
+    opacity: 0.45;
+  }
+  .jumbotron.jumbotron-flofit .button-primary {
+    font-size: 20px;
+    padding: 4px 19px;
+  }
+}
+@media (max-width: 1090px) {
+  .main-footer p {
+    line-height: 1.418;
+    padding: 12px 0;
+  }
+}
+@media (max-width: 350px) {
+  .download-mobile-app .download a {
+    margin-left: 5px;
+    margin-right: 5px;
+    &:first-child {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+}
+@media (max-width: 1099px) {
+  .vlog-page {
+    .video-vlog-wrapper {
+      .back-button {
+        top: 40px;
+        left: 50%;
+        margin-left: -101px;
+        display: block;
+      }
+      .vlog-video {
+        bottom: -150px;
+      }
+    }
+  }
+}
+@media (max-width: 630px) {
+  .vlog-main-content {
+    .blog-detail-content {
+      margin-top: 30%;
+    }
+  }
+}
+@media (max-width: 540px) {
+  .vlog-main-content {
+    .blog-detail-content {
+      margin-top: 27%;
+    }
+  }
+}
+@media (max-width: 440px) {
+  .vlog-main-content {
+    .blog-detail-content {
+      margin-top: 22%;
+    }
+  }
+}
+@media (max-width: 380px) {
+  .vlog-main-content {
+    .blog-detail-content {
+      margin-top: 10%;
+    }
+  }
+  .newsletters .saving-message {
+    top: 20px;
+    left: 20px;
+  }
+}
+@media (min-height: 995px) {
+  .reset-pass-check-email-body {
+    .login {
+      margin: 105px auto;
+    }
+  }
+}
+
+.fos_form li {
+  color: #E21717 !important;
+  font-size: 20px;
+}

@@ -1,0 +1,100 @@
+.generate-filters1(@n, @i: 1) when (@i =< @n) {
+  &.filter-selector-@{i}:checked ~ label.filter-radio-label-@{i} {
+    text-decoration: underline;
+  }
+  .generate-filters1(@n, (@i + 1));
+}
+
+.generate-filters2(@n, @i: 1) when (@i =< @n) {
+  &.filter-selector-@{i}:checked ~ .filter-radio-items .filter-radio-item-@{i} {
+    display: block;
+  }
+  .generate-filters2(@n, (@i + 1));
+}
+
+.generate-filters3(@n, @i: 1) when (@i =< @n) {
+  &.filter-selector-@{i}:checked ~ .filter-radio-items li:not(.filter-radio-item-@{i}) {
+    display: none;
+  }
+  .generate-filters3(@n, (@i + 1));
+}
+
+.filter-radio {
+  padding-bottom: 20px;
+  label {
+    cursor: pointer;
+    margin: 0 20px;
+    text-decoration: none;
+  }
+
+  input {
+    display: none;
+    &.filter-selector-all:checked ~ label.filter-radio-label-all {
+      text-decoration: underline;
+    }
+    .generate-filters1(30);
+    .generate-filters2(30);
+    .generate-filters3(30);
+  }
+
+  .filter-radio-items li {
+    float: left;
+    margin-right: 20px;
+    &:last-child {
+      float: left;
+      margin-right: 0px;
+    }
+  }
+}
+
+//EXAMPLES
+
+/*
+            <div class="filter-radio">
+
+                <input id="select-type-all" name="radio-set-1" type="radio" class="filter-selector-all" checked="checked" />
+                <label for="select-type-all" class="filter-radio-label-all">All</label>
+
+                <input id="select-type-11" name="radio-set-1" type="radio" class="filter-selector-1" />
+                <label for="select-type-11" class="filter-radio-label-1">FILTER 1</label>
+
+                <input id="select-type-22" name="radio-set-1" type="radio" class="filter-selector-2" />
+                <label for="select-type-22" class="filter-radio-label-2">FILTER 2</label>
+
+                <input id="select-type-33" name="radio-set-1" type="radio" class="filter-selector-3" />
+                <label for="select-type-33" class="filter-radio-label-3">FILTER 3</label>
+
+                <ul class="filter-radio-items">
+                    <li class="filter-radio-item-1">
+                        <a href="">
+                            FILTER 1
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-1">
+                        <a href="">
+                            FILTER 1
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-1">
+                        <a href="">
+                            FILTER 1
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-2">
+                        <a href="">
+                            FILTER 2
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-2">
+                        <a href="">
+                            FILTER 2
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-3">
+                        <a href="">
+                            FILTER 3
+                        </a>
+                    </li>
+                </ul>
+            </div>
+*/

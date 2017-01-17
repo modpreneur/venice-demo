@@ -1,0 +1,62 @@
+.login-main-box {
+  width: 320px;
+  padding: 16px 36px 36px;
+  background: @color-grey-light;
+  border: solid 3px @color-success;
+  position: relative;
+  .login-header {
+    font-size: 23px;
+  }
+  .login-body {
+    padding-bottom: 50px;
+  }
+  .login-footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 50px;
+    width: 100%;
+    a {
+      padding: 13px 5px;
+    }
+  }
+  input[type=text],
+  input[type=email],
+  input[type=password] {
+    width: 100%;
+    height: 35px;
+    padding-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  span.input-postfix-icon {
+    position: relative;
+    i {
+      position: absolute;
+      top: 0;
+      right: 5px;
+      font-size: 19px;
+    }
+  }
+  .btn-log-reg {
+    padding-top: 5px;
+  }
+  .checkbox-01 {
+    font-size: 14px;
+    margin-right: 10px;
+    line-height: 22px;
+    &:before {
+      width: 23px;
+      height: 23px;
+    }
+  }
+}
+.button.fa:hover {
+  cursor: pointer;
+}
+.forgot-main-box {
+  border: solid 3px @color-danger;
+}
+.register-main-box {
+  border: solid 3px @color-info;
+}

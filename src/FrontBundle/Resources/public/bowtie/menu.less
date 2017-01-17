@@ -1,0 +1,191 @@
+/*Make dropdown links vertical*/
+li ul li {
+  display: block;
+  float: left;
+}
+
+/*Prevent text wrapping*/
+li ul li a {
+  width: auto;
+  min-width: 100px;
+  padding: 0 20px;
+}
+
+/*Display the dropdown on hover*/
+ul li a:hover + .hidden, .hidden:hover {
+  display: block;
+}
+
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+  text-decoration: none;
+  color: @color-black;
+  display: none;
+  cursor: pointer;
+  position: relative;
+}
+
+/*Hide checkbox*/
+.menu input[type=checkbox]{
+  display: none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+  display: block;
+}
+
+ul.menu {
+  float: right;
+  padding: 10px;
+}
+
+nav {
+  .clearfix();
+  h1 {
+    float: left;
+    padding: 20px 20px 20px 15px;
+  }
+  li {
+    list-style: none;
+    float: left;
+    margin: 0 10px;
+  }
+}
+
+/*Responsive Styles*/
+@media screen and (max-width: 809px){
+  nav {
+    h1 {
+      float: left;
+      padding: 20px;
+    }
+    /*Create a horizontal list with spacing*/
+    li {
+//      display:inline-block;
+      display:block;
+      float: left;
+      margin-right: 1px;
+    }
+
+    /*Hide dropdown links until they are needed*/
+    li ul {
+      display: none;
+    }
+  }
+
+  /*Strip the ul of padding and list styling*/
+  ul#menu {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    position: absolute;
+  }
+
+  /*Hover state for top level links*/
+  li:hover a {
+    text-decoration: none;
+  }
+
+  /*Style for dropdown links*/
+  li:hover ul a {
+    background: #f3f3f3;
+    color: #2f3036;
+    height: 40px;
+    line-height: 40px;
+  }
+
+  /*Hover state for dropdown links*/
+  li:hover ul a:hover {
+    color: @color-white;
+  }
+
+  /*Style for menu links*/
+  #menu li a {
+    display:block;
+    min-width:140px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: @color-white;
+    background: @color-secondary;
+    text-decoration: none;
+
+    &:hover {
+      background: @color-black;
+    }
+  }
+
+  ul.menu {
+    float: none;
+    padding: 0;
+    .clearfix();
+  }
+
+  /*Make dropdown links appear inline*/
+  ul#menu {
+    position: static;
+    display: none;
+  }
+
+  /*Make all menu links full width*/
+  ul#menu li, #menu li a {
+    width: 100%;
+  }
+
+  /*Display 'show menu' link*/
+  .show-menu {
+    display:inline;
+    padding: 20px;
+    float: right;
+  }
+
+  .menu nav ul li a {
+    margin: 0;
+  }
+
+  .menu nav ul li {
+    margin: 0;
+  }
+
+  .menu nav ul li a.active {
+    border: none;
+  }
+
+  .menu .fa-bars {
+    font-size: 30px;
+  }
+}
+
+//EXAMPLE
+/*
+<div class="menu">
+    <nav>
+        <a href="#"><h1>
+            BOWTIE
+        </h1></a>
+
+        <label for="show-menu" class="show-menu">
+          <span class="glyphicon glyphicon-align-justify"></span>
+        </label>
+        <input type="checkbox" id="show-menu" role="button">
+        <ul id="menu" class="menu">
+            <li>
+                <a href="">Uvod</a>
+            </li>
+            <li>
+                <a href="">Sluzby</a>
+            </li>
+            <li>
+                <a href="">Reference</a>
+            </li>
+            <li>
+                <a href="">Tym</a>
+            </li>
+            <li>
+                <a href="">Kontakt</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+*/

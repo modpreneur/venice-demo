@@ -1,0 +1,181 @@
+// FONT.less -> classes changing fonts
+@import "variables";
+
+.color-primary      {color: @color-primary !important;}
+.color-secondary    {color: @color-secondary !important;}
+.color-tertiary     {color: @color-tertiary !important;}
+.color-info         {color: @color-info !important;}
+.color-success      {color: @color-success !important;}
+.color-danger       {color: @color-danger !important;}
+.color-warning      {color: @color-warning !important;}
+.color-muted        {color: @text-muted !important;}
+
+.color-white        {color: @color-white !important;}
+.color-black        {color: @color-black !important;}
+
+.color-red          {color: @color-red !important;}
+.color-green        {color: @color-green !important;}
+.color-blue         {color: @color-blue !important;}
+.color-yellow       {color: @color-yellow !important;}
+.color-pink         {color: @color-pink !important;}
+.color-brown        {color: @color-brown !important;}
+.color-orange       {color: @color-orange !important;}
+.color-purple       {color: @color-purple !important;}
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+a:hover {
+  &.primary  		{color: @color-primary-hover !important;}
+  &.secondary  		{color: @color-secondary-hover !important;}
+  &.tertiary  		{color: @color-tertiary-hover !important;}
+
+  &.info  			{color: @color-info-hover !important;}
+  &.success  		{color: @color-success-hover !important;}
+  &.warning  		{color: @color-warning-hover !important;}
+  &.danger  		{color: @color-danger-hover !important;}
+
+  &.muted  			{color: @color-muted-hover !important;}
+
+  &.red  			{color: @color-red-hover !important;}
+  &.green  			{color: @color-green-hover !important;}
+  &.blue  			{color: @color-blue-hover !important;}
+  &.yellow  		{color: @color-yellow-hover !important;}
+  &.pink  			{color: @color-pink-hover !important;}
+  &.brown  			{color: @color-brown-hover !important;}
+  &.orange  		{color: @color-orange-hover !important;}
+  &.purple  		{color: @color-purple-hover !important;}
+}
+
+// Heading
+h1,h2,h3,h4,h5,h6 {
+  padding: @font-padding-none;
+  margin: @font-margin-none;
+  font-weight: @font-weight-normal;
+  line-height: @headings-line-height;
+}
+
+// Text align
+.text-left                    { text-align: left !important;}
+.text-center                  { text-align: center !important;}
+.text-right                   { text-align: right !important;}
+.text-justify                 { text-align: justify !important;}
+
+// Font size
+.font-smaller                 { font-size: 85% !important;}
+.font-bigger                  { font-size: 125% !important;}
+
+// Transformation
+.lowercase                    { text-transform: lowercase !important;}
+.uppercase                    { text-transform: uppercase !important;}
+.capitalize                   { text-transform: capitalize !important;}
+
+// Decoration
+.underline                    { text-decoration: underline !important;}
+.overline                     { text-decoration: overline !important;}
+.line-through                 { text-decoration: line-through !important;}
+
+// Weight
+.normal                       { font-weight: normal !important;}
+.bold                         { font-weight: bold !important;}
+.lighter                      { font-weight: lighter !important;}
+.italic                       { font-style: italic !important;}
+
+// Headings
+h1 {
+  font-size: @font-size-h1;
+  small, .small {
+      line-height: 1;
+      color: @color-dark-grey;
+    }
+}
+
+h2 {
+  font-size: @font-size-h2;
+  small, .small {
+      line-height: 1;
+      color: @color-dark-grey;
+    }
+}
+
+h3 {
+  font-size: @font-size-h3;
+  small, .small {
+      line-height: 1;
+      color: @color-dark-grey;
+    }
+}
+
+h4 {
+  font-size: @font-size-h4;
+  small, .small {
+      line-height: 1;
+      color: @color-dark-grey;
+    }
+}
+
+h5 {
+  font-size: @font-size-h5;
+  small, .small {
+      line-height: 1;
+      color: @color-dark-grey;
+    }
+}
+
+h6 {
+  font-size: @font-size-h6;
+  small, .small {
+      line-height: 1;
+      color: @color-dark-grey;
+    }
+}
+
+small,
+.small {
+    font-size: @font-size-md;
+}
+
+.large {
+    font-size: @font-size-large;
+}
+
+
+@iterations-font-size: 100;
+.loopingClass-font-size (@index-font) when (@index-font > 0) {
+  .font-@{index-font} {
+    font-size: ~"@{index-font}px" !important;
+  }
+  .loopingClass-font-size(@index-font - 1);
+}
+.loopingClass-font-size (0) {}
+.loopingClass-font-size (@iterations-font-size);
+
+.line-height-05 {line-height: 0.5 !important;}
+.line-height-06 {line-height: 0.6 !important;}
+.line-height-07 {line-height: 0.7 !important;}
+.line-height-08 {line-height: 0.8 !important;}
+.line-height-09 {line-height: 0.9 !important;}
+.line-height-1 {line-height: 1 !important;}
+.line-height-11 {line-height: 1.1 !important;}
+.line-height-12 {line-height: 1.2 !important;}
+.line-height-13 {line-height: 1.3 !important;}
+.line-height-14 {line-height: 1.4 !important;}
+.line-height-15 {line-height: 1.5 !important;}
+.line-height-16 {line-height: 1.6 !important;}
+.line-height-17 {line-height: 1.7 !important;}
+.line-height-18 {line-height: 1.8 !important;}
+.line-height-19 {line-height: 1.9 !important;}
+.line-height-2 {line-height: 2 !important;}
+.line-height-21 {line-height: 2.1 !important;}
+.line-height-22 {line-height: 2.2 !important;}
+.line-height-23 {line-height: 2.3 !important;}
+.line-height-24 {line-height: 2.4 !important;}
+.line-height-25 {line-height: 2.5 !important;}
+.line-height-26 {line-height: 2.6 !important;}
+.line-height-27 {line-height: 2.7 !important;}
+.line-height-28 {line-height: 2.8 !important;}
+.line-height-29 {line-height: 2.9 !important;}
+.line-height-3 {line-height: 3 !important;}

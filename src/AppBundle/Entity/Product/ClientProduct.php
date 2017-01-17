@@ -17,12 +17,17 @@ class ClientProduct extends Product
      */
     protected $ClientProductChild;
 
+
+    /**
+     * ClientProduct constructor.
+     */
     public function __construct()
     {
         parent::__construct();
 
         $this->ClientProductChild = 'standard product from application';
     }
+
 
     /**
      * @return mixed
@@ -32,6 +37,7 @@ class ClientProduct extends Product
         return $this->ClientProductChild;
     }
 
+
     /**
      * @param mixed $ClientProductChild
      */
@@ -39,6 +45,7 @@ class ClientProduct extends Product
     {
         $this->ClientProductChild = $ClientProductChild;
     }
+
 
     /**
      * Get the product type string.

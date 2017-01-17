@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jakub Fajkus
- * Date: 28.02.16
- * Time: 15:55.
- */
+
 namespace AdminBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations\Route;

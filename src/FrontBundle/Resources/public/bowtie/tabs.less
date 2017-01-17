@@ -1,0 +1,139 @@
+@-webkit-keyframes content-opacity {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@-moz-keyframes content-opacity {
+  from {opacity: 0;}
+    to {opacity: 1;}
+}
+@-o-keyframes content-opacity {
+  from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes content-opacity {
+  from {opacity: 0;}
+    to {opacity: 1;}
+}
+.tabs-wrapper {
+  font-size: 0;
+  input[type=radio] {
+    display:none;
+  }
+  label {
+    transition:background 0.4s ease, height 0.2s linear;
+    display:inline-block;
+    cursor: pointer;
+    color:#000000;
+    text-align:center;
+    padding:10px 20px;
+    border:solid 1px #cccccc;
+    border-bottom:none;
+    font-size: @font-size-base;
+    background:#ffffff;
+    margin-right:-1px;
+  }
+  label:last-of-type {
+    border-bottom:none;
+  }
+  .tab-body {
+    position:absolute;
+    top:-9999px;
+    opacity:0;
+    padding:10px;
+  }
+  .tab-body-wrapper {
+    font-size: @font-size-base;
+    border:solid 1px #cccccc;
+    border-bottom-right-radius:3px;
+    border-bottom-left-radius:3px;
+    -webkit-animation-delay:0.2s;
+    -webkit-animation-duration:1.5s;
+    -webkit-animation-name:show;
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-delay:0.2s;
+    -moz-animation-duration:1.5s;
+    -moz-animation-name:show;
+    -moz-animation-fill-mode:forwards;
+    -o-animation-delay:0.2s;
+    -o-animation-duration:1.5s;
+    -o-animation-name:show;
+    -o-animation-fill-mode:forwards;
+    animation-delay:0.2s;
+    animation-duration:1.5s;
+    animation-name:show;
+    animation-fill-mode:forwards;
+  }
+}
+#tab1:checked + label,
+#tab2:checked + label,
+#tab3:checked + label,
+#tab4:checked + label,
+#tab5:checked + label,
+#tab6:checked + label,
+#tab7:checked + label,
+#tab8:checked + label,
+#tab9:checked + label,
+#tab10:checked + label,
+#tab11:checked + label,
+#tab12:checked + label,
+#tab13:checked + label,
+#tab14:checked + label,
+#tab15:checked + label,
+#tab16:checked + label,
+#tab17:checked + label,
+#tab18:checked + label,
+#tab19:checked + label,
+#tab20:checked + label {
+  border-top: 2px solid @color-primary;
+  position: relative;
+  top: 1px;
+}
+#tab1:checked ~ .tab-body-wrapper #tab-body-1,
+#tab2:checked ~ .tab-body-wrapper #tab-body-2,
+#tab3:checked ~ .tab-body-wrapper #tab-body-3,
+#tab4:checked ~ .tab-body-wrapper #tab-body-4,
+#tab5:checked ~ .tab-body-wrapper #tab-body-5,
+#tab6:checked ~ .tab-body-wrapper #tab-body-6,
+#tab7:checked ~ .tab-body-wrapper #tab-body-7,
+#tab8:checked ~ .tab-body-wrapper #tab-body-8,
+#tab9:checked ~ .tab-body-wrapper #tab-body-9,
+#tab10:checked ~ .tab-body-wrapper #tab-body-10,
+#tab11:checked ~ .tab-body-wrapper #tab-body-11,
+#tab12:checked ~ .tab-body-wrapper #tab-body-12,
+#tab13:checked ~ .tab-body-wrapper #tab-body-13,
+#tab14:checked ~ .tab-body-wrapper #tab-body-14,
+#tab15:checked ~ .tab-body-wrapper #tab-body-15,
+#tab16:checked ~ .tab-body-wrapper #tab-body-16,
+#tab17:checked ~ .tab-body-wrapper #tab-body-17,
+#tab18:checked ~ .tab-body-wrapper #tab-body-18,
+#tab19:checked ~ .tab-body-wrapper #tab-body-19,
+#tab20:checked ~ .tab-body-wrapper #tab-body-20 {
+  position: relative;
+  top: 0;
+  -webkit-animation-delay: 0.2s;
+  -webkit-animation-duration: 0.8s;
+  -webkit-animation-name: content-opacity;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-delay: 0.2s;
+  -moz-animation-duration: 0.8s;
+  -moz-animation-name: content-opacity;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-delay: 0.2s;
+  -o-animation-duration: 0.8s;
+  -o-animation-name: content-opacity;
+  -o-animation-fill-mode: forwards;
+  animation-delay: 0.2s;
+  animation-duration: 0.8s;
+  animation-name: content-opacity;
+  animation-fill-mode: forwards;
+}
+@media screen and (max-width: 768px) {
+  .tabs-wrapper label {
+    width: 100%;
+    display: block;
+    margin-top: 1px;
+  }
+  .tabs-wrapper {
+     margin: 0;
+   }
+}

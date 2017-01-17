@@ -1,0 +1,16 @@
+services:
+
+  front.twig.flofit_features:
+      class: FrontBundle\Twig\FlofitTemplateFeatures
+      arguments: ["@service_container", "@security.token_storage"]
+      tags: [ name: twig.extension ]
+
+
+  front.menu_listener:
+      class: FrontBundle\EventListener\ConfigureMenuListener
+      tags:
+        - { name: kernel.event_listener, event: front.menu_configure_event, method: onMenuConfigure }
+      arguments:
+          ["@service_container"]
+
+

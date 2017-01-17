@@ -1,0 +1,148 @@
+{% extends "VeniceFrontBundle:Products:layout.html.twig" %}
+
+{% block title %}
+    FLO FIT
+{% endblock %}
+
+{% block jumbotronClass %}jumbotron-dashboard{% endblock %}
+
+{% block headerInside %}
+    {#<div class="abs-center">#}
+        {#<img src="{{ asset('Resources/public/images/site/florida-gear.png') }}" alt=""/>#}
+        {#<h1>PLATINUM<span>CLUB</span></h1>#}
+        {#<a class="button button-primary" href="{{ path("downloads_product_flomersion") }}">LET’S CONTINUE</a>#}
+    {#</div>#}
+{% endblock %}
+
+{% block content %}
+    <div class="downloads-dashboard-main-content">
+        <div class="row">
+            <div class="span-medium-24">
+
+                <div id="workout-videos" class="persist-area margin-top-20">
+                    <div class="block block-title ">
+                        <div class="hr"></div>
+                        <div class="block-left">
+                            <a href="#workout-videos" class="nice-scroll current current_ancestor">Workout Videos</a>
+                        </div>
+                        <div class="block-center">
+                            <a href="#books-and-training-calendars" class="nice-scroll">Books & Training Calendars</a>
+                        </div>
+                        <div class="block-right">
+                            <a href="#add-ons" class="nice-scroll">Add-Ons</a>
+                        </div>
+                    </div>
+
+                    {% set allVideoProducts = productsService.productsByType("videoproduct") %}
+                    {#{% set videoproducts = allVideoProducts|slice(0,productsService.getDefaultLength) %}#}
+                    {#{% set videoproductLoadOffset = videoproducts|length %}#}
+                    {#{% set videoproductDisplayLoadMoreButton = (videoproductLoadOffset + productsService.getDefaultLength) < allVideoProducts|length %}#}
+                    {#{% if notVisibleFromStart is defined and not notVisibleFromStart %}ajax-hidden{% endif %}#}
+
+                    {#<div id="videoproductBlock" class="ajax-append ajax-slide-down">#}
+                    {#{% block allVideoProducts %}#}
+                        {% for videoProduct in allVideoProducts %}
+                        <div class="downloads-dashboard row {{ videoProduct.getTypeName() }}">
+                            {{ productRenderer(videoProduct,"downloadsDashboard") }}
+                        </div>
+                        {% endfor %}
+                        {#{% if videoproducts|length != 0 and videoproductDisplayLoadMoreButton %}#}
+                        {#<div class="row" id="videoproduct-load-more-block">#}
+                            {#<div class="span-mini-24 text-center margin-vertical-20">#}
+                                {#<a class="trinity-load-more button button-load-more" href="{{ path("downloads_web_api_load_more_flofit",{"type":"videoproduct","start":videoproductLoadOffset}) }}" data-after-click="Loading..." data-remove-element="#videoproduct-load-more-block">Load More</a>#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#{% endif %}#}
+                    {#{% endblock %}#}
+                    {#</div>#}
+                </div>
+
+                <div id="books-and-training-calendars">
+                    <div class="block block-title persist-header">
+                        <div class="hr"></div>
+                        <div class="block-left">
+                            <a href="#workout-videos" class="nice-scroll">Workout Videos</a>
+                        </div>
+                        <div class="block-center">
+                            <a href="#books-and-training-calendars" class="nice-scroll current current_ancestor">Books & Training Calendars</a>
+                        </div>
+                        <div class="block-right">
+                            <a href="#add-ons" class="nice-scroll">Add-Ons</a>
+                        </div>
+                    </div>
+
+                    {% set allDownloadProducts = productsService.productsByType("downloadproduct") %}
+                    {#{% set downloadproducts = allDownloadProducts|slice(0,productsService.getDefaultLength) %}#}
+                    {#{% set downloadsprodutctLoadOffset = downloadproducts|length %}#}
+                    {#{% set downloadproductDisplayLoadMoreButton = (downloadsprodutctLoadOffset + productsService.getDefaultLength) < allDownloadProducts|length %}#}
+                    {#{% if notVisibleFromStart is defined and not notVisibleFromStart %}ajax-hidden{% endif %}#}
+
+                    {#<div id="downloadproductBlock" class="ajax-append ajax-slide-down">#}
+                    {#{% block downloadproductBlock %}#}
+                        {% for downloadProduct in allDownloadProducts %}
+                        <div class="downloads-dashboard row {{ downloadProduct.getTypeName() }}">
+                            {{ productRenderer(downloadProduct,"downloadsDashboard") }}
+                        </div>
+                        {% endfor %}
+
+                        {#{% if downloadproducts|length != 0 and downloadproductDisplayLoadMoreButton %}#}
+                            {#<div class="row" id="downloads-load-more-block">#}
+                                {#<div class="span-mini-24 text-center margin-vertical-20">#}
+                                    {#<a class="trinity-load-more button button-load-more" href="{{ path("downloads_web_api_load_more_flofit",{"type":"downloadproduct","start":downloadsprodutctLoadOffset}) }}" data-after-click="Loading..." data-remove-element="#downloads-load-more-block">Load More</a>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#{% endif %}#}
+                    {#{% endblock %}#}
+                    {#</div>#}
+                 </div>
+
+                <div id="add-ons" class="recomended">
+                    <div class="block block-title persist-header">
+                        <div class="hr"></div>
+                        <div class="block-left">
+                            <a href="#workout-videos" class="nice-scroll">Workout Videos</a>
+                        </div>
+                        <div class="block-center">
+                            <a href="#books-and-training-calendars" class="nice-scroll">Books & Training Calendars</a>
+                        </div>
+                        <div class="block-right">
+                            <a href="#add-ons" class="nice-scroll current current_ancestor">Add-Ons</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        {% for upsellProduct in upsellProducts %}
+                        <div class="span-large-6 span-medium-12 span-col">
+                            <div class="recomended-item">
+                                <img src="{{ upsellProduct.upselMiniature }}" alt="" class="img-responsive"/>
+                                <span class="inside-title">{{ upsellProduct.shortName }}</span>
+                                <div class="recomended-hover">
+                                    <div><span>{{ upsellProduct.shortName }}</span></div>
+                                    <div class="divider"></div>
+                                    <p>{{ upsellProduct.shortDescription }}</p>
+                                    <div class="row">
+                                        {% if app.user.haveAccess(upsellProduct) %}
+                                            <a class="button" href="{{ path("downloads_product_bundle_detail",{"handle":upsellProduct.handle}) }}">Details</a>
+                                        {% else %}
+                                            <a class="button" href="{{ path("downloads_product_bundle_detail",{"handle":upsellProduct.handle}) }}">Get more details</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if fbPixel is defined and fbPixel is not null %}
+        <script>
+            $(document).ready(function () {
+                fbq('track', 'Purchase', {value: '20', currency: 'USD'});
+            });
+        </script>
+    {% endif %}
+{% endblock %}

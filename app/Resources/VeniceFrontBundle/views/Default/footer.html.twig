@@ -1,0 +1,23 @@
+<footer>
+    <div class="row block">
+        <div class="block-left">
+            <p><span>FLO FIT &copy; {{ "now"|date("Y") }}</span> Burn It Now Productions, Inc. FLO FIT and FLO RIDA trademarks, name, image, and likeness are owned by FLO RIDA and FLO FIT Holdings LLC, and are being used under license by Flo Life LLC. All rights reserved.</p>
+        </div>
+        <div class="block-right">
+            <div class="navbar">
+                <ul>
+                    {% if app.user %}
+                        {# @todo id #}
+                        <li><a title="Support" class="fancybox fancybox-margin fancybox-support" data-fancybox-type="iframe" href="//resultsink.desk.com/customer/widget/emails/new?ticket%5Bcustom_refpage%5D=my.flofit.com&interaction%5Bname%5D={{ app.user.firstName }}%20{{ app.user.lastName }}&interaction%5Bemail%5D={{ app.user.email }}&ticket%5Bcustom_refpage%5D=my.flofit.com&ticket%5Bcustom_user_id%5D={{ app.user.id }}&ticket%5Bcustom_username%5D={{ app.user.username }}">Help</a></li>
+                    {% else %}
+                        <li><a title="Support" class="fancybox fancybox-margin fancybox-support" data-fancybox-type="iframe" href="//resultsink.desk.com/customer/widget/emails/new?ticket%5Bcustom_refpage%5D=my.flofit.com">Help</a></li>
+                    {% endif %}
+                    {{ footerLinksBlock() }}
+                </ul>
+            </div>
+        </div>
+        <div class="block-center text-center">
+            <a href="{{ path("landing_page") }}"><i class="ff-flofitlogo"></i></a>
+        </div>
+    </div>
+</footer>

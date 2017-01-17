@@ -1,0 +1,164 @@
+@import "variables-default";
+.checkbox-none {
+  display:none;
+}
+
+.popover {
+  display: inline-block;
+  position: relative;
+  label {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .tooltip-click input[type=checkbox]{
+    display: none;
+  }
+
+  .popover-top,
+  .popover-right,
+  .popover-bottom,
+  .popover-left {
+    display: none;
+  }
+
+  input[type=checkbox] {
+    &:checked ~ .popover-top {
+      display: block;
+      z-index: 10;
+      position: absolute;
+      bottom: 120%;
+      right: -74px;
+      background: fade(@color-black, 80%);
+      text-align: center;
+      max-width: 200px;
+      padding: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: default;
+      width: 200px;
+      .animate();
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 110px;
+        border-style: solid;
+        border-width: 10px 10px 0;
+        border-color: fade(@color-black, 80%) transparent;
+        display: block;
+        width: 0;
+        z-index: 1;
+      }
+    }
+    &:checked ~ .popover-right {
+      display: block;
+      z-index: 10;
+      position: absolute;
+      top: -30px;
+      left: 120%;
+      background: fade(@color-black, 80%);
+      text-align: center;
+      max-width: 200px;
+      padding: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: default;
+      width: 200px;
+      .animate();
+
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        display: block;
+        width: 0;
+        right: 100%;
+        top: 30px;
+        height: 0;
+        border-top: 9px solid transparent;
+        border-right: 13px solid fade(@color-black, 80%);
+        border-bottom: 9px solid transparent;
+        z-index: 1;
+      }
+    }
+    &:checked ~ .popover-bottom {
+      display: block;
+      z-index: 10;
+      position: absolute;
+      top: 120%;
+      right: -74px;
+      background: fade(@color-black, 80%);
+      text-align: center;
+      max-width: 200px;
+      padding: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: default;
+      width: 200px;
+      .animate();
+
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        right: 71px;
+        border-style: solid;
+        border-width: 0px 10px 10px 10px;
+        border-color: fade(@color-black, 80%) transparent;
+        display: block;
+        width: 0;
+        z-index: 1;
+      }
+    }
+    &:checked ~ .popover-left {
+      display: block;
+      z-index: 10;
+      position: absolute;
+      top: -31px;
+      right: 120%;
+      background: fade(@color-black, 80%);
+      text-align: center;
+      max-width: 200px;
+      padding: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: default;
+      width: 200px;
+      .animate();
+
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        display: block;
+        width: 0;
+        left: 100%;
+        top: 30px;
+        height: 0;
+        border-top: 9px solid transparent;
+        border-left: 13px solid fade(@color-black, 80%);
+        border-bottom: 9px solid transparent;
+        z-index: 1;
+      }
+    }
+  }
+}

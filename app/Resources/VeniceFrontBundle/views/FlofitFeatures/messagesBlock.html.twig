@@ -1,0 +1,54 @@
+<div class="block-messenger">
+    <input type="radio" id="messenger" class="display-none hide-full-main-menu" name="radio-header-navigation"/>
+    <label for="messenger" id="label-messenger" class="label-messenger hide-full-main-menu">
+        <i class="ff-chat-dotted-bold">
+            <i class="ff-circle-negative {% if count > 0%}current current_ancestor{% endif %}">
+                <span class="number-notification">{{ count }}</span>
+            </i>
+        </i>
+    </label>
+    <label for="messenger" class="close-messenger"></label>
+    <div id="messenger-box" class="messenger-box">
+        <div class="messenger-header">Messages</div>
+        <div class="wrapper-notifi">
+            {% for conversation in conversations %}
+                <a href="{{ conversationUrl }}{{ conversation.conversationId }}">
+                    <div class="message">
+                        <div class="rounded">
+                            {% if conversation.participants|length > 1 %}
+                                <img src="{{ asset('Resources/public/images/site/default-conversation-photo.png') }}" alt="conversation profile images"/>
+                            {% elseif conversation.participants is empty and app.user.profilePhoto is not null %}
+                                <img src="{{ app.user.profilePhoto.croopedPhotoUrl }}" alt="profile image"/>
+                            {% else %}
+                                {% if conversation.participants is not empty and conversation.participants[0] is defined and conversation.participants[0].profilePhoto is defined and conversation.participants[0].profilePhoto is not null %}
+                                    <img src="{{ conversation.participants[0].profilePhoto.croopedPhotoUrl }}" alt="profile image"/>
+                                {% else %}
+                                    <img src="{{ asset('Resources/public/images/site/default-profile-photo.png') }}" alt="profile image"/>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="message-content">
+                            <div class="name">
+                                {% if conversation.participants is empty %}
+                                    YOU
+                                {% endif %}
+                            {% for participant in conversation.participants %}
+                                {% spaceless %}
+                                {% if loop.index != 1 %},{% endif %}
+                                {% if participant is iterable %}
+                                    <a href="{{ path("core_front_user_public_profile",{"username":participant.username}) }}">{{ participant.fullName }}</a>
+                                {% else %}
+                                    {{ participant }}
+                                {% endif %}
+                                {% endspaceless %}
+                            {% endfor %}
+                            </div>
+                            <p>{{ conversation.lastBody }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <a class="read-all" href="{{ readAllUrl }}">Read all messages</a>
+    </div>
+</div>

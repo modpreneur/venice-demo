@@ -1,0 +1,106 @@
+{% extends "form_div_layout.html.twig" %}
+
+{%- block form_start -%}
+    {{- parent() -}}
+{%- endblock form_start -%}
+
+{%- block form -%}
+    {{- parent() -}}
+{%- endblock form -%}
+
+{%- block collection_row -%}
+    <div class="collection row">
+        <div class="collection-label span-medium-8 span-large-6 span-xlarge-10 form-left">
+
+        </div>
+        <div class="collection-widget span-none-padding-medium-16 span-none-padding-large-18 span-none-padding-xlarge-14 form-right form-right">
+            {{- form_widget(form) -}}
+        </div>
+    </div>
+{%- endblock collection_row -%}
+
+
+{%- block choice_widget_collapsed -%}
+    {%- if required and placeholder is none and not placeholder_in_choices and not multiple -%}
+        {% set required = false %}
+    {%- endif -%}
+
+    <div class="input-postfix-icon form-select">
+        <div class="select-style form-control">
+            <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+                {%- if placeholder is not none -%}
+                    <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder|trans({}, translation_domain) }}</option>
+                {%- endif -%}
+                {%- if preferred_choices|length > 0 -%}
+                    {% set options = preferred_choices %}
+                    {{- block('choice_widget_options') -}}
+                    {%- if choices|length > 0 and separator is not none -%}
+                        <option disabled="disabled">{{ separator }}</option>
+                    {%- endif -%}
+                {%- endif -%}
+                {%- set options = choices -%}
+                {{- block('choice_widget_options') -}}
+            </select>
+        </div>
+    </div>
+{%- endblock choice_widget_collapsed -%}
+
+{% block button_row %}
+    {#first and last btn in row must have  attr class first-btn and last-btn see readme.md for example#}
+
+    {% if 'first-btn' in attr %}
+        <div class="row">
+        <div class="span-medium-8 span-large-6 span-xlarge-10 form-right"></div>
+        <div class="span-none-padding-medium-16 span-none-padding-large-18 span-none-padding-xlarge-14  span-medium-16 span-large-18 span-xlarge-14">
+    {% endif %}
+    {{ form_widget(form) }}
+    {% if 'last-btn' in attr %}
+        </div>
+        </div>
+    {% endif %}
+
+{% endblock button_row %}
+
+{%- block button_widget -%}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+            '%name%': name,
+            '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <div class="row" id="row_{{ id }}">
+        <div class="span-medium-16 offset-medium-13">
+            <input class="button" type="{{ type|default('button') }}" {{ block('button_attributes') }}
+                   value="Save"/>
+            <a href="#close" title="Close" class="profile-settings-cancel">Cancel</a>
+        </div>
+    </div>
+{%- endblock button_widget -%}
+
+
+{%- block form_row -%}
+
+    {% set choice = false %}
+
+    {% for prefix in form.vars.block_prefixes %}
+        {% if prefix == 'choice' %}
+            {% set choice = true %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="row" id="row_{{ id }}">
+
+        {# @todo remove checkbox-inlie #}
+        <div class="span-medium-16 offset-medium-13 form-right checkbox-inline">
+            {{- form_widget(form) -}}
+        </div>
+
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row -%}
+
+

@@ -1,0 +1,116 @@
+.ios-check {
+  text-align: left;
+  display: inline-block;
+  label {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+  }
+
+  input[type="checkbox"].ios-switch {
+    & + div {
+      &.input-div {
+        display: inline-block;
+        vertical-align: middle;
+        width: 65px;
+        height: 24px;
+        border: 1px solid fade(@color-black, 30%);
+        border-radius: 999px;
+        margin: 5px;
+        background: @color-white;
+        background-image: linear-gradient(fade(@color-black, 10%), transparent),
+                          linear-gradient(90deg, @color-primary 50%, transparent 50%);
+        background-size: 200% 100%;
+        background-position: 100% 0;
+        background-origin: border-box;
+        background-clip: border-box;
+        overflow: hidden;
+        transition-duration: .4s;
+        transition-property: padding,width,background-position,text-indent;
+        box-shadow: 0 2px 5px fade(@color-black, 20%) inset,
+                    0 5px 0 2px fade(@color-black, 5%) inset;
+        font-size: 150%;
+
+        &:before {
+          content: 'Yes';
+          float: left;
+          width: 21px;
+          height: 21px;
+          margin: -0.6px;
+          border: 1px solid fade(@color-black, 35%);
+          border-radius: inherit;
+          background: @color-white;
+          background-image: linear-gradient(fade(@color-black, 20%), transparent);
+          box-shadow: 0 3px 3px 1px fade(@color-white, 80%) inset,
+                      0 0 10px fade(@color-black, 30%);
+          color: @color-white;
+          text-shadow: 0 -1px 1px fade(@color-black, 30%);
+          text-indent: -33px;
+        }
+
+        &:after {
+          content: 'No';
+          float: left;
+          text-indent: 10px;
+          color: fade(@color-black, 45%);
+          text-shadow: none;
+        }
+      }
+    }
+
+    &:checked {
+      & + div {
+        &.input-div {
+          padding-left: 41px;
+          background-position: 0 0;
+        }
+      }
+    }
+
+    &:active {
+      & + div {
+        &.input-div {
+          &:before {
+            background-color: @color-white;
+          }
+        }
+      }
+    }
+
+    &:focus {
+      & + div {
+        &.input-div {
+          box-shadow: 0 2px 4px fade(@color-black, 20%) inset,
+                      0 6px 0 2px fade(@color-black, 5%) inset,
+                      0 0 9px 1px fade(@color-primary, 90%);
+        }
+      }
+    }
+  }
+}
+
+.ios-check input[type="checkbox"].ios-switch + div.input-div:before,
+.ios-check input[type="checkbox"].ios-switch + div.input-div:after {
+  font: bold 60%/1.9 sans-serif;
+  text-transform: uppercase;
+}
+
+//EXAMPLES
+/*
+<div class="ios-check">
+  <label>
+    <input type="checkbox" class="ios-switch" checked />
+    <div class="input-div"><div class="input-div"></div></div>
+  </label>
+
+  <label>
+    <input type="checkbox" class="ios-switch" />
+    <div class="input-div"><div class="input-div"></div></div>
+  </label>
+</div>
+*/

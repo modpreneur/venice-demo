@@ -19,6 +19,7 @@ services:
         - .:/var/app
         - /Volumes/RAM_Disk:/var/app/var/cache
 
+
   elasticsearch:
     extends:
       file: docker-compose.yml

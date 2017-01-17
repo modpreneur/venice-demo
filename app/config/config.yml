@@ -15,6 +15,15 @@ twig:
     - 'TrinityAdminBundle:Form:bowtie_form_layout.html.twig'
     - 'TrinityAdminBundle:Form:color_layout.html.twig'
 
+
+assetic:
+    bundles:  [ TrinityAdminBundle, VeniceFrontBundle, VeniceAppBundle, Uran1980FancyBoxBundle, BmatznerJQueryBundle, FrontBundle ]
+    filters:
+       lessphp:
+         bin: "%kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php"
+         apply_to: ".less$"
+
+
 trinity_notification:
     # do not forget to define this config if you have overriden the entities!
     entities:
@@ -139,6 +148,14 @@ venice_app:
             entity: Venice\AppBundle\Entity\Content\ContentInGroup
             map:
                 demo_content_in_group: AppBundle\Entity\Content\ContentInGroup
+
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: VeniceApp\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
 
 parameters: #todo: necktie?!
     trinity.search.doctrine_prefix: "NecktieAppBundle"

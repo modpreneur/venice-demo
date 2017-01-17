@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jakub Fajkus
- * Date: 22.10.15
- * Time: 20:29.
- */
+
 namespace AppBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +15,7 @@ class FreeProduct extends \Venice\AppBundle\Entity\Product\FreeProduct
      */
     protected $FreeProductChild;
 
+
     /**
      * @return mixed
      */
@@ -27,6 +23,7 @@ class FreeProduct extends \Venice\AppBundle\Entity\Product\FreeProduct
     {
         return $this->FreeProductChild;
     }
+
 
     /**
      * @param mixed $FreeProductChild

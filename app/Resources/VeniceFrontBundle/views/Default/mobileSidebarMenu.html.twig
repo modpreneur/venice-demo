@@ -1,0 +1,50 @@
+<input type="checkbox" id="main-navigation-mobile" class="display-none" name="radio-header-navigation-mobile" />
+<label for="main-navigation-mobile" class="label-main-navigation-mobile display-none"><i class="ff-45"></i></label>
+<label for="main-navigation-mobile" class="close-side-bar"></label>
+<div class="full-menu-mobile">
+    <div class="menu-header-mobile">
+        <label for="main-navigation-mobile" class="label-main-navigation-mobile display-none"><i class="ff-45"></i></label>
+        {{ include("VeniceFrontBundle:Default:menuProfile.html.twig", {"user":app.user}, with_context=false) }}
+    </div>
+    {#TODO ONDO - linky#}
+    <div class="menu-item-mobile messages-push">
+        <a href="{{ getMessagesLink() }}"><i class="ff-chat-dotted-left"></i><span>Messages</span></a>
+    </div>
+    {#<div class="menu-item-mobile notification-push">#}
+        {#<a href=""><i class="ff-ring"></i><span>Notifications</span></a>#}
+    {#</div>#}
+    <div class="menu-item-mobile">
+        <a href="{{ path("landing_page") }}"><i class="ff-dashboard"></i><span>Dashboard</span></a>
+    </div>
+    <div class="menu-item-mobile">
+        <input type="checkbox" id="sub-settings" class="display-none sub-input" />
+        <label for="sub-settings"><i class="ff-person"></i><span>User</span></label>
+        <div class="sub-show">
+            <a href="{{ path("core_front_user_profile_edit") }}"><span>Profile</span></a>
+            <a href="{{ path("core_front_user_profile_privacy") }}"><span>Privacy</span></a>
+            <a href="{{ path("core_front_user_order_history") }}"><span>Order history</span></a>
+            <a href="{{ path("core_front_user_profile_newsletters") }}"><span>Newsletters</span></a>
+        </div>
+    </div>
+    <div class="menu-item-mobile">
+        <a href="{{ getForumLink() }}"><i class="ff-chat-conversation"></i><span>Forum</span></a>
+    </div>
+    <div class="menu-item-mobile">
+        <a href="{{ path("blog_index") }}"><i class="ff-blog-3"></i><span>Blog</span></a>
+    </div>
+    <div class="menu-item-mobile">
+        <a href="{{ path("downloads_dashboard") }}"><i class="ff-gear2 font-13"></i><span>FLO FIT products</span></a>
+    </div>
+    <div class="menu-item-mobile">
+        <a href="{{ path("downloads_product_flomersion") }}"><i class="ff-platinum-club"></i><span>Platinum Club</span></a>
+    </div>
+    <div class="menu-item-mobile">
+        <a href="{{ path("core_front_staticpages_social_media") }}"><i class="ff-social-stream"></i><span>Social Media</span></a>
+    </div>
+    <div class="menu-item-mobile">
+        <a href="{{ path("core_front_staticpages_social_physical_product") }}"><i class="ff-FF-logo"></i><span>Order DVDs & Books</span></a>
+    </div>
+    <div class="text-center">
+        <a class="button button-logout" href="{{ path("fos_user_security_logout") }}">Logout</a>
+    </div>
+</div>

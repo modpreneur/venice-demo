@@ -1,0 +1,172 @@
+input[type=checkbox]:checked + .show-notification {
+    opacity: 1;
+  width: 80%;
+  min-height: 50px;
+  padding: 15px;
+  margin: 10px auto;
+    height: 100%;
+    .animate(opacity 400ms);
+}
+
+.notification {
+  display: block;
+  position: fixed;
+  top: 63px;
+  right: 0;
+  z-index: 0;
+  width: 300px;
+  min-height: 1px;
+
+  .show-notification {
+    min-height: 0;
+    height: 0;
+    padding: 0 15px;
+    margin: 0 auto;
+    width: 0;
+    opacity: 0;
+    .animate(opacity 400ms);
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+    color: @color-white;
+    background: rgba(50,50,50,0.92);
+
+    .notification-label {
+      position: absolute;
+      top: 0px;
+      right: 2px;
+      font-size: 16px;
+      padding: 5px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .notification-label-danger {color: @color-danger;}
+  .notification-label-warning {color: @color-warning;}
+  .notification-label-info {color: @color-info;}
+  .notification-label-success {color: @color-success;}
+  .notification-label-primary {color: @color-primary;}
+  .notification-label-secondary {color: @color-secondary;}
+  .notification-label-tertiary {color: @color-tertiary;}
+}
+
+/*-------------*/
+//Auto hide
+/*-------------*/
+input[type=radio]:checked + .show-notification-auto {
+  animation: showNhideAnimation2 5s ease-out, showNhideAnimation 5s cubic-bezier(.22,.81,.01,.99);
+  -webkit-animation: showNhideAnimation2 5s ease-out, showNhideAnimation 5s cubic-bezier(.22,.81,.01,.99);
+}
+input[type=radio]:checked + .show-notification-auto {
+//  opacity: 1;
+
+//  width: 80%;
+//  min-height: 50px;
+//  padding: 15px;
+//  margin: 10px auto;
+//  height: 100%;
+
+//  min-height: 0;
+//  height: 0;
+//  padding: 0 15px;
+//  margin: 0 auto;
+//  width: 0;
+    .animate(opacity 400ms);
+}
+
+.notification {
+  .show-notification-auto {
+    min-height: 0;
+    height: 0;
+    padding: 0 15px;
+    margin: 0 auto;
+    width: 80%;
+
+//    width: 80%;
+//    min-height: 50px;
+//    padding: 15px;
+//    margin: 10px auto;
+//    height: 100%;
+
+//    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+    color: @color-white;
+    background: rgba(50,50,50,0.92);
+  }
+}
+
+@-webkit-keyframes showNhideAnimation2 {
+  0% {
+    min-height: 0;
+    height: 0;
+    padding: 0 15px;
+    margin: 0 auto;
+    width: 0;
+  }
+  50% {
+    width: 80%;
+    min-height: 50px;
+    padding: 15px;
+    margin: 10px auto;
+    height: 100%;
+  }
+  100% {
+    min-height: 0;
+    height: 0;
+    padding: 0 15px;
+    margin: 0 auto;
+    width: 0;
+  }
+}
+@keyframes showNhideAnimation2 {
+  0% {
+    min-height: 0;
+    height: 0;
+    padding: 0 15px;
+    margin: 0 auto;
+    width: 0;
+  }
+  50% {
+    width: 80%;
+    min-height: 50px;
+    padding: 15px;
+    margin: 10px auto;
+    height: 100%;
+  }
+  100% {
+    min-height: 0;
+    height: 0;
+    padding: 0 15px;
+    margin: 0 auto;
+    width: 0;
+  }
+}
+
+@-webkit-keyframes showNhideAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes showNhideAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

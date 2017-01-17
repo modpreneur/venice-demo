@@ -1,0 +1,40 @@
+.image-row {
+  display: block;
+  .clearfix();
+
+  &.borders {
+    img {
+      border: solid 1px @color-grey;
+    }
+  }
+
+  img {
+    float: left;
+    display: block;
+    padding: 5px;
+  }
+}
+
+.image-box {
+  border: solid 1px @color-grey;
+  overflow: hidden;
+  .clearfix();
+
+  p {
+    padding: 10px;
+    margin: 0;
+  }
+
+  .two-buttons {
+    .button {
+      width: 50%;
+      display: block;
+    }
+    .button:last-child {
+      float: right;
+    }
+    .button:first-child {
+      float: left;
+    }
+  }
+}

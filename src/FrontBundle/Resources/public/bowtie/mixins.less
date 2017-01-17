@@ -1,0 +1,60 @@
+.clearfix {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/* !!!! MOST IMPORTANT !!!! */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.container-fixed(@gutter: @grid-gutter-width) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  &:extend(.clearfix all);
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+
+  &:extend(.clearfix all);
+}
+
+.generate-columns(@container-width; @number-cols; @i: 1) when (@i =< @number-cols) {
+
+  //@container-width -> 1200px
+  //@number-cols -> 12
+  //@i -> 8
+
+  .col-@{i} {
+    width: (100% / @number-cols) * @i;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    float: left;
+  }
+
+  .generate-columns(@container-width; @number-cols; @i + 1);
+
+}
+
+.make-grid(@container-width) {
+  @media(min-width: @container-width) {
+    width: @container-width;
+
+    .generate-columns(@container-width, @grid-columns);
+  }
+}

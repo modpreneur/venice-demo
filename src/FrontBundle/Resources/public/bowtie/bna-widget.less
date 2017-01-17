@@ -1,0 +1,82 @@
+@import "variables-default";
+.animate (@animated: all 700ms ease) {
+  -webkit-transition: @animated;
+  -moz-transition: @animated;
+  -ms-transition: @animated;
+  -o-transition: @animated;
+  transition: @animated;
+}
+.bna {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  .bna-head {
+    text-align: center;
+    .before, .after {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 20px;
+    }
+    .icon {
+      color: @color-dark-grey;
+      margin: 0 30px 15px;
+      font-size: 19px;
+    }
+  }
+  .bna-content {
+    position: relative;
+    height: 100%;
+    .before {
+      position: absolute;
+      width: 45%;
+      top: 20px;
+      left: 0;
+      .grayscale();
+      .animate();
+      &:hover {
+        width: 56%;
+        top: 0;
+        .animate();
+        ~ .after {
+          width: 46%;
+          top: 20px;
+          .animate();
+        }
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .after {
+      position: absolute;
+      width: 55%;
+      top: 0;
+      right: 0;
+      .animate();
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+//EXAMPLE
+
+/*
+            <div class="bna">
+                <div class="bna-head">
+                    <span class="before">Before</span>
+                    <span class="icon fa fa-retweet"></span>
+                    <span class="after">After</span>
+                </div>
+                <div class="bna-content">
+                    <div class="before">
+                        <img src="" alt="before"/>
+                    </div>
+                    <div class="after">
+                        <img src="" alt="before"/>
+                    </div>
+                </div>
+            </div>
+*/

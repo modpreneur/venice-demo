@@ -1,0 +1,395 @@
+// VARIABLES.less -> default variables for the framework
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+//--------------//
+//    COLORS    //
+//--------------//
+
+@color-primary:           #00aeef;
+@color-secondary:         #505050;
+@color-tertiary:          #1F3A93;
+
+@color-warning:           #FF6600;
+@color-info:              #2ba6cb;
+@color-success:           #5da423;
+@color-danger:            #FF0000;
+
+@color-adonis:            #edcf53;
+@color-venus:             #4fadd7;
+
+@color-rememberme:        @color-primary;
+@color-primary-lighter:   lighten(@color-primary, 20%);
+@color-grey-lighter:      lighten(@color-grey, 5%);
+@color-tertiary-lighter:  lighten(@color-tertiary, 5%);
+
+@color-grey:              #DDDDDD;
+@color-grey-light:        #DBDBDB;
+@color-grey-dark:         #676767;
+@color-grey-dark-hover:   #303030;
+@color-dark-grey:         #999999;
+@gray-light:              lighten(#000, 46.7%); // #777
+
+@color-white:             #ffffff;
+@color-black:             #000000;
+
+@color-red:               #FF0000;
+@color-green:             #00FF00;
+@color-blue:              #0000FF;
+@color-yellow:            @color-adonis;
+@color-pink:              #FF66CC;
+@color-brown:             #8A5826;
+@color-orange:            #FF9933;
+@color-purple:            #751975;
+
+// hover
+@color-primary-hover:     darken(@color-primary, 10%);
+@color-secondary-hover:   darken(@color-secondary, 10%);
+@color-tertiary-hover:    darken(@color-tertiary, 10%);
+
+@color-info-hover:        darken(@color-info, 10%);
+@color-warning-hover:     darken(@color-warning, 10%);
+@color-success-hover:     darken(@color-success, 10%);
+@color-danger-hover:      darken(@color-danger, 10%);
+
+@color-venus-hover:       darken(@color-venus, 10%);
+@color-adonis-hover:      darken(@color-adonis, 10%);
+
+@color-muted-hover:       darken(@text-muted, 10%);
+@color-dark-grey-hover:   darken(#999999, 10%);
+
+@color-red-hover:               darken(@color-red, 10%);
+@color-green-hover:             darken(@color-green, 10%);
+@color-blue-hover:              darken(@color-blue, 10%);
+@color-yellow-hover:            darken(@color-yellow, 10%);
+@color-pink-hover:              darken(@color-pink, 10%);
+@color-brown-hover:             darken(@color-brown, 10%);
+@color-orange-hover:            darken(@color-orange, 10%);
+@color-purple-hover:            darken(@color-purple, 10%);
+
+
+//---------------//
+//    SPACING    //
+//---------------//
+
+@space-big: 30px;
+@space-medium: 20px;
+@space-small: 10px;
+
+
+//-------------------//
+//    GRID SYSTEM    //
+//-------------------//
+
+@columns: 24;                           // number of columns
+@responsive: false;                     // generate responsive columns?
+@column-padding-vertical: 0;            // vertical padding for each column
+@column-padding-horizontal: 20px;       // horizontal padding for each column
+@column-margin-vertical: 0px;           // vertical margin for each column
+@column-margin-horizontal: 0px;         // horizontal margin for each column
+// thresholds for screen sizes
+//@threshold-big: 1210px;
+//@threshold-medium: 810px;
+//@threshold-small: 410px;
+
+@brackpoint-mini: 320px;
+@brackpoint-small: 480px;
+@brackpoint-medium: 768px;
+@brackpoint-large: 1024px;
+@brackpoint-xlarge: 1200px;
+
+//@threshold-mini:  240px;
+//@threshold-small-n:  481px;
+//@threshold-medium-n:  768px;
+//@threshold-large-n:  1024px;
+//@threshold-xlarge:  1210px;
+// container sizes for each width size
+@container-big: 1200px;
+@container-medium: 800px;
+@container-small: 400px;
+
+//@container-full: 1200px;
+//@container-medium: 1014px;
+//@container-small: 100%;
+
+
+
+
+//---------------//
+//    BORDERS    //
+//---------------//
+
+@border-radius-base:        5px;
+@border-radius-large:       10px;
+@border-radius-small:       3px;
+@border-radius-circle:      1000px;
+//etc.
+.radius {
+  &-base {
+    border-radius: @border-radius-base;
+  }
+  &-large {
+    border-radius: @border-radius-large;
+  }
+  &-small {
+    border-radius: @border-radius-small;
+  }
+  &-circle {
+    border-radius: @border-radius-circle;
+  }
+}
+
+
+//--------------//
+//    ALERTS    //
+//--------------//
+
+@state-success-text:             #5da423;
+@state-success-bg:               #dff0d8;
+@state-success-border:           darken(spin(@state-success-bg, -10), 5%);
+
+@state-info-text:                #2ba6cb;
+@state-info-bg:                  #d9edf7;
+@state-info-border:              darken(spin(@state-info-bg, -10), 7%);
+
+@state-warning-text:             #8a6d3b;
+@state-warning-bg:               #fcf8e3;
+@state-warning-border:           darken(spin(@state-warning-bg, -10), 5%);
+
+@state-danger-text:              #c60f13;
+@state-danger-bg:                #f2dede;
+@state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
+
+@alert-padding:                  15px 30px 15px 15px;
+@alert-padding-right:            15px;
+@line-height-computed:           20px;
+@alert-border-radius:            4px;
+
+@alert-border-radius:             @border-radius-base;
+@alert-link-font-weight:          bold;
+
+@alert-success-bg:                @state-success-bg;
+@alert-success-text:              @state-success-text;
+@alert-success-border:            @state-success-border;
+
+@alert-info-bg:                   @state-info-bg;
+@alert-info-text:                 @state-info-text;
+@alert-info-border:               @state-info-border;
+
+@alert-warning-bg:                @state-warning-bg;
+@alert-warning-text:              @state-warning-text;
+@alert-warning-border:            @state-warning-border;
+
+@alert-danger-bg:                 @state-danger-bg;
+@alert-danger-text:               @state-danger-text;
+@alert-danger-border:             @state-danger-border;
+
+
+//------------------//
+//    TYPOGRAPHY    //
+//------------------//
+
+@font-size-base:                   14px;                           //       ~h5
+@font-size-large:                  ceil((@font-size-base * 1.25)); // ~18px ~h4
+@font-size-small:                  ceil((@font-size-base * 0.85)); // ~12px ~h6
+@font-size-xs:                     percentage(0.65);
+@font-size-sm:                     percentage(0.75);
+@font-size-md:                     percentage(0.85);
+
+@font-size-h1:                     floor((@font-size-base * 2.6)); // ~36px
+@font-size-h2:                     floor((@font-size-base * 2.15)); // ~30px
+@font-size-h3:                     ceil((@font-size-base * 1.7)); // ~24px
+@font-size-h4:                     ceil((@font-size-base * 1.25)); // ~18px
+@font-size-h5:                     @font-size-base;
+@font-size-h6:                     ceil((@font-size-base * 0.85)); // ~12px
+
+@font-padding-none:                0px;
+@font-margin-none:                 0px;
+
+@font-weight-normal:               500;
+
+@font-family-sans-serif:           'Roboto', sans-serif;
+@font-family-serif:                Georgia, "Times New Roman", Times, serif;
+@font-family-monospace:            Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-base:                 @font-family-sans-serif;
+
+@headings-line-height:             1.1;
+@line-height-base:                 1.618;
+
+//** Text muted color
+@text-muted:                       @gray-light;
+
+@small:                            1px;
+
+
+body {
+    font-family:                      @font-family-base;
+    font-size:                        @font-size-base;
+    line-height:                      @line-height-base;
+    margin:                           0px;
+}
+
+.animate (@animated: all 700ms ease) {
+  -webkit-transition: @animated;
+  -moz-transition: @animated;
+  -ms-transition: @animated;
+  -o-transition: @animated;
+  transition: @animated;
+}
+
+@grayscale:                         grayscale(100%);
+@saturate:                          saturate(3);
+@contrast:                          contrast(160%);
+@brightness:                        brightness(0.25);
+@blur:                              blur(3px);
+@invert:                            invert(100%);
+@sepia:                             sepia(100%);
+@huerotate:                         hue-rotate(180deg);
+@opacity:                           opacity(50%);
+
+.grayscale () {
+  -webkit-filter: @grayscale;
+  -moz-filter: @grayscale;
+  -o-filter: @grayscale;
+  filter: @grayscale;
+}
+.saturate () {
+  -webkit-filter: @saturate;
+  -moz-filter: @saturate;
+  -o-filter: @saturate;
+  filter: @saturate;
+}
+.contrast () {
+  -webkit-filter: @contrast;
+  -moz-filter: @contrast;
+  -o-filter: @contrast;
+  filter: @contrast;
+}
+.brightness () {
+  -webkit-filter: @brightness;
+  -moz-filter: @brightness;
+  -o-filter: @brightness;
+  filter: @brightness;
+}
+.blur () {
+  -webkit-filter: @blur;
+  -moz-filter: @blur;
+  -o-filter: @blur;
+  filter: @blur;
+}
+.invert () {
+  -webkit-filter: @invert;
+  -moz-filter: @invert;
+  -o-filter: @invert;
+  filter: @invert;
+}
+.sepia () {
+  -webkit-filter: @sepia;
+  -moz-filter: @sepia;
+  -o-filter: @sepia;
+  filter: @sepia;
+}
+.huerotate () {
+  -webkit-filter: @huerotate;
+  -moz-filter: @huerotate;
+  -o-filter: @huerotate;
+  filter: @huerotate;
+}
+.opacity () {
+  -webkit-filter: @opacity;
+  -moz-filter: @opacity;
+  -o-filter: @opacity;
+  filter: @opacity;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.clearfix {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.background-primary       {background-color: @color-primary !important;}
+.background-secondary     {background-color: @color-secondary !important;}
+.background-tertiary      {background-color: @color-tertiary !important;}
+.background-info          {background-color: @color-info !important;}
+.background-success       {background-color: @color-success !important;}
+.background-danger        {background-color: @color-danger !important;}
+.background-warning       {background-color: @color-warning !important;}
+
+.background-white         {background-color: @color-white !important;}
+.background-black         {background-color: @color-black !important;}
+
+.background-venus         {background-color: @color-venus !important;}
+.background-adonis        {background-color: @color-adonis !important;}
+
+.background-red           {background-color: @color-red !important;}
+.background-green         {background-color: @color-green !important;}
+.background-blue          {background-color: @color-blue !important;}
+.background-yellow        {background-color: @color-yellow !important;}
+.background-pink          {background-color: @color-pink !important;}
+.background-brown         {background-color: @color-brown !important;}
+.background-orange        {background-color: @color-orange !important;}
+.background-purple        {background-color: @color-purple !important;}
+
+
+.static {position: static !important;}
+.fixed {position: fixed !important;}
+.absolute {position: absolute !important;}
+.relative {position: relative !important;}
+
+.nomark,
+label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

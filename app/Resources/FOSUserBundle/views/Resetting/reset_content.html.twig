@@ -1,0 +1,53 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    <div class="login-main signup upsell">
+        <div class="section header-main-logo">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <i class="ff-flofitlogo"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section login">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <div class="row text-center">
+                            <span class="text-login">Set Your New Account Password</span>
+                            <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_form fos_user_resetting_reset">
+                                {{ form_widget(form) }}
+                                <div>
+                                    <input class="button" type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section main-footer">
+            <div class="container">
+                <footer>
+                    <div class="row block relative">
+                        <div class="block-left">
+                            <p><span>FLO FIT &copy; {{ "now"|date("Y") }}</span> Burn It Now Productions, Inc. FLO FIT and FLO RIDA trademarks, name, image, and likeness are owned by FLO RIDA and FLO FIT Holdings LLC, and are being used under license by Flo Life LLC. All rights reserved.</p>
+                        </div>
+                        <div class="block-right">
+                            <div class="navbar">
+                                <ul>
+                                    {{ footerLinksBlock() }}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block-center text-center">
+                            <a href="{{ path("landing_page") }}"><i class="ff-flofitlogo"></i></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+{% endblock %}

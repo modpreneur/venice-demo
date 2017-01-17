@@ -1,0 +1,7 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block bodyFull %}
+    <body class="{% block bodyFullReset %}{% endblock %}">
+        {% block fos_user_content %}{% endblock %}
+    </body>
+{% endblock %}

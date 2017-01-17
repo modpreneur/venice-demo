@@ -1,0 +1,234 @@
+.oveflow-hidden {
+    overflow: hidden;
+}
+.blur-effect {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -ms-filter: blur(5px);
+    -o-filter: blur(5px);
+    filter: blur(5px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='5');
+}
+.clearfix:before,
+.clearfix:after,
+.row:before,
+.row:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after,
+.row:after {
+    clear: both;
+}
+.col {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 10px;
+    width: 100%;
+}
+.col.col-1-2 {
+    width: 49%;
+}
+#wrap-buy-popup {
+    background-color: #262626;
+    background-color: rgba(38, 38, 38, 0.55);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+    overflow: auto;
+    display: none;
+    transition: all 400ms linear;
+    opacity: 0;
+}
+#wrap-buy-popup.show-pop {
+    display: block;
+}
+#wrap-buy-popup * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#wrap-buy-popup .full-browser {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+}
+#wrap-buy-popup .buy-popup {
+    transform: translateY(-20px);
+    width: 100%;
+    max-width: 960px;
+    margin: 5% auto;
+    z-index: 2;
+    background: #484d57;
+    background: -moz-linear-gradient(top, #484d57 0%, #484d57 4%, #484d57 4%, #ffffff 21%, #ffffff 100%);
+    background: -webkit-linear-gradient(top, #484d57 0%, #484d57 4%, #484d57 4%, #ffffff 21%, #ffffff 100%);
+    background: linear-gradient(to bottom, #484d57 0%, #484d57 4%, #484d57 4%, #ffffff 21%, #ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#484d57', endColorstr='#ffffff', GradientType=0);
+    position: relative;
+    padding: 40px 20px 90px;
+    box-shadow: 0 0 11.2px 4.8px rgba(50, 58, 69, 0.3);
+    transition: all 400ms linear;
+}
+#wrap-buy-popup .buy-popup .close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    padding: 20px;
+    height: 24px;
+    width: 24px;
+    margin: 0;
+    border: none;
+    background: none;
+    opacity: 0.65;
+    display: inline-block;
+}
+#wrap-buy-popup .buy-popup .close:hover {
+    opacity: 1;
+}
+#wrap-buy-popup .buy-popup .close:before,
+#wrap-buy-popup .buy-popup .close:after {
+    position: absolute;
+    left: 5px;
+    top: 18px;
+    content: ' ';
+    height: 2px;
+    width: 33px;
+    background-color: #fff;
+    opacity: 0.65;
+}
+#wrap-buy-popup .buy-popup .close:before {
+    transform: rotate(45deg);
+}
+#wrap-buy-popup .buy-popup .close:after {
+    transform: rotate(-45deg);
+}
+#wrap-buy-popup .buy-popup a {
+    text-decoration: none;
+}
+#wrap-buy-popup .buy-popup button {
+    outline: none;
+}
+#wrap-buy-popup .buy-popup h1 {
+    color: #304a59;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 35px auto;
+}
+#wrap-buy-popup .buy-popup h1.divider:after {
+    content: "";
+    display: block;
+    width: 130px;
+    height: 1px;
+    background-color: #484d57;
+}
+#wrap-buy-popup .buy-popup p {
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+}
+#wrap-buy-popup .buy-popup p.bold {
+    font-weight: 500;
+}
+#wrap-buy-popup .buy-popup p.smallest {
+    font-size: 12px;
+}
+#wrap-buy-popup .buy-popup p.grey {
+    color: #808080;
+}
+#wrap-buy-popup .buy-popup .payment-list .left {
+    text-align: left;
+    width: 49%;
+}
+#wrap-buy-popup .buy-popup .payment-list .right {
+    text-align: right;
+    width: 49%;
+}
+#wrap-buy-popup .buy-popup .payment-list p {
+    padding-top: 0;
+    margin-top: 0;
+}
+#wrap-buy-popup .buy-popup ul {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    margin: 0 auto;
+}
+#wrap-buy-popup .buy-popup ul li {
+    color: #444;
+    font-size: 14px;
+    font-weight: 400;
+}
+#wrap-buy-popup .buy-popup ul li.bold {
+    font-weight: 700;
+}
+#wrap-buy-popup .buy-popup .buttons {
+    margin-top: 35px;
+}
+#wrap-buy-popup .buy-popup .button {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: 5px;
+    text-align: center;
+    padding: 12px 10px;
+    margin-top: 10px;
+    line-height: 1;
+}
+#wrap-buy-popup .buy-popup .button-prims {
+    background: #ff6e02;
+    background: -moz-linear-gradient(top, #ff6e02 0%, #ffcc2f 0%, #ffee35 82%, #ffee35 100%);
+    background: -webkit-linear-gradient(top, #ff6e02 0%, #ffcc2f 0%, #ffee35 82%, #ffee35 100%);
+    background: linear-gradient(to bottom, #ff6e02 0%, #ffcc2f 0%, #ffee35 82%, #ffee35 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6e02', endColorstr='#ffee35', GradientType=0);
+    border: 1px solid #dadada;
+    color: #333;
+    font-size: 18px;
+}
+#wrap-buy-popup .buy-popup .button-prims:hover {
+    background: #ffee35;
+    background: -moz-linear-gradient(top, #ffee35 0%, #ffee35 18%, #ffcc2f 100%, #ff6e02 100%, #ffcc2f 100%);
+    background: -webkit-linear-gradient(top, #ffee35 0%, #ffee35 18%, #ffcc2f 100%, #ff6e02 100%, #ffcc2f 100%);
+    background: linear-gradient(to bottom, #ffee35 0%, #ffee35 18%, #ffcc2f 100%, #ff6e02 100%, #ffcc2f 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee35', endColorstr='#ffcc2f', GradientType=0);
+}
+#wrap-buy-popup .buy-popup .button-secs {
+    background-color: #304a59;
+    border: 1px solid #304a59;
+    color: white;
+}
+#wrap-buy-popup .buy-popup .button-secs:hover {
+    background-color: #16AB2A;
+    border-color: #16AB2A;
+}
+#wrap-buy-popup .buy-popup .button-cancel {
+    background-color: transparent;
+    border: 1px solid #444;
+    color: #444;
+}
+#wrap-buy-popup .buy-popup .button-cancel:hover {
+    background-color: #c91b30;
+    border-color: #c91b30;
+    color: #ffffff;
+}
+@media (max-width: 767px) {
+    #wrap-buy-popup .col.col-1-2 {
+        width: 100%;
+    }
+}
+@media (max-width: 479px) {
+    #wrap-buy-popup .buy-popup {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

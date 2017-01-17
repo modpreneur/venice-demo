@@ -36,3 +36,43 @@ parameters:
     client_identification: "client_3"
 
     elasticsearch_host: "elasticsearch:9200"
+
+
+    social_stream_reload_min_time: 300
+    blog_number_of_posts_displayed: 5
+    downloads_number_of_product_displayed: 5
+    social_stream_number_of_posts_downloaded: 4
+    number_of_blog_posts: 2
+    number_of_product_posts: 4
+
+
+    forum_url: 'http://community.flofit.com'
+    forum_read_all_url: 'http://community.flofit.com/messages/inbox'
+    forum_read_conversation_url: 'http://community.flofit.com/messages/'
+    forum_send_new_message: http://community.flofit.com/messages/add/
+
+    messages_url: http://localhost:8888/FlofitCommunity/index.php?p=/messages
+
+    url_mike_saffaie_facebook: https://www.facebook.com/pages/Mike-Saffaie/359627120721911
+    url_mike_saffaie_twitter: https://twitter.com/califitmike
+    url_mike_saffaie_instagram: https://instagram.com/califitmike
+    url_mike_saffaie_youtube: https://www.youtube.com/channel/UC8ZTr6n7uWVVGWUomJHSaKA
+
+    url_flo_fit_facebook: https://www.facebook.com/GetFLOFIT
+    url_flo_fit_twitter: https://twitter.com/getflofit
+    url_flo_fit_instagram: https://instagram.com/getflofit
+    url_flo_fit_youtube: https://www.youtube.com/channel/UCqjt-Tod1JMGgsjVevl4Lwg
+
+    url_flo_rida_facebook: https://www.facebook.com/officialflo
+    url_flo_rida_twitter: https://twitter.com/official_flo
+    url_flo_rida_instagram: https://instagram.com/official_flo
+    url_flo_rida_youtube: https://www.youtube.com/channel/UCBRFlde39a2U4nAkmGqJwAQ
+
+    url_natalie_larose_facebook: https://www.facebook.com/NatalieLaRoseMusic
+    url_natalie_larose_twitter: https://twitter.com/natalielarose
+    url_natalie_larose_instagram: https://instagram.com/natalielarose
+    url_natalie_larose_youtube: https://www.youtube.com/channel/UCL1TElUgyJX9PRacUphrSsA
+
+    connector_service_name: flofit.dev_env_connector
+    forum_service_name:     flofit.dev_env_forum_connector
+    cookie_domain: "localhost"

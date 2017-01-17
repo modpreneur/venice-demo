@@ -1,0 +1,19 @@
+<div id="profileHeaderUserBlock" class="display-inline-block">
+    <a href="{{ path("core_front_user_profile_edit") }}" class="header-profile-link">
+        <div class="rounded">
+            {# @todo
+            {% if user.profilePhoto is not null and user.profilePhoto.imageFile != "" %}
+                <img src="{{ user.profilePhoto.croopedPhotoUrl }}" alt="profile image"/>
+            {% else %}
+                <img src="{{ asset('Resources/public/images/site/default-profile-photo.png') }}" alt="profile image"/>
+            {% endif %}
+            #}
+
+            <img src="{{ asset('Resources/public/images/site/default-profile-photo.png') }}" alt="profile image"/>
+        </div>
+        <span class="header-nick">
+            {{ user.firstName }}
+            <span class="vertical-hr"></span>
+        </span>
+    </a>
+</div>

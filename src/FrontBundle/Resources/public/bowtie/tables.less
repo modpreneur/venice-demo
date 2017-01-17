@@ -1,0 +1,422 @@
+.animate (@animated: all 700ms ease) {
+  -webkit-transition: @animated;
+  -moz-transition: @animated;
+  -ms-transition: @animated;
+  -o-transition: @animated;
+  transition: @animated;
+}
+
+table {
+  background: @color-white;
+  margin-bottom: 1.25rem;
+  border: solid 1px @color-grey ;
+  caption {
+    background: transparent;
+    color: #222222 ;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  thead {
+    background: whitesmoke;
+    tr th, tr td {
+      padding: 0.5rem 0.625rem 0.625rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: #222222 ;
+    }
+  }
+  tfoot {
+    background: whitesmoke;
+    tr th, tr td {
+      padding: 0.5rem 0.625rem 0.625rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: #222222 ;
+    }
+  }
+  tr th, tr td {
+    padding: 0.5625rem 0.625rem;
+    font-size: 0.875rem;
+    color: #222222 ;
+    text-align: left;
+  }
+  tr.even, tr.alt, tr:nth-of-type(even) {
+    background: #f9f9f9 ;
+  }
+  tr:hover {
+    background: @color-grey;
+  }
+  thead tr th, tfoot tr th, tfoot tr td, tbody tr th, tbody tr td, tr td {
+    display: table-cell;
+    line-height: 1.125rem;
+  }
+}
+
+
+@media only screen and (max-width: 809px) {
+
+  .table-on-height table,
+  .table-on-height thead,
+  .table-on-height tbody,
+  .table-on-height th,
+  .table-on-height td,
+  .table-on-height tr {
+    display: block;
+  }
+  .table-on-height thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .table-on-height tr {
+    border: 1px solid #ccc;
+  }
+  .table-on-height td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+    &:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+    }
+    &:before {
+      content: attr(data-title);
+    }
+  }
+}
+
+
+@media only screen and (max-width: 809px) {
+  .table-scroll {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      position: relative;
+    }
+
+    th {
+      text-align: center;
+      display: block;
+      border-bottom: 0;
+      border-left: 0;
+    }
+
+    thead {
+      display: block;
+      float: left;
+
+      tr {
+        display: block;
+      }
+    }
+
+    tbody {
+      display: block;
+      width: auto;
+      position: relative;
+      overflow-x: auto;
+      white-space: nowrap;
+
+      tr {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+
+    td {
+      display: block;
+      min-height: 1.25em;
+      text-align: left;
+      border-left: 0;
+      border-right: 0;
+      border-bottom: 0;
+    }
+  }
+
+  .table-scroll th,
+  .table-scroll td {
+    margin: 0;
+    vertical-align: top;
+  }
+
+  .table-scroll th:last-child,
+  .table-scroll td:last-child {
+    border-bottom: 1px solid #babcbf;
+  }
+
+  .table-scroll-full {
+    overflow: scroll;
+  }
+}
+
+
+
+
+.responsive-table {
+  width: 100%;
+
+  thead {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+
+    th {
+      text-align: center;
+
+      &:first-of-type {
+        text-align: left;
+      }
+    }
+  }
+
+  caption {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  tbody {
+    tr {
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    td {
+      text-align: right;
+    }
+
+    td[data-type=currency] {
+      text-align: right;
+    }
+
+    td[data-title] {
+      &:before {
+        content: attr(data-title);
+        float: left;
+      }
+    }
+  }
+}
+
+.responsive-table tbody,
+.responsive-table tr,
+.responsive-table th,
+.responsive-table td {
+  display: block;
+  padding: 0;
+  text-align: left;
+  white-space: normal;
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+
+@media (min-width: 810px) {
+  .responsive-table tbody td {
+    text-align: center;
+    &[data-title]:before {
+      content: none;
+    }
+  }
+  .responsive-table thead {
+    position: relative;
+    clip: auto;
+    height: auto;
+    width: auto;
+    overflow: auto;
+  }
+  .responsive-table tr {
+    display: table-row;
+  }
+  .responsive-table th, .responsive-table td {
+    display: table-cell;
+    padding: 10px;
+  }
+  .responsive-table tbody {
+    display: table-row-group;
+    tr {
+      display: table-row;
+      border-width: 1px;
+    }
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .responsive-table td {
+    display:none;
+  }
+
+  th:focus ~ td,
+  td:focus ~ td {
+    display: block;
+    border-bottom: solid 1px #dddddd;
+  }
+}
+
+
+//EXAMPLES
+//table-on-height:
+/* MUST HAVE data-title="xxx"
+<div class="table-on-height">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Test1
+        </th>
+        <th>
+          Test2
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-title="Test1">
+          test11
+        </td>
+        <td data-title="Test2">
+          test11
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+*/
+
+//table-scroll
+/*
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Test1
+        </th>
+        <th>
+          Test2
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-title="Test1">
+          test11
+        </td>
+        <td data-title="Test2">
+          test22
+        </td>
+      </tr>
+      <tr>
+        <td data-title="Test1">
+          test11
+        </td>
+        <td data-title="Test2">
+          test22
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+*/
+
+//table-scroll-full
+/*
+<div class="table-scroll-full">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Test1
+        </th>
+        <th>
+          Test2
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          test11
+        </td>
+        <td>
+          test12
+        </td>
+      </tr>
+      <tr>
+        <td>
+          test21
+        </td>
+        <td>
+          test22
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+*/
+
+//Dropdown
+/*
+<table class="responsive-table">
+  <caption>
+    HEAD
+  </caption>
+  <thead>
+    <tr>
+      <th>
+        Test1
+      </th>
+      <th>
+        Test2
+      </th>
+      <th>
+        Test3
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th tabindex="0" onclick="action">
+        TEST1
+      </th>
+      <td data-title="xxx1">
+        test11
+      </td>
+      <td data-title="xxx2">
+        test12
+      </td>
+    </tr>
+    <tr>
+      <th tabindex="0" onclick="action">
+        TEST2
+      </th>
+      <td data-title="xxx3">
+        test21
+      </td>
+      <td data-title="xxx4">
+        test22
+      </td>
+    </tr>
+  </tbody>
+</table>
+*/

@@ -1,0 +1,146 @@
+// MODALS.less
+@import "variables";
+
+.modal-dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: fade(@color-black, 80%);
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+  overflow: auto;
+}
+
+.modal-dialog:target {
+  opacity:1;
+  pointer-events: auto;
+}
+
+.modal-dialog > div {
+  width: 60%;
+  position: relative;
+  margin: 5% auto;
+  padding: 30px 20px 20px 20px;
+  border-radius: 10px;
+  z-index: 10000;
+  overflow-x: hidden;
+  max-height: 70%;
+  /*background: #fff;*/
+  /*background: -moz-linear-gradient(23deg, #fff, #999);*/
+  background:
+    radial-gradient(
+      circle at top left,
+      #d6d6d6,
+      #fff
+    );
+  background:
+    -moz-radial-gradient(
+      circle at top left,
+      #d6d6d6,
+      #fff
+    );
+  background:
+    -webkit-radial-gradient(
+      circle at top left,
+      #d6d6d6,
+      #fff
+    );
+  background:
+    -o-radial-gradient(
+      circle at top left,
+      #d6d6d6,
+      #fff
+    );
+}
+
+.modal-a {
+  color: @color-black;
+}
+
+.modal-p {
+  color: #757575;
+}
+
+.people-item .people-thumb {
+  max-width: 300px !important;
+}
+
+a .modal-a {
+  cursor: pointer;
+}
+
+.full-width-close {
+  z-index: 9999;
+  padding: 100%;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: fixed;
+}
+
+@media (max-width: 809px) {
+  .small-hidden {
+    display: none;
+  }
+  .modal-a {
+    display: none;
+  }
+}
+
+@media (min-width: 810px) {
+  .small-visited {
+    display: none;
+  }
+}
+
+/*
+EXAMPLE:
+
+    <div class="people-item">
+        <div class="row">
+            <div class="span-12">
+                <p class="name">
+                    <a href="#Test_info" class="modal-a">
+                        Name
+                    </a>
+
+                <!--MOBILE-->
+                <div class="row small-visited">
+                    <div class="span-12">
+                        <p>
+                            text mobile
+                        </p>
+                    </div>
+                </div>
+                <!--END MOBILE-->
+
+                <!--DESKTOP-->
+                <div id="Test_info" class="modal-dialog small-hidden">
+                    <a href="#close" title="Close" class="full-width-close"></a>
+                    <div>
+                        <div class="row">
+                            <div class="span-12">
+                                <h2>
+                                    Name
+                                </h2>
+                                <p>
+                                    text desktop modal
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--END DESKTOP-->
+            </div>
+        </div>
+    </div>
+
+*/

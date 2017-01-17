@@ -1,0 +1,117 @@
+.animate (@animated: all 700ms ease) {
+  -webkit-transition: @animated;
+  -moz-transition: @animated;
+  -ms-transition: @animated;
+  -o-transition: @animated;
+  transition: @animated;
+}
+
+.dropdown-main input[type=checkbox]{
+  display: none;
+}
+
+.dropdown-main {
+  position: relative;
+  display: initial;
+}
+
+.dropdown-main input[type=checkbox]:checked ~ #dropdown{
+  display: block;
+  top: 30px;
+  opacity: 1;
+  visibility: visible;
+  .animate();
+}
+
+.dropdown-main ul {
+  background-color: @color-white;
+  box-shadow: rgba(0, 0, 0, 0.298039) 0px 4px 13px 0px;
+  margin: 0px 0 0 0;
+  padding:0;
+  position: absolute;
+  display: block;
+  top: -100px;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+  text-align: left;
+  min-width: 150px;
+  border-radius: 3px;
+  border: none;
+  .animate();
+}
+
+.dropdown-main li {
+  float: none;
+  margin: 0;
+  padding: 0;
+  color: @color-tertiary;
+  list-style: none;
+  .animate();
+}
+
+.dropdown-main li:hover {
+  cursor: pointer;
+  display: block;
+  background: @color-tertiary;
+  text-decoration: none;
+  .animate();
+}
+
+.dropdown-main li:hover a,
+.dropdown-main li:focus a {
+  text-decoration: none;
+  color: @color-white;
+  .animate();
+}
+
+.dropdown-main li a {
+  padding: 6px 10px;
+  color: @color-tertiary;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+  border-bottom: rgb(242, 242, 242) solid 1px;
+
+  .animate();
+  &:hover {
+    color: @color-white;
+  }
+}
+
+.drop {
+  .clearfix();
+}
+
+.show-drop {
+  cursor: pointer;
+}
+
+.dropdown-main ul li:last-of-type a {
+  border-bottom: none;
+}
+
+//EXAMPLE
+/*
+<div class="dropdown-main">
+    <label for="show-drop" class="show-drop">
+        DropDown
+    </label>
+    <input type="checkbox" id="show-drop" role="button">
+    <ul id="dropdown" class="drop">
+        <li>
+            <a href="">drop1</a>
+        </li>
+        <li>
+            <a href="">drop2</a>
+        </li>
+        <li>
+            <a href="">drop3</a>
+        </li>
+        <li>
+            <a href="">drop4</a>
+        </li>
+    </ul>
+</div>
+*/

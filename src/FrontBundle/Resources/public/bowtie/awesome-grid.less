@@ -1,0 +1,456 @@
+/*
+    GRID.less -> grid system, row, span, div
+    VARIABLES:
+
+    @columns
+    @responsive
+    @column-padding-vertical
+    @column-padding-horizontal
+    @column-margin-vertical
+    @column-margin-horizontal
+    @threshold-big
+    @threshold-medium
+    @threshold-small
+    @container-big
+    @container-medium
+    @container-small
+*/
+
+@import "variables";
+
+// Clearfix
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+.clearfix {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/* !!!! MOST IMPORTANT !!!! */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.side-bar {
+  margin-bottom: -50000px;
+  padding-bottom: 50000px;
+  position: fixed;
+}
+
+/* CONTAINERS */
+.container-fixed() {
+  margin-right: auto;
+  margin-left: auto;
+  &:extend(.clearfix all);
+}
+
+.container {
+  .container-fixed();
+//  overflow: hidden;
+}
+
+/*FULL WIDTH CONTAINER*/
+.container-fluid {
+  .container-fixed();
+  width: 100%;
+}
+
+/* ROW */
+.row {
+  width: 100%;
+  &:extend(.clearfix all);
+}
+
+
+/* SPANS */
+.span {
+  .display-block;
+  .relative;
+  padding: @column-padding-vertical @column-padding-horizontal;
+  margin: @column-margin-vertical @column-margin-horizontal;
+  min-height: 1px;
+  //    border: 1px solid red;
+}
+
+.span-none-padding {
+  .display-block;
+  .relative;
+  padding: 0;
+  margin: @column-margin-vertical @column-margin-horizontal;
+  min-height: 1px;
+}
+
+// NON RESPONSIVE LAYOUT
+.grid-generate-columns-nonresponsive(@number-of-columns) when (@responsive = false) {
+  .grid-generate-columns(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+    .grid-generate-columns(@number-of-columns; @size - 1);
+
+    .span-@{size} {
+      .span;
+      .pull-left;
+      width: (100% / @number-of-columns) * @size;
+    }
+    .span-none-padding-@{size} {
+      .span-none-padding;
+      .pull-left;
+      width: (100% / @number-of-columns) * @size;
+    }
+  }
+
+  .grid-generate-offset(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+    .grid-generate-offset(@number-of-columns; @size - 1);
+
+    .offset-@{size} {
+      margin-left: (100% / @number-of-columns) * @size;
+    }
+  }
+
+  .container {
+    width: @container-big;
+  }
+  .section {
+      margin: 0 auto;
+      min-width: @container-big;
+  }
+
+  .grid-generate-columns(@number-of-columns);
+  .grid-generate-offset(@number-of-columns);
+}
+
+// RESPONSIVE layout
+.grid-generate-columns-responsive(@number-of-columns) when (@responsive = true) {
+  .grid-generate-columns(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+    .grid-generate-columns(@number-of-columns; @size - 1);
+
+    // small span keep everywhere, dont use media query
+    .span-mini-@{size} {
+      .span;
+      .pull-left;
+      width: (100% / @number-of-columns) * @size;
+    }
+    .span-none-padding-mini-@{size} {
+      .span-none-padding;
+      .pull-left;
+      width: (100% / @number-of-columns) * @size;
+    }
+
+    .span-small-@{size} {
+      .span;
+    }
+    .span-none-padding-small-@{size} {
+      .span-none-padding;
+    }
+
+    .span-medium-@{size} {
+      .span;
+    }
+    .span-none-padding-medium-@{size} {
+      .span-none-padding;
+    }
+
+    .span-large-@{size} {
+      .span;
+    }
+    .span-none-padding-large-@{size} {
+      .span-none-padding;
+    }
+
+    .span-xlarge-@{size} {
+      .span;
+    }
+    .span-none-padding-xlarge-@{size} {
+      .span-none-padding;
+    }
+
+  }
+
+  // offsets
+  .offset-mini-0 {
+    margin-left: 0;
+  }
+
+  .grid-generate-offsets(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+    .grid-generate-offsets(@number-of-columns; @size - 1);
+
+    // offsets
+    .offset-mini-@{size} {
+      margin-left: (100% / @number-of-columns) * @size;
+    }
+  }
+
+  .grid-generate-columns(@number-of-columns);
+  .grid-generate-offsets(@number-of-columns);
+
+  @media (min-width: @brackpoint-small) {
+    .offset-small-0 {
+      margin-left: 0;
+    }
+
+    .grid-generate-small-spans(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+      .grid-generate-small-spans(@number-of-columns; @size - 1);
+      // spans
+      .span-small-@{size} {
+        .pull-left;
+        width: (100% / @number-of-columns) * @size;
+      }
+      .span-none-padding-small-@{size} {
+        .pull-left;
+        width: (100% / @number-of-columns) * @size;
+      }
+
+      .offset-small-@{size} {
+        margin-left: (100% / @number-of-columns) * @size;
+      }
+    }
+    .grid-generate-small-spans(@number-of-columns);
+  }
+
+  @media (min-width: @brackpoint-medium) {
+    .offset-medium-0 {
+      margin-left: 0;
+    }
+
+    .grid-generate-medium-spans(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+      .grid-generate-medium-spans(@number-of-columns; @size - 1);
+      // spans
+      .span-medium-@{size} {
+        .pull-left;
+        width: (100% / @number-of-columns) * @size;
+      }
+      .span-none-padding-medium-@{size} {
+        .pull-left;
+        width: (100% / @number-of-columns) * @size;
+      }
+
+      .offset-medium-@{size} {
+        margin-left: (100% / @number-of-columns) * @size;
+      }
+    }
+    .grid-generate-medium-spans(@number-of-columns);
+  }
+
+  @media (min-width: @brackpoint-large) {
+    .offset-large-0 {
+      margin-left: 0;
+    }
+
+    .grid-generate-large-spans(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+      .grid-generate-large-spans(@number-of-columns; @size - 1);
+      // spans
+      .span-large-@{size} {
+        .pull-left;
+        width: (100% / @number-of-columns) * @size;
+      }
+      .span-none-padding-large-@{size} {
+        .pull-left;
+        width: (100% / @number-of-columns) * @size;
+      }
+
+      .offset-large-@{size} {
+        margin-left: (100% / @number-of-columns) * @size;
+      }
+    }
+    .grid-generate-large-spans(@number-of-columns);
+  }
+
+  @media (min-width: @brackpoint-xlarge) {
+    .offset-large-0 {
+      margin-left: 0;
+    }
+
+    .grid-generate-xlarge-spans(@number-of-columns; @size: @number-of-columns) when (@size > 0) {
+      .grid-generate-xlarge-spans(@number-of-columns; @size - 1);
+      // spans
+      .span-xlarge-@{size} {
+        .pull-left;
+        width: (100% / @number-of-columns) * @size;
+      }
+      .span-none-padding-xlarge-@{size} {
+        .pull-left;
+        width: (100% / @number-of-columns) * @size;
+      }
+
+      .offset-xlarge-@{size} {
+        margin-left: (100% / @number-of-columns) * @size;
+      }
+    }
+    .grid-generate-xlarge-spans(@number-of-columns);
+  }
+
+  // container
+  .container {
+    @media (min-width: @brackpoint-mini) {
+      width: 100%;
+    }
+    @media (min-width: @brackpoint-small) {
+      width: 100%;
+    }
+    @media (min-width: @brackpoint-medium) {
+      width: 100%;
+    }
+    @media (min-width: @brackpoint-large) {
+      width: 100%;
+    }
+    @media (min-width: @brackpoint-xlarge) {
+      max-width: @brackpoint-xlarge;
+    }
+  }
+}
+
+// kick the generator
+.grid-generate-columns-responsive(@columns);
+.grid-generate-columns-nonresponsive(@columns);
+
+// block align
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}
+
+// block display
+.display-block {
+  display: block !important;
+}
+.display-inline {
+  display: inline !important;
+}
+.display-inline-block {
+  display: inline-block !important;
+}
+.display-none {
+  display: none !important;
+}
+
+// position
+.relative {
+  position: relative !important;
+}
+.absolute {
+  position: absolute !important;
+}
+
+@media (min-width: @brackpoint-mini) {
+  .display-none-mini {
+    display: none !important;
+  }
+  .display-inline-block-mini {
+    display: inline-block !important;
+  }
+  .display-inline-mini {
+    display: inline !important;
+  }
+  .display-block-mini {
+    display: block !important;
+  }
+}
+@media (min-width: @brackpoint-small) {
+  .display-none-small {
+    display: none !important;
+  }
+  .display-inline-block-small {
+    display: inline-block !important;
+  }
+  .display-inline-small {
+    display: inline !important;
+  }
+  .display-block-small {
+    display: block !important;
+  }
+}
+@media (min-width: @brackpoint-medium) {
+  .display-none-medium {
+    display: none !important;
+  }
+  .display-inline-block-medium {
+    display: inline-block !important;
+  }
+  .display-inline-medium {
+    display: inline !important;
+  }
+  .display-block-medium {
+    display: block !important;
+  }
+}
+@media (min-width: @brackpoint-large) {
+  .display-none-large {
+    display: none !important;
+  }
+  .display-inline-block-large {
+    display: inline-block !important;
+  }
+  .display-inline-large {
+    display: inline !important;
+  }
+  .display-block-large {
+    display: block !important;
+  }
+}
+@media (min-width: @brackpoint-xlarge) {
+  .display-none-xlarge {
+    display: none !important;
+  }
+  .display-inline-block-xlarge {
+    display: inline-block !important;
+  }
+  .display-inline-xlarge {
+    display: inline !important;
+  }
+  .display-block-xlarge {
+    display: block !important;
+  }
+}
+
+.visible-large-block, .visible-large-inline, .visible-large-inline-block,
+.visible-xlarge-block, .visible-xlarge-inline, .visible-xlarge-inline-block,
+.visible-medium-block, .visible-medium-inline, .visible-medium-inline-block,
+.visible-small-block, .visible-small-inline, .visible-small-inline-block,
+.visible-xsmall-block, .visible-xsmall-inline, .visible-xsmall-inline-block {
+  display: none !important;
+}
+//XLARGE
+@media (min-width: @brackpoint-xlarge) {
+  .visible-large-block {
+    display: block !important;
+  }
+}
+//LARGE
+@media (min-width: @brackpoint-large) and (max-width: @brackpoint-xlarge) {
+  .visible-large-block {
+    display: block !important;
+  }
+}
+//MEDIUM
+@media (min-width: @brackpoint-medium) and (max-width: @brackpoint-large) {
+  .visible-large-block {
+    display: block !important;
+  }
+}
+//SMALL
+@media (min-width: @brackpoint-small) and (max-width: @brackpoint-medium) {
+  .visible-large-block {
+    display: block !important;
+  }
+}
+//MINI
+@media (max-width: @brackpoint-small) {
+  .visible-large-block {
+      display: block !important;
+  }
+}

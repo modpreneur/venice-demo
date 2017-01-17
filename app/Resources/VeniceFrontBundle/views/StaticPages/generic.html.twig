@@ -1,0 +1,20 @@
+{% extends "VeniceAppBundle::base.html.twig" %}
+
+
+{% block title %}
+    {{ page.title }}
+{% endblock %}
+
+
+{% block jumbotronClass %}jumbotron-dashboard{% endblock %}
+
+
+{% block content %}
+    <div class="row newsletters">
+        <div class="span-large-24">
+            <div class="static-page">
+                {{ page.content|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

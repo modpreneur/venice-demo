@@ -25,6 +25,10 @@ class User extends \Venice\AppBundle\Entity\User
      */
     protected $UserChild;
 
+
+    private $profilePhoto = null;
+
+
     /**
      * @return mixed
      */
@@ -39,5 +43,32 @@ class User extends \Venice\AppBundle\Entity\User
     public function setUserChild($UserChild)
     {
         $this->UserChild = $UserChild;
+    }
+
+
+    public function haveAccess($e)
+    {
+        return true;
+    }
+
+
+    /**
+     * @return null
+     */
+    public function getProfilePhoto()
+    {
+        return $this->profilePhoto;
+    }
+
+
+
+
+
+    /**
+     * @param bool $profilePhoto
+     */
+    public function setProfilePhoto( $profilePhoto)
+    {
+        $this->profilePhoto = $profilePhoto;
     }
 }

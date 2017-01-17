@@ -1,0 +1,20 @@
+<div id="profileJumbotronUserBlock">
+    <div class="row">
+        <div class="abs-center">
+            <div class="rounded">
+                {% if user.profilePhoto is not null and user.profilePhoto.imageFile != "" %}
+                    <img src="{{ user.profilePhoto.croopedPhotoUrl }}" alt="profile image"/>
+                {% else %}
+                    <img src="{{ asset('Resources/public/images/site/default-profile-photo.png') }}" alt="profile image"/>
+                {% endif %}
+            </div>
+            {% if displayName is defined and displayName == true or display is not defined %}
+            <div class="full-name">
+                <span class="first">{{ user.firstName }}</span>
+                <span class="last">{{ user.lastName }}</span>
+            </div>
+            {% endif %}
+            {% block messageButton %}{% endblock %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,151 @@
+@import "variables-default";
+.tags {
+  .clearfix();
+  list-style:none;
+
+  li {
+    float:left;
+    height:24px;
+    line-height:24px;
+    position:relative;
+  }
+
+  a {
+    .animate(200ms);
+    margin-left:20px;
+    padding:0 10px 0 12px;
+    background:#0089e0;
+    color:#fff;
+    text-decoration:none;
+    border-radius: 4px;
+
+    float:left;
+    height:24px;
+    line-height:24px;
+    position:relative;
+
+    &.disable-tag {
+      pointer-events: none;
+      cursor: default;
+    }
+
+    &:before {
+      content:"";
+      float:left;
+      position:absolute;
+      top:0;
+      left:-10px;
+      width:0;
+      height:0;
+      border-top-color: transparent;
+      border-right-color: #0089e0;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      border-style:solid;
+      border-width:12px 12px 12px 0;
+      .animate(200ms);
+    }
+
+    &:after {
+      content:"";
+      position:absolute;
+      top:10px;
+      left:0;
+      float:left;
+      width:4px;
+      height:4px;
+      -moz-border-radius:2px;
+      -webkit-border-radius:2px;
+      border-radius:2px;
+      background:#fff;
+    }
+
+    &:hover {
+      background:#555;
+      .animate(200ms);
+
+      &:before {
+        border-top-color: transparent;
+        border-right-color: #555;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        .animate(200ms);
+      }
+    }
+  }
+}
+
+.tags-primary a:before {
+  border-right-color: @color-primary;
+}
+.tags-primary a {
+  background: @color-primary;
+}
+//
+.tags-secondary a:before {
+  border-right-color: @color-secondary;
+}
+.tags-secondary a {
+  background: @color-secondary;
+}
+//
+.tags-tertiary a:before {
+  border-right-color: @color-tertiary;
+}
+.tags-tertiary a {
+  background: @color-tertiary;
+}
+//
+.tags-info a:before {
+  border-right-color: @color-info;
+}
+.tags-info a {
+  background: @color-info;
+}
+//
+.tags-warning a:before {
+  border-right-color: @color-warning;
+}
+.tags-warning a {
+  background: @color-warning;
+}
+//
+.tags-success a:before {
+  border-right-color: @color-success;
+}
+.tags-success a {
+  background: @color-success;
+}
+//
+.tags-danger a:before {
+  border-right-color: @color-danger;
+}
+.tags-danger a {
+  background: @color-danger;
+}
+//
+.tags-dark-grey a:before {
+  border-right-color: @color-dark-grey;
+}
+.tags-dark-grey a {
+  background: @color-dark-grey;
+}//
+.tags-black a:before {
+  border-right-color: @color-black;
+}
+.tags-black a {
+  background: @color-black;
+}//
+.tags-white a:before {
+  border-right-color: @color-white;
+}
+.tags-white a {
+  background: @color-white;
+}
+
+.tags-primary a:hover {
+  background: #555;
+}
+.tags-primary a:hover:before {
+  border-right-color: #555;
+}

@@ -1,0 +1,91 @@
+<header>
+
+        <a href="{{ path("landing_page") }}" class="color-white padding-left-20"><i class="ff-flofitlogo"></i></a>
+    {% if app.user != null %}
+        <input type="radio" id="main-navigation" class="display-none hide-full-main-menu" name="radio-header-navigation"/>
+
+        <label for="main-navigation" class="label-main-navigation hide-full-main-menu" id="label-main-navigation"><span>Navigation</span><i class="ff-arrow-down"></i></label>
+        <label for="main-navigation" class="close-main-menu hide-full-main-menu"></label>
+
+        <div id="full-menu" class="full-menu">
+            <div class="container">
+                <div class="double-menu">
+                    <div class="menus menus-left">
+                        <span class="full-menu-header">Main menu</span>
+                        {{ knp_menu_render(pageMenuHolder,
+                        {template: "VeniceFrontBundle:MenuTemplates:firstLevelMenu.html.twig",'depth':1}) }}
+                    </div>
+
+                    <div class="menus menus-right">
+                        <span class="full-menu-header">Products</span>
+                        <ul>
+                            <li class="main-header-menus"><a href="{{ path("downloads_dashboard") }}">FLO FIT</a></li>
+                            <li><a href="{{ path("downloads_dashboard") }}#workout-videos" class="hide-full-main-menu">Workout Videos</a></li>
+                            <li><a href="{{ path("downloads_dashboard") }}#books-and-training-calendars" class="hide-full-main-menu">Books & Training Calendars</a></li>
+
+                            <li class="main-header-menus"><a href="{{ path("downloads_product_flomersion") }}">Platinum Club</a></li>
+                            <li><a href="{{ path("downloads_product_flomersion") }}#videos">Videos</a></li>
+                            <li><a href="{{ path("downloads_product_flomersion") }}#workouts">Workouts</a></li>
+                            <li><a href="{{ path("downloads_product_flomersion") }}#meal-plans">Meal Plans</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="menus menus-social">
+                        <span class="full-menu-header">Social media</span>
+                        <div class="social-profile">
+                            <div class="social-name">Mike Saffaie</div>
+                            <div class="social-icons">
+                                <a href="{{ getValueFromParameter("url_mike_saffaie_facebook") }}" target="_blank" class="icon-fb"><i class="ff-fb"></i></a>
+                                <a href="{{ getValueFromParameter("url_mike_saffaie_twitter") }}" target="_blank" class="icon-tw"><i class="ff-twitter"></i></a>
+                                <a href="{{ getValueFromParameter("url_mike_saffaie_instagram") }}" target="_blank" class="icon-insta"><i class="ff-insta"></i></a>
+                                <a href="{{ getValueFromParameter("url_mike_saffaie_youtube") }}" target="_blank" class="icon-youtube"><i class="ff-youtube2"></i></a>
+                            </div>
+                        </div>
+                        <div class="social-profile">
+                            <div class="social-name">FLO FIT (official)</div>
+                            <div class="social-icons">
+                                <a href="{{ getValueFromParameter("url_flo_fit_facebook") }}" target="_blank" class="icon-fb"><i class="ff-fb"></i></a>
+                                <a href="{{ getValueFromParameter("url_flo_fit_twitter") }}" target="_blank" class="icon-tw"><i class="ff-twitter"></i></a>
+                                <a href="{{ getValueFromParameter("url_flo_fit_instagram") }}" target="_blank" class="icon-insta"><i class="ff-insta"></i></a>
+                                <a href="{{ getValueFromParameter("url_flo_fit_youtube") }}" target="_blank" class="icon-youtube"><i class="ff-youtube2"></i></a>
+                            </div>
+                        </div>
+                        <div class="social-profile">
+                            <div class="social-name">FLO RIDA</div>
+                            <div class="social-icons">
+                                <a href="{{ getValueFromParameter("url_flo_rida_facebook") }}" target="_blank" class="icon-fb"><i class="ff-fb"></i></a>
+                                <a href="{{ getValueFromParameter("url_flo_rida_twitter") }}" target="_blank" class="icon-tw"><i class="ff-twitter"></i></a>
+                                <a href="{{ getValueFromParameter("url_flo_rida_instagram") }}" target="_blank" class="icon-insta"><i class="ff-insta"></i></a>
+                                <a href="{{ getValueFromParameter("url_flo_rida_youtube") }}" target="_blank" class="icon-youtube"><i class="ff-youtube2"></i></a>
+                            </div>
+                        </div>
+                        <div class="social-profile">
+                            <div class="social-name">Natalie LaRose</div>
+                            <div class="social-icons">
+                                <a href="{{ getValueFromParameter("url_natalie_larose_facebook") }}" target="_blank" class="icon-fb"><i class="ff-fb"></i></a>
+                                <a href="{{ getValueFromParameter("url_natalie_larose_twitter") }}" target="_blank" class="icon-tw"><i class="ff-twitter"></i></a>
+                                <a href="{{ getValueFromParameter("url_natalie_larose_instagram") }}" target="_blank" class="icon-insta"><i class="ff-insta"></i></a>
+                                <a href="{{ getValueFromParameter("url_natalie_larose_youtube") }}" target="_blank" class="icon-youtube"><i class="ff-youtube2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="logout-header" href="{{ path("fos_user_security_logout") }}">Logout</a>
+
+        <div class="pull-right">
+            {#<a class="order-dvds" href="{{ path("core_front_staticpages_social_physical_product") }}">Order DVDs & Books</a>#}
+            {{ include("VeniceFrontBundle:Default:menuProfile.html.twig", {"user":app.user}, with_context=false) }}
+            <div class="notif-full-block">
+            {{ messagesBlock()|raw }} {# @todo raw ?  #}
+                {#{{ notificationBlock() }}#}
+            </div>
+        </div>
+
+        {{ include("VeniceFrontBundle:Default:mobileSidebarMenu.html.twig") }}
+    {% else %}
+        <label for="main-navigation" class="label-main-navigation hide-full-main-menu" id="label-main-navigation">&nbsp;</label>
+    {% endif %}
+</header>

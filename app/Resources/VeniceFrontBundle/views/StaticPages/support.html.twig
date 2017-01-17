@@ -1,0 +1,49 @@
+{% extends "VeniceAppBundle::base.html.twig" %}
+
+
+{% block title %}
+    Support
+{% endblock %}
+
+
+{% block content %}
+    <div class="row newsletters">
+        <div class="span-large-24">
+            <div class="block-title">
+                HELP & FAQ
+            </div>
+            <div class="static-page">
+                <h2>Contact for Help</h2>
+                <p>If you need help or assistance using one of the FLO&nbsp;FIT web sites or services, or if you have a billing, product order, or shipping related question, you can contact our support team at {% if app.user %}<a title="Support" class="link fancybox fancybox-margin" data-fancybox-type="iframe" href="//resultsink.desk.com/customer/widget/emails/new?ticket%5Bcustom_refpage%5D=my.flofit.com&interaction%5Bname%5D={{ app.user.firstName }}%20{{ app.user.lastName }}&interaction%5Bemail%5D={{ app.user.email }}&ticket%5Bcustom_refpage%5D=my.flofit.com&ticket%5Bcustom_user_id%5D={{ app.user.amemberId }}&ticket%5Bcustom_username%5D={{ app.user.username }}">help@flofit.com</a>{% else %}<a title="Support" class="link fancybox fancybox-margin" data-fancybox-type="iframe" href="//resultsink.desk.com/customer/widget/emails/new?ticket%5Bcustom_refpage%5D=my.flofit.com">help@flofit.com</a>{% endif %}. We answer most Help inquiries within 24 hours, from Monday to Friday.  Before contacting our
+                support team, we highly recommend reviewing the FAQ below that covers many common questions.</p>
+                <h2>Does FLO&nbsp;FIT really work?</h2>
+                <p>Yes!  FLO&nbsp;FIT is a comprehensive 8 week training program that combines cardio, strength, endurance, performance, flexibility and nutrition in a unique system that will provide immediate results. The workouts are structured around targeting all of the major muscle groups. It is a
+                total body workout for both men and women that will help you lose weight, add muscle, and dramatically improve your overall health and wellness.</p>
+                <h2>Is this the real deal? Does FLO RIDA use this workout?</h2>
+                <p>Yes! This FLO&nbsp;FIT program was inspired by FLO’s training with Mike Saffaie, a personal trainer in California that got FLO in the best shape of his life. FLO loved Mike’s training so much that he worked with Mike to produce a workout and diet program that all of his fans could
+                have access to. FLO wanted everyone to be able to train with Mike.</p>
+                <h2>What exercise equipment will I need?</h2>
+                <p>The ONLY equipment required is a pair of hand-held weights or dumbbells. They do not need to be heavy, as FLO RIDA himself only uses anywhere from 10 to 25lb weights. Hand weights or dumbbells can be purchased at any sports equipment retailer. RUSHFIT was specifically designed to
+                 minimize required exercise equipment, which keeps the costs down and allows you to get started right away.</p>
+                <h2>Who is FLO&nbsp;FIT for?</h2>
+                <p>FLO&nbsp;FIT is for men or women looking to lose weight, get in shape, add muscle, strengthen their body, raise their conditioning or for anyone that loves a good hard workout program. FLO&nbsp;FIT is also an excellent sport conditioning program that will improve your performance in any
+                athletic discipline such as basketball, soccer, football, hockey, or other common sports. FLO&nbsp;FIT was designed to accommodate everyone, regardless of their starting fitness level. The workouts offer clear instruction and all exercises include modifications that can be used if you're a beginner or out of shape. As you progress through the 8 Weeks you can gradually implement the harder exercises and increase your reps and dumbbell weight as you become stronger and more fit.</p>
+                <h2>I’ve never been in a gym or worked out before?  Is FLO&nbsp;FIT for me?</h2>
+                <p>YES. The exercises are designed with progressions across the 8 week calendar provided (beginner, intermediate, and advanced) and are explained and demonstrated clearly, including modified versions of challenging exercises. The short workout durations allow you to follow along at
+                whatever pace you are capable, increasing reps and speed over time.</p>
+                <h2>What do I eat? What can I eat while doing the FLO&nbsp;FIT program?</h2>
+                <p>There’s tons of nutrition and advice within the FLO&nbsp;FIT customer site, including videos, blog postings, and other content. We also highly recommend the FLO&nbsp;FIT Nutrition Guide and 8 Week Meal Plan.  These resources will establish guidelines for your eating habits and food choices
+                 for the 8 weeks of the Program and beyond. It will also address specific topics like pre and post-workout fueling, healthy meal options, and simple do's and don'ts for the best results. Nutrition is a critical component of any workout program, and the FLO&nbsp;FIT Nutrition Guide and Meal Plan covers everything you need to know.</p>
+                <h2>Will I lose weight?</h2>
+                <p>YES. Unless you're already extremely lean, EVERYONE will lose weight and reduce their body fat % on the FLO&nbsp;FIT program. Depending on your starting point the total amount of weight loss will vary. To maximize your weight loss at a healthy rate consult your physician, and refer to
+                 the FLO&nbsp;FIT Nutrition Guide and Meal Plan, and the other resources available on the FLO&nbsp;FIT web site. Avoid crash diets or food fads at all costs.</p>
+                <h2>What if some exercises are too hard?</h2>
+                <p>Each exercise is demonstrated by FLO RIDA’s trainer Mike Saffaie and modifications are provided so that if it is too hard or too easy you can adjust yourself. There are options at every step, and they are explained and demonstrated throughout the workouts. There’s also a
+                Foundations Move video included with FLO&nbsp;FIT that shows how to properly complete all of the basic exercise moves in the FLO&nbsp;FIT workouts.</p>
+                <h2>Can I Get FLO&nbsp;FIT Workout DVDS and Books Shipped To Me?</h2>
+                <p>Yes! Every FLO&nbsp;FIT workout and book is available instantly here in digital format, playable and readable from anywhere. However if you’d also like a physical copy of FLO&nbsp;FIT, just select the Books & DVDs only or Books & DVDs + Lifetime Digital Access from the ordering options at <a href="http://www.flofit.com" target="_blank">www.flofit.com</a>. We’ll ship you the physical product that includes all of the Workout Videos on high quality DVDs and regular printed books for the Workout Guide, Nutrition Guide, and Training Calendars.</p>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

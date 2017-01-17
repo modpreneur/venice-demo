@@ -1,0 +1,118 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block bodyFullReset %}login-page{% endblock %}
+{% block fos_user_content %}
+    <div class="login-main">
+        <div class="section header-main-logo">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <i class="ff-flofitlogo display-block"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section login">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <span class="text-login">Log in</span>
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            <label for="username">
+                                <i class="ff-sign-mail"></i>
+                                <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="enter your username or e-mail" required="required"/>
+                            </label>
+                            <label for="password">
+                                <i class="ff-lock"></i>
+                                <input type="password" id="password" name="_password" placeholder="enter your password" required="required"/>
+                            </label>
+                            {% if error %}
+                                <div class="invalid-credentials">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                            <div class="row">
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" class="display-none" />
+                                <label for="remember_me" class="remember"><span>{{ 'security.login.remember_me'|trans }}</span></label>
+                            </div>
+                            <div class="row">
+                                <span class="input-login">
+                                    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                                </span>
+                            </div>
+                            <div class="row">
+                                <span class="or">or</span>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <a href="{{ path("hwi_oauth_service_redirect",{"service":"facebook"}) }}" id="facebook-login-button" class="button-facebook"><i class="ff-facebook1"></i>Login with Facebook</a>
+                            <a href="{{ path("hwi_oauth_service_redirect",{"service":"google"}) }}" id="google-login-button" class="button-google"><i class="ico-google-plus"></i>Login with Google</a>
+                            {#<a href="" class="button-google"><i class="ico-google-plus"></i>Login with Google</a>#}
+                            {#<a href="{{ path("hwi_oauth_service_redirect",{"service":"twitter"}) }}" class="button-twitter"><i class="ff-twitter1"></i>Login with Twitter</a>#}
+                            {#{{ FacebookSubscribeServiceRender("loginButton") }}#}
+                            {#{{ TwitterSubscribeServiceRender("loginButton") }}#}
+                        </div>
+                        <div class="row">
+                            <a href="{{ path("fos_user_resetting_request") }}" class="forgot">Forgot username/password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section register">
+            <div class="container">
+                <div class="row">
+                    <div class="span-medium-7 florida-guarantee">
+                        <img src="{{ asset('Resources/public/images/site/florida-login.png') }}" alt=""/>
+                    </div>
+                    <div class="span-large-10">
+                        <span class="another">Don't have an account yet?</span>
+                        <span class="robot">Look at our offer and get your FLO FIT today!</span>
+                        <img src="{{ asset('Resources/public/images/site/login-arrow.png') }}" alt="" class="login-arrow"/>
+                    </div>
+                    <div class="span-large-7 text-center">
+                        <a class="button button-register" href="https://www.flofit.com">GET ACCESS NOW!</a>
+                        <img src="{{ asset('Resources/public/images/site/register-card.png') }}" alt="" class="cards" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section main-footer">
+        <div class="container">
+            <footer>
+                <div class="row block relative">
+                    <div class="block-left">
+                        <p><span>FLO FIT &copy; {{ "now"|date("Y") }}</span> Burn It Now Productions, Inc. FLO FIT and FLO RIDA trademarks, name, image, and likeness are owned by FLO RIDA and FLO FIT Holdings LLC, and are being used under license by Flo Life LLC. All rights reserved.</p>
+                    </div>
+                    <div class="block-right">
+                        <div class="navbar">
+                            <ul>
+                                {{ footerLinksBlock() }}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="block-center text-center">
+                        <a href="{{ path("landing_page") }}"><i class="ff-flofitlogo"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script>
+        function createCookie(name,value,days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime()+(days*24*60*60*1000));
+                expires = "; expires="+date.toGMTString();
+            }
+            document.cookie = name+"="+value+expires+"; path=/";
+        }
+
+        $(document).ready(function(){
+            createCookie("Vanilla","",-1);
+            createCookie("Vanilla-Volatile","",-1);
+        });
+    </script>
+{% endblock fos_user_content %}

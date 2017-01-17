@@ -1,0 +1,109 @@
+// buttons
+@import "variables-default";
+
+.button {
+    padding: @space-small @space-small * 2;
+    color: @color-white;
+    display: inline-block;
+    text-align: center;
+    background-color: @color-dark-grey;
+    border: solid 1px @color-dark-grey;
+  border-radius: 4px;
+  .animate();
+
+    &:hover {
+        background-color: @color-dark-grey-hover;
+      .animate();
+      cursor: pointer;
+    }
+}
+
+a.button:hover {
+    text-decoration: none;
+  .animate();
+}
+
+.button-mini {
+  padding: 0 4px;
+  line-height: 18px;
+  font-size: 12px;
+}
+.button-small {
+  padding: 1px 5px;
+}
+.button-medium {
+  font-size: 13px;
+  padding: 4px 9px;
+  line-height: 1.39;
+}
+.button-large {
+  line-height: 1.35;
+  padding: 7px 16px;
+}
+
+.button.disable {
+  opacity: 0.5;
+}
+
+.button-template(@bg-color, @bg-color-hover) {
+  background-color: @bg-color !important;
+  border: 1px solid @bg-color !important;
+  color: #ffffff !important;
+  font-weight: 600;
+
+    &:hover {
+      background-color: @bg-color-hover !important;
+      border: 1px solid @bg-color-hover !important;
+    }
+}
+
+.button-primary     {.button-template(@color-primary, @color-primary-hover);}
+.button-secondary   {.button-template(@color-secondary, @color-secondary-hover);}
+.button-tertiary    {.button-template(@color-tertiary, @color-tertiary-hover);}
+.button-success     {.button-template(@color-success, @color-success-hover);}
+.button-danger      {.button-template(@color-danger, @color-danger-hover);}
+.button-info        {.button-template(@color-info, @color-info-hover);}
+.button-warning     {.button-template(@color-warning, @color-warning-hover);}
+
+.button-black       {.button-template(@color-black, @color-white);}
+.button-white       {.button-template(@color-white, @color-black);}
+
+.button-adonis      {.button-template(@color-adonis, @color-adonis-hover);}
+.button-venus       {.button-template(@color-venus, @color-venus-hover);}
+
+.button-red         {.button-template(@color-red, @color-red-hover);}
+.button-green       {.button-template(@color-green, @color-green-hover);}
+.button-blue        {.button-template(@color-blue, @color-blue-hover);}
+.button-yellow      {.button-template(@color-yellow, @color-yellow-hover);}
+.button-pink        {.button-template(@color-pink, @color-pink-hover);}
+.button-brown       {.button-template(@color-brown, @color-brown-hover);}
+.button-orange      {.button-template(@color-orange, @color-orange-hover);}
+.button-purple      {.button-template(@color-purple, @color-purple-hover);}
+
+.button-group {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: solid 1px @color-dark-grey;
+  border-radius: 3px;
+  overflow: hidden;
+  .button {
+    float: left;
+  }
+}
+
+input[disabled="disabled"],
+input[disabled="disabled"]:hover {
+  background-color: #dbdbdb !important;
+  color: grey !important;
+  border: 1px solid #dbdbdb !important;
+  cursor: not-allowed !important;
+  font-weight: normal !important;
+}
+
+//EXAMPLES
+/*
+<a href="" class="button button-tertiary radius-small">
+  radius-small
+</a>
+*/

@@ -1,0 +1,126 @@
+/*
+    SPACING.less -> margin, padding
+    VARIABLES:
+
+    @space-big
+    @space-medium
+    @space-small
+*/
+
+@import "variables";
+
+.margin-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.spacing-generate() {
+    @types: padding, margin;
+    @sizes: none, small, medium, big;
+    @positions: left, bottom, right, top;
+
+    @big: @space-big;
+    @medium: @space-medium;
+    @small: @space-small;
+    @none: 0;
+
+    .type(@t) when (@t > 0) {
+        @type: extract(@types, @t);
+
+        .size(@s) when (@s > 0) {
+            @size: extract(@sizes, @s);
+
+            .position(@p) when (@p > 0) {
+                @position: extract(@positions, @p);
+
+                .@{type}-@{size}-@{position} {
+                    @{type}-@{position}: @@size;
+                }
+
+                .position(@p - 1);
+            }
+
+            .@{type}-@{size}-all {
+                @{type}: @@size !important;
+            }
+
+            .@{type}-@{size}-vertical {
+                @{type}-top: @@size !important;
+                @{type}-bottom: @@size !important;
+            }
+
+            .@{type}-@{size}-horizontal {
+                @{type}-left: @@size !important;
+                @{type}-right: @@size !important;
+            }
+
+            .position(length(@positions));
+            .size(@s - 1);
+        }
+
+        .size(length(@sizes));
+        .type(@t - 1);
+    }
+
+    .type(length(@types));
+}
+
+.spacing-generate();
+
+.iterations-size(100);
+.iterations-size(@n, @i: 5) when (@i =< @n) {
+  .margin-@{i} {
+    margin: (@i * 1px) !important;
+  }
+  .margin-top-@{i} {
+    margin-top: (@i * 1px) !important;
+  }
+  .margin-right-@{i} {
+    margin-right: (@i * 1px) !important;
+  }
+  .margin-bottom-@{i} {
+    margin-bottom: (@i * 1px) !important;
+  }
+  .margin-left-@{i} {
+    margin-left: (@i * 1px) !important;
+  }
+  .margin-vertical-@{i} {
+    margin-top: (@i * 1px) !important;
+    margin-bottom: (@i * 1px) !important;
+  }
+  .margin-horzontal-@{i} {
+    margin-left: (@i * 1px) !important;
+    margin-right: (@i * 1px) !important;
+  }
+  .margin-negative-@{i} {
+    margin: (-@i * 1px) !important;
+  }
+  .margin-negative-top-@{i} {
+    margin-top: (-@i * 1px) !important;
+  }
+  .margin-negative-right-@{i} {
+    margin-right: (-@i * 1px) !important;
+  }
+  .margin-negative-bottom-@{i} {
+    margin-bottom: (-@i * 1px) !important;
+  }
+  .margin-negative-left-@{i} {
+    margin-left: (-@i * 1px) !important;
+  }
+  .padding-@{i} {
+    padding: (@i * 1px) !important;
+  }
+  .padding-top-@{i} {
+    padding-top: (@i * 1px) !important;
+  }
+  .padding-right-@{i} {
+    padding-right: (@i * 1px) !important;
+  }
+  .padding-bottom-@{i} {
+    padding-bottom: (@i * 1px) !important;
+  }
+  .padding-left-@{i} {
+    padding-left: (@i * 1px) !important;
+  }
+  .iterations-size(@n, (@i + 5)) !important;
+}

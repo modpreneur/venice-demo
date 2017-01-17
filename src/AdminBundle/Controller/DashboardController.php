@@ -24,6 +24,7 @@ class DashboardController extends VeniceDashboardController
         return parent::indexAction($request);
     }
 
+
     /**
      * @Route("/admin/dashboard-extended")
      */

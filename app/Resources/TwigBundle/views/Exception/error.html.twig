@@ -1,0 +1,67 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="login-main error-page">
+        <div class="section login">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <a href="{{ path("landing_page") }}"><i class="ff-flofitlogo display-inline-block"></i></a>
+                    </div>
+                    <div class="span-mini-24">
+                        <div class="error-text">
+                            <i class="ff-exclamation-mark4"></i><span>error</span>
+                        </div>
+                    </div>
+                    <div class="span-mini-24">
+                        <a class="button button-primary" href="{{ path("landing_page") }}">homepage</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section register">
+            <div class="container">
+                <div class="row">
+                    <div class="span-medium-7 florida-guarantee">
+                        <img src="{{ asset('Resources/public/images/site/florida-login.png') }}" alt=""/>
+                    </div>
+                    <div class="span-large-10">
+                        <span class="another">Don't have an account yet?</span>
+                        <span class="robot">Look at our offer and get your FLO FIT today!</span>
+                        <img src="{{ asset('Resources/public/images/site/login-arrow.png') }}" alt="" class="login-arrow"/>
+                    </div>
+                    <div class="span-large-7 text-center">
+                        <a class="button button-register" href="">GET ACCESS NOW!</a>
+                        <img src="{{ asset('Resources/public/images/site/register-card.png') }}" alt="" class="cards" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section main-footer">
+        <div class="container">
+            <footer>
+                <div class="row block relative">
+                    <div class="block-left">
+                        <p><span>FLO FIT &copy; {{ "now"|date("Y") }}</span> Burn It Now Productions, Inc. FLO FIT and FLO RIDA trademarks, name, image, and likeness are owned by FLO RIDA and FLO FIT Holdings LLC, and are being used under license by Flo Life LLC. All rights reserved.</p>
+                    </div>
+                    <div class="block-right">
+                        <div class="navbar">
+                            <ul>
+                                <li><a href="{{ path('core_front_staticpages', {'handle': "about"}) }}">About</a></li>
+                                <li><a href="{{ path('core_front_staticpages', {'handle': "terms-of-use"}) }}">Terms of use</a></li>
+                                <li><a href="{{ path("core_front_staticpages", {'handle': "privacy-policy"}) }}">Privacy Policy</a></li>
+                                <li><a href="{{ path("core_front_staticpages", {'handle': "help-and-faq"})  }}">Help & FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="block-center text-center">
+                        <a href="{{ path("landing_page") }}"><i class="ff-flofitlogo"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+{% endblock fos_user_content %}

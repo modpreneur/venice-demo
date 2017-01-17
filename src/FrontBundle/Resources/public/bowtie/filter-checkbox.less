@@ -1,0 +1,137 @@
+// how much FILTERS ITEM
+@iterations: 30;
+
+.filter input:checked ~ .filter-items .filter-item-1,
+.filter input:checked ~ .filter-items .filter-item-2,
+.filter input:checked ~ .filter-items .filter-item-3,
+.filter input:checked ~ .filter-items .filter-item-4,
+.filter input:checked ~ .filter-items .filter-item-5,
+.filter input:checked ~ .filter-items .filter-item-6,
+.filter input:checked ~ .filter-items .filter-item-7,
+.filter input:checked ~ .filter-items .filter-item-8,
+.filter input:checked ~ .filter-items .filter-item-9,
+.filter input:checked ~ .filter-items .filter-item-10,
+.filter input:checked ~ .filter-items .filter-item-11,
+.filter input:checked ~ .filter-items .filter-item-12,
+.filter input:checked ~ .filter-items .filter-item-13,
+.filter input:checked ~ .filter-items .filter-item-14,
+.filter input:checked ~ .filter-items .filter-item-15,
+.filter input:checked ~ .filter-items .filter-item-16,
+.filter input:checked ~ .filter-items .filter-item-17,
+.filter input:checked ~ .filter-items .filter-item-18,
+.filter input:checked ~ .filter-items .filter-item-19,
+.filter input:checked ~ .filter-items .filter-item-20,
+.filter input:checked ~ .filter-items .filter-item-21,
+.filter input:checked ~ .filter-items .filter-item-22,
+.filter input:checked ~ .filter-items .filter-item-23,
+.filter input:checked ~ .filter-items .filter-item-24,
+.filter input:checked ~ .filter-items .filter-item-25,
+.filter input:checked ~ .filter-items .filter-item-26,
+.filter input:checked ~ .filter-items .filter-item-27,
+.filter input:checked ~ .filter-items .filter-item-28,
+.filter input:checked ~ .filter-items .filter-item-29,
+.filter input:checked ~ .filter-items .filter-item-30 {
+  display: none
+}
+.loopingClass (@index) when (@index > 0) {
+  &.filter-selector-@{index}:checked ~ .filter-items .filter-item-@{index} {
+    display: block;
+  }
+  .loopingClass(@index - 1);
+}
+.loopingClass (0) {}
+
+// main less
+.filter {
+  padding-bottom: 20px;
+  padding-left: 20px;
+  input {
+//    display: inline-block;
+  }
+  label {
+    cursor: pointer;
+    margin: 0 20px;
+  }
+  .filter-items {
+    li {
+      float: left;
+      &:last-child{
+        float: left;
+        margin-right: 0px;
+      }
+    }
+  }
+
+  input {
+    .loopingClass (@iterations);
+  }
+
+}
+
+//another less
+.filter .filter-items li {
+  margin-right: 20px;
+}
+
+//EXAMPLES
+
+/*
+            <div class="filter">
+                <input id="select-type-1" name="radio-set-1" type="checkbox" class="filter-selector-1" />
+                <label for="select-type-1" class="filter-label-1">
+                    FILTER 1
+                </label>
+
+                <input id="select-type-2" name="radio-set-2" type="checkbox" class="filter-selector-2"/>
+                <label for="select-type-2" class="filter-label-2">
+                    FILTER 2
+                </label>
+
+                <input id="select-type-3" name="radio-set-3" type="checkbox" class="filter-selector-3" />
+                <label for="select-type-3" class="filter-label-3">
+                    FILTER 3
+                </label>
+
+                <ul class="filter-items">
+                    <li class="filter-item-1">
+                        <a href="">
+                            FILTER 1
+                        </a>
+                    </li>
+                    <li class="filter-item-1">
+                        <a href="">
+                            FILTER 1
+                        </a>
+                    </li>
+                    <li class="filter-item-1">
+                        <a href="">
+                            FILTER 1
+                        </a>
+                    </li>
+                    <li class="filter-item-2">
+                        <a href="">
+                            FILTER 2
+                        </a>
+                    </li>
+                    <li class="filter-item-2">
+                        <a href="">
+                            FILTER 2
+                        </a>
+                    </li>
+                    <li class="filter-item-3">
+                        <a href="">
+                            FILTER 3
+                        </a>
+                    </li>
+                </ul>
+            </div>
+*/
+
+//.generate-filters(30);
+//
+//.generate-filters(@n, @i: 1) when (@i =< @n) {
+//  .filters-@{i} {
+//    display: none;
+//  }
+//  .generate-filters(@n, (@i + 1));
+//}

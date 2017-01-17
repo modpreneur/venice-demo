@@ -1,0 +1,129 @@
+.checkbox-none {
+  display:none;
+}
+
+.checkbox-01 {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right:10px;
+  line-height:28px;
+  position: relative;
+
+//  &:after {
+//    font-family: "tiecons";
+//    content: "\e645";
+//    font-weight: bold;
+//    color: @color-dark-grey;
+//    position: absolute;
+//    font-size: 32px;
+//    top: 2px;
+//    left: 0;
+//  }
+}
+
+//.checkbox-01:before {
+////  content: "✘";
+//  font-family: "tiecons";
+//  content: "\e64f";
+//  display: inline-block;
+//  width: 28px;
+//  height: 28px;
+//  vertical-align: middle;
+//  background-color: transparent;
+//  color: @color-dark-grey;
+//  text-align: center;
+////  border-radius: 100px;
+//  border: solid 2px transparent;
+//  -webkit-transition: all 250ms;
+//  transition: all 250ms;
+//}
+//input[type=checkbox]:checked + .checkbox-01:after {
+//  font-family: "tiecons";
+//  content: "\e644";
+//  font-weight: bold;
+//  color: @color-rememberme;
+//  position: absolute;
+//  font-size: 32px;
+//  top: 2px;
+//  left: 0;
+//}
+//input[type=checkbox]:checked + .checkbox-01:before {
+////  content: '✔';
+//  font-family: "tiecons";
+//  content: "\e68d";
+//  background-color: transparent;
+//  color: #ffffff;
+//  border: solid 2px transparent;
+//  -webkit-transition: all 250ms;
+//  transition: all 250ms;
+//}
+
+.checkbox-01:before {
+  //  content: 'o';
+  font-family: "tiecons";
+  content: "\e645";
+  font-weight: bold;
+  color: @color-dark-grey;
+  font-size: 32px;
+  top: 2px;
+  left: 0;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  background-color: transparent;
+  text-align: center;
+  border: solid 2px transparent;
+//  -webkit-transition: all 250ms;
+//  transition: all 250ms;
+}
+input[type=checkbox]:checked + .checkbox-01:before {
+  //  content: '.';
+  font-family: "tiecons";
+  content: "\e644";
+  font-weight: bold;
+  color: @color-rememberme;
+  font-size: 32px;
+  top: 2px;
+  left: 0;
+  background-color: transparent;
+  border: solid 2px transparent;
+  /*-webkit-transition: all 250ms;
+  transition: all 250ms;*/
+}
+.checkbox-01:after {
+  //  content: "✘";
+  font-family: "tiecons";
+  content: "\e64f";
+  border: solid 2px transparent;
+  font-size: 18px;
+  position: absolute;
+  left: 7px;
+  top: 0;
+  color: @color-dark-grey;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+}
+input[type=checkbox]:checked + .checkbox-01:after {
+  //  content: '✔';
+  font-family: "tiecons";
+  content: "\e68d";
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  font-size: 18px;
+  left: 7px;
+  top: 0;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+}
+
+//EXAMPLE
+
+/*
+
+<input id="check01" type="checkbox">
+<label class="checkbox-01" for="check01"> Remember me </label>
+
+*/

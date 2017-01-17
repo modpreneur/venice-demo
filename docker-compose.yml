@@ -18,6 +18,7 @@ services:
     volumes:
       - .:/var/app
 
+
   mysql:
     image: mysql/mysql-server:8.0
     ports:
@@ -28,6 +29,7 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=pass
 
+
   redis:
     build:
       context: ./docker/redis/
@@ -36,6 +38,7 @@ services:
     volumes:
       - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
     restart: always
+
 
   elasticsearch:
     image: elasticsearch:2.4
