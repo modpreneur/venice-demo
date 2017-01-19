@@ -1,0 +1,21 @@
+.clearfix:before,
+.clearfix:after,
+.row:before,
+.row:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after,
+.row:after {
+  clear: both;
+}
+/* !!!! MOST IMPORTANT !!!! */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}

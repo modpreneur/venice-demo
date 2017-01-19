@@ -1,0 +1,317 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.radius-base {
+  border-radius: 5px;
+}
+.radius-large {
+  border-radius: 10px;
+}
+.radius-small {
+  border-radius: 3px;
+}
+.radius-circle {
+  border-radius: 1000px;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.618;
+  margin: 0px;
+}
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.background-primary {
+  background-color: #00aeef !important;
+}
+.background-secondary {
+  background-color: #505050 !important;
+}
+.background-tertiary {
+  background-color: #1F3A93 !important;
+}
+.background-info {
+  background-color: #2ba6cb !important;
+}
+.background-success {
+  background-color: #5da423 !important;
+}
+.background-danger {
+  background-color: #FF0000 !important;
+}
+.background-warning {
+  background-color: #FF6600 !important;
+}
+.background-white {
+  background-color: #ffffff !important;
+}
+.background-black {
+  background-color: #000000 !important;
+}
+.background-venus {
+  background-color: #4fadd7 !important;
+}
+.background-adonis {
+  background-color: #edcf53 !important;
+}
+.background-red {
+  background-color: #FF0000 !important;
+}
+.background-green {
+  background-color: #00FF00 !important;
+}
+.background-blue {
+  background-color: #0000FF !important;
+}
+.background-yellow {
+  background-color: #edcf53 !important;
+}
+.background-pink {
+  background-color: #FF66CC !important;
+}
+.background-brown {
+  background-color: #8A5826 !important;
+}
+.background-orange {
+  background-color: #FF9933 !important;
+}
+.background-purple {
+  background-color: #751975 !important;
+}
+.static {
+  position: static !important;
+}
+.fixed {
+  position: fixed !important;
+}
+.absolute {
+  position: absolute !important;
+}
+.relative {
+  position: relative !important;
+}
+.nomark,
+label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.bna {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+.bna .bna-head {
+  text-align: center;
+}
+.bna .bna-head .before,
+.bna .bna-head .after {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+}
+.bna .bna-head .icon {
+  color: #999999;
+  margin: 0 30px 15px;
+  font-size: 19px;
+}
+.bna .bna-content {
+  position: relative;
+  height: 100%;
+}
+.bna .bna-content .before {
+  position: absolute;
+  width: 45%;
+  top: 20px;
+  left: 0;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-transition: all 700ms ease;
+  -moz-transition: all 700ms ease;
+  -ms-transition: all 700ms ease;
+  -o-transition: all 700ms ease;
+  transition: all 700ms ease;
+}
+.bna .bna-content .before:hover {
+  width: 56%;
+  top: 0;
+  -webkit-transition: all 700ms ease;
+  -moz-transition: all 700ms ease;
+  -ms-transition: all 700ms ease;
+  -o-transition: all 700ms ease;
+  transition: all 700ms ease;
+}
+.bna .bna-content .before:hover ~ .after {
+  width: 46%;
+  top: 20px;
+  -webkit-transition: all 700ms ease;
+  -moz-transition: all 700ms ease;
+  -ms-transition: all 700ms ease;
+  -o-transition: all 700ms ease;
+  transition: all 700ms ease;
+}
+.bna .bna-content .before img {
+  width: 100%;
+}
+.bna .bna-content .after {
+  position: absolute;
+  width: 55%;
+  top: 0;
+  right: 0;
+  -webkit-transition: all 700ms ease;
+  -moz-transition: all 700ms ease;
+  -ms-transition: all 700ms ease;
+  -o-transition: all 700ms ease;
+  transition: all 700ms ease;
+}
+.bna .bna-content .after img {
+  width: 100%;
+}
+/*
+            <div class="bna">
+                <div class="bna-head">
+                    <span class="before">Before</span>
+                    <span class="icon fa fa-retweet"></span>
+                    <span class="after">After</span>
+                </div>
+                <div class="bna-content">
+                    <div class="before">
+                        <img src="" alt="before"/>
+                    </div>
+                    <div class="after">
+                        <img src="" alt="before"/>
+                    </div>
+                </div>
+            </div>
+*/

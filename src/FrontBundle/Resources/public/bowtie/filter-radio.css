@@ -1,0 +1,341 @@
+.filter-radio {
+  padding-bottom: 20px;
+}
+.filter-radio label {
+  cursor: pointer;
+  margin: 0 20px;
+  text-decoration: none;
+}
+.filter-radio input {
+  display: none;
+}
+.filter-radio input.filter-selector-all:checked ~ label.filter-radio-label-all {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-1:checked ~ label.filter-radio-label-1 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-2:checked ~ label.filter-radio-label-2 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-3:checked ~ label.filter-radio-label-3 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-4:checked ~ label.filter-radio-label-4 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-5:checked ~ label.filter-radio-label-5 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-6:checked ~ label.filter-radio-label-6 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-7:checked ~ label.filter-radio-label-7 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-8:checked ~ label.filter-radio-label-8 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-9:checked ~ label.filter-radio-label-9 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-10:checked ~ label.filter-radio-label-10 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-11:checked ~ label.filter-radio-label-11 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-12:checked ~ label.filter-radio-label-12 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-13:checked ~ label.filter-radio-label-13 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-14:checked ~ label.filter-radio-label-14 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-15:checked ~ label.filter-radio-label-15 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-16:checked ~ label.filter-radio-label-16 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-17:checked ~ label.filter-radio-label-17 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-18:checked ~ label.filter-radio-label-18 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-19:checked ~ label.filter-radio-label-19 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-20:checked ~ label.filter-radio-label-20 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-21:checked ~ label.filter-radio-label-21 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-22:checked ~ label.filter-radio-label-22 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-23:checked ~ label.filter-radio-label-23 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-24:checked ~ label.filter-radio-label-24 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-25:checked ~ label.filter-radio-label-25 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-26:checked ~ label.filter-radio-label-26 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-27:checked ~ label.filter-radio-label-27 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-28:checked ~ label.filter-radio-label-28 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-29:checked ~ label.filter-radio-label-29 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-30:checked ~ label.filter-radio-label-30 {
+  text-decoration: underline;
+}
+.filter-radio input.filter-selector-1:checked ~ .filter-radio-items .filter-radio-item-1 {
+  display: block;
+}
+.filter-radio input.filter-selector-2:checked ~ .filter-radio-items .filter-radio-item-2 {
+  display: block;
+}
+.filter-radio input.filter-selector-3:checked ~ .filter-radio-items .filter-radio-item-3 {
+  display: block;
+}
+.filter-radio input.filter-selector-4:checked ~ .filter-radio-items .filter-radio-item-4 {
+  display: block;
+}
+.filter-radio input.filter-selector-5:checked ~ .filter-radio-items .filter-radio-item-5 {
+  display: block;
+}
+.filter-radio input.filter-selector-6:checked ~ .filter-radio-items .filter-radio-item-6 {
+  display: block;
+}
+.filter-radio input.filter-selector-7:checked ~ .filter-radio-items .filter-radio-item-7 {
+  display: block;
+}
+.filter-radio input.filter-selector-8:checked ~ .filter-radio-items .filter-radio-item-8 {
+  display: block;
+}
+.filter-radio input.filter-selector-9:checked ~ .filter-radio-items .filter-radio-item-9 {
+  display: block;
+}
+.filter-radio input.filter-selector-10:checked ~ .filter-radio-items .filter-radio-item-10 {
+  display: block;
+}
+.filter-radio input.filter-selector-11:checked ~ .filter-radio-items .filter-radio-item-11 {
+  display: block;
+}
+.filter-radio input.filter-selector-12:checked ~ .filter-radio-items .filter-radio-item-12 {
+  display: block;
+}
+.filter-radio input.filter-selector-13:checked ~ .filter-radio-items .filter-radio-item-13 {
+  display: block;
+}
+.filter-radio input.filter-selector-14:checked ~ .filter-radio-items .filter-radio-item-14 {
+  display: block;
+}
+.filter-radio input.filter-selector-15:checked ~ .filter-radio-items .filter-radio-item-15 {
+  display: block;
+}
+.filter-radio input.filter-selector-16:checked ~ .filter-radio-items .filter-radio-item-16 {
+  display: block;
+}
+.filter-radio input.filter-selector-17:checked ~ .filter-radio-items .filter-radio-item-17 {
+  display: block;
+}
+.filter-radio input.filter-selector-18:checked ~ .filter-radio-items .filter-radio-item-18 {
+  display: block;
+}
+.filter-radio input.filter-selector-19:checked ~ .filter-radio-items .filter-radio-item-19 {
+  display: block;
+}
+.filter-radio input.filter-selector-20:checked ~ .filter-radio-items .filter-radio-item-20 {
+  display: block;
+}
+.filter-radio input.filter-selector-21:checked ~ .filter-radio-items .filter-radio-item-21 {
+  display: block;
+}
+.filter-radio input.filter-selector-22:checked ~ .filter-radio-items .filter-radio-item-22 {
+  display: block;
+}
+.filter-radio input.filter-selector-23:checked ~ .filter-radio-items .filter-radio-item-23 {
+  display: block;
+}
+.filter-radio input.filter-selector-24:checked ~ .filter-radio-items .filter-radio-item-24 {
+  display: block;
+}
+.filter-radio input.filter-selector-25:checked ~ .filter-radio-items .filter-radio-item-25 {
+  display: block;
+}
+.filter-radio input.filter-selector-26:checked ~ .filter-radio-items .filter-radio-item-26 {
+  display: block;
+}
+.filter-radio input.filter-selector-27:checked ~ .filter-radio-items .filter-radio-item-27 {
+  display: block;
+}
+.filter-radio input.filter-selector-28:checked ~ .filter-radio-items .filter-radio-item-28 {
+  display: block;
+}
+.filter-radio input.filter-selector-29:checked ~ .filter-radio-items .filter-radio-item-29 {
+  display: block;
+}
+.filter-radio input.filter-selector-30:checked ~ .filter-radio-items .filter-radio-item-30 {
+  display: block;
+}
+.filter-radio input.filter-selector-1:checked ~ .filter-radio-items li:not(.filter-radio-item-1) {
+  display: none;
+}
+.filter-radio input.filter-selector-2:checked ~ .filter-radio-items li:not(.filter-radio-item-2) {
+  display: none;
+}
+.filter-radio input.filter-selector-3:checked ~ .filter-radio-items li:not(.filter-radio-item-3) {
+  display: none;
+}
+.filter-radio input.filter-selector-4:checked ~ .filter-radio-items li:not(.filter-radio-item-4) {
+  display: none;
+}
+.filter-radio input.filter-selector-5:checked ~ .filter-radio-items li:not(.filter-radio-item-5) {
+  display: none;
+}
+.filter-radio input.filter-selector-6:checked ~ .filter-radio-items li:not(.filter-radio-item-6) {
+  display: none;
+}
+.filter-radio input.filter-selector-7:checked ~ .filter-radio-items li:not(.filter-radio-item-7) {
+  display: none;
+}
+.filter-radio input.filter-selector-8:checked ~ .filter-radio-items li:not(.filter-radio-item-8) {
+  display: none;
+}
+.filter-radio input.filter-selector-9:checked ~ .filter-radio-items li:not(.filter-radio-item-9) {
+  display: none;
+}
+.filter-radio input.filter-selector-10:checked ~ .filter-radio-items li:not(.filter-radio-item-10) {
+  display: none;
+}
+.filter-radio input.filter-selector-11:checked ~ .filter-radio-items li:not(.filter-radio-item-11) {
+  display: none;
+}
+.filter-radio input.filter-selector-12:checked ~ .filter-radio-items li:not(.filter-radio-item-12) {
+  display: none;
+}
+.filter-radio input.filter-selector-13:checked ~ .filter-radio-items li:not(.filter-radio-item-13) {
+  display: none;
+}
+.filter-radio input.filter-selector-14:checked ~ .filter-radio-items li:not(.filter-radio-item-14) {
+  display: none;
+}
+.filter-radio input.filter-selector-15:checked ~ .filter-radio-items li:not(.filter-radio-item-15) {
+  display: none;
+}
+.filter-radio input.filter-selector-16:checked ~ .filter-radio-items li:not(.filter-radio-item-16) {
+  display: none;
+}
+.filter-radio input.filter-selector-17:checked ~ .filter-radio-items li:not(.filter-radio-item-17) {
+  display: none;
+}
+.filter-radio input.filter-selector-18:checked ~ .filter-radio-items li:not(.filter-radio-item-18) {
+  display: none;
+}
+.filter-radio input.filter-selector-19:checked ~ .filter-radio-items li:not(.filter-radio-item-19) {
+  display: none;
+}
+.filter-radio input.filter-selector-20:checked ~ .filter-radio-items li:not(.filter-radio-item-20) {
+  display: none;
+}
+.filter-radio input.filter-selector-21:checked ~ .filter-radio-items li:not(.filter-radio-item-21) {
+  display: none;
+}
+.filter-radio input.filter-selector-22:checked ~ .filter-radio-items li:not(.filter-radio-item-22) {
+  display: none;
+}
+.filter-radio input.filter-selector-23:checked ~ .filter-radio-items li:not(.filter-radio-item-23) {
+  display: none;
+}
+.filter-radio input.filter-selector-24:checked ~ .filter-radio-items li:not(.filter-radio-item-24) {
+  display: none;
+}
+.filter-radio input.filter-selector-25:checked ~ .filter-radio-items li:not(.filter-radio-item-25) {
+  display: none;
+}
+.filter-radio input.filter-selector-26:checked ~ .filter-radio-items li:not(.filter-radio-item-26) {
+  display: none;
+}
+.filter-radio input.filter-selector-27:checked ~ .filter-radio-items li:not(.filter-radio-item-27) {
+  display: none;
+}
+.filter-radio input.filter-selector-28:checked ~ .filter-radio-items li:not(.filter-radio-item-28) {
+  display: none;
+}
+.filter-radio input.filter-selector-29:checked ~ .filter-radio-items li:not(.filter-radio-item-29) {
+  display: none;
+}
+.filter-radio input.filter-selector-30:checked ~ .filter-radio-items li:not(.filter-radio-item-30) {
+  display: none;
+}
+.filter-radio .filter-radio-items li {
+  float: left;
+  margin-right: 20px;
+}
+.filter-radio .filter-radio-items li:last-child {
+  float: left;
+  margin-right: 0px;
+}
+/*
+            <div class="filter-radio">
+
+                <input id="select-type-all" name="radio-set-1" type="radio" class="filter-selector-all" checked="checked" />
+                <label for="select-type-all" class="filter-radio-label-all">All</label>
+
+                <input id="select-type-11" name="radio-set-1" type="radio" class="filter-selector-1" />
+                <label for="select-type-11" class="filter-radio-label-1">FILTER 1</label>
+
+                <input id="select-type-22" name="radio-set-1" type="radio" class="filter-selector-2" />
+                <label for="select-type-22" class="filter-radio-label-2">FILTER 2</label>
+
+                <input id="select-type-33" name="radio-set-1" type="radio" class="filter-selector-3" />
+                <label for="select-type-33" class="filter-radio-label-3">FILTER 3</label>
+
+                <ul class="filter-radio-items">
+                    <li class="filter-radio-item-1">
+                        <a href="">
+                            FILTER 1
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-1">
+                        <a href="">
+                            FILTER 1
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-1">
+                        <a href="">
+                            FILTER 1
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-2">
+                        <a href="">
+                            FILTER 2
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-2">
+                        <a href="">
+                            FILTER 2
+                        </a>
+                    </li>
+                    <li class="filter-radio-item-3">
+                        <a href="">
+                            FILTER 3
+                        </a>
+                    </li>
+                </ul>
+            </div>
+*/

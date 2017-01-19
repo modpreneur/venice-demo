@@ -1,0 +1,383 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.radius-base {
+  border-radius: 5px;
+}
+.radius-large {
+  border-radius: 10px;
+}
+.radius-small {
+  border-radius: 3px;
+}
+.radius-circle {
+  border-radius: 1000px;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.618;
+  margin: 0px;
+}
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.background-primary {
+  background-color: #00aeef !important;
+}
+.background-secondary {
+  background-color: #505050 !important;
+}
+.background-tertiary {
+  background-color: #1F3A93 !important;
+}
+.background-info {
+  background-color: #2ba6cb !important;
+}
+.background-success {
+  background-color: #5da423 !important;
+}
+.background-danger {
+  background-color: #FF0000 !important;
+}
+.background-warning {
+  background-color: #FF6600 !important;
+}
+.background-white {
+  background-color: #ffffff !important;
+}
+.background-black {
+  background-color: #000000 !important;
+}
+.background-venus {
+  background-color: #4fadd7 !important;
+}
+.background-adonis {
+  background-color: #edcf53 !important;
+}
+.background-red {
+  background-color: #FF0000 !important;
+}
+.background-green {
+  background-color: #00FF00 !important;
+}
+.background-blue {
+  background-color: #0000FF !important;
+}
+.background-yellow {
+  background-color: #edcf53 !important;
+}
+.background-pink {
+  background-color: #FF66CC !important;
+}
+.background-brown {
+  background-color: #8A5826 !important;
+}
+.background-orange {
+  background-color: #FF9933 !important;
+}
+.background-purple {
+  background-color: #751975 !important;
+}
+.static {
+  position: static !important;
+}
+.fixed {
+  position: fixed !important;
+}
+.absolute {
+  position: absolute !important;
+}
+.relative {
+  position: relative !important;
+}
+.nomark,
+label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.tags {
+  list-style: none;
+}
+.tags:before,
+.tags:after {
+  content: " ";
+  display: table;
+}
+.tags:after {
+  clear: both;
+}
+.tags li {
+  float: left;
+  height: 24px;
+  line-height: 24px;
+  position: relative;
+}
+.tags a {
+  -webkit-transition: 200ms;
+  -moz-transition: 200ms;
+  -ms-transition: 200ms;
+  -o-transition: 200ms;
+  transition: 200ms;
+  margin-left: 20px;
+  padding: 0 10px 0 12px;
+  background: #0089e0;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  float: left;
+  height: 24px;
+  line-height: 24px;
+  position: relative;
+}
+.tags a.disable-tag {
+  pointer-events: none;
+  cursor: default;
+}
+.tags a:before {
+  content: "";
+  float: left;
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-top-color: transparent;
+  border-right-color: #0089e0;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-style: solid;
+  border-width: 12px 12px 12px 0;
+  -webkit-transition: 200ms;
+  -moz-transition: 200ms;
+  -ms-transition: 200ms;
+  -o-transition: 200ms;
+  transition: 200ms;
+}
+.tags a:after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  float: left;
+  width: 4px;
+  height: 4px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: #fff;
+}
+.tags a:hover {
+  background: #555;
+  -webkit-transition: 200ms;
+  -moz-transition: 200ms;
+  -ms-transition: 200ms;
+  -o-transition: 200ms;
+  transition: 200ms;
+}
+.tags a:hover:before {
+  border-top-color: transparent;
+  border-right-color: #555;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  -webkit-transition: 200ms;
+  -moz-transition: 200ms;
+  -ms-transition: 200ms;
+  -o-transition: 200ms;
+  transition: 200ms;
+}
+.tags-primary a:before {
+  border-right-color: #00aeef;
+}
+.tags-primary a {
+  background: #00aeef;
+}
+.tags-secondary a:before {
+  border-right-color: #505050;
+}
+.tags-secondary a {
+  background: #505050;
+}
+.tags-tertiary a:before {
+  border-right-color: #1F3A93;
+}
+.tags-tertiary a {
+  background: #1F3A93;
+}
+.tags-info a:before {
+  border-right-color: #2ba6cb;
+}
+.tags-info a {
+  background: #2ba6cb;
+}
+.tags-warning a:before {
+  border-right-color: #FF6600;
+}
+.tags-warning a {
+  background: #FF6600;
+}
+.tags-success a:before {
+  border-right-color: #5da423;
+}
+.tags-success a {
+  background: #5da423;
+}
+.tags-danger a:before {
+  border-right-color: #FF0000;
+}
+.tags-danger a {
+  background: #FF0000;
+}
+.tags-dark-grey a:before {
+  border-right-color: #999999;
+}
+.tags-dark-grey a {
+  background: #999999;
+}
+.tags-black a:before {
+  border-right-color: #000000;
+}
+.tags-black a {
+  background: #000000;
+}
+.tags-white a:before {
+  border-right-color: #ffffff;
+}
+.tags-white a {
+  background: #ffffff;
+}
+.tags-primary a:hover {
+  background: #555;
+}
+.tags-primary a:hover:before {
+  border-right-color: #555;
+}
