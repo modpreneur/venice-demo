@@ -1,0 +1,25 @@
+{% set productFile = generateSecureLink(content) %}
+{% if dummy %}
+    {% set urlToDetail ="#" %}
+{% endif %}
+
+<div class="{% if not access %}not-purchased{% endif %}">
+    <div class="left left-pdf">
+        <i class="ff-text-left-page"></i>
+        {% if access and daysRemaining == 0 %}
+            <a target="_blank" {% if content.haveDownloadName %}download="{{ content.getDownloadName() }}"{% endif %} href="{{ contentFile }}"><span class="name">{{ content.name }}</span></a>
+        {% else %}
+            <a target="_blank" href="{{ path("downloads_product_bundle_detail",{"handle":mainProduct.handle}) }}"><span class="name">{{ content.name }}</span></a>
+        {% endif %}
+    </div>
+    <div class="right right-pdf">
+        <span class="icon-name h-divider">PDF file</span>
+        {% if access and daysRemaining == 0 %}
+            <a target="_blank" {% if content.haveDownloadName %}download="{{ product.getDownloadName() }}"{% endif %} href="{{ productFile }}" class="button button-primary display-inline">DOWNLOAD</a>
+        {% elseif access and daysRemaining > 0 %}
+            <span>Wait {{ daysRemaining }} days!</span>
+        {% else %}
+            <a target="_blank" class="button button-primary display-inline" href="{{ path("downloads_product_bundle_detail",{"handle":mainProduct.handle}) }}">Learn more</a>
+        {% endif %}
+    </div>
+</div>

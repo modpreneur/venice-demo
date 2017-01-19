@@ -61,14 +61,17 @@ class User extends \Venice\AppBundle\Entity\User
     }
 
 
-
-
-
     /**
      * @param bool $profilePhoto
      */
     public function setProfilePhoto( $profilePhoto)
     {
         $this->profilePhoto = $profilePhoto;
+    }
+
+
+    public function daysRemainingToUnlock($x)
+    {
+        return 10;
     }
 }

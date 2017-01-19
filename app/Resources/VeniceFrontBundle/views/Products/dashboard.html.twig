@@ -41,15 +41,16 @@
 
                     {#<div id="videoproductBlock" class="ajax-append ajax-slide-down">#}
                     {#{% block allVideoProducts %}#}
+
                         {% for videoProduct in allVideoProducts %}
-                        <div class="downloads-dashboard row {{ videoProduct.getTypeName() }}">
-                            {{ productRenderer(videoProduct,"downloadsDashboard") }}
+                        <div class="downloads-dashboard row ">
+                            {{ productRenderer(videoProduct, "vidoeDashboard") }}
                         </div>
                         {% endfor %}
                         {#{% if videoproducts|length != 0 and videoproductDisplayLoadMoreButton %}#}
                         {#<div class="row" id="videoproduct-load-more-block">#}
                             {#<div class="span-mini-24 text-center margin-vertical-20">#}
-                                {#<a class="trinity-load-more button button-load-more" href="{{ path("downloads_web_api_load_more_flofit",{"type":"videoproduct","start":videoproductLoadOffset}) }}" data-after-click="Loading..." data-remove-element="#videoproduct-load-more-block">Load More</a>#}
+                                {#<a class="trinity-load-more button button-load-more" href="{{ path("downloads_web_apai_load_more_flofit",{"type":"videoproduct","start":videoproductLoadOffset}) }}" data-after-click="Loading..." data-remove-element="#videoproduct-load-more-block">Load More</a>#}
                             {#</div>#}
                         {#</div>#}
                         {#{% endif %}#}
@@ -80,7 +81,7 @@
                     {#<div id="downloadproductBlock" class="ajax-append ajax-slide-down">#}
                     {#{% block downloadproductBlock %}#}
                         {% for downloadProduct in allDownloadProducts %}
-                        <div class="downloads-dashboard row {{ downloadProduct.getTypeName() }}">
+                        <div class="downloads-dashboard row">
                             {{ productRenderer(downloadProduct,"downloadsDashboard") }}
                         </div>
                         {% endfor %}

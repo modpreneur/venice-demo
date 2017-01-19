@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: "@VeniceAppBundle/Resources/config/config.yml" }
 
+
 # You can override default configuration here or in the enviroment files (config_dev, config_prod).
 # Confiruration in the enviroment files will override configuration defined here
 trinity_messages:
@@ -112,6 +113,7 @@ venice_app:
                 demo_standard_product: AppBundle\Entity\Product\StandardProduct
                 demo_free_product: AppBundle\Entity\Product\FreeProduct
                 demo_client_product: AppBundle\Entity\Product\ClientProduct
+                demo_shipping_product: AppBundle\Entity\Product\ShippingProduct
 
 #    OTHERS ########################################################################
         user:

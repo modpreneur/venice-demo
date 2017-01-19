@@ -21,12 +21,22 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
     protected $PdfContentChild;
 
     /**
-     * @return mixed
+     * @var string
+     *
+     * @ORM\Column(name="file_protected", type="string", length=255)
+     *
+     */
+    protected $fileProtected;
+
+
+    /**
+     * @return string
      */
     public function getPdfContentChild()
     {
         return $this->PdfContentChild;
     }
+
 
     /**
      * @param mixed $PdfContentChild
@@ -35,4 +45,26 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
     {
         $this->PdfContentChild = $PdfContentChild;
     }
+
+
+    /**
+     * @return string
+     */
+    public function getFileProtected()
+    {
+        return $this->fileProtected;
+    }
+
+
+    /**
+     * @param string $fileProtected
+     * @return $this
+     */
+    public function setFileProtected($fileProtected)
+    {
+        $this->fileProtected = $fileProtected;
+
+        return $this;
+    }
 }
+

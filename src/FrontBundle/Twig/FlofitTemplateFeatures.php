@@ -2,17 +2,16 @@
 
 namespace FrontBundle\Twig;
 
+use AppBundle\Entity\Content\PdfContent;
+use AppBundle\Entity\Product\ShippingProduct;
+use AppBundle\Entity\Product\StandardProduct;
 use Aws\CloudFront\CloudFrontClient;
-use GeneralBackend\CoreBundle\Entity\GlobalUser;
-use GeneralBackend\CoreBundle\Entity\Vanilla\Conversation;
-use GeneralBackend\DownloadsBundle\Entity\BundleProduct;
-use GeneralBackend\DownloadsBundle\Entity\BuyParameters;
-use GeneralBackend\DownloadsBundle\Entity\DownloadProduct;
-use GeneralBackend\DownloadsBundle\Entity\Product;
-use GeneralBackend\DownloadsBundle\Entity\ShippingProduct;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Venice\AppBundle\Entity\Content\Content;
+use Venice\AppBundle\Entity\Product\Product;
+
 
 /**
  * Class FlofitTemplateFeatures
@@ -141,7 +140,7 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
 
     /**
-     * @param Product $product
+     * @param Content $product
      * @param $template
      * @param bool $solveAccess
      * @param bool $dummy
@@ -150,14 +149,18 @@ class FlofitTemplateFeatures extends \Twig_Extension
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
-    public function productRenderer(Product $product, $template, $solveAccess = true, $dummy = false)
+    public function productRenderer(Content $product, $template, $solveAccess = true, $dummy = false)
     {
+        $mainProduct = $this->serviceContainer
+            ->get('doctrine.orm.entity_manager')
+            ->getRepository(Product::class)->findOneBy(['handle' => 'flofit']); // new
+
         $templater = $this->serviceContainer->get('templating');
         if ($product instanceof ShippingProduct) {
             return '';
         } else {
-            if ($product instanceof BundleProduct) {
-                $result = "";
+            if ($product instanceof StandardProduct) {
+                $result = '';
                 foreach ($product->getSubProducts() as $subProduct) {
                     $result .= $this->productRenderer($subProduct, $template);
                 }
@@ -167,12 +170,13 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
             try {
                 $html =  $templater->render(
-                    "DownloadsBundle/" . $template . "/" . strtolower($product->getTypeString()) . ".html.twig",
+                    'VeniceFrontBundle:' . $template . ":" . strtolower($product->getType()) . ".html.twig",
                     [
                         "access"        => $solveAccess ? ($this->getUser()->haveAccess($product)) : true,
                         "daysRemaining" => $solveAccess ? $this->getUser()->daysRemainingToUnlock($product) : 0,
-                        "product"       => $product,
-                        "dummy"         => $dummy
+                        'content'       => $product,
+                        "dummy"         => $dummy,
+                        'mainProduct'   => $mainProduct
                     ]
                 );
 
@@ -184,10 +188,10 @@ class FlofitTemplateFeatures extends \Twig_Extension
     }
 
 
-    public function generateSecureLink(DownloadProduct $product, $expireSeconds = null, $onlyForRequesterIp = false)
+    public function generateSecureLink(PdfContent $product, $expireSeconds = null, $onlyForRequesterIp = false)
     {
         if (strlen($product->getFileProtected()) == 0) {
-            return $product->getFile();
+            return $product->getPdfContentChild();
         }
 
         $rootDir = $this->serviceContainer->get("kernel")->getRootDir();

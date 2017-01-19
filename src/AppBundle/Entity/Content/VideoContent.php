@@ -21,6 +21,32 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
     protected $VideoContentChild;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="vimeo_thumbnail_id", type="string", length=255, nullable=true, options={"default"=null})
+     */
+    protected $vimeoThumbnailId;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="need_gear", type="boolean", options={"default"=false})
+     */
+    protected $needGear;
+
+
+    /**
+     * VideoContent constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->needGear = false;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getVideoContentChild()
@@ -34,5 +60,38 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
     public function setVideoContentChild($VideoContentChild)
     {
         $this->VideoContentChild = $VideoContentChild;
+    }
+
+
+    /**
+     * @param $size
+     *
+     * @return string
+     */
+    public function generateVimeoThumbnail($size)
+    {
+        if (is_null($this->vimeoThumbnailId)) {
+            return $this->previewImage;
+        }
+
+        return "https://i.vimeocdn.com/video/{$this->vimeoThumbnailId}_{$size}.jpg";
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isNeedGear(): bool
+    {
+        return $this->needGear;
+    }
+
+
+    /**
+     * @param bool $needGear
+     */
+    public function setNeedGear(bool $needGear)
+    {
+        $this->needGear = $needGear;
     }
 }

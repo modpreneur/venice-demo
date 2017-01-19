@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Venice\AppBundle\Entity\Product\Product;
 
 /**
  * Class DownloadsController
@@ -65,7 +66,7 @@ class ProductsController extends Controller
             [
                 'productsService' => $productsService,
                 'upsellProducts'  => $upsellProducts,
-                'fbPixel'         => $fbPixel
+                'fbPixel'         => $fbPixel,
             ]
         );
     }
@@ -81,7 +82,7 @@ class ProductsController extends Controller
     public function flomersionAction($handle = null)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        /** @var GlobalUser $user */
+        /** @var User $user */
         $user = $this->getUser();
 
         /** @var ProductGroup $productGroup */
@@ -93,6 +94,7 @@ class ProductsController extends Controller
 
         /** @var Product $product */
         $product = $productGroup->getProducts()->first();
+
         if (!$product->haveAccess($user)) {
             return $this->redirectToRoute("downloads_product_bundle_detail",
                 array("handle" => $product->getRootProduct()->getHandle()));
@@ -134,7 +136,7 @@ class ProductsController extends Controller
      */
     public function productPlatinumClubAction($module = 1)
     {
-        /** @var GlobalUser $user */
+        /** @var User $user */
         $user = $this->getUser();
 
         $bundleProduct = $this->getDoctrine()->getManager()
@@ -148,7 +150,7 @@ class ProductsController extends Controller
         $productsService = $this->get("modern_entrepreneur_global_backend_downloads.products_service");
         $productsService->initialSetup($bundleProduct->getSubProducts(), $this->getUser());
 
-        /** @var BundleProduct $upsellProducts */
+        /** @var StandardProduct $upsellProducts */
         $upsellProducts = $this->getDoctrine()->getManager()
             ->getRepository("ModernEntrepreneurGeneralBackendDownloadsBundle:BundleProduct")
             ->findBy(array("isRecommended" => 1), array("upsellOrder" => "ASC"));
@@ -201,7 +203,7 @@ class ProductsController extends Controller
      */
     public function bundleProductAction(BundleProduct $bundleProduct, $module = 1)
     {
-        /** @var GlobalUser $user */
+        /** @var User $user */
         $user = $this->getUser();
 
         $productsService = $this->get("modern_entrepreneur_global_backend_downloads.products_service");
@@ -231,7 +233,7 @@ class ProductsController extends Controller
      */
     public function vlogDetailsAction(Request $request, VlogProduct $vlogProduct)
     {
-        /** @var GlobalUser $user */
+        /** @var User $user */
         $user = $this->getUser();
         if (!$user->haveAccess($vlogProduct)) {
             return $this->redirectToRoute("downloads_dashboard");
