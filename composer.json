@@ -20,6 +20,17 @@
                     "privkey_file": "~/.ssh/id_rsa"
                 }
             }
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:modpreneur/flofit-entities.git",
+            "options": {
+                "ssh2": {
+                    "username": "Jakub-Fajkus",
+                    "pubkey_file": "~/.ssh/id_rsa.pub",
+                    "privkey_file": "~/.ssh/id_rsa"
+                }
+            }
         }
     ],
 
@@ -28,6 +39,7 @@
         "twig/twig": "~2.0",
 
         "modpreneur/venice": "dev-master",
+        "modpreneur/flofit-entities": "dev-master",
         "doctrine/doctrine-migrations-bundle": "~1.2",
         "doctrine/doctrine-fixtures-bundle": "~2",
         "facebook/php-sdk-v4" : "~5.4",
