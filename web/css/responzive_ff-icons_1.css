@@ -1,0 +1,312 @@
+@font-face {
+  font-family: 'ff';
+  src: url('../../Resources/public/fonts/ff-icons/ff.eot?qw8cp1');
+  src: url('../../Resources/public/fonts/ff-icons/ff.eot?qw8cp1#iefix') format('embedded-opentype'), url('../../Resources/public/fonts/ff-icons/ff.ttf?qw8cp1') format('truetype'), url('../../Resources/public/fonts/ff-icons/ff.woff?qw8cp1') format('woff'), url('../../Resources/public/fonts/ff-icons/ff.svg?qw8cp1#ff') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+i {
+  font-family: 'ff';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.icon-notifi-danger:before {
+  content: "\e61f";
+}
+.icon-notifi-success:before {
+  content: "\e61a";
+}
+.icon-notifi-warning:before {
+  content: "\e62b";
+}
+.icon-notifi-info:before {
+  content: "\e630";
+}
+.ff-calendar2:before {
+  content: "\e64a";
+}
+.ff-icon-snapchat-negative-2:before {
+  content: "\e648";
+}
+.ff-icon-snapchat-negative:before {
+  content: "\e647";
+}
+.ff-icon-snapchat:before {
+  content: "\e646";
+}
+.ff-48:before {
+  content: "\e645";
+}
+.ff-47:before {
+  content: "\e644";
+}
+.ff-gear2:before {
+  content: "\e63f";
+}
+.ff-youtube:before {
+  content: "\e640";
+}
+.ff-youtube2:before {
+  content: "\e641";
+}
+.ff-platinum-club:before {
+  content: "\e800";
+}
+.ff-social-fb:before {
+  content: "\e63b";
+}
+.ff-social-gplus:before {
+  content: "\e63c";
+}
+.ff-social-insta:before {
+  content: "\e63d";
+}
+.ff-social-twitter:before {
+  content: "\e63e";
+}
+.ff-blog-3:before {
+  content: "\e633";
+}
+.ff-articles-videos-2:before {
+  content: "\e634";
+}
+.ff-social-stream:before {
+  content: "\e635";
+}
+.ff-dashboard:before {
+  content: "\e636";
+}
+.ff-FF-logo:before {
+  content: "\e637";
+}
+.ff-forum-thread:before {
+  content: "\e638";
+}
+.ff-open-file:before {
+  content: "\e639";
+}
+.ff-flofitlogo:before {
+  content: "\e607";
+}
+.ff-arrow-light-long-down:before {
+  content: "\e6b6";
+}
+.ff-arrow-light-long-right:before {
+  content: "\e643";
+}
+.ff-arrow-down2:before {
+  content: "\e642";
+}
+.ff-arrow-left:before {
+  content: "\e63a";
+}
+.ff-twitter1:before {
+  content: "\e631";
+}
+.ff-facebook1:before {
+  content: "\e632";
+}
+.ff-info3:before {
+  content: "\e630";
+}
+.ff-exclamation-mark4:before {
+  content: "\e62b";
+}
+.ff-cross2:before {
+  content: "\e62c";
+}
+.ff-43:before {
+  content: "\e62d";
+}
+.ff-44:before {
+  content: "\e62e";
+}
+.ff-45:before {
+  content: "\e62f";
+}
+.ff-circle-negative:before {
+  content: "\e62a";
+}
+.ff-global:before {
+  content: "\e629";
+}
+.ff-arrow-down:before {
+  content: "\e600";
+}
+.ff-arrow-right:before {
+  content: "\e601";
+}
+.ff-calendar-day:before {
+  content: "\e602";
+}
+.ff-calendar:before {
+  content: "\e603";
+}
+.ff-confiq:before {
+  content: "\e604";
+}
+.ff-insta-negative:before {
+  content: "\e613";
+}
+.ff-twitter-negative:before {
+  content: "\e627";
+}
+.ff-fb-negative:before {
+  content: "\e605";
+}
+.ff-g-negative:before {
+  content: "\e608";
+}
+.ff-insta:before {
+  content: "\e614";
+}
+.ff-fb:before {
+  content: "\e606";
+}
+.ff-twitter:before {
+  content: "\e628";
+}
+.ff-g:before {
+  content: "\e609";
+}
+.ff-gear:before {
+  content: "\e60a";
+}
+.ff-graph:before {
+  content: "\e60b";
+}
+.ff-chat-conversation:before {
+  content: "\e60c";
+}
+.ff-chat-dotted-bold:before {
+  content: "\e60d";
+}
+.ff-chat-dotted-left:before {
+  content: "\e60e";
+}
+.ff-chat-dotted-right:before {
+  content: "\e60f";
+}
+.ff-chat-dotted:before {
+  content: "\e610";
+}
+.ff-chat:before {
+  content: "\e611";
+}
+.ff-image:before {
+  content: "\e612";
+}
+.ff-link-arrow-square:before {
+  content: "\e615";
+}
+.ff-link-arrow:before {
+  content: "\e616";
+}
+.ff-lock:before {
+  content: "\e617";
+}
+.ff-mail:before {
+  content: "\e618";
+}
+.ff-map-pointer:before {
+  content: "\e619";
+}
+.ff-time:before {
+  content: "\e626";
+}
+.ff-play:before {
+  content: "\e61e";
+}
+.ff-remove:before {
+  content: "\e61f";
+}
+.ff-ok-circle:before {
+  content: "\e61a";
+}
+.ff-ok:before {
+  content: "\e61b";
+}
+.ff-person:before {
+  content: "\e61c";
+}
+.ff-pin:before {
+  content: "\e61d";
+}
+.ff-ring:before {
+  content: "\e620";
+}
+.ff-share:before {
+  content: "\e621";
+}
+.ff-sign-mail:before {
+  content: "\e622";
+}
+.ff-text-left-page:before {
+  content: "\e624";
+}
+.ff-text-left:before {
+  content: "\e625";
+}
+.ff-text-left-big:before {
+  content: "\e623";
+}
+.ff-player-stop:before {
+  content: "\e649";
+}
+@font-face {
+  font-family: 'ico';
+  src: url('../../Resources/public/fonts/ff-icons/ico.eot?bo4vnv');
+  src: url('../../Resources/public/fonts/ff-icons/ico.eot?bo4vnv#iefix') format('embedded-opentype'), url('../../Resources/public/fonts/ff-icons/ico.ttf?bo4vnv') format('truetype'), url('../../Resources/public/fonts/ff-icons/ico.woff?bo4vnv') format('woff'), url('../../Resources/public/fonts/ff-icons/ico.svg?bo4vnv#ico') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="ico-"],
+[class*=" ico-"] {
+  font-family: 'ico' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ico-google-plus:before {
+  content: "\e67a";
+}
+@font-face {
+  font-family: 'ico2';
+  src: url('../../Resources/public/fonts/ff-icons/ico2.eot?zcdcy3');
+  src: url('../../Resources/public/fonts/ff-icons/ico2.eot?zcdcy3#iefix') format('embedded-opentype'), url('../../Resources/public/fonts/ff-icons/ico2.ttf?zcdcy3') format('truetype'), url('../../Resources/public/fonts/ff-icons/ico2.woff?zcdcy3') format('woff'), url('../../Resources/public/fonts/ff-icons/ico2.svg?zcdcy3#ico2') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="ico2-"],
+[class*=" ico2-"] {
+  font-family: 'ico2' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ico2-loading:before {
+  content: "\e60a";
+}
