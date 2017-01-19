@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    {% set allVideoProducts = productsService.productsByType("videoproduct") %}
+                    {% set allVideoContents = productsService.productsByType("videoproduct") %}
                     {#{% set videoproducts = allVideoProducts|slice(0,productsService.getDefaultLength) %}#}
                     {#{% set videoproductLoadOffset = videoproducts|length %}#}
                     {#{% set videoproductDisplayLoadMoreButton = (videoproductLoadOffset + productsService.getDefaultLength) < allVideoProducts|length %}#}
@@ -42,9 +42,9 @@
                     {#<div id="videoproductBlock" class="ajax-append ajax-slide-down">#}
                     {#{% block allVideoProducts %}#}
 
-                        {% for videoProduct in allVideoProducts %}
+                        {% for videoContent in allVideoContents %}
                         <div class="downloads-dashboard row ">
-                            {{ productRenderer(videoProduct, "vidoeDashboard") }}
+                            {{ productRenderer(currentProduct, videoContent, "vidoeDashboard") }}
                         </div>
                         {% endfor %}
                         {#{% if videoproducts|length != 0 and videoproductDisplayLoadMoreButton %}#}
@@ -72,7 +72,7 @@
                         </div>
                     </div>
 
-                    {% set allDownloadProducts = productsService.productsByType("downloadproduct") %}
+                    {% set allDownloadContent = productsService.productsByType("downloadproduct") %}
                     {#{% set downloadproducts = allDownloadProducts|slice(0,productsService.getDefaultLength) %}#}
                     {#{% set downloadsprodutctLoadOffset = downloadproducts|length %}#}
                     {#{% set downloadproductDisplayLoadMoreButton = (downloadsprodutctLoadOffset + productsService.getDefaultLength) < allDownloadProducts|length %}#}
@@ -80,9 +80,9 @@
 
                     {#<div id="downloadproductBlock" class="ajax-append ajax-slide-down">#}
                     {#{% block downloadproductBlock %}#}
-                        {% for downloadProduct in allDownloadProducts %}
+                        {% for downloadContent in allDownloadContent %}
                         <div class="downloads-dashboard row">
-                            {{ productRenderer(downloadProduct,"downloadsDashboard") }}
+                            {{ productRenderer(currentProduct, downloadContent, "downloadsDashboard") }}
                         </div>
                         {% endfor %}
 

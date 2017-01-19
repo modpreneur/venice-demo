@@ -61,12 +61,15 @@ class ProductsController extends Controller
         $upsellProducts = $entityManager->getRepository(StandardProduct::class)
             ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
+        $currentProduct = $entityManager->getRepository(Product::class)->findOneBy(['handle' => $productGroup::HANDLE_FLOFIT]);
+
         return $this->render(
             'VeniceFrontBundle:Products:dashboard.html.twig',
             [
                 'productsService' => $productsService,
                 'upsellProducts'  => $upsellProducts,
                 'fbPixel'         => $fbPixel,
+                'currentProduct'  => $currentProduct,
             ]
         );
     }

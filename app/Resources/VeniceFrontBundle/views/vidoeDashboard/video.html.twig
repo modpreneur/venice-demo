@@ -40,7 +40,7 @@
             {% elseif access and daysRemaining > 0 %}
                 <span>Wait {{ daysRemaining }} days!</span>
             {% else %}
-                <a class="button button-primary display-inline" href="{{ path("downloads_product_bundle_detail",{"handle":content.getRootProduct().handle}) }}">Learn more</a>
+                <a class="button button-primary display-inline" href="{{ path("downloads_product_bundle_detail",{"handle":mainProduct.handle}) }}">Learn more</a>
             {% endif %}
         </div>
     </div>

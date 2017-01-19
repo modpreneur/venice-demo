@@ -4,6 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    flofit_amazon_s3:
+        class: Aws\S3\S3Client
+        arguments:
+            -
+              key: %amazon_s3_key%
+              secret: %amazon_s3_secret%
+              region: %amazon_s3_region%
+              version: 'latest'

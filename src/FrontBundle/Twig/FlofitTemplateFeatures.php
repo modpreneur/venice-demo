@@ -5,6 +5,7 @@ namespace FrontBundle\Twig;
 use AppBundle\Entity\Content\PdfContent;
 use AppBundle\Entity\Product\ShippingProduct;
 use AppBundle\Entity\Product\StandardProduct;
+use AppBundle\Entity\User;
 use Aws\CloudFront\CloudFrontClient;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -140,73 +141,74 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
 
     /**
-     * @param Content $product
+     * @param Product $product
+     * @param Content $content
      * @param $template
      * @param bool $solveAccess
      * @param bool $dummy
      *
      * @return string|\Twig_Markup
-     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
-     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \Exception
      */
-    public function productRenderer(Content $product, $template, $solveAccess = true, $dummy = false)
+    public function productRenderer(Product $product, Content $content, $template, $solveAccess = true, $dummy = false)
     {
-        $mainProduct = $this->serviceContainer
-            ->get('doctrine.orm.entity_manager')
-            ->getRepository(Product::class)->findOneBy(['handle' => 'flofit']); // new
+        $user = $this->getUser();
 
         $templater = $this->serviceContainer->get('templating');
         if ($product instanceof ShippingProduct) {
             return '';
         } else {
-            if ($product instanceof StandardProduct) {
-                $result = '';
-                foreach ($product->getSubProducts() as $subProduct) {
-                    $result .= $this->productRenderer($subProduct, $template);
-                }
-
-                return $result;
-            }
+            // removed part ?? check
 
             try {
                 $html =  $templater->render(
-                    'VeniceFrontBundle:' . $template . ":" . strtolower($product->getType()) . ".html.twig",
+                    'VeniceFrontBundle:' . $template . ':' . strtolower($content->getType()) . '.html.twig',
                     [
-                        "access"        => $solveAccess ? ($this->getUser()->haveAccess($product)) : true,
-                        "daysRemaining" => $solveAccess ? $this->getUser()->daysRemainingToUnlock($product) : 0,
-                        'content'       => $product,
-                        "dummy"         => $dummy,
-                        'mainProduct'   => $mainProduct
+                        'access'        => $solveAccess ? ($user->haveAccess($product)) : true,
+                        'daysRemaining' => $solveAccess ? $user->daysRemainingToUnlock($product) : 0,
+                        'content'       => $content,
+                        'dummy'         => $dummy,
+                        'mainProduct'   => $product
                     ]
                 );
 
                 return $this->html($html);
             } catch (\Exception $e) {
-                return $e->getMessage();
+                throw $e;
             }
         }
     }
 
 
+    /**
+     * @param PdfContent $product
+     * @param null $expireSeconds
+     * @param bool $onlyForRequesterIp
+     *
+     * @return string
+     * @throws \InvalidArgumentException
+     */
     public function generateSecureLink(PdfContent $product, $expireSeconds = null, $onlyForRequesterIp = false)
     {
         if (strlen($product->getFileProtected()) == 0) {
             return $product->getPdfContentChild();
         }
 
-        $rootDir = $this->serviceContainer->get("kernel")->getRootDir();
+        $rootDir = $this->serviceContainer->get('kernel')->getRootDir();
 
-        $cloudFront = CloudFrontClient::factory(array(
-            "private_key" => $rootDir . "/crt/pk-APKAJWKWONDIO5YORBMA.pem",
-            "key_pair_id" => "APKAJWKWONDIO5YORBMA"
-        ));
+        $cloudFront = CloudFrontClient::factory([
+            'region'      => 'us-west-2',
+            'version'     => 'latest',
+        ]);
 
-        $expires = time() + (int)($this->serviceContainer->getParameter("amazon_cloud_front_link_expiration"));
+        $expires = time() + (int)($this->serviceContainer->getParameter('amazon_cloud_front_link_expiration'));
 
-        return $cloudFront->getSignedUrl(array(
-            "url" => $product->getFileProtected(),
-            "expires" => $expires
-        ));
+        return $cloudFront->getSignedUrl([
+            'url'         => $product->getFileProtected(),
+            'expires'     => $expires,
+            'key_pair_id' => 'APKAJWKWONDIO5YORBMA',
+            'private_key' => $rootDir . '/crt/pk-APKAJWKWONDIO5YORBMA.pem',
+        ]);
     }
 
 
@@ -393,7 +395,7 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
 
     /**
-     * @return GlobalUser|null
+     * @return User|null
      */
     private function getUser()
     {

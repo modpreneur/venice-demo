@@ -29,10 +29,27 @@ class AppKernel extends Venice\AppBundle\Kernel\VeniceKernel
         $veniceBundles[] = new Uran1980FancyBoxBundle;
         $veniceBundles[] = new BmatznerJQueryBundle();
         $veniceBundles[] = new DoctrineMigrationsBundle();
+       // $veniceBundles[] = new Amazon();
 
 
         return $veniceBundles;
     }
+
+
+    /**
+     * Boots the current kernel.
+     *
+     * @api
+     */
+    public function boot()
+    {
+        parent::boot();
+
+        /** @var \Aws\S3\S3Client $s3client */
+        $s3client = $this->container->get('flofit_amazon_s3');
+        $s3client->registerStreamWrapper();
+    }
+
 
 
     /**

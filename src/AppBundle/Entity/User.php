@@ -9,6 +9,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Trinity\NotificationBundle\Annotations as N;
+use Venice\AppBundle\Entity\Product\Product;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\UserRepository")
@@ -25,7 +26,6 @@ class User extends \Venice\AppBundle\Entity\User
      */
     protected $UserChild;
 
-
     private $profilePhoto = null;
 
 
@@ -37,6 +37,7 @@ class User extends \Venice\AppBundle\Entity\User
         return $this->UserChild;
     }
 
+
     /**
      * @param mixed $UserChild
      */
@@ -46,9 +47,14 @@ class User extends \Venice\AppBundle\Entity\User
     }
 
 
-    public function haveAccess($e)
+    /**
+     * @param Product $product
+     *
+     * @return bool
+     */
+    public function haveAccess(Product $product)
     {
-        return true;
+        return $this->hasAccessToProduct($product);
     }
 
 
@@ -64,14 +70,21 @@ class User extends \Venice\AppBundle\Entity\User
     /**
      * @param bool $profilePhoto
      */
-    public function setProfilePhoto( $profilePhoto)
+    public function setProfilePhoto($profilePhoto)
     {
-        $this->profilePhoto = $profilePhoto;
+        return true;
+        //$this->profilePhoto = $profilePhoto;
     }
 
 
-    public function daysRemainingToUnlock($x)
+    /**
+     * @param Product $product
+     *
+     * @return int
+     */
+    public function daysRemainingToUnlock(Product $product)
     {
-        return 10;
+        return 0;
+        return $product->daysRemainingToUnlock($this);
     }
 }
