@@ -731,16 +731,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.8",
+            "version": "v2.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "6314d55f60f85f0295c90688397b75c13faf9f0e"
+                "reference": "0d2f8187d4b4c7b72d8e2acba359e25c36feaf5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/6314d55f60f85f0295c90688397b75c13faf9f0e",
-                "reference": "6314d55f60f85f0295c90688397b75c13faf9f0e",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0d2f8187d4b4c7b72d8e2acba359e25c36feaf5e",
+                "reference": "0d2f8187d4b4c7b72d8e2acba359e25c36feaf5e",
                 "shasum": ""
             },
             "require": {
@@ -798,7 +798,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-01-17 17:48:38"
+            "time": "2017-01-19 13:27:33"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -3620,7 +3620,7 @@
                     "homepage": "http://github.com/knplabs/Gaufrette/contributors"
                 },
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 }
             ],
@@ -4264,12 +4264,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "d2d74733f850beb9e619cca84d2ea286574c4540"
+                "reference": "4753dd972017c03b2a9b635d7313b4105b103451"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/d2d74733f850beb9e619cca84d2ea286574c4540",
-                "reference": "d2d74733f850beb9e619cca84d2ea286574c4540",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/4753dd972017c03b2a9b635d7313b4105b103451",
+                "reference": "4753dd972017c03b2a9b635d7313b4105b103451",
                 "shasum": ""
             },
             "require": {
@@ -4358,7 +4358,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-01-19 08:58:52"
+            "time": "2017-01-19 13:08:57"
         },
         {
             "name": "monolog/monolog",
@@ -7628,12 +7628,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "99e4bdbc4f1fa26ce1f050246ba8a4dfce1aa356"
+                "reference": "f9bad26f27a1d0797c25e8134204da614240f4a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/99e4bdbc4f1fa26ce1f050246ba8a4dfce1aa356",
-                "reference": "99e4bdbc4f1fa26ce1f050246ba8a4dfce1aa356",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/f9bad26f27a1d0797c25e8134204da614240f4a5",
+                "reference": "f9bad26f27a1d0797c25e8134204da614240f4a5",
                 "shasum": ""
             },
             "require": {
@@ -7677,7 +7677,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2017-01-11 11:50:04"
+            "time": "2017-01-19 10:27:36"
         },
         {
             "name": "trinity/bunny-bundle",
