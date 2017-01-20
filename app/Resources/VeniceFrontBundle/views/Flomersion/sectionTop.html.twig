@@ -1,0 +1,32 @@
+{% if navigationLinks|length != 4 %}
+<div class="block-left">
+    {% if navigationLinks|length > 0 %}
+        <a href="{{ navigationLinks[0].href }}" class="nice-scroll {% if actual == navigationLinks[0].href %}current{% endif %}">{{ navigationLinks[0].text }}</a>
+    {% endif %}
+</div>
+<div class="block-center">
+    {% if navigationLinks|length == 3 %}
+        <a href="{{ navigationLinks[1].href }}" class="nice-scroll {% if actual == navigationLinks[1].href %}current{% endif %}">{{ navigationLinks[1].text }}</a>
+    {% endif %}
+</div>
+<div class="block-right">
+    {% if navigationLinks|length == 3 %}
+        <a href="{{ navigationLinks[2].href }}" class="nice-scroll {% if actual == navigationLinks[2].href %}current{% endif %}">{{ navigationLinks[2].text }}</a>
+    {% elseif navigationLinks|length == 2 %}
+        <a href="{{ navigationLinks[1].href }}" class="nice-scroll {% if actual == navigationLinks[1].href %}current{% endif %}">{{ navigationLinks[1].text }}</a>
+    {% endif %}
+</div>
+{% else %}
+    <div class="block-1">
+        <a href="{{ navigationLinks[0].href }}" class="nice-scroll {% if actual == navigationLinks[0].href %}current{% endif %}">{{ navigationLinks[0].text }}</a>
+    </div>
+    <div class="block-2">
+        <a href="{{ navigationLinks[1].href }}" class="nice-scroll {% if actual == navigationLinks[1].href %}current{% endif %}">{{ navigationLinks[1].text }}</a>
+    </div>
+    <div class="block-3">
+        <a href="{{ navigationLinks[2].href }}" class="nice-scroll {% if actual == navigationLinks[2].href %}current{% endif %}">{{ navigationLinks[2].text }}</a>
+    </div>
+    <div class="block-4">
+        <a href="{{ navigationLinks[3].href }}" class="nice-scroll {% if actual == navigationLinks[3].href %}current{% endif %}">{{ navigationLinks[3].text }}</a>
+    </div>
+{% endif %}

@@ -2,12 +2,14 @@
 
 namespace FrontBundle\Controller;
 
+use AppBundle\Entity\Content\VideoContent;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductGroup;
 use AppBundle\Entity\User;
 
 use AppBundle\Services\AbstractConnector;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,6 +58,8 @@ class ProductsController extends Controller
 
         $productsService = $this->get('flofit.products_service');
 
+        //$products = $entityManager->getRepository(Product::class)->findBy(['handle' => ProductGroup::HANDLE_FLOFIT]);
+
         $productsService->initialSetup($productGroup->getProducts(), $this->getUser());
 
         $upsellProducts = $entityManager->getRepository(StandardProduct::class)
@@ -84,51 +88,59 @@ class ProductsController extends Controller
      */
     public function flomersionAction($handle = null)
     {
+        /** @var EntityManager $entityManager */
         $entityManager = $this->getDoctrine()->getManager();
+
         /** @var User $user */
         $user = $this->getUser();
 
         /** @var ProductGroup $productGroup */
-        $productGroup = $entityManager->getRepository("ModernEntrepreneurGeneralBackendDownloadsBundle:ProductGroup")
-            ->findOneBy(array("handle" => ProductGroup::HANDLE_FLOMERSION));
+        $productGroup = $entityManager->getRepository(ProductGroup::class)
+            ->findOneBy(['handle' => ProductGroup::HANDLE_FLOMERSION]);
 
-        $productsService = $this->get("modern_entrepreneur_global_backend_downloads.products_service");
+        $productsService = $this->get('flofit.products_service');
         $productsService->initialSetup($productGroup->getProducts(), $this->getUser());
 
         /** @var Product $product */
         $product = $productGroup->getProducts()->first();
 
-        if (!$product->haveAccess($user)) {
-            return $this->redirectToRoute("downloads_product_bundle_detail",
-                array("handle" => $product->getRootProduct()->getHandle()));
+        if (!$user->hasAccessToProduct($product)) {
+            return $this->redirectToRoute(
+                'downloads_product_bundle_detail',
+                ['handle' => $product->getHandle()]
+            );
         }
 
         $playId = null;
         if ($handle !== null) {
             $productByHandle = $entityManager
-                ->getRepository('ModernEntrepreneurGeneralBackendDownloadsBundle:VideoProduct')
-                ->findOneBy(array('handle' => $handle));
+                ->getRepository(VideoContent::class)
+                ->findOneBy(['handle' => $handle]);
             if ($productByHandle) {
                 $playId = $productByHandle->getId();
             }
         }
 
-
         $access = false;
         if (!is_null($product)) {
-            /** @var GlobalUser $user */
-            $user = $this->getUser();
-            $access = $product->haveAccess($user);
+            /** @var User $user */
+            $user   = $this->getUser();
+            $access = $user->hasAccessToProduct($product);
         }
 
-        return $this->render('DownloadsBundle/Front/flomersion.html.twig',
-            array(
-                "access" => $access,
-                "productsService" => $productsService,
-                'playId' => $playId
-//                "modules" => range(1,6),
-//                "activeModule" => $module
-            ));
+        $currentProduct = $entityManager
+            ->getRepository(Product::class)
+            ->findOneBy(['handle' => $productGroup::HANDLE_FLOMERSION]);
+
+        return $this->render(
+            'VeniceFrontBundle:Products:flomersion.html.twig',
+            [
+                'access'          => $access,
+                'productsService' => $productsService,
+                'playId'          => $playId,
+                'product'         => $currentProduct,
+            ]
+        );
     }
 
 

@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    {% set allVideoContents = productsService.productsByType("videoproduct") %}
+                    {% set allVideoContents = productsService.getContentByType("videoproduct") %}
                     {#{% set videoproducts = allVideoProducts|slice(0,productsService.getDefaultLength) %}#}
                     {#{% set videoproductLoadOffset = videoproducts|length %}#}
                     {#{% set videoproductDisplayLoadMoreButton = (videoproductLoadOffset + productsService.getDefaultLength) < allVideoProducts|length %}#}
@@ -72,7 +72,7 @@
                         </div>
                     </div>
 
-                    {% set allDownloadContent = productsService.productsByType("downloadproduct") %}
+                    {% set allDownloadContent = productsService.getContentByType("downloadproduct") %}
                     {#{% set downloadproducts = allDownloadProducts|slice(0,productsService.getDefaultLength) %}#}
                     {#{% set downloadsprodutctLoadOffset = downloadproducts|length %}#}
                     {#{% set downloadproductDisplayLoadMoreButton = (downloadsprodutctLoadOffset + productsService.getDefaultLength) < allDownloadProducts|length %}#}

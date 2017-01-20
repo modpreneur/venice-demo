@@ -2,10 +2,13 @@
 
 namespace AppBundle\Services;
 
+use AppBundle\Entity\Content\GroupContent;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Venice\AppBundle\Entity\Content\Content;
+use Venice\AppBundle\Entity\Content\ContentInGroup;
+use Venice\AppBundle\Entity\Interfaces\ContentProductInterface;
 use Venice\AppBundle\Entity\Product\Product;
 
 /**
@@ -52,33 +55,37 @@ class ProductsPage extends \Twig_Extension
         $this->allProducts    = [];
         $this->user           = $user;
 
-        $this->sortProducts($allProducts);
+        $this->sortContent($allProducts);
     }
 
 
     /**
-     * @param $products
+     * @param \iterable $products
      */
-    private function sortProducts(iterable $products)
+    private function sortContent($products)
     {
         foreach ($products as $product) {
             /** @var Product $product */
             if ($product instanceof StandardProduct) {
                 /** @var StandardProduct $product */
 
-                if ($product->getAllContent()) {
-                    $this->sortProducts($product->getAllContent());
+                $content = $product->getAllContent(Product::SORT);
+
+                if ($content) {
+                    $this->sortContent($content);
                 }
 
                 $this->bundleProducts[] = $product;
             } else {
                 $type = $product->getType();
 
-                if (!array_key_exists($type, $this->productByTypes))
+                if (!array_key_exists($type, $this->productByTypes)) {
                     $this->productByTypes[$type] = [];
+                }
 
-                if (!in_array($product, $this->productByTypes[$type]))
+                if (!in_array($product, $this->productByTypes[$type])) {
                     $this->productByTypes[$type][] = $product;
+                }
 
                 $this->allProducts[] = $product;
             }
@@ -91,7 +98,7 @@ class ProductsPage extends \Twig_Extension
      */
     public function getDefaultLength()
     {
-        return $this->container->getParameter("downloads_number_of_product_displayed");
+        return $this->container->getParameter('downloads_number_of_product_displayed');
     }
 
 
@@ -101,7 +108,7 @@ class ProductsPage extends \Twig_Extension
      * @return array
      * @throws \Exception
      */
-    public function getProductsByType($type)
+    public function getContentByType($type)
     {
         if (is_null($this->productByTypes)) {
             throw new \Exception('Must be initialized!');
@@ -123,16 +130,11 @@ class ProductsPage extends \Twig_Extension
 
         $this->productByTypes = $productByTypes;
 
-        dump($productByTypes);
-        dump($type);
-
         if (!array_key_exists($type, $this->productByTypes)) {
             return [];
         }
 
-
-
-        usort($this->productByTypes[$type], [$this, 'productComp']);
+        //usort($this->productByTypes[$type], [$this, 'productComp']);
         return $this->productByTypes[$type];
     }
 
@@ -153,7 +155,7 @@ class ProductsPage extends \Twig_Extension
             }
         }
 
-        usort($products, array($this, "productComp"));
+        // usort($products, array($this, "productComp"));
 
         return $products;
     }
@@ -161,33 +163,30 @@ class ProductsPage extends \Twig_Extension
 
     /**
      * @param $bundleProductHandle
-     * @param null $inModule
      *
      * @return array
      */
-    public function getProductsByBundleProductHandle($bundleProductHandle, $inModule = null)
+    public function getProductsByBundleProductHandle($bundleProductHandle)
     {
+        $contents = [];
+
         foreach ($this->bundleProducts as $product) {
-            /** @var StandardProduct $product */
-            if ($product->getHandle() == $bundleProductHandle) {
-                $products = $product->getSubProducts()->toArray();
+            foreach ($product->getAllContent(Product::SORT) as $group) {
+                if ($group instanceof GroupContent && $group->getHandle() === $bundleProductHandle) {
+                    // todo sort
+                    foreach ($group->getItems() as $item) {
+                        if ($item instanceof ContentInGroup) {
+                            $contents[] = $item->getContent();
+                        }
 
-                usort($products, array($this, "productComp"));
-
-                if (!is_null($inModule)) {
-                    $moduleProducts = [];
-                    foreach ($products as $prod) {
-                        /** @var Product $prod */
-                        if ($prod->isInModule($inModule))
-                            $moduleProducts[] = $prod;
                     }
-                    return $moduleProducts;
                 }
-
-                return $products;
             }
         }
-        return [];
+
+        dump($contents);
+
+        return $contents;
     }
 
 
@@ -201,28 +200,15 @@ class ProductsPage extends \Twig_Extension
 
 
     /**
-     * @param Content $product1
-     * @param Content $product2
-     *
-     * @return bool
-     */
-    public function productComp(Content $product1, Content $product2)
-    {
-        return 1;
-        return $product1->getOrderNumber() > $product2->getOrderNumber();
-    }
-
-
-    /**
      * @return array
      */
     public function getFunctions()
     {
-        return array(
-            "getProductsByType" => new \Twig_SimpleFunction($this,"getProductsByType"),
-            "countByProductType" => new \Twig_SimpleFunction($this,"countByProductType"),
-            "getDefaultLength" => new \Twig_SimpleFunction($this,"getDefaultLength"),
-        );
+        return [
+            'getProductsByType'  => new \Twig_SimpleFunction($this, 'getProductsByType'),
+            'countByProductType' => new \Twig_SimpleFunction($this, 'countByProductType'),
+            'getDefaultLength'   => new \Twig_SimpleFunction($this, 'getDefaultLength'),
+        ];
     }
 
 

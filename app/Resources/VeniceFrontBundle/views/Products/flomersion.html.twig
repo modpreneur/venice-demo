@@ -1,0 +1,109 @@
+{% extends "VeniceFrontBundle:Products:layout.html.twig" %}
+
+{% block title %}
+    Platinum club
+{% endblock %}
+
+{% block jumbotronClass %}jumbotron-flofit jumbotron-dashboard-flomersion{% endblock %}
+
+{% block headerInside %}
+    <div class="abs-center">
+        <img src="{{ asset('Resources/public/images/site/flo-and-mike.png') }}" alt=""/>
+
+        <h1>PLATINUM<span>CLUB</span></h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="downloads-dashboard-main-content content-4-block">
+        <div class="row">
+            {% block moduleBlock %}
+
+                {% set allVideosProducts = productsService.getProductsByBundleProductHandle("videos-and-articles") %}
+                {% set allworkoutProducts = productsService.getProductsByBundleProductHandle("workouts") %}
+                {% set allmealPlansProducts = productsService.getProductsByBundleProductHandle("meal-plans") %}
+
+                {% set navigationLinks = [] %}
+                {% set navigationLinks = navigationLinks|merge([{href:"#videos",text:"Videos"}]) %}
+                {% set navigationLinks = navigationLinks|merge([{href:"#workouts",text:"Workouts"}]) %}
+                {% set navigationLinks = navigationLinks|merge([{href:"#meal-plans",text:"Meal Plans & Nutrition"}]) %}
+                {% set navigationLinks = navigationLinks|merge([{href:"#supplement-database",text:"Supplement database"}]) %}
+
+                <div id="moduleBlock" class="span-medium-24 ajax-slide-down">
+                    {% if allVideosProducts|length > 0 %}
+                        <div id="videos" class="persist-area">
+                            <div class="block block-title">
+                                <div class="hr"></div>
+                                {{ include("VeniceFrontBundle:Flomersion:sectionTop.html.twig",{navigationLinks:navigationLinks,actual:"#videos"}) }}
+                            </div>
+
+                            {% for videosAndArticleProduct in allVideosProducts %}
+                                <div class="downloads-dashboard row">
+                                    {{ productRenderer(product, videosAndArticleProduct, "vidoeDashboard") }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+
+                    {% if allworkoutProducts|length > 0 %}
+                        <div id="workouts" class="persist-area">
+                            <div class="block block-title">
+                                <div class="hr"></div>
+                                {{ include("VeniceFrontBundle:Flomersion:sectionTop.html.twig", {navigationLinks:navigationLinks,actual:"#workouts"}) }}
+                            </div>
+                            {% for workoutProduct in allworkoutProducts %}
+                                <div class="downloads-dashboard row {{ workoutProduct.getTypeName() }}{% if notVisibleFromStart is defined and notVisibleFromStart %}{% endif %}">
+                                    {{ productRenderer(workoutProduct,"downloadsDashboard") }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if allmealPlansProducts|length > 0 %}
+                        <div id="meal-plans" class="persist-area">
+                            <div class="block block-title">
+                                <div class="hr"></div>
+                                {{ include("VeniceFrontBundle:Flomersion:sectionTop.html.twig",{navigationLinks:navigationLinks,actual:"#meal-plans"}) }}
+                            </div>
+
+                            {% for mealPlansProduct in allmealPlansProducts %}
+                                <div class="downloads-dashboard row {{ mealPlansProduct.getTypeName() }} {% if notVisibleFromStart is defined and notVisibleFromStart %}{% endif %}">
+                                    {{ productRenderer(mealPlansProduct,"downloadsDashboard") }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div id="supplement-database" class="persist-area flomersion-database">
+                        <div class="block block-title">
+                            {{ include("VeniceFrontBundle:Flomersion:sectionTop.html.twig",{navigationLinks:navigationLinks,actual:"#supplement-database"}) }}
+                            <div class="hr"></div>
+                        </div>
+                        <div class="row">
+                            <div class="span-medium-5 span-large-4">
+                                <img src="{{ asset("Resources/public/images/site/database-logo.jpg") }}" alt="Natural Standard" class="img-responsive margin-auto"/>
+                            </div>
+                            <div class="span-medium-12 span-large-14">
+                                <h2>Do your supplements even WORK? Find&nbsp;out!</h2>
+                                <p>Search the Natural Standard Herb & Supplement Database today</p>
+                            </div>
+                            <div class="span-medium-7 span-large-6">
+                                <a class="button" href="{{ path("downloads_front_supplementDatabase_about") }}">go to database!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if playId is not null %}
+                <script>
+                    function openVideoFromDirectLink() {
+                        $('#link_id_{{ playId }}').click();
+                    }
+                </script>
+                {% endif %}
+
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
