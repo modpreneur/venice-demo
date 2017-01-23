@@ -32,10 +32,6 @@
     {#<meta property="og:url" content="">#}
     {#<meta property="og:type" content="website">#}
 
-    {% stylesheets '@FrontBundle/Resources/public/bowtie/core.less' package="bowtie" filter="lessphp,cssrewrite" output="css/bowtie.css" %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}?v=1"/>
-    {% endstylesheets %}
-
     {% stylesheets
     '@FrontBundle/Resources/public/less/ff-icons.less'
     filter="lessphp,cssrewrite" output="css/ff-icons.css" %}
