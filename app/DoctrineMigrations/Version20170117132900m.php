@@ -25,7 +25,7 @@ class Version20170117132900 extends AbstractMigration
 
         $this->addSql("
             INSERT INTO product (id, necktie_default_billing_plan_id, venice_default_billing_plan_id, group_id, handle, image, enabled, order_number, name, description, discriminator, necktie_id, purchasable, necktie_description, standard_product_child, upsell_order, upsel_miniature, upsel_miniature_mobile, is_recommended, short_description, short_name, free_product_child, client_product_child) VALUES
-            (2,	NULL,	NULL,	NULL,	'platinumclub',	NULL,	1,	0,	'Platinum Club',	NULL,	'demo_standard_product',	NULL,	NULL,	NULL,	NULL,	NULL,	'https://cdn.flofit.com/site-resources/platinumclub_d_2D.jpg',	'https://s3-us-west-2.amazonaws.com/flofit-prod/site-resources/flomersion_2D.jpg',	1,	'Your backstage pass to exclusive videos, workouts, and nutrition.',	'Platinum Club',	NULL,	NULL)
+            (2,	NULL,	2,	NULL,	'platinumclub',	NULL,	1,	0,	'Platinum Club',	NULL,	'demo_standard_product',	NULL,	NULL,	NULL,	NULL,	NULL,	'https://cdn.flofit.com/site-resources/platinumclub_d_2D.jpg',	'https://s3-us-west-2.amazonaws.com/flofit-prod/site-resources/flomersion_2D.jpg',	1,	'Your backstage pass to exclusive videos, workouts, and nutrition.',	'Platinum Club',	NULL,	NULL)
         ");
 
 
