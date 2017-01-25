@@ -16,7 +16,7 @@ class VersionUserData extends AbstractMigration
     public function up(Schema $schema)
     {
         $columns = '
-            INSERT INTO newsletter_optimalization_question (id, question, successful_redirect, multiple, page, Order) VALUES
+            INSERT INTO newsletter_optimalization_question (id, question, successful_redirect, multiple, page, `Order`) VALUES
         ';
 
         $this->addSql($columns . " (1,	'Gender',	'core_front_user_profile_edit',	0,	1,	0)");
