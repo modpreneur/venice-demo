@@ -8,6 +8,8 @@ import $ from 'jquery';
 export default function globalFunction(){
     console.log('Global function');
     //setting active class to menu tab
+
+    //It has to be there...! Question @RichardBures!
     LayoutMenu.setCurrent($('#sidebar'));
     LayoutMenu.unCheckRadio($('.navbar-item-input'));
 }
