@@ -1,0 +1,12 @@
+{{  TwitterSubscribeServiceRender("init") }}
+
+<script>
+    function tw_login() {
+        document.location = "{{ url("hwi_oauth_service_redirect", {service: "twitter"}) }}";
+    }
+</script>
+
+<button onclick="tw_login()"><i class="ff-twitter-negative"></i><span>Add account</span></button>
+
+
+

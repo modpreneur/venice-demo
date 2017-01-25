@@ -1,18 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jakub Fajkus
- * Date: 19.08.15
- * Time: 14:41
- */
 
-namespace GeneralBackend\CoreBundle\Services;
+namespace AppBundle\SocialServices;
 
+use AppBundle\Services\Connector;
 use Facebook;
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
 
 /**
  * Class FacebookConnector
- * @package GeneralBackend\CoreBundle\Services
  */
 class FacebookConnector extends Connector
 {
@@ -23,12 +19,12 @@ class FacebookConnector extends Connector
      *
      * @return null
      * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
-     * @throws \Facebook\Exceptions\FacebookSDKException
+     * @throws FacebookSDKException
      */
     public function getUserIdByToken($token)
     {
-        $appId = $this->serviceContainer->getParameter("facebook_client_id");
-        $appSecret = $this->serviceContainer->getParameter("facebook_client_secret");
+        $appId     = $this->serviceContainer->getParameter('facebook_client_id');
+        $appSecret = $this->serviceContainer->getParameter('facebook_client_secret');
 
         $fb = new Facebook\Facebook([
             'app_id'                => $appId,
@@ -38,9 +34,9 @@ class FacebookConnector extends Connector
 
         try {
             $response = $fb->get('/me?fields=id,name', $token);
-        } catch(Facebook\Exceptions\FacebookResponseException $e) {
+        } catch (FacebookResponseException $e) {
             return null;
-        } catch(Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (FacebookSDKException $e) {
             return null;
         }
 
@@ -51,8 +47,8 @@ class FacebookConnector extends Connector
 
     public function getUserByToken($token)
     {
-        $appId = $this->serviceContainer->getParameter("facebook_client_id");
-        $appSecret = $this->serviceContainer->getParameter("facebook_client_secret");
+        $appId     = $this->serviceContainer->getParameter('facebook_client_id');
+        $appSecret = $this->serviceContainer->getParameter('facebook_client_secret');
 
         $fb = new Facebook\Facebook([
             'app_id' => $appId,
@@ -62,9 +58,9 @@ class FacebookConnector extends Connector
 
         try {
             $response = $fb->get('/me?fields=id,first_name,last_name,email,picture', $token);
-        } catch(Facebook\Exceptions\FacebookResponseException $e) {
+        } catch (FacebookResponseException $e) {
             return null;
-        } catch(Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (FacebookSDKException $e) {
             return null;
         }
 

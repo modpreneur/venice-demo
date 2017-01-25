@@ -75,7 +75,7 @@
                     <div id="fullNameBlock" data-on-display="EditProfile.refreshProfile">
                     {% block fullNameBlock %}
                         {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
-                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"full-name","label":"Name","content": form(form),"icon":"ff-text-left-big", "secondLabel":user.fullName}, with_context=false) }}
+                        {{ include("VeniceFrontBundle:Core/items:editItem.html.twig",{"id":"full-name","label":"Name","content": form(form),"icon":"ff-text-left-big", "secondLabel":user.fullName}, with_context=false) }}
                     {% endblock %}
                     </div>
 
@@ -83,7 +83,7 @@
                     <div id="usernameBlock" data-on-display="EditProfile.refreshProfile">
                     {% block usernameBlock %}
                         {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
-                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"username","label":"Username","content": form(form),"icon":"ff-person", "secondLabel":user.username}, with_context=false) }}
+                        {{ include("VeniceFrontBundle:Core/items:editItem.html.twig",{"id":"username","label":"Username","content": form(form),"icon":"ff-person", "secondLabel":user.username}, with_context=false) }}
                     {% endblock %}
                     </div>
 
@@ -91,7 +91,7 @@
                     <div id="emailBlock" data-on-display="EditProfile.refreshProfile">
                     {% block emailBlock %}
                         {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
-                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"email","label":"E-mail","content": form(form),"icon":"ff-sign-mail", "secondLabel":user.email}, with_context=false) }}
+                        {{ include("VeniceFrontBundle:Core/items:editItem.html.twig",{"id":"email","label":"E-mail","content": form(form),"icon":"ff-sign-mail", "secondLabel":user.email}, with_context=false) }}
                     {% endblock %}
                     </div>
 
@@ -104,7 +104,7 @@
                             {% set lastChangeText = "Password hasn't been changed yet." %}
                         {% endif %}
                         {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithLabel.html.twig' %}
-                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"password","label":"Password","content": form(form),"icon":"ff-lock", "secondLabel":lastChangeText}, with_context=false) }}
+                        {{ include("VeniceFrontBundle:Core/items:editItem.html.twig",{"id":"password","label":"Password","content": form(form),"icon":"ff-lock", "secondLabel":lastChangeText}, with_context=false) }}
                     {% endblock %}
                     </div>
 
@@ -117,16 +117,20 @@
                             {% set birthDateText = "Not set" %}
                         {% endif %}
                         {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
-                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"birth-date","label":"Date of birth","content": form(form),"icon":"ff-time", "secondLabel":birthDateText}, with_context=false) }}
+                        {{ include("VeniceFrontBundle:Core/items:editItem.html.twig",{"id":"birth-date","label":"Date of birth","content": form(form),"icon":"ff-time", "secondLabel":birthDateText}, with_context=false) }}
                     {% endblock %}
                     </div>
 
                     <div id="socialBlock" data-on-display="EditProfile.refreshProfile">
                     {% block socialBlock %}
+
+                        {# @todo
                         {% set haveFacebookSubscription = FacebookSubscribeService.haveSubscription(user) %}
                         {% set haveTwitterSubscription = TwitterSubscribeService.haveSubscription(user) %}
                         {% set haveGoogleSubscription = GoogleSubscribeService.haveSubscription(user) %}
                         {% set haveIntagramSubscription = false %}
+                        #}
+
                         {% set hasSocial = false %}
                             <div class="row relative">
                                 <div class="span-large-6 span-medium-8 span-small-24 offset-large-5 offset-medium-3 offset-small-0">
@@ -134,6 +138,7 @@
                                 </div>
                                 <div class="span-medium-2 span-vector"><span class="vector"></span></div>
                                 <div class="span-medium-11 span-small-24">
+                                    {# @todo
                                     <div class="profile-settings-info">
                                         {% if haveFacebookSubscription %}<span>Facebook<i class="ff-ok-circle current"></i></span>{% set hasSocial = true %}{% endif %}
                                         {% if haveTwitterSubscription %}<span>Twitter<i class="ff-ok-circle current"></i></span>{% set hasSocial = true %}{% endif %}
@@ -145,6 +150,7 @@
                                             <span>No connected social networks.</span>
                                         {% endif %}
                                     </div>
+                                    #}
                                 </div>
                                 <a href="#social-networks" class="profile-settings-edit nice-scroll-parent">EDIT</a>
                             </div>
@@ -152,17 +158,19 @@
                                 <div class="span-medium-13 offset-large-13 offset-medium-11">
                                     <div id="social-networks" class="profile-settings-content">
                                         <div>
+                                        {# @todo
                                         {% if haveFacebookSubscription %}
                                             <div class="social-info current">
                                                 {{ FacebookSubscribeServiceRender("removeButton") }}
                                                 {#<button onclick="fb_logout()"><i class="ff-fb-negative"></i><span>Remove account</span></button>#}
-                                            </div>
-                                        {% else %}
-                                            <div class="social-info">
-                                                {{ FacebookSubscribeServiceRender("subscribeButton") }}
-                                            </div>
+                                            {# @tood     </div>
+                                             {% else %}
+                                                 <div class="social-info">
+                                                     {{ FacebookSubscribeServiceRender("subscribeButton") }}
+                                                 </div>
 
-                                        {% endif %}
+                                             {% endif %}
+                                             #}
 
                                         {#{% if haveGoogleSubscription %}#}
                                             {#<div class="social-info current">#}
@@ -219,7 +227,7 @@
                     <div id="locationBlock" data-on-display="EditProfile.refreshProfile">
                     {% block locationBlock %}
                         {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
-                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"location","label":"My location","content": form(form),"icon":"ff-map-pointer", "secondLabel":user.location}, with_context=false) }}
+                        {{ include("VeniceFrontBundle:Core/items:editItem.html.twig",{"id":"location","label":"My location","content": form(form),"icon":"ff-map-pointer", "secondLabel":user.location}, with_context=false) }}
                     {% endblock %}
                     </div>
 

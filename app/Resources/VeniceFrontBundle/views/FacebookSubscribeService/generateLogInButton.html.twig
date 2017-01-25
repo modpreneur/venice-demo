@@ -1,0 +1,11 @@
+{{ FacebookSubscribeServiceRender("init") }}
+<button id="facebook-login-button" class="button-facebook"><i class="ff-facebook1"></i>Login with Facebook</button>
+<script>
+    $("#facebook-login-button").click(function(){
+        FB.getLoginStatus(function(response) {
+            if(response.status === 'connected'){
+                FB.login();
+            }
+        });
+    });
+</script>

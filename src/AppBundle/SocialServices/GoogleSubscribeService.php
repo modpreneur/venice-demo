@@ -1,8 +1,9 @@
 <?php
 
-namespace AppBundle\Login;
+namespace AppBundle\SocialServices;
 
-use GeneralBackend\CoreBundle\Entity\GlobalUser;
+use AppBundle\Entity\User;
+use AppBundle\Services\AbstractSubscibeService;
 use Twig_Environment;
 
 /**
@@ -17,7 +18,7 @@ class GoogleSubscribeService extends AbstractSubscibeService
     /**
      * @return bool
      */
-    public function haveSubscription(GlobalUser $user)
+    public function haveSubscription(User $user)
     {
         if (is_null($user->getGoogleId()) || is_null($user->getGoogleAccessToken())) {
             return false;
@@ -62,7 +63,7 @@ class GoogleSubscribeService extends AbstractSubscibeService
         return $this->render("@ModernEntrepreneurGeneralBackendCore/GoogleSubscribeService/init.html.twig");
     }
 
-    public function unsubscribe(GlobalUser $user)
+    public function unsubscribe(User $user)
     {
         //return $this->render("@ModernEntrepreneurGeneralBackendCore/TwitterSubscribeService/comments.html.twig",array("permanentLink"=>$parameters["permanentLink"]));
         $user->setFacebookAccessToken(null);

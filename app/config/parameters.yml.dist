@@ -83,3 +83,18 @@ parameters:
     amazon_s3_region: 'your-bucket-region'
 
     amazon_cloud_front_link_expiration: 300
+
+
+    facebook_client_id: 748756945252163
+    facebook_client_secret: b1ff879b869c5d8058317656d41f7caf
+
+    twitter_client_id: 5XwU6T0OvcxPLeAvsBIPPsaUO # GET FLO FIT TWITTER ACC
+    twitter_client_secret: v4rCuvlllMbCvpUA1UsfWgEM2eJwiupwtp6OQeziaXenK9RuHg
+    twitter_client_token: 2866139031-30xun4SajVzz2A5RwiGE28NXNfZKDXaTojNJLs6
+    twitter_client_token_secret: 6W7FStt3iJnm7kXXei4KKUyrlEdVzMwHYNtVkpmlotoCw
+
+    instagram_client_id: 0c1781ac48094ae5b51467456b435ff0
+    instagram_client_secret: 0b6d9489c5c7b7dd0527bb5a73089f44
+
+    google_client_id: 707014016730-tkm94ahnordhpp9bs7gnpk2pll56hr18
+    google_client_secret: Jzv4zujtzy-hq-THIa33zeXu

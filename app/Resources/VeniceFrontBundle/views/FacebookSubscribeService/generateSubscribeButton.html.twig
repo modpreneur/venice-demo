@@ -1,0 +1,24 @@
+{{ FacebookSubscribeServiceRender("init") }}
+<script>
+    function fb_login() {
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                // connected
+                document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+            } else {
+                // not_authorized
+                FB.login(function(response) {
+                    if (response.authResponse) {
+                        document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+                    }
+                }, {scope: 'email'});
+            }
+        });
+    }
+</script>
+<div class="change-pass-fb-button">
+    <span class="or">or</span>
+    <button class="fb-button" onclick="fb_login()">
+        <i class="ff-facebook1"></i><span>Login with Facebook</span>
+    </button>
+</div>

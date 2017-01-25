@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Login;
+namespace AppBundle\SocialServices;
 
 //use Facebook;
 use HappyR\Google\ApiBundle;

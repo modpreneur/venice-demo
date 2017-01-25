@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jakub Fajkus
- * Date: 02.10.15
- * Time: 17:36.
- */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -21,14 +15,14 @@ use Venice\AppBundle\Entity\Product\Product;
  */
 class User extends \Venice\AppBundle\Entity\User
 {
-    const PREFERRED_IMPERIAL = "imperial";
-    const PREFERRED_METRIC   = "metric";
+    const PREFERRED_IMPERIAL = 'imperial';
+    const PREFERRED_METRIC   = 'metric';
 
     const DEFAULT_PREFERRED_METRICS = self::PREFERRED_IMPERIAL;
 
-    const DIR_PICTURES    = "images/profile/";
-    const PROFILE_PICTURE = "empty_profile.png";
-    const PROFILE_AVATAR  = "empty_profile.png";
+    const DIR_PICTURES    = 'images/profile/';
+    const PROFILE_PICTURE = 'empty_profile.png';
+    const PROFILE_AVATAR  = 'empty_profile.png';
 
 
     /**
@@ -49,11 +43,19 @@ class User extends \Venice\AppBundle\Entity\User
     public $snapchatNickname = 'getSnapchatNickname';
 
     /**
+     * @var \DateTime
+     */
+    private $lastPasswordChange;
+
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->dateOfBirth = new \DateTime(); //todo;
+
+        $this->lastPasswordChange = new \DateTime();
     }
 
 
@@ -138,5 +140,24 @@ class User extends \Venice\AppBundle\Entity\User
     public function getLocation()
     {
         return '';
+    }
+
+
+    /**
+     * @return \DateTime
+     */
+    public function getLastPasswordChange(): \DateTime
+    {
+        return new \DateTime();
+        return $this->lastPasswordChange;
+    }
+
+
+    /**
+     * @param \DateTime $lastPasswordChange
+     */
+    public function setLastPasswordChange(\DateTime $lastPasswordChange)
+    {
+        $this->lastPasswordChange = $lastPasswordChange;
     }
 }

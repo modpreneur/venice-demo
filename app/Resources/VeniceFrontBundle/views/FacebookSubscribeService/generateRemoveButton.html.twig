@@ -1,0 +1,12 @@
+{{ FacebookSubscribeServiceRender("init") }}
+<script>
+    function fb_remove() {
+        FB.api("/me/permissions","DELETE",function(response){
+            return true; // proceed href
+        });
+    }
+
+</script>
+<i class="ff-fb-negative"></i><span>Connected</span>
+<a href="unsubscribe/facebook" class="button-functional" type="button" onclick="fb_remove()" value="REMOVE">REMOVE</a>
+

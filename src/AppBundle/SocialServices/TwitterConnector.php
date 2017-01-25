@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Login;
+namespace AppBundle\SocialServices;
 
 use GeneralBackend\CoreBundle\Entity\SocialSite;
 

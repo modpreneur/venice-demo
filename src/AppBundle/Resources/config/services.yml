@@ -153,3 +153,22 @@ services:
     flofit.newsletter_optimalization:
         class: AppBundle\Newsletter\NewsletterOptimalization
         arguments: ["@service_container"]
+
+
+
+    facebook_subscibe_service:
+          class: AppBundle\SocialServices\FacebookSubscribeService
+          arguments: ["@service_container"]
+          tags: [ name: twig.extension ]
+
+
+    twitter_subscibe_service:
+          class: AppBundle\SocialServices\TwitterSubscribeService
+          arguments: ["@service_container"]
+          tags: [ name: twig.extension ]
+
+
+    google_subscibe_service:
+          class: AppBundle\SocialServices\GoogleSubscribeService
+          arguments: ["@service_container"]
+          tags: [ name: twig.extension ]

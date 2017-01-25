@@ -1,9 +1,10 @@
 <?php
 
-namespace AppBundle\Login;
+namespace AppBundle\SocialServices;
 
+use AppBundle\Entity\User;
+use AppBundle\Services\AbstractSubscibeService;
 use Facebook\Facebook;
-use GeneralBackend\CoreBundle\Entity\GlobalUser;
 use Twig_Environment;
 
 /**
@@ -18,7 +19,7 @@ class FacebookSubscribeService extends AbstractSubscibeService
     /**
      * @return bool
      */
-    public function haveSubscription(GlobalUser $user)
+    public function haveSubscription(User $user)
     {
         if(is_null($user->getFacebookId()) || is_null($user->getFacebookAccessToken()))
             return false;
@@ -65,12 +66,24 @@ class FacebookSubscribeService extends AbstractSubscibeService
         return $this->render("@ModernEntrepreneurGeneralBackendCore/FacebookSubscribeService/generateRemoveButton.html.twig");
     }
 
+
+    /**
+     * @param $parameters
+     *
+     * @return \Symfony\Bundle\TwigBundle\TwigEngine
+     */
     public function renderCommentsBlock($parameters)
     {
         return $this->render("@ModernEntrepreneurGeneralBackendCore/FacebookSubscribeService/comments.html.twig",array("permanentLink"=>$parameters["permanentLink"]));
     }
 
-    public function unsubscribe(GlobalUser $user)
+
+    /**
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function unsubscribe(User $user)
     {
         //return $this->render("@ModernEntrepreneurGeneralBackendCore/TwitterSubscribeService/comments.html.twig",array("permanentLink"=>$parameters["permanentLink"]));
         $user->setFacebookAccessToken(null);
