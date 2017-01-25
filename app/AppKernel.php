@@ -45,9 +45,11 @@ class AppKernel extends Venice\AppBundle\Kernel\VeniceKernel
     {
         parent::boot();
 
-        /** @var \Aws\S3\S3Client $s3client */
-        $s3client = $this->container->get('flofit_amazon_s3');
-        $s3client->registerStreamWrapper();
+        if ($this->container->has('flofit_amazon_s3')) {
+            /** @var \Aws\S3\S3Client $s3client */
+            $s3client = $this->container->get('flofit_amazon_s3');
+            $s3client->registerStreamWrapper();
+        }
     }
 
 
