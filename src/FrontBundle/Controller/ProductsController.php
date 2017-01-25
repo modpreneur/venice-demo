@@ -178,6 +178,8 @@ class ProductsController extends Controller
         $buyParams  = new BillingPlan();
         $parameters = [];
 
+        $trial = 7;
+
         /*
         if ($user->haveClaimYourPlatinumClubTrial()) {
             $buyParams->setBuyId(41);
@@ -222,31 +224,31 @@ class ProductsController extends Controller
     /**
      * @Route("/product/{handle}", name="downloads_product_bundle_detail")
      * @Route("/product/{handle}/module/{module}", name="downloads_product_bundle_detail_with_module")
-     * @param BundleProduct $bundleProduct
+     * @param StandardProduct $bundleProduct
      *
      * @return Response
      */
-    public function bundleProductAction(BundleProduct $bundleProduct, $module = 1)
+    public function bundleProductAction(StandardProduct $bundleProduct, $module = 1)
     {
         /** @var User $user */
         $user = $this->getUser();
 
-        $productsService = $this->get("modern_entrepreneur_global_backend_downloads.products_service");
-        $productsService->initialSetup($bundleProduct->getSubProducts(), $this->getUser());
+        $productsService = $this->get("flofit.products_service");
+        $productsService->initialSetup([$bundleProduct], $this->getUser());
 
-        /** @var BundleProduct $upsellProducts */
+        /** @var StandardProduct $upsellProducts */
         $upsellProducts = $this->getDoctrine()->getManager()
-            ->getRepository("ModernEntrepreneurGeneralBackendDownloadsBundle:BundleProduct")
-            ->findBy(array("isRecommended" => 1), array("upsellOrder" => "ASC"));
+            ->getRepository(StandardProduct::class)
+            ->findBy(["isRecommended" => 1], ["upsellOrder" => "ASC"]);
 
         return $this->render($bundleProduct->getCustomTemplateName(),
-            array(
+            [
                 "access" => $user->haveAccess($bundleProduct),
                 "productsService" => $productsService,
                 "upsellProducts" => $upsellProducts,
                 "bundleProduct" => $bundleProduct,
                 "activeModule" => $module
-            ));
+            ]);
     }
 
 

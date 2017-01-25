@@ -64,6 +64,12 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
      */
     protected $shortName;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    protected $customTemplateName;
+    
 
     /**
      * StandardProduct constructor.
@@ -73,6 +79,7 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
         parent::__construct();
 
         $this->StandardProductChild = 'standard product from application';
+        $this->customTemplateName   = 'VeniceFrontbundle:BundleProduct:bundleProductPlatinumMix.html.twig';
     }
 
 
@@ -217,5 +224,24 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
     public function setShortName($shortName)
     {
         $this->shortName = $shortName;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getCustomTemplateName(): string
+    {
+        return 'VeniceFrontBundle:BundleProduct:bundleProductPlatinumMix.html.twig';
+        return $this->customTemplateName;
+    }
+
+
+    /**
+     * @param string $customTemplateName
+     */
+    public function setCustomTemplateName(string $customTemplateName)
+    {
+        $this->customTemplateName = $customTemplateName;
     }
 }

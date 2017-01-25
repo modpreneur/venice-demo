@@ -1,0 +1,50 @@
+{% extends "VeniceAppBundle::base.html.twig" %}
+
+{% block title %}
+    Supplement database
+{% endblock %}
+
+{% block jumbotronClass %}jumbotron-dashboard{% endblock %}
+
+{% block content %}
+    <article class="supplement-database">
+        <div class="row">
+            <div class="span-large-24">
+
+                <h1>Supplement database</h1>
+
+                <p class="text-justify">Scientific information about everything you choose to put in your body is just a
+                    click away. We've partnered with the Natural Standard, an impartial authority on integrative medicine,
+                    to get you the latest research findings on foods, vitamins, drugs, herbs, and sports supplements
+                    stacks.</p>
+
+                <p class="text-justify">The Natural Standard are not supported by any interest group, professional
+                    organization or product manufacturer. Their experts conduct data analysis and research into literature
+                    and scientific work around the topics of supplements, foods and drugs.</p>
+
+                <p class="text-justify">Get immediate access to our five industry leading databases:</p>
+
+                <p class="text-justify">For foods, drugs and supplements, use the consumer version of the Natural Standard
+                    Herb & Supplement Database.
+                    For medical conditions, click through to the consumer version of the Natural Standard Condition Center.
+                    A comprehensive database of drug interactions is yours to use with the consumer version of the Natural
+                    Standard Interactions Checker.
+                    For the latest research findings on drug nutrient depletions, simply find the relevant listing in this
+                    huge A-Z database from Natural Standard.
+                    And for herb or supplement depletions, use the Natural Standard's comprehensive list of herbs,
+                    supplements, vitamins and minerals to view a list of depletions.
+                <p>
+
+                <p class="text-justify">Get access to this incredible, trustworthy and research-heavy set of databases
+                    now.</p>
+
+
+                <a href="{{ path("downloads_front_supplementDatabase_foodDrugsAndSupplements") }}">Food Drugs and supplements</a>
+                <a href="{{ path("downloads_front_supplementDatabase_medicalConditions") }}">Medical Conditions</a>
+                <a href="{{ path("downloads_front_supplementDatabase_drugInteractions") }}">Drug interactions</a>
+                <a href="{{ path("downloads_front_supplementDatabase_drugNutrientDepletions") }}">Drug nutrient depletions</a>
+                <a href="{{ path("downloads_front_supplementDatabase_herbSupplementNutrient") }}">Herb supplement nutrients</a>
+            </div>
+        </div>
+    </article>
+{% endblock %}

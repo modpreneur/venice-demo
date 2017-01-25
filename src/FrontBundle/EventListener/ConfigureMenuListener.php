@@ -27,11 +27,16 @@ class ConfigureMenuListener
     }
 
 
+    /**
+     * @param ConfigureMenuEvent $event
+     *
+     * @throws \InvalidArgumentException
+     */
     public function onMenuConfigure(ConfigureMenuEvent $event)
     {
         $menu = $event->getMenu();
 
-        $menu->addChild("Dashboard",array("route"=>"landing_page"));
+        $menu->addChild("Dashboard", ["route"=>"landing_page"]);
 
         $myProfileItem = $menu->addChild("Profile",array("route"=>"core_front_user_profile_edit"));
 
@@ -46,32 +51,34 @@ class ConfigureMenuListener
         $myProfileItem->addChild("Order history", array("route"=>"core_front_user_order_history"));
         $myProfileItem->addChild("Newsletters", array("route"=>"core_front_user_profile_newsletters"));
 
-        if($adminItem = $event->getAdministrationMenu())
-            $this->configureAdministrationMenu($event,$adminItem);
+        if ($adminItem = $event->getAdministrationMenu()) {
+            $this->configureAdministrationMenu($event, $adminItem);
+        }
     }
 
-    private function configureAdministrationMenu(ConfigureMenuEvent $event,ItemInterface $adminItem)
+
+    /**
+     * @param ConfigureMenuEvent $event
+     * @param ItemInterface $adminItem
+     */
+    private function configureAdministrationMenu(ConfigureMenuEvent $event, ItemInterface $adminItem)
     {
         $grantChecker = $this->container->get("security.authorization_checker");
 
-        if($grantChecker->isGranted(self::SUPER_ADMIN) || $grantChecker->isGranted(self::MODIFICATION_LOG_ROLE))
-        {
+        if ($grantChecker->isGranted(self::SUPER_ADMIN) || $grantChecker->isGranted(self::MODIFICATION_LOG_ROLE)) {
            // $adminItem->addChild("Modifications log", array("route"=>"core_admin_log"));
         }
 
-        if($grantChecker->isGranted(self::SUPER_ADMIN) || $grantChecker->isGranted(self::MODIFICATION_USERS))
-        {
+        if ($grantChecker->isGranted(self::SUPER_ADMIN) || $grantChecker->isGranted(self::MODIFICATION_USERS)) {
          //   $adminItem->addChild("Users",array("route"=>"core_admin_users"));
         }
 
-        if($grantChecker->isGranted(self::SOCIAL_EDIT))
-        {
-            $adminItem->addChild("Social accounts",array("route"=>"admin_social_site_index"));
+        if ($grantChecker->isGranted(self::SOCIAL_EDIT)) {
+            $adminItem->addChild("Social accounts", ["route"=>"admin_social_site_index"]);
         }
 
-        if($grantChecker->isGranted(self::PAGES_EDIT))
-        {
-            $adminItem->addChild("Static pages",array("route"=>"core_admin_static_pages"));
+        if ($grantChecker->isGranted(self::PAGES_EDIT)) {
+            $adminItem->addChild("Static pages", ["route"=>"core_admin_static_pages"]);
         }
     }
 }

@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ondrejbohac
- * Date: 21.10.15
- * Time: 11:27
- */
 
 namespace FrontBundle\Controller;
 
-
-use GeneralBackend\CoreBundle\Entity\GlobalUser;
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -21,16 +14,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class SupplementDatabaseController extends Controller
 {
+    /**
+     * @return bool
+     */
     private function checkAccess()
     {
-        /** @var GlobalUser $user */
+        /** @var User $user */
         $user = $this->getUser();
 
-        if(is_null($user))
+        if (is_null($user)) {
             return false;
+        }
 
-        return $user->platinumClubAccessIntoModule(1);
+        return true;
     }
+
 
     /**
      * @Route("", name="downloads_front_supplementDatabase_about")
@@ -38,14 +36,16 @@ class SupplementDatabaseController extends Controller
      */
     public function indexAction()
     {
-        if(!$this->checkAccess())
-            return $this->redirectToRoute("downloads_product_flomersion");
+        if (!$this->checkAccess()) {
+            return $this->redirectToRoute('downloads_product_flomersion');
+        }
 
         return $this->render(
-            ":DownloadsBundle/Front/SupplementDatabase:index.html.twig",
-            array()
+            'VeniceFrontBundle:SupplementDatabase:index.html.twig',
+            []
         );
     }
+
 
     /**
      * @Route("/food-drugs-and-supplements", name="downloads_front_supplementDatabase_foodDrugsAndSupplements")
@@ -53,17 +53,19 @@ class SupplementDatabaseController extends Controller
      */
     public function foodDrugsAndSupplementsAction()
     {
-        if(!$this->checkAccess())
-            return $this->redirectToRoute("downloads_product_flomersion");
+        if (!$this->checkAccess()) {
+            return $this->redirectToRoute('downloads_product_flomersion');
+        }
 
-        $pageTitle = "Food Drugs and Supplements";
-        $iframeLink = "http://3rdparty.naturalstandard.com/index-herbs.asp";
+        $pageTitle = 'Food Drugs and Supplements';
+        $iframeLink = 'http://3rdparty.naturalstandard.com/index-herbs.asp';
 
         return $this->render(
-            ":DownloadsBundle/Front/SupplementDatabase:iframePage.html.twig",
-            array("iframeLink" => $iframeLink, "pageTitle" => $pageTitle, "iframeHeight"=>28250)
+            'VeniceFrontBundle:SupplementDatabase:iframePage.html.twig',
+            ['iframeLink' => $iframeLink, 'pageTitle' => $pageTitle, 'iframeHeight' => 28250]
         );
     }
+
 
     /**
      * @Route("/medical-conditions", name="downloads_front_supplementDatabase_medicalConditions")
@@ -71,17 +73,19 @@ class SupplementDatabaseController extends Controller
      */
     public function medicalConditionsAction()
     {
-        if(!$this->checkAccess())
-            return $this->redirectToRoute("downloads_product_flomersion");
+        if (!$this->checkAccess()) {
+            return $this->redirectToRoute('downloads_product_flomersion');
+        }
 
-        $pageTitle = "Medical Conditions";
-        $iframeLink = "http://3rdparty.naturalstandard.com/index-conditions.asp";
+        $pageTitle  = 'Medical Conditions';
+        $iframeLink = 'http://3rdparty.naturalstandard.com/index-conditions.asp';
 
         return $this->render(
-            ":DownloadsBundle/Front/SupplementDatabase:iframePage.html.twig",
-            array("iframeLink" => $iframeLink, "pageTitle" => $pageTitle, "iframeHeight"=>7100)
+            'VeniceFrontBundle:SupplementDatabase:iframePage.html.twig',
+            ['iframeLink' => $iframeLink, 'pageTitle' => $pageTitle, 'iframeHeight' => 7100]
         );
     }
+
 
     /**
      * @Route("/drug-interactions", name="downloads_front_supplementDatabase_drugInteractions")
@@ -89,17 +93,19 @@ class SupplementDatabaseController extends Controller
      */
     public function drugInteractionsAction()
     {
-        if(!$this->checkAccess())
-            return $this->redirectToRoute("downloads_product_flomersion");
+        if (!$this->checkAccess()) {
+            return $this->redirectToRoute('downloads_product_flomersion');
+        }
 
-        $pageTitle = "Drug Interactions";
-        $iframeLink = "http://3rdparty.naturalstandard.com/index-interactions.asp";
+        $pageTitle  = 'Drug Interactions';
+        $iframeLink = 'http://3rdparty.naturalstandard.com/index-interactions.asp';
 
         return $this->render(
-            ":DownloadsBundle/Front/SupplementDatabase:iframePage.html.twig",
-            array("iframeLink" => $iframeLink, "pageTitle" => $pageTitle, "iframeHeight"=>200)
+            'VeniceFrontBundle:SupplementDatabase:iframePage.html.twig',
+            ['iframeLink' => $iframeLink, 'pageTitle' => $pageTitle, 'iframeHeight' => 200]
         );
     }
+
 
     /**
      * @Route("/drug-nutrient-depletions", name="downloads_front_supplementDatabase_drugNutrientDepletions")
@@ -107,17 +113,19 @@ class SupplementDatabaseController extends Controller
      */
     public function drugNutrientDepletionsAction()
     {
-        if(!$this->checkAccess())
-            return $this->redirectToRoute("downloads_product_flomersion");
+        if (!$this->checkAccess()) {
+            return $this->redirectToRoute('downloads_product_flomersion');
+        }
 
-        $pageTitle = "Drug Nutrient Depletions";
-        $iframeLink = "http://3rdparty.naturalstandard.com/content/interactionHTML/depletions-drugs.asp";
+        $pageTitle  = 'Drug Nutrient Depletions';
+        $iframeLink = 'http://3rdparty.naturalstandard.com/content/interactionHTML/depletions-drugs.asp';
 
         return $this->render(
-            ":DownloadsBundle/Front/SupplementDatabase:iframePage.html.twig",
-            array("iframeLink" => $iframeLink, "pageTitle" => $pageTitle, "iframeHeight"=>800)
+            'VeniceFrontBundle:SupplementDatabase:iframePage.html.twig',
+            ['iframeLink' => $iframeLink, 'pageTitle' => $pageTitle, 'iframeHeight' => 800]
         );
     }
+
 
     /**
      * @Route("/herb-supplement-nutrient", name="downloads_front_supplementDatabase_herbSupplementNutrient")
@@ -125,13 +133,12 @@ class SupplementDatabaseController extends Controller
      */
     public function herbSupplementNutrientAction()
     {
-        $pageTitle = "Herb supplement nutrients";
-        $iframeLink = "http://3rdparty.naturalstandard.com/index-herbs.asp";
+        $pageTitle  = 'Herb supplement nutrients';
+        $iframeLink = 'http://3rdparty.naturalstandard.com/index-herbs.asp';
 
         return $this->render(
-            ":DownloadsBundle/Front/SupplementDatabase:iframePage.html.twig",
-            array("iframeLink" => $iframeLink, "pageTitle" => $pageTitle, "iframeHeight"=>1500)
-
+            'VeniceFrontBundle:SupplementDatabase:iframePage.html.twig',
+            ['iframeLink' => $iframeLink, 'pageTitle' => $pageTitle, 'iframeHeight' => 1500]
         );
     }
 }

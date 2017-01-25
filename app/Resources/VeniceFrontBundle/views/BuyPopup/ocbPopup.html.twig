@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="{{ asset("Resources/public/ocb/ocb.css") }}">
+<div id="wrap-buy-popup" style="line-height: 1.5em">
+    <div class="cancel-modal full-browser"></div>
+    <div class="buy-popup">
+        <div class="row">
+            <div class="col">
+                <img src="{{ asset("Resources/public/ocb/clickbank.png") }}" alt="ClickBank" class="img-responsive cb-logo"/>
+                <button class="close cancel-modal"></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1 class="divider text-left">Quick Purchase Order Details</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-1-2">
+                <p class="bold" style="margin-bottom: 0">{{ parameters.name }}</p>
+                <p>{{ parameters.productDescription }}</p>
+            </div>
+            <div class="col col-1-2">
+                <div class="payment-list">
+                    <ul class="left">
+                        <li>Initial Payment</li>
+                        <li>Tax</li>
+                        <li class="bold" style="margin-bottom: 0">TOTAL</li>
+                    </ul>
+                    <ul class="right">
+                        <li>FREE</li>
+                        <li>{{ parameters.taxPriceStr }}</li>
+                        <li class="bold" style="margin-bottom: 0">{{ parameters.totalPriceStr }}</li>
+                    </ul>
+                    <p class="smallest">Immediate access to this product or service is available once payment is approved.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-1-2">
+                <h1 class="divider text-left">Future Payments</h1>
+                <p style="margin-bottom: 0">Monthly Payment of {{ parameters.rebillPriceStr }} *</p>
+                {# @todo
+                <p class="smallest grey">* Next payment will be on {{ parameters.rebillDate|date("m/d/Y") }}<br/>Amount include taxes subject to change based on customer location and rate adjustments.</p>
+                #}
+            </div>
+            <div class="col col-1-2">
+                <div class="buttons">
+                    <a class="button button-prims buy-pop-button" href="{{ parameters.buyLinkCCT }}">PAY WITH STORED {{ parameters.storedCard }}</a>
+                    <a class="button button-secs" href="{{ parameters.buyLinkCCF }}">PAY using another method</a>
+                    <button class="button button-cancel cancel-modal">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        var buyButtons = document.querySelectorAll(".buy-pop-button");
+
+        for(var i = 0; i < buyButtons.length; i++)  {
+            buyButtons[i].onclick = function() {
+                var pop = document.getElementById("wrap-buy-popup");
+                pop.style.display = "block";
+                document.body.classList.add("oveflow-hidden");
+                var numb = 0;
+                var inter = setInterval(function() {
+                    if(pop.style.opacity < 1) {
+                        numb++;
+                        pop.style.opacity = numb/5;
+                    }
+                    else {
+                        clearInterval(inter);
+                    }
+                }, 0);
+
+                document.getElementById("wrap-buy-popup").classList.add("show-pop");
+                document.getElementById("wrap-body").classList.add("blur-effect");
+            }
+        }
+
+        var closePop = document.querySelectorAll(".cancel-modal");
+        for(var i = 0; i < closePop.length; i++)  {
+            closePop[i].onclick = function() {
+                var pop = document.getElementById("wrap-buy-popup");
+                document.body.classList.remove("oveflow-hidden");
+
+                pop.classList.remove("show-pop");
+                pop.style.display = "none";
+                pop.style.opacity = 0;
+
+                console.log(pop);
+                document.getElementById("wrap-body").classList.remove("blur-effect");
+            }
+        }
+    });
+</script>

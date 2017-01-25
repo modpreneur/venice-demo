@@ -1,7 +1,7 @@
-{% extends "VeniceFrontBundle:Products:bundleProductDetail.html.twig" %}
+{% extends "VeniceFrontBundle:BundleProduct:bundleProductDetail.html.twig" %}
 
 {% block buyModal %}
-    {% include ":DownloadsBundle/Front/buyPopup:ocbPopup.html.twig" %}
+    {% include "VeniceFrontBundle:BuyPopup:ocbPopup.html.twig" %}
 {% endblock %}
 
 {% block jumbotronClass %}jumbotron-platinum-club{% endblock %}
@@ -31,14 +31,21 @@
             {% set allVideosAndArticleProducts = productsService.getProductsByBundleProductHandle("videos-and-articles",activeModule) %}
             {% set allworkoutProducts = productsService.getProductsByBundleProductHandle("workouts",activeModule) %}
             {% set allmealPlansProducts = productsService.getProductsByBundleProductHandle("meal-plans",activeModule) %}
-            {% set accesIntoModule = app.user.platinumClubAccessIntoModule(activeModule) %}
+
+            {#@todo #}
+            {% set accesIntoModule = true %}
+
             {% set navigationLinks = [] %}
             {% set openIn = 0 %}
 
             {% if allVideosAndArticleProducts|length > 0 %}
                 {% set navigationLinks = navigationLinks|merge([{href:"#videos-and-articles",text:"Videos"}]) %}
 
+                {# @tood
                 {% set openIn = allVideosAndArticleProducts[0].daysRemainingToUnlock(app.user) %}
+                #}
+
+                {% set openIn = 0 %}
             {% endif %}
 
             {% if allworkoutProducts|length > 0 %}
@@ -69,7 +76,7 @@
             {#</div>#}
             {#</div>#}
             {#</div>#}
-            <div id="moduleBlock" class="span-medium-24 ajax-slide-down {% if not app.user.platinumClubAccessIntoModule(1) %}disable-products{% endif %}">
+            <div id="moduleBlock" class="span-medium-24 ajax-slide-down">
 
                 {#{% if not accesIntoModule %}#}
                 <img class="display-none-mini display-block-medium img-responsive" src="{{ asset("Resources/public/images/site/platinumclub-locked-desktop.png") }}" alt="">

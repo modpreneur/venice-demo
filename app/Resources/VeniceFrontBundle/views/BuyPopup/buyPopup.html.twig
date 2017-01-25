@@ -1,0 +1,35 @@
+{% if product is not null and product.buyCBParameters is not null %}
+<div id="buy-modal">
+    <label for="buy-modal-input" class="buy-modal-label buy-modal-open"></label>
+    <div class="buy-modal-wrapper">
+        <label for="buy-modal-input" class="buy-modal-open"><i class="ff-cross2"></i></label>
+        <h1><small>Purchase</small></h1>
+
+        <div class="row final-price">
+            <span>{{ product.name }}</span>
+
+            {% if product.buyCBParameters.hasCustomPriceText %}
+                <span class="price">{{ product.buyCBParameters.getCustomPriceText }}</span>
+            {% else %}
+                <span class="price">{{ generatePriceString(product.buyCBParameters) }}</span>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if product.buyCBParameters.hasSmallTextAboveButtons %}
+                <span class="text margin-bottom-5">{{ product.buyCBParameters.smallTextAboveButtons }}</span>
+            {% endif %}
+
+            <a href="{{ generateOCBLink(product,true) }}" class="button button-card tooltip">
+                Purchase with your <span>{{ getLastCard() }}</span> card
+                <div class="tooltip-hover">(?)
+                    <div class="tooltip-top">On your last purchase, your payment method was stored for your convenience</div>
+                </div>
+            </a>
+            <a class="button button-another" href="{{ generateOCBLink(product,false) }}">
+                Use another payment method
+            </a>
+            <p>(?) On your last purchase, your payment method was stored for your convenience</p>
+        </div>
+    </div>
+</div>
+{% endif %}

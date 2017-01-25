@@ -1,7 +1,7 @@
 <nav class="navbar">
     {% for menuItem in pageMenuHolder %}
         {% if menuItem.isCurrent and menuItem.children|length != 0 %}
-            {{ knp_menu_render(menuItem,{template:":CoreBundle/Front/menuTemplates:secondLevelMenu.html.twig"}) }}
+            {{ knp_menu_render(menuItem,{template:"VeniceFrontBundle:MenuTemplates:secondLevelMenu.html.twig"}) }}
         {% endif %}
     {% endfor %}
 </nav>
