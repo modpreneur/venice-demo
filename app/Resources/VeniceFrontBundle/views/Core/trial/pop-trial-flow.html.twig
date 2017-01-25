@@ -1,0 +1,169 @@
+{#3-choice offer after their 7 day free trial expire #}
+<input type="checkbox" id="trial-modal-input" class="display-none">
+<div class="trial-flow deck" {#style="display: none;"#}>
+    <label for="trial-modal-input" class="trial-modal-label trial-modal-open"></label>
+    <div class="trial-flow-wrapper">
+        <label for="trial-modal-input" class="trial-modal-label-cross trial-modal-open"><i class="ff-cross2"></i></label>
+
+        <div class="cart-box">
+
+            {% if app.user.hasProductOfferId("introFree") or app.user.hasProductOfferId("introFreePa") %}
+                <div class="item">
+                    <h2>Monthly Subscription
+                        <small>Online Access to the Entire FLO&nbsp;FIT Program</small>
+                    </h2>
+                    <p>Pay a low monthly fee for access to the entire FLO&nbsp;FIT program, including all workouts, books, and training calendars. <br><span class="display-block"><strong>Cancel or upgrade anytime with just “2&nbsp;clicks”.</strong></span></p>
+                    <div class="cover">
+                        <img src="{{ asset('Resources/public/images/site/digital-streaming.png') }}" class="img-responsive" alt="Digital Streaming">
+                    </div>
+                    <div class="hgroup">
+                        <h3 class="new-price">Only $8.95/mo</h3>
+                    </div>
+                    <a href="{{ path('buy_link_after_trial', {'user_choice': 1}) }}" class="btn btn-sec" id="pop-expire-offerclick-1">START NOW</a>
+                </div>
+            {% elseif app.user.hasProductOfferId("introFreeHp") %}
+                <div class="item">
+                    <h2>Monthly Subscription
+                        <small>Online Access to the Entire FLO&nbsp;FIT Program</small>
+                    </h2>
+                    <p>Pay a low monthly fee for access to the entire FLO&nbsp;FIT program, including all workouts, books, and training calendars. <br><span class="display-block"><strong>Cancel or upgrade anytime with just “2&nbsp;clicks”.</strong></span></p>
+                    <div class="cover">
+                        <img src="{{ asset('Resources/public/images/site/digital-streaming.png') }}" class="img-responsive" alt="Digital Streaming">
+                    </div>
+                    <div class="hgroup">
+                        <h3 class="new-price">Only $12.95/mo</h3>
+                    </div>
+                    <a href="{{ path('buy_link_after_trial', {'user_choice': 1}) }}" class="btn btn-sec" id="pop-expire-offerclick-1">START NOW</a>
+                </div>
+            {% else %}
+                <div class="item">
+                    <h2>Monthly Subscription
+                        <small>Online Access to the Entire FLO&nbsp;FIT Program</small>
+                    </h2>
+                    <p>Pay a low monthly fee for access to the entire FLO&nbsp;FIT program, including all workouts, books, and training calendars. <br><span class="display-block"><strong>Cancel or upgrade anytime with just “2&nbsp;clicks”.</strong></span></p>
+                    <div class="cover">
+                        <img src="{{ asset('Resources/public/images/site/digital-streaming.png') }}" class="img-responsive" alt="Digital Streaming">
+                    </div>
+                    <div class="hgroup">
+                        <h3 class="new-price">Only $4.95/mo</h3>
+                    </div>
+                    <a href="{{ path('buy_link_after_trial', {'user_choice': 1}) }}" class="btn btn-sec" id="pop-expire-offerclick-1">START NOW</a>
+                </div>
+            {% endif %}
+
+
+            {% if app.user.hasProductOfferId("introFree") or app.user.hasProductOfferId("introFreePa")  %}
+                <div class="item">
+                    <h2>Digital Streaming<small>and Online Access</small></h2>
+                    <p>Streaming workout videos and online access to the entire FLO&nbsp;FIT program. <br>This is a single, one-time payment for <span class="display-block"><strong class="display-inline">LIFETIME</strong> access.</span></p>
+                    <div class="cover">
+                        <img src="{{ asset('Resources/public/images/site/digital-streaming.png') }}" class="img-responsive" alt="Digital Streaming">
+                    </div>
+                    <div class="hgroup">
+                        <h3 class="old-price">$99</h3>
+                        <h3 class="new-price">$67</h3>
+                        <span class="info-price">One-Time Payment</span>
+                    </div>
+                    <a href="{{ path('buy_link_after_trial', {'user_choice': 2}) }}" class="btn btn-sec" id="pop-expire-offerclick-2">START NOW</a>
+                </div>
+            {% elseif app.user.hasProductOfferId("introFreeHp") %}
+                <div class="item">
+                    <h2>Digital Streaming<small>and Online Access</small></h2>
+                    <p>Streaming workout videos and online access to the entire FLO&nbsp;FIT program. <br>This is a single, one-time payment for <span class="display-block"><strong class="display-inline">LIFETIME</strong> access.</span></p>
+                    <div class="cover">
+                        <img src="{{ asset('Resources/public/images/site/digital-streaming.png') }}" class="img-responsive" alt="Digital Streaming">
+                    </div>
+                    <div class="hgroup">
+                        <h3 class="old-price">$199</h3>
+                        <h3 class="new-price">$97</h3>
+                        <span class="info-price">One-Time Payment</span>
+                    </div>
+                    <a href="{{ path('buy_link_after_trial', {'user_choice': 2}) }}" class="btn btn-sec" id="pop-expire-offerclick-2">START NOW</a>
+                </div>
+            {% else %}
+                <div class="item">
+                    <h2>Digital Streaming<small>and Online Access</small></h2>
+                    <p>Streaming workout videos and online access to the entire FLO&nbsp;FIT program. <br>This is a single, one-time payment for <span class="display-block"><strong class="display-inline">LIFETIME</strong> access.</span></p>
+                    <div class="cover">
+                        <img src="{{ asset('Resources/public/images/site/digital-streaming.png') }}" class="img-responsive" alt="Digital Streaming">
+                    </div>
+                    <div class="hgroup">
+                        <h3 class="old-price">$79</h3>
+                        <h3 class="new-price">$37</h3>
+                        <span class="info-price">One-Time Payment</span>
+                    </div>
+                    <a href="{{ path('buy_link_after_trial', {'user_choice': 2}) }}" class="btn btn-sec" id="pop-expire-offerclick-2">START NOW</a>
+                </div>
+            {% endif %}
+
+
+
+            {% if app.user.hasProductOfferId("introFree") or app.user.hasProductOfferId("introFreePa")  %}
+                <div class="item active">
+                    <div class="barge">Best Value</div>
+                    <h2>Get Both<small>Digital Streaming and Online Access PLUS DVDs and Books Shipped</small></h2>
+                    <p>The entire FLO FIT program sent to your front door (ships within 48 hours) as well as <br><strong class="display-inline">LIFETIME</strong> online access. This is a single, <br>one time payment.
+                        <span class="display-block free-shipping"><strong>FREE SHIPPING</strong></span></p>
+                    <div class="cover">
+                        <img src="{{ asset('Resources/public/images/site/digital-streaming-and-physical-dvds.png') }}" class="img-responsive" alt="Digital Streaming">
+                    </div>
+                    <div class="hgroup">
+                        <h3 class="old-price">$199</h3>
+                        <h3 class="new-price">$97</h3>
+                        <span class="info-price">One-Time Payment</span>
+                    </div>
+                    <a href="{{ path('buy_link_after_trial', {'user_choice': 3}) }}" class="btn btn-sec" id="pop-expire-offerclick-3">START NOW</a>
+                </div>
+            {% elseif app.user.hasProductOfferId("introFreeHp") %}
+                <div class="item active">
+                    <div class="barge">Best Value</div>
+                    <h2>Get Both<small>Digital Streaming and Online Access PLUS DVDs and Books Shipped</small></h2>
+                    <p>The entire FLO FIT program sent to your front door (ships within 48 hours) as well as <br><strong class="display-inline">LIFETIME</strong> online access. This is a single, <br>one time payment.
+                        <span class="display-block free-shipping"><strong>FREE SHIPPING</strong></span></p>
+                    <div class="cover">
+                        <img src="{{ asset('Resources/public/images/site/digital-streaming-and-physical-dvds.png') }}" class="img-responsive" alt="Digital Streaming">
+                    </div>
+                    <div class="hgroup">
+                        <h3 class="old-price">$399</h3>
+                        <h3 class="new-price">$197</h3>
+                        <span class="info-price">One-Time Payment</span>
+                    </div>
+                    <a href="{{ path('buy_link_after_trial', {'user_choice': 3}) }}" class="btn btn-sec" id="pop-expire-offerclick-3">START NOW</a>
+                </div>
+            {% else %}
+                <div class="item active">
+                    <div class="barge">Best Value</div>
+                    <h2>Get Both<small>Digital Streaming and Online Access PLUS DVDs and Books Shipped</small></h2>
+                    <p>The entire FLO FIT program sent to your front door (ships within 48 hours) as well as <br><strong class="display-inline">LIFETIME</strong> online access. This is a single, <br>one time payment.
+                        <span class="display-block free-shipping"><strong>FREE SHIPPING</strong></span></p>
+                    <div class="cover">
+                        <img src="{{ asset('Resources/public/images/site/digital-streaming-and-physical-dvds.png') }}" class="img-responsive" alt="Digital Streaming">
+                    </div>
+                    <div class="hgroup">
+                        <h3 class="old-price">$119</h3>
+                        <h3 class="new-price">$67</h3>
+                        <span class="info-price">One-Time Payment</span>
+                    </div>
+                    <a href="{{ path('buy_link_after_trial', {'user_choice': 3}) }}" class="btn btn-sec" id="pop-expire-offerclick-3">START NOW</a>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        ga('send', 'event', 'intro-free-be', 'pop-expire-open', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+
+        $("#pop-expire-offerclick-1").click(function () {
+            ga('send', 'event', 'intro-free-be', 'pop-expire-offerclick-1', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+        });
+        $("#pop-expire-offerclick-2").click(function () {
+            ga('send', 'event', 'intro-free-be', 'pop-expire-offerclick-2', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+        });
+        $("#pop-expire-offerclick-3").click(function () {
+            ga('send', 'event', 'intro-free-be', 'pop-expire-offerclick-3', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+        });
+    });
+</script>

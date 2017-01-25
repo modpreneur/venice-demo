@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jakub Fajkus
- * Date: 05.11.15
- * Time: 13:13.
- */
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

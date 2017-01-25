@@ -21,12 +21,40 @@ use Venice\AppBundle\Entity\Product\Product;
  */
 class User extends \Venice\AppBundle\Entity\User
 {
+    const PREFERRED_IMPERIAL = "imperial";
+    const PREFERRED_METRIC   = "metric";
+
+    const DEFAULT_PREFERRED_METRICS = self::PREFERRED_IMPERIAL;
+
+    const DIR_PICTURES    = "images/profile/";
+    const PROFILE_PICTURE = "empty_profile.png";
+    const PROFILE_AVATAR  = "empty_profile.png";
+
+
     /**
      * @ORM\Column(type="string")
      */
     protected $UserChild;
 
     private $profilePhoto = null;
+
+    /** @var  \DateTime */
+    public $dateOfBirth;
+
+
+    public $location = 'x';
+
+    public $youtubeLink = 'http://youtube.com/user';
+
+    public $snapchatNickname = 'getSnapchatNickname';
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->dateOfBirth = new \DateTime(); //todo;
+    }
 
 
     /**
@@ -86,5 +114,29 @@ class User extends \Venice\AppBundle\Entity\User
     {
         return 0;
         return $product->daysRemainingToUnlock($this);
+    }
+
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateOfBirth()
+    {
+        return $this->dateOfBirth;
+    }
+
+
+    /**
+     * @param \DateTime $dateOfBirth
+     */
+    public function setDateOfBirth($dateOfBirth)
+    {
+        $this->dateOfBirth = $dateOfBirth;
+    }
+
+
+    public function getLocation()
+    {
+        return '';
     }
 }

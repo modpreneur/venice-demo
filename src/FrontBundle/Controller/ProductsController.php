@@ -2,12 +2,14 @@
 
 namespace FrontBundle\Controller;
 
+use AppBundle\Entity\BillingPlan;
 use AppBundle\Entity\Content\VideoContent;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductGroup;
 use AppBundle\Entity\User;
 
 use AppBundle\Services\AbstractConnector;
+use AppBundle\Services\ProductsPage;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -65,7 +67,9 @@ class ProductsController extends Controller
         $upsellProducts = $entityManager->getRepository(StandardProduct::class)
             ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
-        $currentProduct = $entityManager->getRepository(Product::class)->findOneBy(['handle' => $productGroup::HANDLE_FLOFIT]);
+        $currentProduct = $entityManager
+            ->getRepository(Product::class)
+            ->findOneBy(['handle' => $productGroup::HANDLE_FLOFIT]);
 
         return $this->render(
             'VeniceFrontBundle:Products:dashboard.html.twig',
@@ -104,7 +108,7 @@ class ProductsController extends Controller
         /** @var Product $product */
         $product = $productGroup->getProducts()->first();
 
-        if (!$user->hasAccessToProduct($product)) {
+        if ($product && !$user->hasAccessToProduct($product)) {
             return $this->redirectToRoute(
                 'downloads_product_bundle_detail',
                 ['handle' => $product->getHandle()]
@@ -122,7 +126,7 @@ class ProductsController extends Controller
         }
 
         $access = false;
-        if (!is_null($product)) {
+        if ($product) {
             /** @var User $user */
             $user   = $this->getUser();
             $access = $user->hasAccessToProduct($product);
@@ -155,23 +159,26 @@ class ProductsController extends Controller
         $user = $this->getUser();
 
         $bundleProduct = $this->getDoctrine()->getManager()
-            ->getRepository("ModernEntrepreneurGeneralBackendDownloadsBundle:BundleProduct")
-            ->findOneBy(array("handle" => "platinumclub"));
+            ->getRepository(StandardProduct::class)
+            ->findOneBy(['handle' => 'platinumclub']);
 
         if ($user->haveAccess($bundleProduct)) {
-            return $this->redirectToRoute("downloads_product_flomersion");
+            return $this->redirectToRoute('downloads_product_flomersion');
         }
 
-        $productsService = $this->get("modern_entrepreneur_global_backend_downloads.products_service");
-        $productsService->initialSetup($bundleProduct->getSubProducts(), $this->getUser());
+        /** @var ProductsPage $productsService */
+        $productsService = $this->get('flofit.products_service');
+        $productsService->initialSetup([$bundleProduct], $this->getUser());
 
         /** @var StandardProduct $upsellProducts */
         $upsellProducts = $this->getDoctrine()->getManager()
-            ->getRepository("ModernEntrepreneurGeneralBackendDownloadsBundle:BundleProduct")
-            ->findBy(array("isRecommended" => 1), array("upsellOrder" => "ASC"));
+            ->getRepository(StandardProduct::class)
+            ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
-        $buyParams = new CBBuyParameters();
-        $parameters = array();
+        $buyParams  = new BillingPlan();
+        $parameters = [];
+
+        /*
         if ($user->haveClaimYourPlatinumClubTrial()) {
             $buyParams->setBuyId(41);
             $trial = 30;
@@ -182,8 +189,9 @@ class ProductsController extends Controller
             $trial = 7;
             $parameters["rebillDate"] = (new \DateTime())->add(new \DateInterval("P7D"));
         }
+        */
 
-        $featuresService = $this->get("general_backend_core.services.flofit_features");
+        $featuresService = $this->get('front.twig.flofit_features');
 
         $parameters["buyLinkCCT"] = $featuresService->generateOCBLinkByBuyParameters($buyParams, true, $user);
         $parameters["buyLinkCCF"] = $featuresService->generateOCBLinkByBuyParameters($buyParams, false, $user);
@@ -197,15 +205,17 @@ class ProductsController extends Controller
         $parameters["rebillPriceStr"] = "$79.00";
 
 
-        return $this->render(":DownloadsBundle/Front/bundleProduct:bundleProductPlatinumClubVideo.html.twig",
-            array(
-                "productsService" => $productsService,
-                "upsellProducts" => $upsellProducts,
-                "bundleProduct" => $bundleProduct,
-                "activeModule" => $module,
-                "parameters" => $parameters,
-                "trial" => $trial
-            ));
+        return $this->render(
+            'VeniceFrontBundle:BundleProduct:bundleProductPlatinumClubVideo.html.twig',
+            [
+                'productsService' => $productsService,
+                'upsellProducts' => $upsellProducts,
+                'bundleProduct' => $bundleProduct,
+                'activeModule' => $module,
+                'parameters' => $parameters,
+                'trial' => $trial,
+            ]
+        );
     }
 
 

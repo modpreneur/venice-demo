@@ -1,0 +1,15 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block headerInside %}
+    {{ include(":CoreBundle/Front/default:headerProfile.html.twig", {"user":user,"displayName":user.privacySettings.displayFullName}, with_context=false) }}
+{% endblock %}
+
+{% block content %}
+    <div class="profile-settings">
+        <div class="row">
+            <div class="span-large-24">
+                <div class="block-title">Sorry this profile is not public.</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

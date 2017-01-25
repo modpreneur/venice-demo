@@ -1,0 +1,21 @@
+<div class="row relative">
+    <div class="span-large-6 span-medium-8 span-small-24 offset-large-5 offset-medium-3 offset-small-0">
+        <a href="#{{ id }}" class="profile-settings-link"><i class="{{ icon }}"></i>{{ label }}</a>
+    </div>
+    <div class="span-medium-2 span-vector"><span class="vector"></span></div>
+    <div class="span-medium-11 span-small-24">
+        <div class="profile-settings-info">
+            <span>{{ secondLabel }}</span>
+        </div>
+    </div>
+    <a href="#{{ id }}" class="profile-settings-edit nice-scroll-parent">EDIT</a>
+</div>
+<div class="row">
+    <div class="span-medium-24">
+        <div id="{{ id }}" class="profile-settings-content">
+            <div>
+                {{ content|raw }}
+            </div>
+        </div>
+    </div>
+</div>

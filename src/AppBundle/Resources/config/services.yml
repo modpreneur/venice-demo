@@ -123,23 +123,33 @@ services:
     #------------------------------------------
 
 
-    flofit.dev_env_connector:
+    flofit.dev_env_connector: #todo services
         class: AppBundle\Services\DevConnector
         arguments: ["@service_container"]
 
 
-    flofit.dev_env_forum_connector:
+    flofit.dev_env_forum_connector: #todo services
         class: AppBundle\Services\DevForumConnector
         arguments: ["@service_container"]
 
 
-    flofit.products_service:
+    flofit.products_service: #todo services
       class: AppBundle\Services\ProductsPage
       arguments:
         - "@service_container"
 
 
-    flofit.static_pages_service:
+    flofit.static_pages_service: #todo services
         class: AppBundle\Services\StaticPagesService
         arguments:
           - "@service_container"
+
+
+    flofit.services.maropost_connector:
+        class:  AppBundle\Services\MaropostConnector
+        arguments: ["@service_container"]
+
+
+    flofit.newsletter_optimalization:
+        class: AppBundle\Newsletter\NewsletterOptimalization
+        arguments: ["@service_container"]

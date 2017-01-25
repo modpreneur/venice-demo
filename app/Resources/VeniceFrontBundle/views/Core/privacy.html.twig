@@ -1,0 +1,67 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block title %}
+    User privacy
+{% endblock %}
+
+{% block content %}
+    <div class="profile-settings profile-privacy">
+    <div class="row">
+        <div class="span-large-24 margin-top-30">
+            <div class="profile-settings-main">
+                <div id="privacyBlock" class="background-white">
+                    {% block privacyBlock %}
+                        <div id="pageElement" class="id">
+                            {% for pageElement in pageElements %}
+                                <div id="privacyFormBlock{{ pageElement.id }}">
+                                    {% block privacyFormBlock %}
+                                        <div class="row relative">
+                                            <div class="span-xlarge-6 offset-xlarge-6 span-large-8 offset-large-4 span-medium-9 offset-medium-3 offset-small-0">
+                                                <a href="#{{ pageElement.id }}_info" class="profile-settings-link"><i class="{{ pageElement.icon }}"></i>{{ pageElement.label }}</a>
+                                            </div>
+                                            <div class="span-medium-2"><span class="vector"></span></div>
+                                            <div class="span-medium-8">
+                                                <div class="profile-settings-info">
+                                                    {% if pageElement.id == "birthDateStyle"  %}
+                                                        <span>
+                                                            {% if user.dateOfBirth == null %}
+                                                                Not set
+                                                            {% else %}
+                                                                {% if user.privacySettings.birthDateStyle == 0 %}
+                                                                    Private
+                                                                {% elseif user.privacySettings.birthDateStyle == 1 %}
+                                                                    {{ user.age }} years
+                                                                {% elseif user.privacySettings.birthDateStyle == 2 %}
+                                                                    {{ user.dateOfBirth|date("jS \\o\\f F") }}
+                                                                {% else %}
+                                                                    {{ user.dateOfBirth|date("Y/m/d") }}
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </span>
+                                                    {% else %}
+                                                        <span>{% if pageElement.value == 0 %}Public{% else %}Private{% endif %}</span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <a href="#{{ pageElement.id }}_info" class="profile-settings-edit">EDIT</a>
+                                        </div>
+                                        <div class="row">
+                                            <div class="span-medium-24">
+                                                <div id="{{ pageElement.id }}_info" class="profile-settings-content">
+                                                    {% form_theme pageElement.form 'CoreBundle/Front/default/bowtieFormsWithLabelPrivacy.html.twig' %}
+                                                    <div id="form-{{ pageElement.id }}">
+                                                        {{ form(pageElement.form) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endblock %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

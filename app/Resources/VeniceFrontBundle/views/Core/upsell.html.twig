@@ -1,0 +1,68 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block bodyClass %}signup-body{% endblock %}
+
+{% block body %}
+    <div class="login-main signup upsell">
+        <div class="section header-main-logo">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <i class="ff-flofitlogo"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section login">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <div class="row text-center">
+                            <span class="text-login">LIMITED TIME SPECIAL OFFER</span>
+                            <p class="blue">Enter your credit card number and get <span>7 additional days for FREE</span></p>
+                            <div class="row">
+                                <a href="{{ path('buy_link_extend_trial') }}" class="button-agree" id="click-yes-7day">YES I WANT 7 MORE DAYS FOR FREE</a>
+                                <a href="{{ path('downloads_dashboard') }}" class="button-no" id="click-no-7day">NO, THANK YOU</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section main-footer">
+            <div class="container">
+                <footer>
+                    <div class="row block relative">
+                        <div class="block-left">
+                            <p><span>FLO FIT &copy; {{ "now"|date("Y") }}</span> Burn It Now Productions, Inc. FLO FIT and FLO RIDA trademarks, name, image, and likeness are owned by FLO RIDA and FLO FIT Holdings LLC, and are being used under license by Flo Life LLC. All rights reserved.</p>
+                        </div>
+                        <div class="block-right">
+                            <div class="navbar">
+                                <ul>
+                                    {{ footerLinksBlock() }}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block-center text-center">
+                            <a href="{{ path("landing_page") }}"><i class="ff-flofitlogo"></i></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block bodyjavascripts %}
+    <script>
+        $(document).ready(function () {
+            $("#click-yes-7day").click(function () {
+                ga('send', 'event', 'intro-free-7day', 'click-yes', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+            });
+
+            $("#click-no-7day").click(function () {
+                ga('send', 'event', 'intro-free-7day', 'click-no', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+            });
+        });
+    </script>
+{% endblock %}

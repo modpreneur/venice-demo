@@ -1,0 +1,142 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block title %}
+    Order history
+{% endblock %}
+
+{% block buyModal %}
+    <div id="overlay" class="cancel-modal">
+        <a class="close-cancel-modal close-cancel-full" href="#close-cancel-modal"></a>
+        <div class="wrapper">
+            <a class="close-cancel-modal close-cross" href="#close-cancel-modal"><i class="ff ff-cross2"></i></a>
+            <h2>WARNING:</h2>
+            <h3>You have clicked the cancellation button which will immediately end your <span class="product-name"></span> membership.</h3>
+            <h4 class="immersion-warning">PLEASE READ THE FOLLOWING CAREFULLY!</h4>
+            <p class="immersion-warning">If your membership is cancelled you will permanently lose access to all Platinum Club content including Mike Saffaie and Flo Rida’s exclusive videos and motivational messages, the monthly VLOGs, the Platinum Club monthly workouts , the supplement database, the extra healthy recipes and nutrition tips, the private membership community, and all future bonus programs and materials that are exclusive to Platinum club members and designed to help you get in the best shape of your life. Are you sure you want to give all of this up?</p>
+            <a href="#" id="cancelStay" class="button button-stay-succeed">I will stay and succeed</a>
+            <a href="" id="cancelGiveUp" class="button button-give-immersion">I give up <span class="product-name"></span> forever</a>
+        </div>
+    </div>
+    <div id="upgrade-overlay" class="cancel-modal upgrade">
+        <a class="close-cancel-modal close-cancel-full" href="#close-cancel-modal"></a>
+        <div class="wrapper">
+            <a class="close-cancel-modal close-cross" href="#close-cancel-modal"><i class="ff ff-cross2"></i></a>
+            <h2>UPGRADE TO LIFETIME ACCESS</h2>
+            <p>By selecting any of the preferred options below, you'll be given lifetime access to FLO&nbsp;FIT and your monthly subscription will IMMEDIATELY and AUTOMATICALLY cancel. You'll receive a confirmation email.</p>
+            <p>Select your upgrade below</p>
+            {% set lastCard = getLastCard(app.user) %}
+            {% if lastCard == "stored" %}
+                <p>Upgrade to LIFETIME digital streaming and online <span class="mobile-block">access with just 2&nbsp;clicks</span> using your stored card.</p>
+            {% else %}
+                <p>Upgrade to LIFETIME digital streaming and online <span class="mobile-block">access with just 2&nbsp;clicks</span> using your stored {{ getLastCard(app.user) }}.</p>
+            {% endif %}
+            <a href="{{ digitalProductBuyLink }}" class="button button-give-immersion">$37 - One time payment <span>(SAVES 33% over first 12 months!)</span></a>
+            <p>Upgrade and get DVDs and materials shipped right to your front door AND LIFETIME online access. (2&nbsp;click buy not available for shippable products, you'll go to an order form)</p>
+            <a href="{{ digitalShippingProductLink }}" class="button button-stay-succeed">$67 - One time payment <span>(MOST POPULAR!)</span></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="newsletters history">
+        <div class="row">
+            <div class="span-medium-24 disable-padding-medium margin-top-30">
+
+                {% if viewData is null %}
+                    <p class="text-center">You haven't purchased any products.</p>
+                {% else %}
+                    {% for orderHistoryData in viewData %}
+                        {% block orderHistory %}
+                            <div class="news row {% if orderHistoryData.invoice.status != 3 %}current{% endif %}" id="orderHistory{{ orderHistoryData.invoice.invoiceId }}">
+                                <div >
+                                    <div class="news-name span-xlarge-7 span-large-7 span-medium-7 span-small-15 span-mini-24 offset-large-2 offset-medium-0 offset-small-0">
+                                        <span>
+                                            {% for invoiceItem in orderHistoryData.invoice.invoiceItems %}
+                                                {{ invoiceItem.title }}
+                                            {% endfor %}
+                                        </span>
+                                    </div>
+                                    <div class="span-xlarge-3 span-large-3 span-medium-4 span-small-9 span-mini-24 date">
+                                        <span>{{ orderHistoryData.invoice.startedDate|date("m/d/Y") }}</span>
+                                    </div>
+                                    <div class="span-medium-1 span-vector">
+                                        <span class="vector"></span>
+                                    </div>
+                                    <div class="span-xlarge-7 span-large-6 span-medium-7 span-small-15 span-mini-24 price">
+                                        <span>{{ orderHistoryData.invoice.priceString }}</span>
+                                    </div>
+                                    <div class="span-xlarge-4 span-large-5 span-medium-6 span-small-9 span-mini-24 info-pay">
+                                        {% if orderHistoryData.invoice.status == 2 %}
+                                            <div class="button-group">
+                                            {% if orderHistoryData.invoice.haveAnyInvoiceItemWithCategory("PRODUCT TRIAL") %}
+                                                <button onclick="openUpgradeDialog();" class="upgrade">Upgrade</button>
+                                                <span>{{ form(orderHistoryData.form) }}</span>
+                                            {% else %}
+                                                <span id="{{ orderHistoryData.invoice.invoiceId }}">{{ form(orderHistoryData.form) }}</span>
+                                            {% endif %}
+                                            </div>
+                                        {% elseif orderHistoryData.invoice.status == 3 %}
+                                            <span class="canceled"><i class="ff-remove"></i>Canceled</span>
+                                        {% elseif orderHistoryData.invoice.status == 1 %}
+                                            <span class="purchased"><i class="ff-ok-circle"></i>Paid</span>
+                                        {% elseif orderHistoryData.invoice.status == 0 %}
+                                            <span class="pending"><i class="ff-exclamation-mark4"></i>Pending</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endblock %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <script>
+                function openCancelPopup(a, productName, isImmersion){
+//                    var form = document.getElementById(a).getElementsByTagName("form")[0];
+                    var form = $(a).closest("form");
+
+                    $(".product-name").each(function(i, item){
+                        $(item).text(productName);
+                    });
+
+                    if(isImmersion)
+                    {
+                        $(".immersion-warning").show();
+                    }
+                    else
+                    {
+                        $(".immersion-warning").hide();
+                    }
+
+                    $("#cancelGiveUp").unbind("click").click(function(e){
+                        form.submit();
+                        closeCancelPopup();
+                    });
+
+                    $('#overlay').fadeIn(600);
+                    $('html').css("overflow-y","hidden");
+
+                    return false;
+                }
+                function closeCancelPopup(){
+                    $("#overlay").fadeOut(600);
+                    $("#upgrade-overlay").fadeOut(600);
+                    $('html').css("overflow-y","auto");
+                }
+                function openUpgradeDialog(){
+                    $('#upgrade-overlay').fadeIn(600);
+                    $('html').css("overflow-y","hidden");
+                }
+                $(document).ready(function(){
+                    $(".close-cancel-modal").click(function(e) {
+                        e.preventDefault();
+                        closeCancelPopup();
+                    });
+                    $("#cancelStay").click(function(){
+                        closeCancelPopup();
+                    });
+                });
+            </script>
+        </div>
+    </div>
+{% endblock %}

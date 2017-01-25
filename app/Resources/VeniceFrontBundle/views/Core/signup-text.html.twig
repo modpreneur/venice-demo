@@ -1,0 +1,136 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block bodyClass %}signup-body{% endblock %}
+
+{% block body %}
+    <div class="login-main signup signup-2">
+        <div class="section header-main-logo">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-12">
+                        <i class="ff-flofitlogo"></i>
+                    </div>
+                    <div class="span-mini-12">
+                        <p class="already-have-account">Already have an account? <a class="log-in-here" href="{{ path("fos_user_security_login") }}">Log in here.</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section login">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <div class="wrapper">
+                            <p>Get access to the Celebrity Secrets Inside FLO&nbsp;FIT FREE for 7&nbsp;days...</p>
+                            <p class="smaller">No credit card required, it's 100%&nbsp;FREE!</p>
+                            <div class="row text-center buttons">
+                                <div class="row">
+                                    <a href="{{ path("hwi_oauth_service_redirect", {"service":"facebook"}) }}" class="button-facebook"><i class="ff-facebook1"></i>Sign Up With Facebook</a>
+                                </div>
+                                <div class="row">
+                                    <a href="{{ path("hwi_oauth_service_redirect", {"service":"google"}) }}" class="button-google"><i class="ico-google-plus"></i>Sign Up With Google</a>
+                                </div>
+
+                                 <div>
+                                        <span class="or or-signup">OR</span>
+                                 </div>
+
+                                <div class="row">
+                                    <a href="" class="button-email"><i class="ff-sign-mail"></i>Sign Up With E-mail Address</a>
+                                </div>
+                            </div>
+                            {% if error is defined %}
+                                {{ error }}
+                            {% endif %}
+                            <form action="{{ path("core_front_signup_via_email") }}" method="post" id="reg-form">
+                                <div class="sign-up-form">
+                                    <div class="group">
+                                        <label for="firstname" class="row">
+                                            <i class="ff-person"></i>
+                                            <input type="text" id="firstname" name="_firstname" value="" placeholder="enter your first name" required="required"/>
+                                        </label>
+                                        <label for="lastname" class="row">
+                                            <input type="text" id="lastname" name="_lastname" value="" placeholder="enter your last name" required="required"/>
+                                        </label>
+                                    </div>
+                                    <label for="email" class="row">
+                                        <i class="ff-sign-mail"></i>
+                                        <input type="text" id="email" name="_email" value="" placeholder="enter your e-mail" required="required"/>
+                                    </label>
+                                    <label for="password" class="row">
+                                        <i class="ff-lock"></i>
+                                        <input type="password" id="password" name="_password" placeholder="select and enter your password" required="required"/>
+                                    </label>
+                                    <label for="confirmpassword" class="row">
+                                        <i class="ico2-loading"></i>
+                                        <input type="password" id="confirmpassword" name="_confirmpassword" placeholder="confirm your password" required="required"/>
+                                    </label>
+                                    <div class="row">
+                                        <span class="input-login">
+                                            <input type="submit" id="_submit" name="_submit" value="Get Access Now" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="forgot already-have-account">Already have an account? <a class="log-in-here" href="{{ path("fos_user_security_login") }}">Log in here.</a></div>
+                            <div class="row margin-bottom-30">
+                                <img src="{{ asset('Resources/public/images/site/ff-fe-dash-mobile-app-android.png') }}"
+                                     class="mobile-app"
+                                     alt="Google Play"/>
+                                <img src="{{ asset('Resources/public/images/site/ff-fe-dash-mobile-app-apple.png') }}"
+                                     class="mobile-app"
+                                     alt="App Store"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section main-footer">
+            <div class="container">
+                <footer>
+                    <div class="row block relative">
+                        <div class="block-left">
+                            <p><span>FLO FIT &copy; {{ "now"|date("Y") }}</span> Burn It Now Productions, Inc. FLO FIT and FLO RIDA trademarks, name, image, and likeness are owned by FLO RIDA and FLO FIT Holdings LLC, and are being used under license by Flo Life LLC. All rights reserved.</p>
+                        </div>
+                        <div class="block-right">
+                            <div class="navbar">
+                                <ul>
+                                    {{ footerLinksBlock() }}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block-center text-center">
+                            <a href="{{ path("landing_page") }}"><i class="ff-flofitlogo"></i></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block bodyjavascripts %}
+    <script>
+        $(document).ready(function(){
+            var windowWidth = $(this).width();
+            if (windowWidth <= 479) {
+                $('.signup-2 #password').attr('placeholder','select your password');
+            }
+            $(window).resize(function() {
+                windowWidth = $(this).width();
+                if (windowWidth <= 479) {
+                    $('.signup-2 #password').attr('placeholder','select your password');
+                } else {
+                    $('.signup-2 #password').attr('placeholder','select and enter your password');
+                }
+            });
+        });
+
+        $("#reg-form").submit((function (e) {
+            $("#firstname").val($("#firstname").val().replace(/ /g, ''));
+            $("#lastname").val($("#lastname").val().replace(/ /g, ''));
+            $("#email").val($("#email").val().replace(/ /g, ''));
+        }));
+    </script>
+{% endblock %}

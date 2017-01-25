@@ -1,0 +1,76 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block body %}
+    <div class="login-main">
+        <div class="section header-main-logo">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <i class="ff-flofitlogo"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section login">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <span class="text-login">Log in</span>
+                        <label for="username" class="row">
+                            <i class="ff-sign-mail"></i>
+                            <input type="text" id="username" name="_username" value="" placeholder="Your E-mail" required="required"/>
+                        </label>
+                        <label for="password" class="row">
+                            <i class="ff-lock"></i>
+                            <input type="password" id="password" name="_password" placeholder="Password..." required="required"/>
+                        </label>
+                        <div class="row">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" class="display-none" />
+                            <label for="remember_me" class="remember"><span>Remember me</span></label>
+                        </div>
+                        <div class="row">
+                            <span class="input-login">
+                                <input type="submit" id="_submit" name="_submit" value="SIGN IN" />
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="or">or</span>
+                        </div>
+                        <div class="row">
+                            <a href="" class="button-facebook"><i class="ff-facebook1"></i>Login with Facebook</a>
+                            <a href="" class="button-twitter"><i class="ff-twitter1"></i>Login with Twitter</a>
+                        </div>
+                        <div class="row">
+                            <a href="{{ path("fos_user_resetting_request") }}" class="forgot">Forgot username/password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section register">
+            <div class="container">
+                <div class="row">
+                    <div class="span-medium-6 florida-guarantee">
+                        <img src="{{ asset('Resources/public/images/site/florida-login.png') }}" alt=""/>
+                    </div>
+                    <div class="span-medium-10">
+                        <span class="another">Don't have an account yet?</span>
+                        <span class="robot">Look at our offer and get your FLO FIT today!</span>
+                        <img src="{{ asset('Resources/public/images/site/login-arrow.png') }}" alt="" class="login-arrow"/>
+                    </div>
+                    <div class="span-medium-8 text-center">
+                        <a class="button button-register" href="">GET ACCESS NOW!</a>
+                        <img src="{{ asset('Resources/public/images/site/register-card.png') }}" alt=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section main-footer">
+            <div class="container">
+            {% block footer %}
+                {% include ":CoreBundle/Front/default:footer.html.twig" %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

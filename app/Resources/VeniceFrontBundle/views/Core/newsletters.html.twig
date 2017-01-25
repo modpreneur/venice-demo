@@ -1,0 +1,86 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block title %}
+    Newsletters
+{% endblock %}
+
+{% block content %}
+    <div class="row newsletters">
+        <div class="span-large-24 margin-top-30">
+            {{ form_start(secondNewsOptimizationForm) }}
+            {% for formChildren in secondNewsOptimizationForm %}
+                {% if formChildren.vars.name not in ["_token", "submit"] %}
+                    {% for child in formChildren %}
+                        {{ form_widget(child) }}
+                        {{ form_label(child) }}
+                        <br>
+                    {% endfor %}
+                    {{ form_errors(secondNewsOptimizationForm) }}
+                {% endif %}
+            {% endfor %}
+            {{ form_end(secondNewsOptimizationForm) }}
+            {#{% if newslettersData is null %}#}
+                {#<p class="text-center ">You don't have any newsletter subscription.</p>#}
+            {#{% else %}#}
+                {#{% for newsletterData in newslettersData %}#}
+                    {#{% block formNewsletters %}#}
+                    {#<div class="news row" id="formNewsletters{{ newsletterData.newsletter.listId }}">#}
+                        {#<div>#}
+                            {#<div class="news-name span-medium-11 offset-large-2 offset-medium-1 offset-small-0">#}
+                                {#<i class="ff-mail"></i><span>{{ newsletterData.newsletter.title }}</span>#}
+                            {#</div>#}
+                            {#<div class="span-medium-1 display-none-mini display-block-medium">#}
+                                {#<span class="vector"></span>#}
+                            {#</div>#}
+                            {#<div class="span-medium-7 display-none-mini display-block-medium">#}
+                                {#<span class="label-place"></span>#}
+                            {#</div>#}
+                            {#{{ form_start(newsletterData.form) }}#}
+                            {#{{ form_widget(newsletterData.form[newsletterData.newsletter.listId],{"attr":{"class":"display-none ajax-on-change-submit"}}) }}#}
+                            {#<div class="span-medium-3">#}
+                                {#{{ form_label(newsletterData.form[newsletterData.newsletter.listId],"unsubscribed",{"label_attr":{"class":"on-off-label"}}) }}#}
+                            {#</div>#}
+                            {#{{ form_end(newsletterData.form) }}#}
+                            {##}
+                        {#</div>#}
+                    {#</div>#}
+                    {#{% endblock %}#}
+                {#{% endfor %}#}
+            {#{% endif %}#}
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".newsletter-optimization").each(function (i, form) {
+                form = $(form);
+                form.find("input").each(function (i, input) {
+                    input = $(input);
+                    input.change(function (e) {
+                        var inputId = input.attr('id');
+                        var label = form.find("label[for='"+inputId+"']");
+                        label.append("<span class='saving-message'><span class='pill'></span><span class='pill'></span><span class='pill'></span></span>");
+                        form.submit();
+                    });
+
+                    form.unbind("submit").submit(function (e){
+                        e.preventDefault();
+                        var formData = new FormData(this);
+                        $.ajax({
+                            url: form.attr("action"),
+                            method: form.attr("method"),
+                            data: formData,
+                            processData: false,
+                            cache: false,
+                            contentType: false,
+                        }).done(function (data){
+                            $(".saving-message").hide();
+                        }).error(function (data){
+                            console.log(data);
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}

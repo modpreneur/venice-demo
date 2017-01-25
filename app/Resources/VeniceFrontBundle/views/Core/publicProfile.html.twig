@@ -1,0 +1,211 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block title %}
+    Public profile - {{ user.username }}
+{% endblock %}
+
+{% block headerInside %}
+    {% if user.privacySettings.publicProfile %}
+        {% embed(":CoreBundle/Front/default:headerProfile.html.twig") with {"user":user,"displayName":user.privacySettings.displayFullName}  %}
+            {% block messageButton %}
+                {% if app.user is not null %}
+                    <div>
+                        <a href="{{ sendMessageLink }}{{ user.username }}" class="button button-send-mess" >Message</a>
+                    </div>
+                {% endif %}
+            {% endblock %}
+        {% endembed %}
+    {% else %}
+        {{ include(":CoreBundle/Front/default:headerProfile.html.twig", {"user":user,"displayName":false}, with_context=false) }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="profile-settings">
+        <div class="row">
+            <div class="span-large-24">
+                {% if user.privacySettings.publicProfile %}
+                <div class="block-title">Public profile</div>
+
+                <div class="profile-settings-main">
+                    <div class="row relative">
+                        <div class="span-large-6 offset-large-5 span-medium-7 offset-medium-3 offset-small-0">
+                            <span class="profile-settings-link"><i class="ff-person"></i>Username</span>
+                        </div>
+                        <div class="span-medium-2"><span class="vector"></span></div>
+                        <div class="span-medium-12 span-large-11">
+                            <div class="profile-settings-info">
+                                <span>{{ user.username }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {#{% if user.privacySettings.displayFullName %}#}
+                        {#<div class="row relative">#}
+                            {#<div class="span-medium-5 offset-medium-6 offset-small-0">#}
+                                {#<span class="profile-settings-link"><i class="ff-text-left-big"></i>Name</span>#}
+                            {#</div>#}
+                            {#<div class="span-medium-2"><span class="vector"></span></div>#}
+                            {#<div class="span-medium-11">#}
+                                {#<div class="profile-settings-info">#}
+                                    {#<span>{{ user.fullName }}</span>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#{% endif %}#}
+
+                    {% if user.privacySettings.displayEmail %}
+                    <div class="row relative">
+                        <div class="span-large-6 offset-large-5 span-medium-7 offset-medium-3 offset-small-0">
+                            <span class="profile-settings-link"><i class="ff-sign-mail"></i>E-mail</span>
+                        </div>
+                        <div class="span-medium-2"><span class="vector"></span></div>
+                        <div class="span-medium-12 span-large-11">
+                            <div class="profile-settings-info">
+                                <span>{{ user.email }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if user.privacySettings.birthDateStyle != 0 %}
+                    <div class="row relative">
+                        <div class="span-large-6 offset-large-5 span-medium-7 offset-medium-3 offset-small-0">
+                            <span class="profile-settings-link"><i class="ff-time"></i>
+                            {% if user.privacySettings.birthDateStyle == 1 %}
+                                Age of user
+                            {% else %}
+                                Date of birth
+                            {% endif %}</span>
+                        </div>
+                        <div class="span-medium-2"><span class="vector"></span></div>
+                        <div class="span-medium-12 span-large-11">
+                            <div class="profile-settings-info">
+                                <span>
+                                {% if user.privacySettings.birthDateStyle == 1 %}
+                                    {{ user.age }} years
+                                {% elseif user.privacySettings.birthDateStyle == 2 %}
+                                    {{ user.dateOfBirth|date("jS \\o\\f F") }}
+                                {% else %}
+                                    {{ user.dateOfBirth|date("Y/m/d") }}
+                                {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if user.privacySettings.displaySocialMedia %}
+                        <div class="row relative">
+                            <div class="span-large-6 offset-large-5 span-medium-7 offset-medium-3 offset-small-0">
+                                <span class="profile-settings-link"><i class="ff-share"></i>Social networks</span>
+                            </div>
+                            <div class="span-medium-2"><span class="vector"></span></div>
+                            <div class="span-medium-12 span-large-11">
+                                <div class="profile-settings-info info-social">
+                                    {% set hasSocial = false %}
+                                    {% if FacebookSubscribeService.haveSubscription(user) %}
+                                        <span><a href="http://www.facebook.com/{{ user.facebookId }}"><i class="ff-fb-negative"></i>Facebook profile</a></span>{% set hasSocial = true %}
+                                    {% endif %}
+                                    {% if TwitterSubscribeService.haveSubscription(user) %}
+                                        <span><a href="https://twitter.com/account/redirect_by_id/{{ user.twitterId }}"><i class="ff-twitter-negative"></i>Twitter profile</a></span>{% set hasSocial = true %}
+                                    {% endif %}
+                                    {% if TwitterSubscribeService.haveSubscription(user) %}
+                                        <span></span>{% set hasSocial = true %}
+                                    {% endif %}
+                                    {% if user.youtubeLink is not empty %}
+                                        <span><a href="{{ user.youtubeLink }}"><i class="ff-youtube"></i>Youtube channel</a></span>{% set hasSocial = true %}
+                                    {% endif %}
+                                    {% if user.snapchatNickname is not empty %}
+                                        <span><i class="ff-icon-snapchat"></i><i class="ff-icon-snapchat-negative-2 absolute"></i>"{{ user.snapchatNickname }}"</span>{% set hasSocial = true %}
+                                    {% endif %}
+
+                                    {% if not hasSocial%}
+                                        <span>No connected social networks.</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {#<div class="row relative">#}
+                        {#<div class="span-large-6 offset-large-5 span-medium-7 offset-medium-3 offset-small-0">#}
+                        {#<span class="profile-settings-link"><i#}
+                                    {#class="ff-link-arrow-square"></i>Public profile link</span>#}
+                        {#</div>#}
+                        {#<div class="span-medium-2"><span class="vector"></span></div>#}
+                        {#<div class="span-medium-12 span-large-11">#}
+                            {#<div class="profile-settings-info">#}
+                                {#<span>{{ url("core_front_user_public_profile",{"username":user.username}) }}</span>#}
+                                {#<button id="copy-button" data-clipboard-text="{{ url("core_front_user_public_profile",{"username":user.username}) }}"#}
+                                        {#class="copy-to-clipboard button-functional button-copy margin-left-10 padding-left-10 padding-right-10"><i#}
+                                            {#class="ff-link-arrow"></i> Copy</button>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                </div>
+            </div>
+            {% else %}
+                <div class="block-title">Sorry, this profile is not public.</div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block section %}
+    {% if user.privacySettings.publicProfile  and forumPosts is not empty  %}
+    <div class="bg-activity">
+        <div class="container">
+            <div class="row padding-bottom-65">
+                <div class="span-large-24">
+                    <div class="block-title">My activities</div>
+                </div>
+                {#{% if user.privacySettings.displayForumActivity %}#}
+                {#<div class="span-large-16">#}
+                    {#<div class="widget-box">#}
+                        {#<div class="widget-header blue">#}
+                            {#<a href="">#}
+                                {#<span>Progress graph</span>#}
+                                {#<i class="ff-graph"></i>#}
+                            {#</a>#}
+                        {#</div>#}
+                        {#<div class="widget-body">#}
+
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+                {#{% endif %}#}
+
+                {% if user.privacySettings.displayProgressGraph%}
+                    <div class="span-large-24">
+                        <div class="widget-box">
+                            <div class="widget-header green">
+                                <a href="">
+                                    <span>Last forum posts</span>
+                                    <i class="ff-chat-conversation"></i>
+                                </a>
+                            </div>
+                            <div class="widget-body">
+                                <div class="posts">
+                                    {% for post in forumPosts %}
+                                        <div class="post">
+                                            <h1><a href="{{ post.url }}">{{ post.name }}</a></h1>
+
+                                            <p class="post-tag">{{ post.categoryName }}</p>
+                                            <span class="post-time">{% if post.lastDate is not null %}{{ post.lastDate|date("m/d/Y g:i A") }}{% endif %}</span>
+                                            <span class="post-info">{{ post.countViews }} views • {{ post.countComments }} replies</span>
+                                            {#TODO: show user? there will be the nickname of the actual user#}
+                                            {#<span class="post-author">by <span class="underline"><a href="">{{ post.authorName }}</a></span></span>#}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+

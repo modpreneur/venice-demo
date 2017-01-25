@@ -152,6 +152,9 @@ venice_app:
                 demo_content_in_group: AppBundle\Entity\Content\ContentInGroup
 
 
+
+
+
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
     namespace: VeniceApp\Migrations

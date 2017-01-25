@@ -1,0 +1,66 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block bodyClass %}signup-body{% endblock %}
+
+{% block body %}
+    <div class="login-main signup upsell upsell-text">
+        <div class="section header-main-logo">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <i class="ff-flofitlogo"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <div class="row">
+                            <div class="box">
+                                <h1 class="text-login">ACCESS GRANTED!</h1>
+                                <div class="border">
+                                    <p>Before you get started, why not add your favorite payment method and get an additional 7&nbsp;days FREE PLUS we'll unlock:</p>
+                                    <ul>
+                                        <li><span>7 Day Rip Mix</span></li>
+                                        <li><span>Platinum Mix</span></li>
+                                        <li><span>Other Surprise Bonuses</span></li>
+                                    </ul>
+                                    </p>
+                                    <p>And, after your trial ends, you just pay the low intro rate of just $4.95/mo... and don't worry, we'll send you an email and/or push notification to the app 3&nbsp;days before your payment is due in case FLO&nbsp;FIT isn't right for you</p>
+                                    <p>So save your favorite payment method today and unlock these premium bonuses right now!</p>
+                                    <div class="row text-center">
+                                        <a href="{{ path('buy_link_extend_trial') }}" class="button-agree">YES! Unlock my bonuses</a>
+                                        <a href="{{ path('downloads_dashboard') }}" class="button-no">NO, take me to FLO FIT</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section main-footer">
+            <div class="container">
+                <footer>
+                    <div class="row block relative">
+                        <div class="block-left">
+                            <p><span>FLO FIT &copy; {{ "now"|date("Y") }}</span> Burn It Now Productions, Inc. FLO FIT and FLO RIDA trademarks, name, image, and likeness are owned by FLO RIDA and FLO FIT Holdings LLC, and are being used under license by Flo Life LLC. All rights reserved.</p>
+                        </div>
+                        <div class="block-right">
+                            <div class="navbar">
+                                <ul>
+                                    {{ footerLinksBlock() }}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block-center text-center">
+                            <a href="{{ path("landing_page") }}"><i class="ff-flofitlogo"></i></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+{% endblock %}

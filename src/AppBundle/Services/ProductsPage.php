@@ -170,22 +170,22 @@ class ProductsPage extends \Twig_Extension
     {
         $contents = [];
 
-        foreach ($this->bundleProducts as $product) {
-            foreach ($product->getAllContent(Product::SORT) as $group) {
-                if ($group instanceof GroupContent && $group->getHandle() === $bundleProductHandle) {
-                    // todo sort
-                    foreach ($group->getItems() as $item) {
-                        if ($item instanceof ContentInGroup) {
-                            $contents[] = $item->getContent();
-                        }
+        if ($bundleProductHandle && is_iterable($this->bundleProducts)) {
+            foreach ($this->bundleProducts as $product) {
+                foreach ($product->getAllContent(Product::SORT) as $group) {
+                    if ($group instanceof GroupContent && $group->getHandle() === $bundleProductHandle) {
+                        // todo sort
+                        foreach ($group->getItems() as $item) {
+                            if ($item instanceof ContentInGroup) {
+                                $contents[] = $item->getContent();
+                            }
 
+                        }
                     }
                 }
             }
         }
-
-        dump($contents);
-
+        
         return $contents;
     }
 

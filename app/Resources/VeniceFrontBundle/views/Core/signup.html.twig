@@ -1,0 +1,93 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block bodyClass %}signup-body{% endblock %}
+
+{% block body %}
+    <div class="login-main signup">
+        <div class="section header-main-logo">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <i class="ff-flofitlogo"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section login">
+            <div class="container">
+                <div class="row">
+                    <div class="span-mini-24">
+                        <div class="wrapper">
+                            <span class="text-login">Sign up</span>
+                            <div class="row text-center">
+                                <div class="row">
+                                    <a href="" class="button-facebook"><i class="ff-facebook1"></i>Facebook</a>
+                                </div>
+                                <div class="row">
+                                    <a href="" class="button-google"><i class="ico-google-plus"></i>Google</a>
+                                </div>
+                                <div class="row">
+                                    <a href="" class="button-email"><i class="ff-sign-mail"></i>E-mail</a>
+                                </div>
+                            </div>
+                            {% if error is defined %}
+                                {{ error }}
+                            {% endif %}
+                            <form action="{{ path("core_front_signup_via_email") }}" method="post">
+                                <div class="sign-up-form">
+                                    <div class="group">
+                                        <label for="firstname" class="row">
+                                            <i class="ff-person"></i>
+                                            <input type="text" id="firstname" name="_firstname" value="" placeholder="enter your first name" required="required"/>
+                                        </label>
+                                        <label for="lastname" class="row">
+                                            <input type="text" id="lastname" name="_lastname" value="" placeholder="enter your last name" required="required"/>
+                                        </label>
+                                    </div>
+                                    <label for="email" class="row">
+                                        <i class="ff-sign-mail"></i>
+                                        <input type="text" id="email" name="_email" value="" placeholder="enter your e-mail" required="required"/>
+                                    </label>
+                                    <label for="password" class="row">
+                                        <i class="ff-lock"></i>
+                                        <input type="password" id="password" name="_password" placeholder="enter your password..." required="required"/>
+                                    </label>
+                                    <label for="confirmpassword" class="row">
+                                        <i class="ico2-loading"></i>
+                                        <input type="password" id="confirmpassword" name="_confirmpassword" placeholder="confirm your password..." required="required"/>
+                                    </label>
+                                    <div class="row">
+                                        <span class="input-login">
+                                            <input type="submit" id="_submit" name="_submit" value="SIGN UP" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section main-footer">
+            <div class="container">
+                <footer>
+                    <div class="row block relative">
+                        <div class="block-left">
+                            <p><span>FLO FIT &copy; {{ "now"|date("Y") }}</span> Burn It Now Productions, Inc. FLO FIT and FLO RIDA trademarks, name, image, and likeness are owned by FLO RIDA and FLO FIT Holdings LLC, and are being used under license by Flo Life LLC. All rights reserved.</p>
+                        </div>
+                        <div class="block-right">
+                            <div class="navbar">
+                                <ul>
+                                    {{ footerLinksBlock() }}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block-center text-center">
+                            <a href="{{ path("landing_page") }}"><i class="ff-flofitlogo"></i></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+{% endblock %}

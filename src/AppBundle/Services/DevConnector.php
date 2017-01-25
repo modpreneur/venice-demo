@@ -2,6 +2,8 @@
 
 namespace AppBundle\Services;
 
+use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\CoreBundle\LastPaymentInfo;
+use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\CoreBundle\Newsletter;
 use Venice\AppBundle\Entity\Invoice;
 use Venice\AppBundle\Entity\User;
 

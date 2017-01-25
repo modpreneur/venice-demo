@@ -1,0 +1,194 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="{{ asset("js/crooper/cropper.min.js") }}"></script>
+{% endblock %}
+
+{% block headjavascripts %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("js/crooper/cropper.min.css") }}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="profile-settings">
+        <div class="row">
+            <div class="span-large-24">
+                <div class="block-title">Profile</div>
+
+                <div class="profile-settings-main">
+
+                    <div class="row relative">
+                        <div class="span-xlarge-6 span-large-7 span-medium-8 span-small-12 offset-xlarge-6 offset-large-4 offset-medium-2 offset-small-0">
+                            <span class="profile-settings-link"><i class="ff-person"></i>Public Username</span>
+                        </div>
+                        <div class="span-large-2 span-medium-0"><span class="vector"></span></div>
+                        <div class="span-xlarge-10 span-large-11 span-medium-14 span-small-12">
+                            <div class="profile-settings-info">
+                                <span>{{ app.user.username }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row relative">
+                        <div class="span-xlarge-6 span-large-7 span-medium-8 span-small-12 offset-xlarge-6 offset-large-4 offset-medium-2 offset-small-0">
+                            <span class="profile-settings-link"><i class="ff-sign-mail"></i>E-mail</span>
+                        </div>
+                        <div class="span-large-2 span-medium-0"><span class="vector"></span></div>
+                        <div class="span-xlarge-10 span-large-11 span-medium-14 span-small-12">
+                            <div class="profile-settings-info">
+                                <span>{{ app.user.email }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row relative">
+                        <div class="span-xlarge-6 span-large-7 span-medium-8 span-small-12 offset-xlarge-6 offset-large-4 offset-medium-2 offset-small-0">
+                            <span class="profile-settings-link"><i class="ff-time"></i>Date of birth</span>
+                        </div>
+                        <div class="span-large-2 span-medium-0"><span class="vector"></span></div>
+                        <div class="span-xlarge-10 span-large-11 span-medium-14 span-small-12">
+                            <div class="profile-settings-info">
+                                <span>{{ app.user.dateOfBirth|date("m/d/Y") }} ({{ app.user.age }} years)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row relative">
+                        <div class="span-xlarge-6 span-large-7 span-medium-8 span-small-12 offset-xlarge-6 offset-large-4 offset-medium-2 offset-small-0">
+                            <span class="profile-settings-link"><i class="ff-share"></i>My social networks</span>
+                        </div>
+                        <div class="span-large-2 span-medium-0"><span class="vector"></span></div>
+                        <div class="span-xlarge-10 span-large-11 span-medium-14 span-small-12">
+                            <div class="profile-settings-info social-icons-profile">
+                                <a href="" class="icon-fb"><i class="ff-fb"></i></a>
+                                <a href="" class="icon-tw"><i class="ff-twitter"></i></a>
+                                <a href="" class="icon-insta"><i class="ff-insta"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row relative">
+                        <div class="span-xlarge-6 span-large-7 span-medium-8 span-small-12 offset-xlarge-6 offset-large-4 offset-medium-2 offset-small-0">
+                        <span class="profile-settings-link"><i
+                                    class="ff-link-arrow-square"></i>Public profile link</span>
+                        </div>
+                        <div class="span-large-2 span-medium-0"><span class="vector"></span></div>
+                        <div class="span-xlarge-10 span-large-11 span-medium-14 span-small-12">
+                            <div class="profile-settings-info">
+                                <span class="public-profile-link">{{ url("core_front_user_public_profile",{"username":app.user.username}) }}</span>
+                                <button id="copy-button" data-clipboard-text="{{ url("core_front_user_public_profile",{"username":app.user.username}) }}"
+                                   class="copy-to-clipboard button-functional button-copy margin-left-10 padding-left-10 padding-right-10"><i
+                                            class="ff-link-arrow"></i> Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row relative">
+                        <div class="span-xlarge-6 span-large-7 span-medium-8 span-small-12 offset-xlarge-6 offset-large-4 offset-medium-2 offset-small-0">
+                            <span class="profile-settings-link"><i class="ff-confiq"></i>Preferred units</span>
+                        </div>
+                        <div class="span-large-2 span-medium-0"><span class="vector"></span></div>
+                        <div class="span-xlarge-10 span-large-11 span-medium-14 span-small-12">
+                            <div class="profile-settings-info">
+                                <span>{{ app.user.preferredUnits|capitalize }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="locationBlock">
+                        <div class="row relative">
+                            <div class="span-xlarge-6 span-large-7 span-medium-8 span-small-12 offset-xlarge-6 offset-large-4 offset-medium-2 offset-small-0">
+                                <span class="profile-settings-link"><i class="ff-map-pointer"></i>My location</span>
+                            </div>
+                            <div class="span-large-2 span-medium-0"><span class="vector"></span></div>
+                            <div class="span-xlarge-10 span-large-11 span-medium-14 span-small-12">
+                                <div class="profile-settings-info">
+                                    <span>{{ app.user.location }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block section %}
+    <div class="bg-activity">
+        <div class="container">
+            <div class="row padding-bottom-65">
+                <div class="span-large-24">
+                    <div class="block-title">My activities</div>
+                </div>
+                <div class="span-large-16">
+                    <div class="widget-box">
+                        <div class="widget-header blue">
+                            <a href="">
+                                <span>Progress graph</span>
+                                <i class="ff-graph"></i>
+                            </a>
+                        </div>
+                        <div class="widget-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="span-large-8">
+                    <div class="widget-box">
+                        <div class="widget-header green">
+                            <a href="">
+                                <span>Last forum posts</span>
+                                <i class="ff-chat-conversation"></i>
+                            </a>
+                        </div>
+                        <div class="widget-body">
+                            <div class="posts">
+                                <div class="post">
+                                    <h1><a href="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                            deserunt
+                                            eaque earum possimus provident? Autem corporis cupiditate distinctio
+                                            enim
+                                            excepturi iusto molestias nostrum, optio, quas quis sapiente soluta sunt
+                                            unde?</a></h1>
+
+                                    <p class="post-tag">General setting</p>
+                                    <span class="post-time">9:41 AM</span>
+                                    <span class="post-info">12 views • 2 replies</span>
+                                <span class="post-author">by <span class="underline"><a href="">Johnny
+                                            English</a></span></span>
+                                </div>
+                                <div class="post">
+                                    <h1><a href="">How to add profile photo add profile photo?</a></h1>
+
+                                    <p class="post-tag">General setting</p>
+                                    <span class="post-time">9:41 AM</span>
+                                    <span class="post-info">12 views • 2 replies</span>
+                                <span class="post-author">by <span class="underline"><a href="">Johnny
+                                            English</a></span></span>
+                                </div>
+                                <div class="post">
+                                    <h1><a href="">How to add profile photo?</a></h1>
+
+                                    <p class="post-tag">General setting</p>
+                                    <span class="post-time">9:41 AM</span>
+                                    <span class="post-info">12 views • 2 replies</span>
+                                <span class="post-author">by <span class="underline"><a href="">Johnny
+                                            English</a></span></span>
+                                </div>
+                                <div class="post">
+                                    <h1><a href="">How to add profile photo?</a></h1>
+
+                                    <p class="post-tag">General setting</p>
+                                    <span class="post-time">9:41 AM</span>
+                                    <span class="post-info">12 views • 2 replies</span>
+                                <span class="post-author">by <span class="underline"><a href="">Johnny
+                                            English</a></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

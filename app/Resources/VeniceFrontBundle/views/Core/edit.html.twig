@@ -1,0 +1,327 @@
+{% extends "VeniceAppBundle::base.html.twig" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="{{ asset("Resources/public/crooper/cropper.min.js") }}"></script>
+{% endblock %}
+
+{% block headjavascripts %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("Resources/public/crooper/cropper.min.css") }}"/>
+{% endblock %}
+
+{% block profileHeaderUserBlock %}
+    {{ include("VeniceFrontBundle:Default:menuProfile.html.twig", {"user":user}, with_context=false) }}
+{% endblock %}
+
+{% block profileJumbotronUserBlock %}
+    {{ include("VeniceFrontBundle:Default:headerProfile.html.twig", {"user":user}, with_context=false) }}
+{% endblock %}
+
+{% block content %}
+    <div class="profile-settings">
+        <div class="row">
+            <div class="span-large-24">
+
+                <div class="profile-settings-main margin-top-30">
+
+                    {% set form = pageElements.profilePhotoWithDeleteButton %}
+                    {% block profilePhotoWithDeleteButtonBlock %}
+                    <div id="profilePhotoWithDeleteButtonBlock" data-on-display="EditProfile.refresh">
+                        <div class="row relative">
+                            <div class="span-large-6 span-medium-8 offset-large-5 offset-medium-3 offset-small-0">
+                                <a href="#profile-photo" class="profile-settings-link"><i class="ff-image"></i>Profile photo</a>
+                            </div>
+                            <div class="span-medium-2 span-vector"><span class="vector"></span></div>
+                            <div class="span-medium-11">
+                                <div class="profile-settings-info">
+                                    {% if user.profilePhoto is not null %}
+                                    <span>Uploaded</span>
+                                    {% else %}
+                                    <span>No profile photo</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <a href="#profile-photo" id="link1_info" class="profile-settings-edit nice-scroll-parent">EDIT</a>
+                        </div>
+
+                        <div id="profile-photo" class="profile-settings-content">
+                            <div>
+                                {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
+                                {{ form_start(form) }}
+                                    {{ form_row(form.profilePhoto) }}
+                                    {% if form.profilePictureRemoveButton is defined %}
+                                        {{ form_widget(form.profilePictureRemoveButton) }}
+                                    {% endif %}
+                                    <div class="text-center">
+                                    {% if user.profilePhoto is null %}
+                                        <img id="image-before-upload" height="200" width="200" style="display: none" src=""/>
+                                    {% else %}
+                                        <img id="image-before-upload" height="200" width="200" src="{{ user.profilePhoto.originalPhotoUrl }}"/>
+                                    {% endif %}
+                                    </div>
+                                {{ form_row(form.submit) }}
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endblock %}
+
+                    {% set form = pageElements.fullName %}
+                    <div id="fullNameBlock" data-on-display="EditProfile.refreshProfile">
+                    {% block fullNameBlock %}
+                        {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
+                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"full-name","label":"Name","content": form(form),"icon":"ff-text-left-big", "secondLabel":user.fullName}, with_context=false) }}
+                    {% endblock %}
+                    </div>
+
+                    {% set form = pageElements.username %}
+                    <div id="usernameBlock" data-on-display="EditProfile.refreshProfile">
+                    {% block usernameBlock %}
+                        {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
+                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"username","label":"Username","content": form(form),"icon":"ff-person", "secondLabel":user.username}, with_context=false) }}
+                    {% endblock %}
+                    </div>
+
+                    {% set flocorm = pageElements.email %}
+                    <div id="emailBlock" data-on-display="EditProfile.refreshProfile">
+                    {% block emailBlock %}
+                        {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
+                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"email","label":"E-mail","content": form(form),"icon":"ff-sign-mail", "secondLabel":user.email}, with_context=false) }}
+                    {% endblock %}
+                    </div>
+
+                    {% set form = pageElements.fullPassword %}
+                    <div id="fullPasswordBlock" data-on-display="EditProfile.refreshProfile">
+                    {% block fullPasswordBlock %}
+                        {% if user.lastPasswordChange is not null %}
+                            {% set lastChangeText =  "Last change " ~ user.lastPasswordChange|humanDate|lower %}
+                        {% else %}
+                            {% set lastChangeText = "Password hasn't been changed yet." %}
+                        {% endif %}
+                        {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithLabel.html.twig' %}
+                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"password","label":"Password","content": form(form),"icon":"ff-lock", "secondLabel":lastChangeText}, with_context=false) }}
+                    {% endblock %}
+                    </div>
+
+                    {% set form = pageElements.dateOfBirth %}
+                    <div id="dateOfBirthBlock" data-on-display="EditProfile.refreshProfile">
+                    {% block dateOfBirthBlock %}
+                        {% if user.dateOfBirth is not null %}
+                            {% set birthDateText = user.dateOfBirth|date("m/d/Y") ~ " (" ~ user.age ~ " years)" %}
+                        {% else %}
+                            {% set birthDateText = "Not set" %}
+                        {% endif %}
+                        {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
+                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"birth-date","label":"Date of birth","content": form(form),"icon":"ff-time", "secondLabel":birthDateText}, with_context=false) }}
+                    {% endblock %}
+                    </div>
+
+                    <div id="socialBlock" data-on-display="EditProfile.refreshProfile">
+                    {% block socialBlock %}
+                        {% set haveFacebookSubscription = FacebookSubscribeService.haveSubscription(user) %}
+                        {% set haveTwitterSubscription = TwitterSubscribeService.haveSubscription(user) %}
+                        {% set haveGoogleSubscription = GoogleSubscribeService.haveSubscription(user) %}
+                        {% set haveIntagramSubscription = false %}
+                        {% set hasSocial = false %}
+                            <div class="row relative">
+                                <div class="span-large-6 span-medium-8 span-small-24 offset-large-5 offset-medium-3 offset-small-0">
+                                    <a href="#social-networks" class="profile-settings-link"><i class="ff-share"></i>My social networks</a>
+                                </div>
+                                <div class="span-medium-2 span-vector"><span class="vector"></span></div>
+                                <div class="span-medium-11 span-small-24">
+                                    <div class="profile-settings-info">
+                                        {% if haveFacebookSubscription %}<span>Facebook<i class="ff-ok-circle current"></i></span>{% set hasSocial = true %}{% endif %}
+                                        {% if haveTwitterSubscription %}<span>Twitter<i class="ff-ok-circle current"></i></span>{% set hasSocial = true %}{% endif %}
+                                        {% if haveIntagramSubscription %}<span>Instagram<i class="ff-remove current"></i></span>{% set hasSocial = true %}{% endif %}
+                                        {% if user.youtubeLink is not empty %}<span>Youtube<i class="ff-ok-circle current"></i></span>{% set hasSocial = true %}{% endif %}
+                                        {% if user.snapchatNickname is not empty %}<span>Snapchat<i class="ff-ok-circle current"></i></span>{% set hasSocial = true %}{% endif %}
+
+                                        {% if not hasSocial %}
+                                            <span>No connected social networks.</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <a href="#social-networks" class="profile-settings-edit nice-scroll-parent">EDIT</a>
+                            </div>
+                            <div class="row">
+                                <div class="span-medium-13 offset-large-13 offset-medium-11">
+                                    <div id="social-networks" class="profile-settings-content">
+                                        <div>
+                                        {% if haveFacebookSubscription %}
+                                            <div class="social-info current">
+                                                {{ FacebookSubscribeServiceRender("removeButton") }}
+                                                {#<button onclick="fb_logout()"><i class="ff-fb-negative"></i><span>Remove account</span></button>#}
+                                            </div>
+                                        {% else %}
+                                            <div class="social-info">
+                                                {{ FacebookSubscribeServiceRender("subscribeButton") }}
+                                            </div>
+
+                                        {% endif %}
+
+                                        {#{% if haveGoogleSubscription %}#}
+                                            {#<div class="social-info current">#}
+                                                {#{{ GoogleSubscribeServiceRender("removeButton") }}#}
+                                                {#<button onclick="fb_logout()"><i class="ff-fb-negative"></i><span>Remove account</span></button>#}
+                                            {#</div>#}
+                                        {#{% else %}#}
+                                            {#<div class="social-info">#}
+                                                {#{{ GoogleSubscribeServiceRender("subscribeButton") }}#}
+                                            {#</div>#}
+
+                                        {#{% endif %}#}
+
+                                        {#{% if haveTwitterSubscription %}#}
+                                            {#<div class="social-info current">#}
+                                                {#{{ TwitterSubscribeServiceRender("removeButton") }}#}
+                                            {#</div>#}
+                                        {#{% else %}#}
+                                            {#<div class="social-info">#}
+                                                {#{{ TwitterSubscribeServiceRender("subscribeButton") }}#}
+                                            {#</div>#}
+                                        {#{% endif %}#}
+
+                                        {#{% if haveIntagramSubscription %}#}
+                                            {#<div class="social-info current">#}
+                                                {#<i class="ff-insta-negative"></i><span>Connected</span>#}
+                                                {#<input class="button-functional" type="button" value="REMOVE"/>#}
+                                            {#</div>#}
+                                        {#{% else %}#}
+                                            {#<div class="social-info">#}
+                                                {#<a href=""><i class="ff-insta-negative"></i><span>Add account</span></a>#}
+                                            {#</div>#}
+                                        {#{% endif %}#}
+                                            <div class="social-info">
+                                            {% form_theme pageElements.socialNetworks 'VeniceFrontBundle:Default:bowtieFormsDoubleLabel.html.twig' %}
+                                            {{ form(pageElements.socialNetworks) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endblock %}
+                    </div>
+
+                    {#{% set form = pageElements.preferredUnits %}#}
+                    {#<div id="preferredUnitsBlock" data-on-display="EditProfile.refreshProfile">#}
+                    {#{% block preferredUnitsBlock %}#}
+                        {#{% form_theme form 'CoreBundle/Front/default/bowtieFormsWithoutLabel.html.twig' %}#}
+                        {#{{ include(":CoreBundle/Front/core/items:editItem.html.twig",{"id":"units","label":"Preferred units","content": form(form),"icon":"ff-confiq", "secondLabel":user.preferredUnits|capitalize}, with_context=false) }}#}
+                    {#{% endblock %}#}
+                    {#</div>#}
+
+                    {% set form = pageElements.location %}
+                    <div id="locationBlock" data-on-display="EditProfile.refreshProfile">
+                    {% block locationBlock %}
+                        {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithoutLabel.html.twig' %}
+                        {{ include("VeniceFrontBundle:Core:items:editItem.html.twig",{"id":"location","label":"My location","content": form(form),"icon":"ff-map-pointer", "secondLabel":user.location}, with_context=false) }}
+                    {% endblock %}
+                    </div>
+
+                    <div id="publicLinkBlock">
+                    {% block publicLinkBlock %}
+                        <div class="row relative">
+                            <div class="span-large-6 span-medium-8 offset-large-5 offset-medium-3 offset-small-0">
+                                <a href="{{ url("core_front_user_public_profile",{"username":user.username}) }}" class="profile-settings-link"><i class="ff-link-arrow"></i>Public profile link</a>
+                            </div>
+                            <div class="span-medium-2 span-vector"><span class="vector"></span></div>
+                            <div class="span-medium-11">
+                                <div class="profile-settings-info">
+                                    <span class="public-profile-link">{{ url("core_front_user_public_profile",{"username":user.username}) }}</span>
+                                    <button id="copy-button" data-clipboard-text="{{ url("core_front_user_public_profile",{"username":user.username}) }}"
+                                            class="copy-to-clipboard button-functional button-copy margin-left-10 padding-left-10 padding-right-10"><i
+                                                class="ff-link-arrow"></i> Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock %}
+                    </div>
+
+                    {% block questions %}
+                        <div id="questionBlock">
+                        {% for formChildren in fistNewsOptimizationForm %}
+                            {{ form_start(fistNewsOptimizationForm) }}
+                            {% if formChildren.vars.name not in ["_token", "submit"] %}
+                                <div id="questionBlock{{ loop.index }}">
+                                    <div class="row relative">
+                                        <div id="questionBlock">
+                                            <div class="row relative">
+                                                <div class="span-large-6 span-medium-8 offset-large-5 offset-medium-3 offset-small-0">
+                                                    <a href="#questions{{ loop.index }}" class="profile-settings-link">
+                                                        <i class="ff-image"></i>{{ form_label(formChildren) }}
+                                                    </a>
+                                                </div>
+                                                <div class="span-medium-2 span-vector"><span class="vector"></span></div>
+                                                <div class="span-medium-11">
+                                                    <div class="profile-settings-info">
+                                                        {% for child in formChildren if child.vars.checked %}
+                                                            <span>{{ child.vars.label }}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <a href="#questions{{ loop.index }}" class="profile-settings-edit nice-scroll-parent">EDIT</a>
+                                            </div>
+
+                                            <div id="questions{{ loop.index }}" class="profile-settings-content">
+                                                <div class="span-medium-13 offset-large-13 offset-medium-11">
+                                                    {{ form_widget(formChildren) }}
+                                                </div>
+                                                {{ form_errors(fistNewsOptimizationForm) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {{ form_end(fistNewsOptimizationForm) }}
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".newsletter-optimization").each(function (i, form) {
+                form = $(form);
+                form.find("input").each(function (i, input) {
+                    input = $(input);
+                    input.change(function (e) {
+                        var inputId = input.attr('id');
+                        var label = form.find("label[for='"+inputId+"']");
+                        label.append("<span class='saving-message'>Saving...</span>");
+                        form.submit();
+                    });
+
+                    form.unbind("submit").submit(function (e){
+                        e.preventDefault();
+                        var formData = new FormData(this);
+                        $.ajax({
+                            url: form.attr("action"),
+                            method: form.attr("method"),
+                            data: formData,
+                            processData: false,
+                            cache: false,
+                            contentType: false,
+                        }).done(function (data){
+                            $(".saving-message").hide();
+                        }).error(function (data){
+                            console.log(data);
+                        });
+                    });
+                });
+            });
+        });
+
+        $('body').on('click', '#row_globaluserprofilephotowithdeletebutton_profilePhoto_image_file', function () {
+            EditProfile.refresh();
+            EditProfilePicture.refresh();
+        });
+    </script>
+{% endblock %}

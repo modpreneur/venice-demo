@@ -2,10 +2,12 @@
 
 namespace FrontBundle\Twig;
 
+use AppBundle\Entity\BillingPlan;
 use AppBundle\Entity\Content\PdfContent;
 use AppBundle\Entity\Product\ShippingProduct;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\User;
+use AppBundle\Services\AbstractConnector;
 use Aws\CloudFront\CloudFrontClient;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -239,33 +241,50 @@ class FlofitTemplateFeatures extends \Twig_Extension
     }
 
 
+    /**
+     * @param Product $product
+     * @param $useStoredCard
+     * @param User|null $user
+     * @param array $otherParams
+     *
+     * @return string
+     */
     public function generateOCBLink(
         Product $product,
         $useStoredCard,
-        GlobalUser $user = null,
-        array $otherParams = array()
+        User $user = null,
+        array $otherParams = []
     ) {
-        return $this->generateOCBLinkByBuyParameters($product->getBuyCBParameters(), $useStoredCard, $user,
-            $otherParams);
+        return $this->generateOCBLinkByBuyParameters(
+            [], //$product->getBuyCBParameters(),
+            $useStoredCard,
+            $user,
+            $otherParams
+        );
     }
 
 
-    public function generateMobileOCBLink(Product $product, GlobalUser $user = null, array $otherParams = array())
+    public function generateMobileOCBLink(Product $product, User $user = null, array $otherParams = [])
     {
         return $this->generateOCBLinkByBuyParameters($product->getBuyCBMobileParameters(), true, $user, $otherParams,
             "ocb-mobile");
     }
 
 
+
     public function generateOCBLinkByBuyParameters(
-        BuyParameters $buyParameters,
+        BillingPlan $buyParameters,
         $useStoredCard,
-        GlobalUser $user = null,
-        array $otherParams = array(),
-        $ocbAction = "ocb"
+        User $user = null,
+        array $otherParams = [],
+        $ocbAction = 'ocb'
     ) {
-        $amemberURL = $this->serviceContainer->getParameter("amember_url");
-        $secretKey = $this->serviceContainer->getParameter("amember_user_hash_key");
+        //$amemberURL = $this->serviceContainer->getParameter("amember_url");
+        //$secretKey  = $this->serviceContainer->getParameter("amember_user_hash_key");
+        // @todo
+
+        $amemberURL = '';
+        $secretKey  = '';
 
         if (is_null($user)) {
             $user = $this->getUser();
@@ -277,7 +296,9 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
         $amemberURL .= "payment/c-b/{$ocbAction}?";
 
-        $buyParameters = $buyParameters->generateOCBLink($user, $secretKey, $useStoredCard);
+        //$buyParameters = $buyParameters->generateOCBLink($user, $secretKey, $useStoredCard);
+
+        $buyParameters = 'aaa';
 
         if (is_null($buyParameters)) {
             return "";
@@ -292,7 +313,7 @@ class FlofitTemplateFeatures extends \Twig_Extension
     }
 
 
-    public function getLastCard(GlobalUser $user = null)
+    public function getLastCard(User $user = null)
     {
         if (is_null($user)) {
             $user = $this->getUser();
@@ -311,13 +332,13 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
 
     /**
-     * @param BuyParameters $buyParameters
+     * @param BillingPlan $buyParameters
      *
      * @return string
      */
-    public function generatePriceString(BuyParameters $buyParameters)
+    public function generatePriceString(BillingPlan $buyParameters)
     {
-        return $buyParameters->getPriceString();
+        return $buyParameters->getPrice();
     }
 
 
@@ -326,7 +347,6 @@ class FlofitTemplateFeatures extends \Twig_Extension
      */
     public function passwordCheckerBlock()
     {
-
         return '';
     }
 

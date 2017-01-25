@@ -1,0 +1,26 @@
+{#After their 14 day free trial expire#}
+<input type="checkbox" id="trial-modal-input" class="display-none">
+<div class="trial-flow" {#style="display: none;"#}>
+    <label for="trial-modal-input" class="trial-modal-label trial-modal-open"></label>
+    <div class="trial-flow-wrapper">
+        <label for="trial-modal-input" class="trial-modal-label-cross trial-modal-open"><i class="ff-cross2"></i></label>
+
+        <h1>Your 14 Day FREE Trial Is Over</h1>
+        <p class="blue">Your Monthly Payments Start Today</p>
+        <p class="price">$4.95/month</p>
+        <label for="trial-modal-input" class="button button-card">OK</label>
+        <p class="blue or-blue">- or -</p>
+        <p class="blue or-blue">Upgrade to physical plus unlimited streaming for only $67 one time</p>
+        <a href="http://25.flofit.pay.clickbank.net?cbfid=21773&vtid=introfreebe2408&cbskin=13358&email={{ app.user.email }}&name={{ app.user.firstName }} {{ app.user.lastName }}" class="button button-another" id="pop-14-day-upgrade">YES, I WANT TO UPGRADE</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        ga('send', 'event', 'intro-free-be', 'pop-14-day-open', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+
+        $("#pop-14-day-upgrade").click(function () {
+            ga('send', 'event', 'intro-free-be', 'pop-14-day-upgrade', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+        });
+    });
+</script>

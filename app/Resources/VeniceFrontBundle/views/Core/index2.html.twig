@@ -1,0 +1,297 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block jumbotronClass %}jumbotron-dashboard{% endblock %}
+
+{% block guideModal %}
+    <div class="start-guilde">
+        <label for="start-guilde" class="start-guide-label"></label>
+        <div class="wrapper">
+            <label for="start-guilde" class="start-guide-label"><i class="ff-cross2"></i></label>
+            <header>
+                <h1>Quick Start Guide</h1>
+                <p>Congratulations on purchasing FLO FIT! Follow the steps below to get started, we have everything you need to get in the best shape of your life.</p>
+                <i class="ff ff-arrow-light-long-down"></i>
+            </header>
+            <section class="green">
+                <span class="circle">1</span>
+                <h1>Read the FLO&nbsp;FIT &ldquo;Workout Guide&rdquo;</h1>
+                <p>This guide will show you everything you need to know, from setting up your workout schedule to determining the level of intensity of your workouts. By the end of reading this guide you’ll be ready to tackle the 8-week training program and crush it.</p>
+                {% if workoutGuide is not null %}
+                    <a class="button button-guilde" href="{{ workoutGuide.file }}" target="_blank">Workout Guide</a>
+                {% else %}
+                    <a class="button button-guilde" href="{{ path("downloads_dashboard") }}">Workout Guide</a>
+                {% endif %}
+                <i class="ff ff-arrow-light-long-down"></i>
+            </section>
+            <section class="blue">
+                <span class="circle">2</span>
+                <h1>Choose Your 8-Week Training Program</h1>
+                <p>The training programs and the workout videos are as easy to follow as it gets – but it’s up to you to choose the right program. There are three to choose from: Beginner, Intermediate and Advanced. Pick a program that is right for you. Plan your training around your schedule and raise your intensity for best results. The training programs are included in the Workout Guide, or you can download individual copies from the Products page</p>
+                <a class="button button-guilde" href="{{ path("downloads_dashboard") }}#books-and-training-calendars">Product page</a>
+                <i class="ff ff-arrow-light-long-down"></i>
+            </section>
+            <section class="blue-dark">
+                <span class="circle">3</span>
+                <h1>Do Your First Workout! </h1>
+                <p>You’ve read the Workout Guide, you’ve picked your 8-week Training Program, so it’s go time! Find your first workout on the Products page and click PLAY, and then then follow Mike and FLO. You will feel amazing afterwards. You can adjust the video quality by clicking on the HD icon in the corner of the video player and selecting your preferred quality.</p>
+                <div class="section-03">
+                    <img src="{{ asset("Resources/public/images/site/guilde-section3-player-quality.jpg") }}" alt="Quality player" class="img-responsive margin-auto"/>
+                    <img src="{{ asset("Resources/public/images/site/guilde-section3-arrow.png") }}" alt="Arrow" class="absolute"/>
+                </div>
+                <a class="button button-guilde margin-top-20" href="{{ path("downloads_dashboard") }}#workout-videos">Product page</a>
+                <i class="ff ff-arrow-light-long-down"></i>
+            </section>
+            <section class="green">
+                <span class="circle">4</span>
+                <h1>Make Sure You Follow the Nutrition Guide</h1>
+                <p>Nutrition is a vital but often overlooked element of a training program, it’s as important for achieving your goals as the exercises and time spent sweating! Eating right and maintaining a balanced diet will dramatically improve your results. </p>
+                {% if nutritionGuide is not null %}
+                    <a class="button button-guilde" href="{{ nutritionGuide.file }}" target="_blank">Nutrition Guide</a>
+                {% else %}
+                    <a class="button button-guilde" href="{{ path("downloads_dashboard") }}">Nutrition Guide</a>
+                {% endif %}
+            </section>
+            <footer>
+                <span>GOOD LUCK!</span>
+            </footer>
+        </div>
+    </div>
+{% endblock %}
+
+{% block headerInside %}
+    {#<div class="row">#}
+        {#<div class="span-small-12 offset-small-6 offset-medium-0 margin-top-50">#}
+            {#<span class="flo-title">HOW DID<br/>#}
+            {#FLO RIDA GET<br/>#}
+            {#THIS RIPPED?</span>#}
+        {#</div>#}
+        {#<div class="span-large-6 span-medium-7 span-small-12 offset-small-6 offset-medium-5 offset-large-5 margin-top-100">#}
+            {#<a class="button button-primary" href="{{ path("downloads_product_flomersion") }}" id="flomersion-button">Platinum Club</a>#}
+        {#</div>#}
+    {#</div>#}
+{% endblock %}
+
+{% block content %}
+    <div class="dashboard-main-content">
+        <div class="row margin-top-10 display-inline-block">
+            {% if firstLogin %}
+                <div id="widget-homepage" class="widgets">
+                    <div id="dashboard-mobile-qsg">
+                        <div class="span-medium-24 mobile-app-padding">
+                            <div class="start-guilde-box">
+                                <label for="start-guilde" class="start-guide-label">
+                                    <span>Quick Start <span>Guide</span><i class="ff-arrow-light-long-right"></i></span>
+                                </label>
+                                <label onclick="ActionsLogger.logAction('QUICKSTART-GUIDE-ADVERTISEMENT-CLOSE');closeDashboardMobileQSG();" for="close-download-mobile-app" class="close-guilde-box"><i class="ff ff-cross2"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+
+            <div class="span-none-padding-medium-24 product-list-box product-list-box-2">
+                <div class="row text-center">
+                    <div class="span-medium-12 padding-top-20 padding-right-10">
+                        <div class="product-item product-item-flofit">
+                            <a href="{{ path("downloads_dashboard") }}">
+                                <img src="{{ asset('Resources/public/images/site/dashboard-flo-fit.jpg') }}" alt="FLO FIT" class="img-responsive margin-auto" />
+                                <h1>YOUR <span>FLO FIT</span><span class="text-products">products</span><i class="ff-arrow-light-long-right display-block"></i></h1>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="span-medium-12 padding-top-20 padding-left-10">
+                        <div class="product-item product-item-platinum">
+                            <a href="{{ path("downloads_product_flomersion") }}">
+                                <img src="{{ asset('Resources/public/images/site/flofit-dash-4.jpg') }}" alt="Platinum" class="img-responsive margin-auto" />
+                                <h1>Platinum <span>club</span><i class="ff-arrow-light-long-right display-block"></i></h1>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if firstLogin %}
+                <div id="widget-homepage" class="widgets">
+                <div id="dashboard-mobile-adv">
+                    <div class="span-medium-24 mobile-app-padding">
+                        <div class="download-mobile-app row">
+                            <h1>Get the FREE App to Access FLO&nbsp;FIT<small>On Your Phone or Tablet</small></h1>
+                            <div class="download">
+                                <a data-log-click="MOBILE-APP-ADVERTISEMENT-IOS" href="https://itunes.apple.com/cz/app/flo-fit/id1052231777"><img src="{{ asset('Resources/public/images/site/dash-mobile-app-apple.png') }}" alt="Apple" class="img-responsive"/></a>
+                                <a data-log-click="MOBILE-APP-ADVERTISEMENT-ANDROIDMOBILE-APP-ADVERTISEMENT-IOS" href="https://play.google.com/store/apps/details?id=com.digitalshelfspace.flofit"><img src="{{ asset('Resources/public/images/site/dash-mobile-app-android.png') }}" alt="Android" class="img-responsive"/></a>
+                            </div>
+                            <label onclick="ActionsLogger.logAction('MOBILE-APP-ADVERTISEMENT-CLOSE');closeDashboardMobileAdv();" for="close-download-mobile-app"><i class="ff ff-cross2"></i></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div id="widget-homepage" class="widgets {% if displayQuickStartGuide and displayMobileAdv %}widget-both{% endif %}">
+                {% if displayQuickStartGuide %}
+                <div id="dashboard-mobile-qsg">
+                    <div class="span-medium-24 mobile-app-padding">
+                        <div class="start-guilde-box">
+                            <label for="start-guilde" class="start-guide-label">
+                                <span>Quick Start <span>Guide</span><i class="ff-arrow-light-long-right"></i></span>
+                            </label>
+                            <label onclick="ActionsLogger.logAction('QUICKSTART-GUIDE-ADVERTISEMENT-CLOSE');closeDashboardMobileQSG();" for="close-download-mobile-app" class="close-guilde-box"><i class="ff ff-cross2"></i></label>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if displayMobileAdv %}
+                <div id="dashboard-mobile-adv">
+                    <div class="span-medium-24 mobile-app-padding">
+                        <div class="download-mobile-app row">
+                            <h1>Get the FREE App to Access FLO&nbsp;FIT<small>On Your Phone or Tablet</small></h1>
+                            <div class="download">
+                                <a data-log-click="MOBILE-APP-ADVERTISEMENT-IOS" href="https://itunes.apple.com/cz/app/flo-fit/id1052231777"><img src="{{ asset('Resources/public/images/site/dash-mobile-app-apple.png') }}" alt="Apple" class="img-responsive"/></a>
+                                <a data-log-click="MOBILE-APP-ADVERTISEMENT-ANDROIDMOBILE-APP-ADVERTISEMENT-IOS" href="https://play.google.com/store/apps/details?id=com.digitalshelfspace.flofit"><img src="{{ asset('Resources/public/images/site/dash-mobile-app-android.png') }}" alt="Android" class="img-responsive"/></a>
+                            </div>
+                            <label onclick="ActionsLogger.logAction('MOBILE-APP-ADVERTISEMENT-CLOSE');closeDashboardMobileAdv();" for="close-download-mobile-app"><i class="ff ff-cross2"></i></label>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+
+
+            <div class="span-large-8 span-medium-12 padding-left-10 double-box-span">
+                <div class="widget-box double-box">
+                    <div class="widget-header tertiary">
+                        <a href="{{ getForumLink() }}">Last forum posts</a>
+                        <i class="ff-chat-conversation"></i>
+                    </div>
+                    <div class="widget-body">
+                        <div class="posts">
+                            {% for forumPost in forumPosts %}
+                                <a href="{{ forumPost.Url }}">
+                                    <div class="post">
+                                        <span class="title-post">{{ forumPost.Name }}</span>
+                                        <p class="post-tag">{{ forumPost.CategoryName }}</p>
+                                        <span class="post-time">{{ forumPost.LastDate|humanDate }}</span>
+                                        <span class="post-info">{{ forumPost.CountViews }} views & {{ forumPost.CountComments }} replies</span>
+                                        <span class="post-author">by {{ forumPost.author }} </span>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span-large-16 span-medium-12 padding-right-10 blog-box">
+                <div class="widget-box">
+                    <div class="widget-header default">
+                        <a href="{{ path("blog_index") }}">Blog</a>
+                        <i class="ff-text-left-page"></i>
+                    </div>
+                    <div class="widget-body">
+                        {% for blogPost in blogPosts %}
+                            <a href="{{ path("blog_post_details",{"handle":blogPost.Handle}) }}">
+                                <div class="message">
+                                    <div class="item-img-icon absolute">
+                                        <div class="rounded">
+                                            {% if blogPost.Publisher.profilePhoto is not null and blogPost.Publisher.profilePhoto.imageFile != "" %}
+                                                <img src="{{ blogPost.Publisher.profilePhoto.croopedPhotoUrl }}" alt="profile image"/>
+                                            {% else %}
+                                                <img src="{{ asset('Resources/public/images/site/default-profile-photo.png') }}" alt="profile image"/>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="message-content">
+                                        <div class="name">{{ blogPost.Title }}</div>
+                                        <div class="name user-name">{{ blogPost.Publisher.username }}</div>
+                                        {% if blogPost.dateToPublish is not null %}
+                                        <span class="date">{{ blogPost.dateToPublish|date("m/d/Y") }}</span>
+                                        {% else %}
+                                        <span class="date">{{ blogPost.dateWritten|date("m/d/Y") }}</span>
+                                        {% endif %}
+                                        <p>{{ blogPost.getPreview|raw }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="span-large-8 span-medium-12 padding-none-right messenger-block-box">
+                <div class="widget-box">
+                    <div class="widget-header secondary">
+                        <a href="{{ getMessagesLink() }}">Messages</a>
+                        <i class="ff-chat-dotted-left"></i>
+                    </div>
+                    <div class="widget-body">
+                        {% for conversation in messages %}
+                            <a href="{{ communityForumUrl ~ "/messages/" ~ conversation.conversationId }}">
+                                <div class="message">
+                                    <div class="item-img-icon absolute">
+                                        <div class="rounded">
+                                            {% if conversation.participants|length > 1 %}
+                                                <img src="{{ asset('Resources/public/images/site/default-conversation-photo.png') }}" alt="conversation profile images"/>
+                                            {% else %}
+                                                {% if conversation.participants is not empty and conversation.participants[0] is iterable and conversation.participants[0].profilePhoto is not null %}
+                                                    <img src="{{ conversation.participants[0].profilePhoto.croopedPhotoUrl }}" alt="profile image"/>
+                                                {% else %}
+                                                    <img src="{{ asset('Resources/public/images/site/default-profile-photo.png') }}" alt="profile image"/>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="message-content">
+                                        <div class="name">
+                                            {% for participant in conversation.participants %}
+                                                {% spaceless %}
+                                                    {% if loop.index != 1 %},{% endif %}
+                                                    {% if participant is iterable %}
+                                                        <a href="{{ path("core_front_user_public_profile",{"username":participant.username}) }}">{{ participant.fullName }}</a>
+                                                    {% else %}
+                                                        {{ participant }}
+                                                    {% endif %}
+                                                {% endspaceless %}
+                                            {% endfor %}
+                                        </div>
+                                        <p>{{  conversation.LastBody }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="span-large-8 span-medium-12 padding-right-10 social-box">
+                <div class="widget-box">
+                    <div class="widget-header primary">
+                        <a href="">Social stream</a>
+                        <i class="ff-share"></i>
+                    </div>
+                    <div class="widget-body">
+                       {% for post in socialPosts %}
+
+                        <a href="{{ post.url }}" target="_blank">
+                            <div class="message">
+                                <div class="item-img-icon absolute">
+                                    <div class="rounded">
+                                        <img src="{{ post.profilePic }}" alt="profile image"/>
+                                    </div>
+                                    <i class="{% if post.type == "facebook" %} ff-social-fb {% endif %}
+                                              {% if post.type == "twitter" %} ff-social-twitter {% endif %}
+                                              {% if post.type == "instagram" %} ff-social-instagram {% endif %}
+                                              ">
+                                    </i>
+                                </div>
+                                <div class="message-content">
+                                    <div class="name">{{ post.author }}<span class="date">{{ post.dateTime|humanDate }}</span></div>
+                                    <p>{{  post.message }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
