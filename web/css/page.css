@@ -1,7 +1,8 @@
+@import "../../Resources/public/bowtie/core.css";
 @font-face {
   font-family: 'ico';
-  src: url('../Resources/public/fonts/ff-icons/ico.eot?bo4vnv');
-  src: url('../Resources/public/fonts/ff-icons/ico.eot?bo4vnv#iefix') format('embedded-opentype'), url('../Resources/public/fonts/ff-icons/ico.ttf?bo4vnv') format('truetype'), url('../Resources/public/fonts/ff-icons/ico.woff?bo4vnv') format('woff'), url('../Resources/public/fonts/ff-icons/ico.svg?bo4vnv#ico') format('svg');
+  src: url('../../Resources/public/fonts/ff-icons/ico.eot?bo4vnv');
+  src: url('../../Resources/public/fonts/ff-icons/ico.eot?bo4vnv#iefix') format('embedded-opentype'), url('../../Resources/public/fonts/ff-icons/ico.ttf?bo4vnv') format('truetype'), url('../../Resources/public/fonts/ff-icons/ico.woff?bo4vnv') format('woff'), url('../../Resources/public/fonts/ff-icons/ico.svg?bo4vnv#ico') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -437,7 +438,7 @@ select * {
   max-width: 1058px;
   margin: 85px auto 0;
   padding: 100px 0 0;
-  background: #ffffff url("../Resources/public/images/site/guilde-bg-top.png") no-repeat top center;
+  background: #ffffff url("../../Resources/public/images/site/guilde-bg-top.png") no-repeat top center;
   text-align: center;
 }
 .start-guilde .wrapper > label {
@@ -571,7 +572,7 @@ select * {
   position: relative;
   margin-top: -90px;
   z-index: 2;
-  background: transparent url("../Resources/public/images/site/guilde-bg-bottom.png") no-repeat bottom center;
+  background: transparent url("../../Resources/public/images/site/guilde-bg-bottom.png") no-repeat bottom center;
   background-size: contain;
   height: 475px;
 }
@@ -787,31 +788,31 @@ select * {
   position: relative;
 }
 .jumbotron.jumbotron-1 {
-  background: url("../Resources/public/images/site/header-profile-01.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/header-profile-01.jpg") no-repeat top center;
   background-attachment: fixed;
 }
 .jumbotron.jumbotron-2 {
-  background: url("../Resources/public/images/site/header-profile-02.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/header-profile-02.jpg") no-repeat top center;
   background-attachment: fixed;
 }
 .jumbotron.jumbotron-3 {
-  background: url("../Resources/public/images/site/header-profile-03.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/header-profile-03.jpg") no-repeat top center;
   background-attachment: fixed;
 }
 .jumbotron.jumbotron-4 {
-  background: url("../Resources/public/images/site/header-profile-04.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/header-profile-04.jpg") no-repeat top center;
   background-attachment: fixed;
 }
 .jumbotron.jumbotron-5 {
-  background: url("../Resources/public/images/site/header-profile-05.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/header-profile-05.jpg") no-repeat top center;
   background-attachment: fixed;
 }
 .jumbotron.jumbotron-6 {
-  background: url("../Resources/public/images/site/header-profile-06.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/header-profile-06.jpg") no-repeat top center;
   background-attachment: fixed;
 }
 .jumbotron.jumbotron-7 {
-  background: url("../Resources/public/images/site/header-profile-07.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/header-profile-07.jpg") no-repeat top center;
   background-attachment: fixed;
 }
 .jumbotron.jumbotron-dashboard {
@@ -849,7 +850,7 @@ select * {
   content: "";
   display: inline-block;
   position: absolute;
-  background: url("../Resources/public/images/site/easy.png") no-repeat center;
+  background: url("../../Resources/public/images/site/easy.png") no-repeat center;
   left: -255px;
   top: -45px;
   width: 235px;
@@ -860,7 +861,7 @@ select * {
   background-color: rgba(0, 71, 124, 0.87) !important;
 }
 .jumbotron.dashboard-without-platinum {
-  background: url("../Resources/public/images/site/dashboard-flofit-1.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/dashboard-flofit-1.jpg") no-repeat top center;
 }
 .jumbotron.dashboard-without-platinum .header-filter {
   background-image: none;
@@ -909,7 +910,7 @@ select * {
   content: "";
   display: inline-block;
   position: absolute;
-  background: url("../Resources/public/images/site/jumbotron-green-arrow.png") no-repeat center;
+  background: url("../../Resources/public/images/site/jumbotron-green-arrow.png") no-repeat center;
   left: -305px;
   top: 8px;
   width: 286px;
@@ -943,22 +944,22 @@ select * {
   margin-bottom: 24px;
 }
 .jumbotron.jumbotron-platinum {
-  background: url("../Resources/public/images/site/jumbotron-platinum.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/jumbotron-platinum.jpg") no-repeat top center;
 }
 .jumbotron.jumbotron-nutrition {
-  background: url("../Resources/public/images/site/jumbotron-nutrition.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/jumbotron-nutrition.jpg") no-repeat top center;
 }
 .jumbotron.jumbotron-core {
-  background: url("../Resources/public/images/site/jumbotron-core.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/jumbotron-core.jpg") no-repeat top center;
 }
 .jumbotron.jumbotron-platinum-club {
-  background: url("../Resources/public/images/site/jumbotron-platinum-club.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/jumbotron-platinum-club.jpg") no-repeat top center;
 }
 .jumbotron.jumbotron-seven-days {
-  background: url("../Resources/public/images/site/jumbotron-seven-days.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/jumbotron-seven-days.jpg") no-repeat top center;
 }
 .jumbotron.jumbotron-survey {
-  background: url("../Resources/public/images/site/jumbotron-clear.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/jumbotron-clear.jpg") no-repeat top center;
 }
 .jumbotron.jumbotron-survey h1 {
   text-align: center;
@@ -972,7 +973,7 @@ select * {
   color: #00aeef;
 }
 .jumbotron.jumbotron-shipping {
-  background: url("../Resources/public/images/site/jumbotron-clear.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/jumbotron-clear.jpg") no-repeat top center;
 }
 .jumbotron.jumbotron-shipping .headline-button {
   margin-top: 80px;
@@ -981,7 +982,7 @@ select * {
   max-width: 100%;
 }
 .jumbotron.jumbotron-flofit {
-  background: url("../Resources/public/images/site/jumbotron-platinum-club-clear.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/jumbotron-platinum-club-clear.jpg") no-repeat top center;
 }
 .jumbotron.jumbotron-flofit h1 {
   font-weight: bold;
@@ -1223,7 +1224,7 @@ select * {
   width: 100%;
   height: 491px;
   padding-top: 100px;
-  background: url("../Resources/public/images/site/full-menu-header-small.jpg") no-repeat top center;
+  background: url("../../Resources/public/images/site/full-menu-header-small.jpg") no-repeat top center;
   z-index: 0;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -2159,7 +2160,7 @@ select * {
 .profile-settings .profile-settings-content > div .select-style:after {
   content: "";
   z-index: 10;
-  background: url("../Resources/public/images/site/select-icon.png") no-repeat top left;
+  background: url("../../Resources/public/images/site/select-icon.png") no-repeat top left;
   height: 13px;
   width: 9px;
   display: inline-block;
@@ -2368,7 +2369,7 @@ select * {
   background-color: #00477c;
 }
 .bg-activity {
-  background: #00477c url("../Resources/public/images/site/profile-activity-bg.jpg") no-repeat top center;
+  background: #00477c url("../../Resources/public/images/site/profile-activity-bg.jpg") no-repeat top center;
 }
 .bg-activity .block-title {
   color: #FFFFFF;
@@ -3096,7 +3097,7 @@ select * {
   margin-left: 20px;
 }
 .login-main {
-  background: url("../Resources/public/images/site/login-jumbotron.jpg") repeat top center;
+  background: url("../../Resources/public/images/site/login-jumbotron.jpg") repeat top center;
 }
 .login-main.reset-pass p {
   color: #E30202;
@@ -3559,7 +3560,7 @@ select * {
 .dashboard-main-content .start-guilde-box {
   margin-top: 20px;
   height: 110px;
-  background: #00477c url("../Resources/public/images/site/start-box-2.jpg") no-repeat center;
+  background: #00477c url("../../Resources/public/images/site/start-box-2.jpg") no-repeat center;
   background-size: cover;
   position: relative;
 }
@@ -4644,7 +4645,7 @@ select * {
   width: 90%;
   max-width: 1058px;
   padding: 100px 20px 140px;
-  background: url("../Resources/public/images/site/buy-modal-bg-florida.png") no-repeat bottom right, url("../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
+  background: url("../../Resources/public/images/site/buy-modal-bg-florida.png") no-repeat bottom right, url("../../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
   background-color: #fff;
   margin: 5% auto 0;
   -webkit-transform: translateY(-30px);
@@ -4808,7 +4809,7 @@ select * {
 }
 @media (max-width: 1023px) {
   #buy-modal .buy-modal-wrapper {
-    background: url("../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
+    background: url("../../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
     background-color: #fff;
   }
   #buy-modal p,
@@ -4885,7 +4886,7 @@ select * {
   width: 90%;
   max-width: 1058px;
   padding: 100px 20px 110px;
-  background: url("../Resources/public/images/site/buy-modal-bg-florida.png") no-repeat bottom right, url("../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
+  background: url("../../Resources/public/images/site/buy-modal-bg-florida.png") no-repeat bottom right, url("../../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
   background-color: #fff;
   margin: 5% auto 40px;
   overflow: hidden;
@@ -5019,7 +5020,7 @@ select * {
   text-align: center;
 }
 .trial-flow.deck .trial-flow-wrapper {
-  background: #ffffff url("../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
+  background: #ffffff url("../../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
   padding: 60px 20px;
 }
 .trial-flow.deck .cart-box {
@@ -5214,7 +5215,7 @@ select * {
 }
 @media (max-width: 1023px) {
   .trial-flow .trial-flow-wrapper {
-    background: #ffffff url("../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
+    background: #ffffff url("../../Resources/public/images/site/buy-modal-bg-top.png") no-repeat top center;
     padding: 60px 20px;
   }
   .trial-flow h1 {
@@ -5430,7 +5431,7 @@ select * {
 }
 .flomersion-database p:before {
   content: "";
-  background: url("../Resources/public/images/site/database-arrow.png") no-repeat center;
+  background: url("../../Resources/public/images/site/database-arrow.png") no-repeat center;
   width: 238px;
   height: 37px;
   display: inline-block;
@@ -5459,7 +5460,7 @@ select * {
   border-color: #00aeef;
 }
 .download-mobile-app {
-  background: url("../Resources/public/images/site/dashboard-mobile-app-bg.jpg") no-repeat left center;
+  background: url("../../Resources/public/images/site/dashboard-mobile-app-bg.jpg") no-repeat left center;
   height: 110px;
   position: relative;
   margin-top: 20px;
@@ -5630,7 +5631,7 @@ select * {
 }
 .survey .inputs .select-style:after {
   content: "";
-  background: url("../Resources/public/images/site/select-after-icon.png") no-repeat center;
+  background: url("../../Resources/public/images/site/select-after-icon.png") no-repeat center;
   height: 48px;
   width: 9px;
   display: inline-block;
@@ -5739,7 +5740,7 @@ select * {
   max-width: 1000px;
   width: 100%;
   text-align: center;
-  background: #ffffff url("../Resources/public/images/site/cancel-popup-bg.png") no-repeat top center;
+  background: #ffffff url("../../Resources/public/images/site/cancel-popup-bg.png") no-repeat top center;
   background-size: 100% 345px;
   position: relative;
   z-index: 1001;
@@ -5883,7 +5884,7 @@ select * {
   max-width: 680px;
   width: 100%;
   text-align: center;
-  background: #ffffff url("../Resources/public/images/site/cancel-popup-bg.png") no-repeat top center;
+  background: #ffffff url("../../Resources/public/images/site/cancel-popup-bg.png") no-repeat top center;
   position: relative;
   z-index: 1001;
   margin: 80px auto 0;
@@ -6215,7 +6216,7 @@ select * {
   padding-top: 0;
 }
 .signup-body {
-  background: url("../Resources/public/images/site/login-jumbotron.jpg") repeat top center;
+  background: url("../../Resources/public/images/site/login-jumbotron.jpg") repeat top center;
   background-size: cover;
 }
 .signup-body .login .text-login {
@@ -6290,7 +6291,7 @@ select * {
   right: 0;
 }
 .signup-body.change-pass-body {
-  background: #001f46 url("../Resources/public/images/site/change-pass-jumbotron.png") no-repeat center top;
+  background: #001f46 url("../../Resources/public/images/site/change-pass-jumbotron.png") no-repeat center top;
   padding: 0 !important;
 }
 .signup-body.change-pass-body .main-footer {
@@ -6662,7 +6663,7 @@ select * {
   text-align: left;
 }
 .reset-pass-step-body {
-  background: url("../Resources/public/images/site/login-jumbotron.jpg") repeat top center;
+  background: url("../../Resources/public/images/site/login-jumbotron.jpg") repeat top center;
   background-size: cover;
 }
 .reset-pass-step-body .header-main-logo .ff-flofitlogo {
@@ -6894,7 +6895,7 @@ select * {
     margin-top: 0 !important;
   }
   .jumbotron.jumbotron-dashboard {
-    background: url("../Resources/public/images/site/jumbotron-mobile-bg.jpeg") no-repeat top center;
+    background: url("../../Resources/public/images/site/jumbotron-mobile-bg.jpeg") no-repeat top center;
   }
   .jumbotron.jumbotron-dashboard .flo-title {
     font-size: 25px;
@@ -6912,7 +6913,7 @@ select * {
   }
   .jumbotron.jumbotron-dashboard .button-primary:after {
     content: "";
-    background: url("../Resources/public/images/site/jumbotron-florida-mobile.png") no-repeat;
+    background: url("../../Resources/public/images/site/jumbotron-florida-mobile.png") no-repeat;
     width: 217px;
     height: 203px;
     position: absolute;
@@ -7443,7 +7444,7 @@ select * {
     padding: 0 20px !important;
   }
   .jumbotron.jumbotron-platinum-club {
-    background: url("../Resources/public/images/site/jumbotron-platinum-club-cover.jpg") no-repeat top left -520px;
+    background: url("../../Resources/public/images/site/jumbotron-platinum-club-cover.jpg") no-repeat top left -520px;
     height: 290px !important;
     background-size: 1338px;
     padding-top: 0;
@@ -7452,7 +7453,7 @@ select * {
     padding-top: 0;
   }
   .jumbotron.dashboard-without-platinum {
-    background: url("../Resources/public/images/site/jumbotron-platinum-club-clear.jpg") no-repeat top center;
+    background: url("../../Resources/public/images/site/jumbotron-platinum-club-clear.jpg") no-repeat top center;
     height: 77px;
   }
   .jumbotron.dashboard-without-platinum .section.main-header-profile {
@@ -7575,14 +7576,14 @@ select * {
     display: none;
   }
   .jumbotron.jumbotron-seven-days {
-    background: url("../Resources/public/images/site/jumbotron-seven-days-cover.jpg") no-repeat top left -770px;
+    background: url("../../Resources/public/images/site/jumbotron-seven-days-cover.jpg") no-repeat top left -770px;
     height: 413px !important;
   }
   .jumbotron.jumbotron-seven-days .header-filter {
     padding-top: 100px;
   }
   .jumbotron.jumbotron-core {
-    background: url("../Resources/public/images/site/jumbotron-core-cover.jpg") no-repeat top left -441px;
+    background: url("../../Resources/public/images/site/jumbotron-core-cover.jpg") no-repeat top left -441px;
     height: 290px !important;
     background-size: 1338px;
   }
@@ -7590,14 +7591,14 @@ select * {
     padding-top: 145px;
   }
   .jumbotron.jumbotron-nutrition {
-    background: url("../Resources/public/images/site/jumbotron-nutrition-cover.jpg") no-repeat top left -770px;
+    background: url("../../Resources/public/images/site/jumbotron-nutrition-cover.jpg") no-repeat top left -770px;
     height: 413px !important;
   }
   .jumbotron.jumbotron-nutrition .header-filter {
     padding-top: 100px;
   }
   .jumbotron.jumbotron-platinum {
-    background: url("../Resources/public/images/site/jumbotron-platinum-cover.jpg") no-repeat top left -710px;
+    background: url("../../Resources/public/images/site/jumbotron-platinum-cover.jpg") no-repeat top left -710px;
     height: 413px !important;
   }
   .jumbotron.jumbotron-platinum .header-filter {
@@ -8105,7 +8106,7 @@ select * {
     top: 33% !important;
   }
   .jumbotron.jumbotron-platinum-club {
-    background: url("../Resources/public/images/site/jumbotron-platinum-club-clear.jpg") no-repeat top center;
+    background: url("../../Resources/public/images/site/jumbotron-platinum-club-clear.jpg") no-repeat top center;
   }
   .jumbotron.jumbotron-platinum-club .headline-button {
     margin-top: 60px !important;
@@ -8140,7 +8141,7 @@ select * {
   .jumbotron.jumbotron-seven-days,
   .jumbotron.jumbotron-core,
   .jumbotron.jumbotron-nutrition {
-    background: url("../Resources/public/images/site/jumbotron-clear.jpg") no-repeat top center;
+    background: url("../../Resources/public/images/site/jumbotron-clear.jpg") no-repeat top center;
   }
   .jumbotron.jumbotron-seven-days .headline-button,
   .jumbotron.jumbotron-core .headline-button,
@@ -8167,7 +8168,7 @@ select * {
 }
 @media (max-width: 580px) {
   .jumbotron.jumbotron-platinum {
-    background: url("../Resources/public/images/site/jumbotron-clear.jpg") no-repeat top center;
+    background: url("../../Resources/public/images/site/jumbotron-clear.jpg") no-repeat top center;
   }
   .jumbotron.jumbotron-platinum .headline-button {
     width: 100%;

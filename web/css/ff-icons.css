@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'ff';
-  src: url('../Resources/public/fonts/ff-icons/ff.eot?qw8cp1');
-  src: url('../Resources/public/fonts/ff-icons/ff.eot?qw8cp1#iefix') format('embedded-opentype'), url('../Resources/public/fonts/ff-icons/ff.ttf?qw8cp1') format('truetype'), url('../Resources/public/fonts/ff-icons/ff.woff?qw8cp1') format('woff'), url('../Resources/public/fonts/ff-icons/ff.svg?qw8cp1#ff') format('svg');
+  src: url('../../Resources/public/fonts/ff-icons/ff.eot?qw8cp1');
+  src: url('../../Resources/public/fonts/ff-icons/ff.eot?qw8cp1#iefix') format('embedded-opentype'), url('../../Resources/public/fonts/ff-icons/ff.ttf?qw8cp1') format('truetype'), url('../../Resources/public/fonts/ff-icons/ff.woff?qw8cp1') format('woff'), url('../../Resources/public/fonts/ff-icons/ff.svg?qw8cp1#ff') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -268,8 +268,8 @@ i {
 }
 @font-face {
   font-family: 'ico';
-  src: url('../Resources/public/fonts/ff-icons/ico.eot?bo4vnv');
-  src: url('../Resources/public/fonts/ff-icons/ico.eot?bo4vnv#iefix') format('embedded-opentype'), url('../Resources/public/fonts/ff-icons/ico.ttf?bo4vnv') format('truetype'), url('../Resources/public/fonts/ff-icons/ico.woff?bo4vnv') format('woff'), url('../Resources/public/fonts/ff-icons/ico.svg?bo4vnv#ico') format('svg');
+  src: url('../../Resources/public/fonts/ff-icons/ico.eot?bo4vnv');
+  src: url('../../Resources/public/fonts/ff-icons/ico.eot?bo4vnv#iefix') format('embedded-opentype'), url('../../Resources/public/fonts/ff-icons/ico.ttf?bo4vnv') format('truetype'), url('../../Resources/public/fonts/ff-icons/ico.woff?bo4vnv') format('woff'), url('../../Resources/public/fonts/ff-icons/ico.svg?bo4vnv#ico') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -290,8 +290,8 @@ i {
 }
 @font-face {
   font-family: 'ico2';
-  src: url('../Resources/public/fonts/ff-icons/ico2.eot?zcdcy3');
-  src: url('../Resources/public/fonts/ff-icons/ico2.eot?zcdcy3#iefix') format('embedded-opentype'), url('../Resources/public/fonts/ff-icons/ico2.ttf?zcdcy3') format('truetype'), url('../Resources/public/fonts/ff-icons/ico2.woff?zcdcy3') format('woff'), url('../Resources/public/fonts/ff-icons/ico2.svg?zcdcy3#ico2') format('svg');
+  src: url('../../Resources/public/fonts/ff-icons/ico2.eot?zcdcy3');
+  src: url('../../Resources/public/fonts/ff-icons/ico2.eot?zcdcy3#iefix') format('embedded-opentype'), url('../../Resources/public/fonts/ff-icons/ico2.ttf?zcdcy3') format('truetype'), url('../../Resources/public/fonts/ff-icons/ico2.woff?zcdcy3') format('woff'), url('../../Resources/public/fonts/ff-icons/ico2.svg?zcdcy3#ico2') format('svg');
   font-weight: normal;
   font-style: normal;
 }

@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.21.3",
+            "version": "3.21.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3f371482c631b24c6e7168e745653f4b47942481"
+                "reference": "6408a4904a04eca44461a65ba4a0fae53f80417b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3f371482c631b24c6e7168e745653f4b47942481",
-                "reference": "3f371482c631b24c6e7168e745653f4b47942481",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6408a4904a04eca44461a65ba4a0fae53f80417b",
+                "reference": "6408a4904a04eca44461a65ba4a0fae53f80417b",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-01-20 21:24:50"
+            "time": "2017-01-25 00:43:08"
         },
         {
             "name": "behat/transliterator",
@@ -4265,12 +4265,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "3973292873f7c847dc81a01115d880ad3090b553"
+                "reference": "59de820ecc182f5a0466517f83c58b41e4aa9af2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/3973292873f7c847dc81a01115d880ad3090b553",
-                "reference": "3973292873f7c847dc81a01115d880ad3090b553",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/59de820ecc182f5a0466517f83c58b41e4aa9af2",
+                "reference": "59de820ecc182f5a0466517f83c58b41e4aa9af2",
                 "shasum": ""
             },
             "require": {
@@ -4359,7 +4359,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-01-23 18:11:11"
+            "time": "2017-01-25 15:36:15"
         },
         {
             "name": "monolog/monolog",
@@ -5595,16 +5595,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.6",
+            "version": "5.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "caf8141b89691498d91aaac6c82e9cd5f685ae86"
+                "reference": "e52551bbc229c6cee26c7a00deef80c2108c5b15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/caf8141b89691498d91aaac6c82e9cd5f685ae86",
-                "reference": "caf8141b89691498d91aaac6c82e9cd5f685ae86",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e52551bbc229c6cee26c7a00deef80c2108c5b15",
+                "reference": "e52551bbc229c6cee26c7a00deef80c2108c5b15",
                 "shasum": ""
             },
             "require": {
@@ -5673,7 +5673,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-22 08:39:59"
+            "time": "2017-01-25 19:19:41"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -7952,12 +7952,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "d58b43d887469c3bd21c171017f10cb49ddf8e9e"
+                "reference": "4397c32c6fe8644ffe5b17065049bd5509cda553"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/d58b43d887469c3bd21c171017f10cb49ddf8e9e",
-                "reference": "d58b43d887469c3bd21c171017f10cb49ddf8e9e",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/4397c32c6fe8644ffe5b17065049bd5509cda553",
+                "reference": "4397c32c6fe8644ffe5b17065049bd5509cda553",
                 "shasum": ""
             },
             "require": {
@@ -7974,6 +7974,8 @@
                 "trinity/utils": "dev-master"
             },
             "require-dev": {
+                "phpunit/phpunit": "~5.1",
+                "satooshi/php-coveralls": "1.0.*",
                 "symfony/var-dumper": "~3.0"
             },
             "type": "symfony-bundle",
@@ -8001,7 +8003,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2017-01-16 10:31:35"
+            "time": "2017-01-25 17:59:51"
         },
         {
             "name": "trinity/messages",
