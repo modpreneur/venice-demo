@@ -28,6 +28,12 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
      */
     protected $fileProtected;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", columnDefinition="ENUM('shippingproduct')")
+     */
+    protected $downloadType;
+
 
     /**
      * @return string
@@ -66,5 +72,22 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
 
         return $this;
     }
-}
 
+
+    /**
+     * @return string
+     */
+    public function getDownloadType(): string
+    {
+        return $this->downloadType;
+    }
+
+
+    /**
+     * @param string $downloadType
+     */
+    public function setDownloadType(string $downloadType)
+    {
+        $this->downloadType = $downloadType;
+    }
+}

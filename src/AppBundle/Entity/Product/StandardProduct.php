@@ -232,7 +232,6 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
      */
     public function getCustomTemplateName(): string
     {
-        return 'VeniceFrontBundle:BundleProduct:bundleProductPlatinumMix.html.twig';
         return $this->customTemplateName;
     }
 
@@ -243,5 +242,11 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
     public function setCustomTemplateName(string $customTemplateName)
     {
         $this->customTemplateName = $customTemplateName;
+    }
+
+
+    public function getbuyCBParameters()
+    {
+        return $this->getDefaultBillingPlan();
     }
 }

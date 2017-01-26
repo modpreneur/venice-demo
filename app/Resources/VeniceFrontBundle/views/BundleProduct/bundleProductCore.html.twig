@@ -1,0 +1,33 @@
+{% extends "VeniceFrontBundle:BundleProduct:bundleProductDetail.html.twig" %}
+
+{% block buyModal %}
+    {{ include("VeniceFrontBundle:BuyPopup:buyPopup.html.twig",{product:bundleProduct}) }}
+{% endblock %}
+
+{% block jumbotronClass %}jumbotron-core{% endblock %}
+
+{% block headerInside %}
+    <div class="row">
+        <div class="span-small-15 span-medium-17 margin-top-50">
+
+        </div>
+        <div class="span-small-9 span-medium-7 margin-top-100 text-center headline-button">
+            <h1>{{ bundleProduct.name  }}</h1>
+            {% if not access %}
+                <label for="bundle-product-modal-input" class="button button-buy-jumbotron uppercase buy-modal-open"></label>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block popTrialFlow %}
+    {% if app.user is not null %}
+        {% set afterTrialPopup = afterTrialExpires(app.user) %}
+        {% if afterTrialPopup != "" %}
+            {{ afterTrialPopup|raw }}
+        {% else %}
+            {{ beforeTrialExpires(app.user) }}
+        {% endif %}
+        {{ productPopup(bundleProduct) }}
+    {% endif %}
+{% endblock %}

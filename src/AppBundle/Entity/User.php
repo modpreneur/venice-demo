@@ -13,7 +13,7 @@ use Venice\AppBundle\Entity\Product\Product;
  * Users cannot be created on client so there is no need to use POST
  * @N\Methods(types={"put", "delete"})
  */
-class User extends \Venice\AppBundle\Entity\User
+class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\Core\Interfaces\UserInterface
 {
     const PREFERRED_IMPERIAL = 'imperial';
     const PREFERRED_METRIC   = 'metric';
@@ -159,5 +159,14 @@ class User extends \Venice\AppBundle\Entity\User
     public function setLastPasswordChange(\DateTime $lastPasswordChange)
     {
         $this->lastPasswordChange = $lastPasswordChange;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function getPublic()
+    {
+        return $this->isPublic();
     }
 }

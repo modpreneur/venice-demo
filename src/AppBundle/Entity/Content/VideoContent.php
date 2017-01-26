@@ -34,6 +34,12 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
      */
     protected $needGear;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", columnDefinition="ENUM('shippingproduct')")
+     */
+    protected $downloadType;
+
 
     /**
      * VideoContent constructor.
@@ -93,5 +99,23 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
     public function setNeedGear(bool $needGear)
     {
         $this->needGear = $needGear;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getDownloadType(): string
+    {
+        return $this->downloadType;
+    }
+
+
+    /**
+     * @param string $downloadType
+     */
+    public function setDownloadType(string $downloadType)
+    {
+        $this->downloadType = $downloadType;
     }
 }

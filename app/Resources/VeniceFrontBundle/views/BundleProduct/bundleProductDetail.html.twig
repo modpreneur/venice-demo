@@ -9,7 +9,7 @@
         <div class="row">
 
             <div class="span-medium-18 offset-medium-3 text-center">
-                <p>{{ bundleProduct.longDescription|raw }}</p>
+                <p>{{ bundleProduct.description|raw }}</p>
             </div>
 
             <div class="span-medium-24">
@@ -33,7 +33,7 @@
                     {% if not access %}
                         <div class="filter-not-access">
                             {% for product in allProducts %}
-                                {% if product.getTypeString()!="shippingproduct" %}
+                                {% if product.downloadType != "shippingproduct" %}
                                     <div class="downloads-dashboard row">
                                         {{ productRenderer(product,"downloadsDashboard",false,true) }}
                                     </div>
@@ -43,7 +43,7 @@
                         </div>
                     {% else %}
                         {% for product in allProducts %}
-                            {% if product.getTypeString()!="shippingproduct" %}
+                            {% if product.downloadType != "shippingproduct" %}
                                 <div class="downloads-dashboard row">
                                     {{ productRenderer(product,"downloadsDashboard",false) }}
                                 </div>
