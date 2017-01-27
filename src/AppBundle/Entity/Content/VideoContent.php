@@ -36,7 +36,7 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
 
     /**
      * @var string
-     * @ORM\Column(type="string", columnDefinition="ENUM('shippingproduct')")
+     * @ORM\Column(type="string")
      */
     protected $downloadType;
 
