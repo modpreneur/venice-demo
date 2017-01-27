@@ -172,3 +172,8 @@ services:
           class: AppBundle\SocialServices\GoogleSubscribeService
           arguments: ["@service_container"]
           tags: [ name: twig.extension ]
+
+
+    flofit.services.social_feed:
+         class: AppBundle\Services\SocialFeed
+         arguments: ["@service_container"]
