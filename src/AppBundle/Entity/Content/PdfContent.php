@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jakub Fajkus
- * Date: 04.10.15
- * Time: 13:07.
- */
 namespace AppBundle\Entity\Content;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -27,6 +21,7 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
      *
      */
     protected $fileProtected;
+
 
     /**
      * @var string
