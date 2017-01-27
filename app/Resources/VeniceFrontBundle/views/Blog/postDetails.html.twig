@@ -1,0 +1,51 @@
+{% extends "VeniceAppBundle::base.html.twig" %}
+
+{% block headerInside %}
+    <div class="abs-center">
+            <h1 class="headline-blog-detail">{{ blogPost.title }}</h1>
+    </div>
+{% endblock %}
+
+{% block contentFull %}
+    <div class="section main-content">
+        <div class="container">
+            <div class="row header-blog-detail">
+                <div class="offset-large-4 span-large-4 span-medium-24 span-small-12 text-center">
+                    <a class="button button-functional" href="{{ path("blog_index") }}"><i class="ff-arrow-left"></i><span>Blog</span></a>
+                </div>
+                <div class="offset-medium-4 offset-large-0 span-large-4 span-medium-5 span-small-12 text-center">
+                    <a href="{{ authorPublicProfileLink }}"><i class="ff-person"></i><span>{{ blogPost.publisher }}</span></a>
+                </div>
+                <div class="span-large-4 span-medium-6 span-small-12 text-center">
+                    <i class="ff-calendar-day"></i><span>{{ blogPost.dateToPublish|date("m/d/y") }}</span>
+                </div>
+                <div class="span-large-4 span-medium-5 span-small-12 text-center">
+                    <a href="#facebook-comment" class="facebook-comment nice-scroll">
+                        <i class="ff-chat-conversation"></i><span class="fb-comments-count"></span><span>comments</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hr"></div>
+        <div class="container">
+            <div class="blog-detail-content">
+                <div class="row">
+                    <div class="span-large-18 span-medium-20 span-small-22 offset-large-3 offset-medium-2 offset-small-1 text-justify break-word margin-bottom-40">
+                        {{ blogPost.content|raw }}
+                    </div>
+                </div>
+                <hr>
+                {% if blogPost.commentsOn %}
+                <div class="row margin-top-20">
+                    <div id="facebook-comment">
+                        {#{{ FacebookSubscribeServiceRender("commentsBlock",{"permanentLink":url("blog_permanent_post_detail",{"id":blogPost.id})}) }}#}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace FrontBundle\Controller;
 
+use AppBundle\Entity\BlogArticle;
 use AppBundle\Form\Type\GlobalUserType;
 use AppBundle\Newsletter\NewsletterOptimalization;
 use AppBundle\Services\AbstractConnector;
@@ -15,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Venice\AppBundle\Entity\User;
+use Venice\AppBundle\VeniceAppBundle;
 use Venice\FrontBundle\Controller\FrontController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -35,6 +37,7 @@ class DefaultController extends FrontController
      * @Route("/", name="landing_page")
      *
      * @return Response
+     * @throws \LogicException
      */
     public function indexAction(Request $request)
     {
@@ -42,6 +45,7 @@ class DefaultController extends FrontController
 
        // $socialService = $this->get('general_backend_core.services.social_feed');
 
+        $entityManager = $this->getDoctrine()->getManager();
 
         return $this->render(
             'VeniceFrontBundle:Front:index.html.twig',
@@ -49,7 +53,7 @@ class DefaultController extends FrontController
                 'socialPosts' => [],
                 'messages' => [],
                 'forumPosts' => '',
-                'blogPosts' => [],
+                'blogArticles' => [$entityManager->getRepository(BlogArticle::class)->findBy([], ['id'=>'DESC'], 2)],
                 'productPosts' => [],
                 'communityInboxUrl' => $this->container->getParameter('forum_read_conversation_url'),
                 'communityForumUrl' => $this->container->getParameter('forum_url'),

@@ -188,27 +188,28 @@
                         <i class="ff-text-left-page"></i>
                     </div>
                     <div class="widget-body">
-                        {% for blogPost in blogPosts %}
-                            <a href="{{ path("blog_post_details",{"handle":blogPost.Handle}) }}">
+                        {% for blogArticle in blogArticles|first %}
+                            {#<a href="{{ path("blog_post_details/{handle}",{"handle":blogArticle.getHandle()}) }}">#}
+                            <a href="{{ blogArticle.handle }}">
                                 <div class="message">
                                     <div class="item-img-icon absolute">
                                         <div class="rounded">
-                                            {% if blogPost.Publisher.profilePhoto is not null and blogPost.Publisher.profilePhoto.imageFile != "" %}
-                                                <img src="{{ blogPost.Publisher.profilePhoto.croopedPhotoUrl }}" alt="profile image"/>
+                                            {% if blogArticle.publisher.profilePhoto is not null and blogArticle.publisher.profilePhoto.imageFile != "" %}
+                                                <img src="{{ blogArticle.Publisher.getProfilePhoto.croopedPhotoUrl }}" alt="profile image"/>
                                             {% else %}
                                                 <img src="{{ asset('Resources/public/images/site/default-profile-photo.png') }}" alt="profile image"/>
                                             {% endif %}
                                         </div>
                                     </div>
                                     <div class="message-content">
-                                        <div class="name">{{ blogPost.Title }}</div>
-                                        <div class="name user-name">{{ blogPost.Publisher.username }}</div>
-                                        {% if blogPost.dateToPublish is not null %}
-                                            <span class="date">{{ blogPost.dateToPublish|date("m/d/Y") }}</span>
+                                        <div class="name">{{ blogArticle.Title }}</div>
+                                        <div class="name user-name">{{ blogArticle.Publisher.username }}</div>
+                                        {% if blogArticle.dateToPublish is not null %}
+                                            <span class="date">{{ blogArticle.dateToPublish|date("m/d/Y") }}</span>
                                         {% else %}
-                                            <span class="date">{{ blogPost.dateWritten|date("m/d/Y") }}</span>
+                                            <span class="date">{{ blogArticle.dateWritten|date("m/d/Y") }}</span>
                                         {% endif %}
-                                        <p>{{ blogPost.getPreview|raw }}</p>
+                                        <p>{{ blogArticle.getPreview|raw }}</p>
                                     </div>
                                 </div>
                             </a>

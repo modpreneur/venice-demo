@@ -2,6 +2,7 @@
 
 namespace FrontBundle\Controller;
 
+use AppBundle\Entity\BlogArticle;
 use FrontBundle\Helpers\Ajax;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class BlogController
  *
  * @Route("/blog")
- * @package GeneralBackend\BlogBundle\Controller\Front
+ * @package FrontBundle/Controller
  */
 class BlogController extends Controller
 {
@@ -20,64 +21,78 @@ class BlogController extends Controller
     /**
      * @Route("", name="blog_index")
      * @Route("/offset/{offset}", name="blog_index_with_offset")
+     * @param Request $request
+     * @param int $offset
+     *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \InvalidArgumentException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \LogicException
      */
     public function indexAction(Request $request, $offset = 0)
     {
-        $numberOfPosts = $this->getParameter("blog_number_of_posts_displayed");
+        $numberOfPosts = $this->getParameter('blog_number_of_posts_displayed');
         $entityManager = $this->getDoctrine()->getManager();
 
-        $category = $entityManager->getRepository("GeneralBackendBlogBundle:Category")
-            ->findOneBy(array("name"=>"blog"));
+//        $category = $entityManager->getRepository('AppBundle:Category')
+//            ->findOneBy(['name' => 'blog']);
+//
+//        $postCount = $entityManager->getRepository('AppBundle:BlogArticle')
+//            ->countPostsByCategory($category);
+//
+//        $posts = $entityManager->getRepository('AppBundle:BlogArticle')
+//            ->findAllPagesByCategory($category, true, $offset, $numberOfPosts);
+//
+        $count = $entityManager->getRepository(BlogArticle::class)->count();
+        $offset += $this->getParameter('blog_number_of_posts_displayed');
+        $displayLoadMore = $offset < $count and $count !== 0 and $count < $numberOfPosts;
 
-        $postCount = $entityManager->getRepository("GeneralBackendBlogBundle:Post")
-            ->countPostsByCategory($category);
+        $blogArticles = $entityManager->getRepository(BlogArticle::class)->findAll();
 
-        $posts = $entityManager->getRepository("GeneralBackendBlogBundle:Post")
-            ->findAllPagesByCategory($category,true,$offset,$numberOfPosts);
 
-        $offset += $this->getParameter("blog_number_of_posts_displayed");
-
-        $displayLoadMore = $offset < $postCount and $postCount != 0 and $postCount < $numberOfPosts;
-
-        return $this->renderTrinity(
-            "GeneralBackendBlogBundle:Front:index.html.twig",
+        return $this->render(
+            'VeniceFrontBundle:Blog:index.html.twig',
             array(
-                "blogPosts"=>$posts,
-                "displayLoadMore" => $displayLoadMore,
-                "offset"=>$offset,
-                "isAjax"=>$request->isXmlHttpRequest()
-            ),
-            array(
-                "blogPostsBlock"
+                'blogArticles' =>$blogArticles,
+                'displayLoadMore' => $displayLoadMore,
+                'offset' =>$offset,
+                'isAjax' =>$request->isXmlHttpRequest()
             )
         );
     }
 
     /**
-     * @Route("/pernament/post/{id}", name="blog_permanent_post_detail")
-     * @param Post $post
+     * @Route("/permanent/post/{id}", name="blog_permanent_post_detail")
+     * @param BlogArticle $blogArticle
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function pernamentPostLink(Request $request, Post $post)
+    public function permanentPostLink(BlogArticle $blogArticle)
     {
-        return $this->render("@GeneralBackendBlog/Front/postDetails.html.twig",
-            array(
-                "blogPost" => $post,
-                "authorPublicProfileLink" => $this->generateUrl('core_front_user_public_profile', array('username'=>$post->getPublisher()->getUserName()))
-            ));
+        return $this->render('VeniceFrontBundle:Blog:postDetails.html.twig', [
+            'blogPost' => $blogArticle,
+            'authorPublicProfileLink' => $this->generateUrl(
+                'core_front_user_public_profile',
+                ['username'=>$blogArticle->getPublisher()->getUsername()]
+            )
+        ]);
     }
 
     /**
      * @Route("/post/{handle}", name="blog_post_details")
+     * @param BlogArticle $blogArticle
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function blogPostAction(Request $request, Post $post)
+    public function blogPostAction(BlogArticle $blogArticle)
     {
-        return $this->render("@GeneralBackendBlog/Front/postDetails.html.twig",
-            array(
-                "blogPost" => $post,
-                "authorPublicProfileLink" => $this->generateUrl('core_front_user_public_profile', array('username'=>$post->getPublisher()->getUserName()))
-            ));
+        return $this->render('VeniceFrontBundle:Blog:postDetails.html.twig', [
+            'blogPost' => $blogArticle,
+            'authorPublicProfileLink' => $this->generateUrl(
+                'core_front_user_public_profile',
+                ['username'=>$blogArticle->getPublisher()->getUsername()]
+            ),
+        ]);
     }
 }

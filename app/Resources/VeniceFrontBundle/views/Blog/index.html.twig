@@ -1,0 +1,55 @@
+{% extends "VeniceAppBundle::base.html.twig" %}
+
+{% block title %}
+    Blog
+{% endblock %}
+
+{% block headerInside %}
+    {% if blogArticles|length != 0 %}
+        <div class="blog-new-article">
+            <div class="row">
+                <h1>{{ blogArticles[0].title }}</h1>
+                <p>{{ blogArticles[0].getPreview|raw }}</p>
+                <div class="text-center">
+                    <a href="{{ path("blog_post_details",{"handle":blogArticles[0].handle}) }}" class="button button-functional"><i class="ff-text-left-big"></i> Read more</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="blog-content">
+        <div class="row">
+            <div class="span-large-24">
+
+                <div id="blogArticlesBlock" class="ajax-append row margin-top-20">
+                {% block blogArticlesBlock %}
+
+                        {% for blogArticle in blogArticles %}
+                            <div class="blog-content-articles {% if isAjax %}ajax-hidden{% endif %}">
+                                <div class="row">
+                                    <div class="span-large-16 offset-large-2">
+                                        <h1>{{ blogArticle.title }}</h1>
+                                        <div>{{ blogArticle.getPreview|raw }}</div>
+                                    </div>
+                                    <div class="span-large-6">
+                                        <a href="{{ path("blog_post_details",{"handle":blogArticle.handle}) }}" class="button button-functional"><i class="ff-text-left-big"></i> Read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+                    <div id="posts-load-more-block" class="text-center">
+                        {% if displayLoadMore %}
+                            <a class="trinity-load-more button button-load-more margin-top-40" href="{{ path("blog_index_with_offset",{"offset":offset}) }}" data-after-click="Loading..." data-remove-element="#posts-load-more-block">Load More</a>
+                        {% endif %}
+                    </div>
+                {% endblock %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
