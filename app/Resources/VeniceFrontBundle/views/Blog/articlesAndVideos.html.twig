@@ -1,0 +1,93 @@
+{% extends ":CoreBundle/Front:base.html.twig" %}
+
+{% block title %}
+    Articles & videos
+{% endblock %}
+
+{% block jumbotronClass %}jumbotron-dashboard{% endblock %}
+
+{% block headerInside %}
+    <div class="row">
+        <div class="span-small-12 offset-small-6 offset-medium-0 margin-top-50">
+            <span class="flo-title">HOW DID<br/>
+            FLO RIDA GET<br/>
+            THIS RIPPED?</span>
+        </div>
+        <div class="span-large-6 span-medium-7 span-small-12 offset-small-6 offset-medium-5 offset-large-5 margin-top-100">
+            <a class="button button-primary" href="{{ path("downloads_product_flomersion") }}" id="flomersion-button">Platinum Club</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="downloads-dashboard-main-content">
+        <div class="row">
+            <div class="span-medium-24">
+                <div class="block-title">ARTICLES & VIDEOS</div>
+            </div>
+{#TODO ONDRA HERE #}
+                <div id="exercises">
+                    <div class="block block-title">
+                        <div class="hr"></div>
+                        <div class="block-left">
+                            <a href="#exercises" class="nice-scroll current current_ancestor">Exercises</a>
+                        </div>
+                        <div class="block-center">
+                        </div>
+                        <div class="block-right">
+                            <a href="#articles" class="nice-scroll">Articles</a>
+                        </div>
+                    </div>
+
+                    {# VIDEOS #}
+                    {#{% set videoProducts = productsService.getProductsByBundleProductHandle("exercises") %}#}
+                    {#<div id="exercisesVideosBlock" class="ajax-append ajax-slide-down">
+                    {% block exercisesVideosBlock %}#}
+                        {% for videoProduct in productsService.getProductsByBundleProductHandle("exercises") %}
+                            <div class="downloads-dashboard row">
+                                {{ productRenderer(videoProduct,"downloadsDashboard") }}
+                            </div>
+                        {% endfor %}
+
+                        {#{% if videoProducts|length != 0 and (displayVideosLoadMoreButton is not defined or displayVideosLoadMoreButton) %}#}
+                            {#<div class="row" id="videoproduct-load-more-block">#}
+                                {#{% if videosLoadOffset is not defined %}#}
+                                    {#{% set videosLoadOffset = videoProducts|length %}#}
+                                {#{% endif %}#}
+                                {#<div class="span-mini-24 text-center margin-vertical-20">#}
+                                    {#&#123;&#35;<a class="trinity-load-more button button-load-more" href="{{ path("downloads_web_api_load_more_videos",{"start":videosLoadOffset}) }}" data-after-click="Loading..." data-remove-element="#videoproduct-load-more-block">Load More</a>&#35;&#125;#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#{% endif %}#}
+                    {#{% endblock %}#}
+                    </div>
+
+                <div id="articles">
+                    <div class="block block-title">
+                        <div class="hr"></div>
+                        <div class="block-left">
+                            <a href="#exercises" class="nice-scroll">Exercises</a>
+                        </div>
+                        <div class="block-center">
+                        </div>
+                        <div class="block-right">
+                            <a href="#articles" class="nice-scroll current current_ancestor">Articles</a>
+                        </div>
+                    </div>
+
+                    {% for article in articles %}
+                        <div class="downloads-dashboard row">
+                            <div class="span-medium-17 span-large-18">
+                                <a href="{{ path("blog_post_details",{"handle":article.handle}) }}"><span class="name">{{ article.title }}</span></a>
+                                <a href="{{ path("blog_post_details",{"handle":article.handle}) }}"><div class="description">{{ article.preview | striptags | raw }}</div></a>
+                            </div>
+                            <div class="span-medium-7 span-large-6 button-row">
+                                <a href="{{ path("blog_post_details",{"handle":article.handle}) }}" class="button button-functional"><i class="ff-text-left-big"></i>Read more</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

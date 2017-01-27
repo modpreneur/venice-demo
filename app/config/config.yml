@@ -12,6 +12,9 @@ trinity_messages:
 
 
 twig:
+#  paths:
+#       An absolute path to Venice
+#      '%kernel.root_dir%/../vendor/modpreneur/venice/src/Venice/AdminBundle/Resources/views': VeniceFramework
   form_themes:
     - 'TrinityAdminBundle:Form:bowtie_form_layout.html.twig'
     - 'TrinityAdminBundle:Form:color_layout.html.twig'
@@ -90,6 +93,7 @@ venice_app:
         Venice\AppBundle\Entity\Product\StandardProduct: AppBundle\Entity\Product\StandardProduct
         Venice\AppBundle\Entity\ProductAccess: AppBundle\Entity\ProductAccess
         Venice\AppBundle\Entity\User: AppBundle\Entity\User
+#        Venice\AppBundle\Entity\Category: AppBundle\Entity\Category
 
 
     entity_mapping:
@@ -135,6 +139,11 @@ venice_app:
             entity: Venice\AppBundle\Entity\BlogArticle
             map:
                 demo_blog_article: AppBundle\Entity\BlogArticle
+
+#        category:
+#            entity: Venice\AppBundle\Entity\Category
+#            map:
+#              demo_category: AppBundle\Entity\Category
 
         content_product:
             entity: Venice\AppBundle\Entity\ContentProduct
