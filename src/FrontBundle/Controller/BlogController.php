@@ -53,12 +53,12 @@ class BlogController extends Controller
 
         return $this->render(
             'VeniceFrontBundle:Blog:index.html.twig',
-            array(
+            [
                 'blogArticles' =>$blogArticles,
                 'displayLoadMore' => $displayLoadMore,
                 'offset' =>$offset,
                 'isAjax' =>$request->isXmlHttpRequest()
-            )
+            ]
         );
     }
 

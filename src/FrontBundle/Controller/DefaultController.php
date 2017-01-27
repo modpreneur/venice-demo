@@ -8,6 +8,7 @@ use AppBundle\Newsletter\NewsletterOptimalization;
 use AppBundle\Services\AbstractConnector;
 use AppBundle\Services\MaropostConnector;
 use Doctrine\ORM\EntityManager;
+use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\CoreBundle\Vanilla\Message;
 use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\NewsletterOptimalizationBundle\Answer;
 use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\NewsletterOptimalizationBundle\UserAnswer;
 use FrontBundle\Helpers\Ajax;
@@ -66,12 +67,12 @@ class DefaultController extends FrontController
         );
     }
 
-
     /**
      * @Route("profile/unsubscribe/{socialSite}")
      * @param $socialSite
      *
      * @return Response
+     * @throws \LogicException
      * @internal param GlobalUser $user
      */
     public function unsubscribeAction($socialSite)
@@ -95,11 +96,13 @@ class DefaultController extends FrontController
         $forumService->setCustomAuthUser($user);
 
         $posts = $forumService->getLatestForumPostsOfUser($user, $user, 4);
-        $link  = $this->getParameter('forum_send_new_message');
+        $link = $this->getParameter('forum_send_new_message');
 
-        return $this->render(':CoreBundle/Front/core:publicProfile.html.twig', array('user' => $user,'sendMessageLink' => $link,'forumPosts' => $posts));
+        return $this->render(
+            'VeniceFrontBundle:Core:publicProfile.html.twig',
+            ['user' => $user,'sendMessageLink' => $link,'forumPosts' => $posts]
+        );
     }
-
 
     /**
      * @Route("/profile", name="core_front_user_profile_edit")
@@ -107,6 +110,13 @@ class DefaultController extends FrontController
      * @param Request $request
      *
      * @return Response
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \InvalidArgumentException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\ORMInvalidArgumentException
+     * @throws \OutOfBoundsException
      * @throws \LogicException
      */
     public function profileAction(Request $request)
@@ -184,7 +194,11 @@ class DefaultController extends FrontController
             $entity = $form->getData();
             $errors = true;
 
-            if ($form->isSubmitted() && $field == 'profilePhotoWithDeleteButton' && $form->has(GlobalUserType::REMOVE_BUTTON_NAME) && $form->get(GlobalUserType::REMOVE_BUTTON_NAME)->isClicked()) {
+            if ($form->isSubmitted() &&
+                $field === 'profilePhotoWithDeleteButton' &&
+                $form->has(GlobalUserType::REMOVE_BUTTON_NAME) &&
+                $form->get(GlobalUserType::REMOVE_BUTTON_NAME)->isClicked()
+            ) {
                 $profilePhoto = $entity->getProfilePhoto();
 
                 $entityManager->remove($profilePhoto);
@@ -250,8 +264,8 @@ class DefaultController extends FrontController
                             $entityManager->flush();
 
                             // modify maropost tag
-                            $maropostConnector->removeTags($user, array($oldTag));
-                            $maropostConnector->addTags($user, array($newTag));
+                            $maropostConnector->removeTags($user, [$oldTag]);
+                            $maropostConnector->addTags($user, [$newTag]);
                         }
 
                         // update user anyway
@@ -261,7 +275,10 @@ class DefaultController extends FrontController
                     default:
                         $userManager->updateUser($entity);
 
-                        if ($field == 'profilePhotoWithDeleteButton' && $entity->getProfilePhoto() && is_null($entity->getProfilePhoto()->getOriginalPhotoUrl())) {
+                        if ($field === 'profilePhotoWithDeleteButton' &&
+                            $entity->getProfilePhoto() &&
+                            is_null($entity->getProfilePhoto()->getOriginalPhotoUrl())
+                        ) {
                             $generator = $this->get('general_backend_core.services.profile_photo_url_generator');
 
                             $originalUrl = $generator->generateUrlToOriginalPhoto($entity->getProfilePhoto());
@@ -289,8 +306,8 @@ class DefaultController extends FrontController
 
                 return $this->renderJsonTrinity(
                     'VeniceFrontBundle:Core:edit.html.twig',
-                    array('form'=>$form->createView(),'user' => $user),
-                    array($field.'Block', 'profileHeaderUserBlock', 'profileJumbotronUserBlock', 'publicLinkBlock'),
+                    ['form'=>$form->createView(),'user' => $user],
+                    [$field.'Block', 'profileHeaderUserBlock', 'profileJumbotronUserBlock', 'publicLinkBlock'],
                     $form->isValid()? 'close': null
                 );
             }
@@ -331,7 +348,13 @@ class DefaultController extends FrontController
     /**
      * @Route("/profile/privacy", name="core_front_user_profile_privacy")
      * @param Request $request
+     *
      * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \OutOfBoundsException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
      * @internal param Request $request
      */
     public function privacyAction(Request $request)
@@ -341,33 +364,40 @@ class DefaultController extends FrontController
         $privacySettings = $user->getPrivacySettings();
         $disableAll = false;
 
-        $fields = array(
+        $fields = [
             'publicProfile',
             'displayEmail',
             'birthDateStyle',
             'displayLocation',
             'displayForumActivity',
             'displaySocialMedia'
-        );
-        $privacyForms = array();
-        foreach ($fields as $field)
-        {
-            $formRow = array();
+        ];
+        $privacyForms = [];
+        foreach ($fields as $field) {
+            $formRow = [];
             $formType = new PrivacySettingsType($this->getUser(), $field);
 
             $form = $this
-                ->createForm($formType, $privacySettings,array('attr'=>array('class'=>'trinity-ajax','data-on-submit-callback'=>'privacyFormSubmit','data-ajax-done-callback'=>'privacyFormAjaxDone')))
-                ->add('submit', 'submit', array('label' => 'Save', 'attr' => array('data-after-click' => 'Saving')));
+                ->createForm(
+                    $formType,
+                    $privacySettings,
+                    [
+                        'attr'=> [
+                            'class'=>'trinity-ajax',
+                            'data-on-submit-callback'=>'privacyFormSubmit',
+                            'data-ajax-done-callback'=>'privacyFormAjaxDone'
+                        ]
+                    ]
+                )
+                ->add('submit', 'submit', ['label' => 'Save', 'attr' => ['data-after-click' => 'Saving']]);
 
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid())
-            {
+            if ($form->isSubmitted() && $form->isValid()) {
                 /** @var PrivacySettings $entity */
                 $entity = $form->getData();
 
-                if($field == 'publicProfile' && !$entity->isPublicProfile())
-                {
+                if ($field === 'publicProfile' && !$entity->isPublicProfile()) {
                     $disableAll = true;
                     $entity->disableAll();
                 }
@@ -376,7 +406,7 @@ class DefaultController extends FrontController
                 $entityManager->persist($entity);
                 $entityManager->flush($entity);
 
-                $this->addFlash(FlashMessages::INFO,'User profile successfully updated');
+                $this->addFlash(FlashMessages::INFO, 'User profile successfully updated');
             }
 
             $formRow['label'] = $formType->getLabel($form, $field);
@@ -386,36 +416,36 @@ class DefaultController extends FrontController
 
 
             $value = $form->get($field)->getViewData();
-            if(array_key_exists('choices',$formField->getConfig()->getOptions()) &&
-                array_key_exists($value,$formField->getConfig()->getOptions()['choices']))
-            {
-                $formRow['value'] = $formField->getConfig()->getOptions()['choices'][$value];
+            if (array_key_exists('choices', $formField->getConfig()->getOptions()) &&
+                array_key_exists($value, $formField->getConfig()->getOptions()['choices'])) {
+                    $formRow['value'] = $formField->getConfig()->getOptions()['choices'][$value];
             }
 
             $formRow['icon'] = '';
-            if(array_key_exists('icon',$form->get($field)->getConfig()->getOptions()['attr'])){
+            if (array_key_exists('icon', $form->get($field)->getConfig()->getOptions()['attr'])) {
                 $formRow['icon'] = $form->get($field)->getConfig()->getOptions()['attr']['icon'];
             }
 
             $formRow['form'] = $form->createView();
             $formRow['id'] = $field;
 
-            if ($form->isSubmitted() && $request->isXmlHttpRequest())
-            {
-                if(!$disableAll)
+            if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
+                if (!$disableAll) {
                     return $this->renderJsonTrinity(
-                        ':CoreBundle/Front/core:privacy.html.twig',
-                        array('pageElement'=>$formRow, 'disabled' => false, 'user'=>$user),
-                        array('privacyFormBlock'.$field=>'privacyFormBlock'),
-                        'close');
+                        'SecurityBundle:Collector:security.html.twig',
+                        ['pageElement'=>$formRow, 'disabled' => false, 'user'=>$user],
+                        ['privacyFormBlock'.$field=>'privacyFormBlock'],
+                        'close'
+                    );
+                }
             }
             $privacyForms[] = $formRow;
         }
 
         return $this->renderTrinity(
-            ':CoreBundle/Front/core:privacy.html.twig',
-            array('pageElements' => $privacyForms, 'disabled' => $disableAll, 'user'=>$user),
-            array('privacyBlock'),
+            'SecurityBundle:Collector:security.html.twig',
+            ['pageElements' => $privacyForms, 'disabled' => $disableAll, 'user'=>$user],
+            ['privacyBlock'],
             'close'
         );
     }
@@ -423,6 +453,7 @@ class DefaultController extends FrontController
     /**
      * @Route("/profile/user-payments", name="core_front_user_order_history")
      * @return Response
+     * @throws \LogicException
      * @internal param AmemberConnector $amemberConnector
      */
     public function orderHistoryAction(Request $request)
@@ -441,47 +472,56 @@ class DefaultController extends FrontController
         $shippingParameters = new CBBuyParameters();
         $shippingParameters->setBuyId(64);
 
-        $digitalProductLink = $flofitFeaturesService->generateOCBLinkByBuyParameters($digitalParameters, true,$user);
-        $digitalShippingProductLink = $flofitFeaturesService->generateOCBLinkByBuyParameters($shippingParameters, true, $user, array(), 'ocb-shipping');
-        if(count($userInvoices) == 0)
-        {
-            return $this->render(':CoreBundle/Front/core:orderHistory.html.twig',
-                array(
+        $digitalProductLink = $flofitFeaturesService->generateOCBLinkByBuyParameters($digitalParameters, true, $user);
+        $digitalShippingProductLink = $flofitFeaturesService->generateOCBLinkByBuyParameters(
+            $shippingParameters,
+            true,
+            $user,
+            [],
+            'ocb-shipping'
+        );
+        if (count($userInvoices) === 0) {
+            return $this->render(
+                'VeniceFrontBundle:Core:orderHistory.html.twig',
+                [
                     'viewData' =>null,
                     'digitalProductBuyLink' => $digitalProductLink,
                     'digitalShippingProductLink' => $digitalShippingProductLink,
-                )
+                ]
             );
         }
-        $viewData = array();
+        $viewData = [];
 
-        foreach($userInvoices as $userInvoice)
-        {
+        foreach ($userInvoices as $userInvoice) {
             /** @var Invoice $userInvoice */
-            $row = array();
+            $row = [];
             $row['invoice'] = $userInvoice;
 
-            if($userInvoice->getStatus() == Invoice::INVOICE_STATUS_RECURRING)
-            {
-                $form = $this->createFormBuilder(null,
-                    array('attr'=>
-                        array(
+            if ($userInvoice->getStatus() === Invoice::INVOICE_STATUS_RECURRING) {
+                $form = $this->createFormBuilder(
+                    null,
+                    [
+                        'attr'=>
+                        [
                             'id'=>'form'.$userInvoice->getInvoiceId(),
                             'class'=>'trinity-ajax',
                             'data-on-submit-callback'=>'paymentsFormSubmit'
-                        )
-                    ));
+                        ]
+                    ]
+                );
 
-                $form->add('invoice','hidden',array('data'=>$userInvoice->getInvoiceId()));
+                $form->add('invoice', 'hidden', ['data'=>$userInvoice->getInvoiceId()]);
 
                 $isImmersion = isset($userInvoice->getInvoiceItems()[0]) && $userInvoice->getInvoiceItems()[0]->haveCategory('Platinum Club RECURING')? '1':'0';
 
-                $jsOnClickAction = 'return openCancelPopup(this, \''.$userInvoice->getInvoiceItemNames().'\', {$isImmersion});';
+                $jsOnClickAction = 'return openCancelPopup(this, \''
+                    .$userInvoice->getInvoiceItemNames()
+                    .'\', {$isImmersion});';
 
                 $form->add(
                     $userInvoice->getInvoiceId(),
                     'button',
-                    array('label'=>'Cancel','attr'=>array('onClick'=>$jsOnClickAction))
+                    ['label'=>'Cancel','attr'=> ['onClick'=>$jsOnClickAction]]
                 );
 
                 $form = $form->getForm();
@@ -489,22 +529,23 @@ class DefaultController extends FrontController
 
                 $parameters = $request->request->all();
 
-                if($form->isSubmitted() && isset($parameters['form']['invoice']) && $parameters['form']['invoice'] == $userInvoice->getInvoiceId())
-                {
-                    $connector->cancelInvoice($userInvoice,$user);
+                if ($form->isSubmitted() &&
+                    isset($parameters['form']['invoice']) &&
+                    $parameters['form']['invoice'] === $userInvoice->getInvoiceId()) {
+                    $connector->cancelInvoice($userInvoice, $user);
 
                     $userInvoice->setCanceled();
 
                     $this->addFlash(FlashMessages::SUCCESS, 'Invoice successfully canceled.');
 
                     return $this->renderJsonTrinity(
-                        ':CoreBundle/Front/core:orderHistory.html.twig',
-                        array(
+                        'VeniceFrontBundle:Core:orderHistory.html.twig',
+                        [
                             'orderHistoryData'=>$row
-                        ),
-                        array(
+                        ],
+                        [
                             'orderHistory'.$userInvoice->getInvoiceId()=>'orderHistory'
-                        )
+                        ]
                     );
                 }
 
@@ -516,19 +557,22 @@ class DefaultController extends FrontController
 
 
         return $this->render(
-            ':CoreBundle/Front/core:orderHistory.html.twig',
-            array(
+            'VeniceFrontBundle:Core:orderHistory.html.twig',
+            [
                 'viewData' => $viewData,
                 'digitalProductBuyLink' => $digitalProductLink,
                 'digitalShippingProductLink' => $digitalShippingProductLink
-            )
+            ]
         );
     }
 
     /**
      * @Route("/profile/newsletters", name="core_front_user_profile_newsletters")
-     * @param Request $request
      * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \LogicException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\ORMInvalidArgumentException
      * @internal param Request $request
      */
     public function newslettersAction()
@@ -536,7 +580,6 @@ class DefaultController extends FrontController
         /** @var EntityManager $entityManager */
         $entityManager = $this->getDoctrine()->getManager();
 
-        /** @var GlobalUser $user */
         $user = $this->getUser();
 
         $maropostConnector = $this->get('general_backend_core.services.maropost_connector');
@@ -553,8 +596,8 @@ class DefaultController extends FrontController
         $secondFormCustomizeNewsletter = $secondNewsOptimizationForm->createForm(2, $this->getUser()); // group 2 in DB
 
         return $this->render(
-            ':CoreBundle/Front/core:newsletters.html.twig',
-            array('secondNewsOptimizationForm' => $secondFormCustomizeNewsletter->createView())
+            'VeniceFrontBundle:Core:newsletters.html.twig',
+            ['secondNewsOptimizationForm' => $secondFormCustomizeNewsletter->createView()]
         );
     }
 
@@ -563,6 +606,6 @@ class DefaultController extends FrontController
      */
     public function loginAction()
     {
-        return $this->render(':CoreBundle/Front/core:login.html.twig');
+        return $this->render('VeniceFrontBundle:Core:login.html.twig');
     }
 }

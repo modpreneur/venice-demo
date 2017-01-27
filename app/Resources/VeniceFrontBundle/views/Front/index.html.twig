@@ -189,8 +189,7 @@
                     </div>
                     <div class="widget-body">
                         {% for blogArticle in blogArticles|first %}
-                            {#<a href="{{ path("blog_post_details/{handle}",{"handle":blogArticle.getHandle()}) }}">#}
-                            <a href="{{ blogArticle.handle }}">
+                            <a href="{{ path("blog_post_details",{"handle":blogArticle.handle}) }}">
                                 <div class="message">
                                     <div class="item-img-icon absolute">
                                         <div class="rounded">
