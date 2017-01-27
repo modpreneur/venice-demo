@@ -14,7 +14,6 @@ use GeneralBackend\CoreBundle\Helpers\FlashMessages;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Venice\AppBundle\Entity\User;
 use Venice\FrontBundle\Controller\FrontController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
