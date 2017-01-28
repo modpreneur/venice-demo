@@ -29,6 +29,7 @@ class AppKernel extends Venice\AppBundle\Kernel\VeniceKernel
         $veniceBundles[] = new Uran1980FancyBoxBundle;
         $veniceBundles[] = new BmatznerJQueryBundle();
         $veniceBundles[] = new DoctrineMigrationsBundle();
+        $veniceBundles[] = new FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntitiesBundle();
        // $veniceBundles[] = new Amazon();
 
 
