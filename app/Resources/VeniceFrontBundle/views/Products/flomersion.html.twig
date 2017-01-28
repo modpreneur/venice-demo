@@ -19,9 +19,9 @@
         <div class="row">
             {% block moduleBlock %}
 
-                {% set allVideosProducts = productsService.getProductsByBundleProductHandle("videos-and-articles") %}
-                {% set allworkoutProducts = productsService.getProductsByBundleProductHandle("workouts") %}
-                {% set allmealPlansProducts = productsService.getProductsByBundleProductHandle("meal-plans") %}
+                {% set allVideosProducts = productsService.getProductsByBundleProductHandle("platinum-club-videos") %}
+                {% set allworkoutProducts = productsService.getProductsByBundleProductHandle("platinum-club-workouts") %}
+                {% set allmealPlansProducts = productsService.getProductsByBundleProductHandle("platinum-club-meal-plans-nutrition") %}
 
                 {% set navigationLinks = [] %}
                 {% set navigationLinks = navigationLinks|merge([{href:"#videos",text:"Videos"}]) %}
@@ -53,8 +53,8 @@
                                 {{ include("VeniceFrontBundle:Flomersion:sectionTop.html.twig", {navigationLinks:navigationLinks,actual:"#workouts"}) }}
                             </div>
                             {% for workoutProduct in allworkoutProducts %}
-                                <div class="downloads-dashboard row {{ workoutProduct.getTypeName() }}{% if notVisibleFromStart is defined and notVisibleFromStart %}{% endif %}">
-                                    {{ productRenderer(workoutProduct,"downloadsDashboard") }}
+                                <div class="downloads-dashboard row video {% if notVisibleFromStart is defined and notVisibleFromStart %}{% endif %}">
+                                    {{ productRenderer(product, workoutProduct, "vidoeDashboard") }}
                                 </div>
                             {% endfor %}
                         </div>
@@ -68,8 +68,8 @@
                             </div>
 
                             {% for mealPlansProduct in allmealPlansProducts %}
-                                <div class="downloads-dashboard row {{ mealPlansProduct.getTypeName() }} {% if notVisibleFromStart is defined and notVisibleFromStart %}{% endif %}">
-                                    {{ productRenderer(mealPlansProduct,"downloadsDashboard") }}
+                                <div class="downloads-dashboard row pdf {% if notVisibleFromStart is defined and notVisibleFromStart %}{% endif %}">
+                                    {{ productRenderer(product, mealPlansProduct, "downloadsDashboard") }}
                                 </div>
                             {% endfor %}
                         </div>

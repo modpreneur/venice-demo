@@ -85,4 +85,9 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
     {
         $this->downloadType = $downloadType;
     }
+
+    public function haveDownloadName()
+    {
+        return false;
+    }
 }
