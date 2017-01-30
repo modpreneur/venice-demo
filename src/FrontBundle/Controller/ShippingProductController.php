@@ -21,15 +21,15 @@ class ShippingProductController extends Controller
     public function physicalProductAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $physicalProduct = $entityManager->getRepository("ModernEntrepreneurGeneralBackendDownloadsBundle:ShippingProduct")
-            ->findOneBy(array("handle"=>"physical-product"));
+        $physicalProduct = $entityManager->getRepository('ModernEntrepreneurGeneralBackendDownloadsBundle:ShippingProduct')
+            ->findOneBy(array('handle' => 'physical-product'));
 
         if(is_null($physicalProduct))
-            return $this->redirectToRoute("landing_page");
+            return $this->redirectToRoute('landing_page');
 
-        return $this->render(":DownloadsBundle/Front/shippingProduct:physicalProduct.html.twig",
+        return $this->render(':DownloadsBundle/Front/shippingProduct:physicalProduct.html.twig',
             array(
-                "physicalProduct"=>$physicalProduct
+                'physicalProduct' =>$physicalProduct
             ));
     }
 }

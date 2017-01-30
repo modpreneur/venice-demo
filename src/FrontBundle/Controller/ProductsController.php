@@ -195,16 +195,16 @@ class ProductsController extends Controller
 
         $featuresService = $this->get('front.twig.flofit_features');
 
-        $parameters["buyLinkCCT"] = $featuresService->generateOCBLinkByBuyParameters($buyParams, true, $user);
-        $parameters["buyLinkCCF"] = $featuresService->generateOCBLinkByBuyParameters($buyParams, false, $user);
+        $parameters['buyLinkCCT'] = $featuresService->generateOCBLinkByBuyParameters($buyParams, true, $user);
+        $parameters['buyLinkCCF'] = $featuresService->generateOCBLinkByBuyParameters($buyParams, false, $user);
 
-        $parameters["taxPriceStr"] = "$0.00";
-        $parameters["totalPriceStr"] = "$0.00";
+        $parameters['taxPriceStr'] = '$0.00';
+        $parameters['totalPriceStr'] = '$0.00';
 
-        $parameters["storedCard"] = $featuresService->getLastCard($user);
-        $parameters["name"] = $bundleProduct->getName();
-        $parameters["productDescription"] = "Get a \"BACKSTAGE PASS\" and truly live the FLO LIFE! Just 5 monthly payments of $79 (free access for life after final payment!) Best deal ever!";
-        $parameters["rebillPriceStr"] = "$79.00";
+        $parameters['storedCard'] = $featuresService->getLastCard($user);
+        $parameters['name'] = $bundleProduct->getName();
+        $parameters['productDescription'] = 'Get a "BACKSTAGE PASS" and truly live the FLO LIFE! Just 5 monthly payments of $79 (free access for life after final payment!) Best deal ever!';
+        $parameters['rebillPriceStr'] = '$79.00';
 
 
         return $this->render(
@@ -233,21 +233,21 @@ class ProductsController extends Controller
         /** @var User $user */
         $user = $this->getUser();
 
-        $productsService = $this->get("flofit.products_service");
+        $productsService = $this->get('flofit.products_service');
         $productsService->initialSetup([$bundleProduct], $this->getUser());
 
         /** @var StandardProduct $upsellProducts */
         $upsellProducts = $this->getDoctrine()->getManager()
             ->getRepository(StandardProduct::class)
-            ->findBy(["isRecommended" => 1], ["upsellOrder" => "ASC"]);
+            ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
         return $this->render($bundleProduct->getCustomTemplateName(),
             [
-                "access" => $user->haveAccess($bundleProduct),
-                "productsService" => $productsService,
-                "upsellProducts" => $upsellProducts,
-                "bundleProduct" => $bundleProduct,
-                "activeModule" => $module
+                'access' => $user->haveAccess($bundleProduct),
+                'productsService' => $productsService,
+                'upsellProducts' => $upsellProducts,
+                'bundleProduct' => $bundleProduct,
+                'activeModule' => $module
             ]);
     }
 
@@ -263,7 +263,7 @@ class ProductsController extends Controller
         /** @var User $user */
         $user = $this->getUser();
         if (!$user->haveAccess($vlogProduct)) {
-            return $this->redirectToRoute("downloads_dashboard");
+            return $this->redirectToRoute('downloads_dashboard');
         }
 
         $authorPublicProfileLink = "";
@@ -272,10 +272,10 @@ class ProductsController extends Controller
                 array('username' => $vlogProduct->getPublisher()->getUserName()));
         }
 
-        return $this->render(":DownloadsBundle/Front:vlogProductDetails.html.twig",
+        return $this->render(':DownloadsBundle/Front:vlogProductDetails.html.twig',
             array(
-                "vlogProduct" => $vlogProduct,
-                "authorPublicProfileLink" => $authorPublicProfileLink
+                'vlogProduct' => $vlogProduct,
+                'authorPublicProfileLink' => $authorPublicProfileLink
             )
         );
     }
@@ -289,9 +289,9 @@ class ProductsController extends Controller
      */
     public function pernamentPostLink(VlogProduct $vlogProduct)
     {
-        return $this->render(":DownloadsBundle/Front:vlogProductDetails.html.twig",
+        return $this->render(':DownloadsBundle/Front:vlogProductDetails.html.twig',
             array(
-                "vlogProduct" => $vlogProduct
+                'vlogProduct' => $vlogProduct
             )
         );
     }

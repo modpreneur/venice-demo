@@ -12,12 +12,14 @@ use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\CoreBundle\Vanilla
 use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\NewsletterOptimalizationBundle\Answer;
 use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\NewsletterOptimalizationBundle\UserAnswer;
 use FrontBundle\Helpers\Ajax;
-use GeneralBackend\CoreBundle\Helpers\FlashMessages;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Venice\AppBundle\Entity\User;
-use Venice\AppBundle\VeniceAppBundle;
+use Venice\AppBundle\Entity\Invoice;
+
 use Venice\FrontBundle\Controller\FrontController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -49,7 +51,7 @@ class DefaultController extends FrontController
         $postsCount = $this->getParameter('social_stream_number_of_posts_downloaded');
         $socialStream = $socialService->getLatestPostsFromCache($postsCount);
         
-        if (count($socialStream) == 0) {
+        if (count($socialStream) === 0) {
             $socialStream = $socialService->getLatestPosts($postsCount);
         }
 
@@ -119,6 +121,9 @@ class DefaultController extends FrontController
      * @param Request $request
      *
      * @return Response
+     * @throws \Twig_Error_Syntax
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Loader
      * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      * @throws \Symfony\Component\Form\Exception\LogicException
      * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
@@ -154,10 +159,9 @@ class DefaultController extends FrontController
 
         /** @var MaropostConnector $maropostConnector */
         $maropostConnector = $this->get('flofit.services.maropost_connector');
-        $newsletterOptimizationService = $this->get('flofit.newsletter_optimalization');
-
 
         /* @todo
+        $newsletterOptimizationService = $this->get('flofit.newsletter_optimalization');
         if (!$user->isMaropostSynced()) {
             $newsletterOptimizationService->maropostSync($user, $maropostConnector->getUserInfo($user));
             $user->setMaropostSynced(true);
@@ -167,7 +171,7 @@ class DefaultController extends FrontController
 
         $session = $this->get('session');
         $plainTextPass = $session->get('plainPassword');
-        if (!is_null($plainTextPass)) {
+        if (null !== $plainTextPass) {
             //$amemberConnector = $this->get('modern_entrepreneur_global_backend_core.amember_connector');
             //$amemberConnector->changeUserPassword($user, $plainTextPass);
 
@@ -178,7 +182,7 @@ class DefaultController extends FrontController
         }
 
         foreach ($fields as $field) {
-            $formType = new GlobalUserType($user, $field);
+//            $formType = new GlobalUserType($user, $field);
 
             $form = $this
                 ->createForm(GlobalUserType::class, $user, ['attr' => ['class' => 'trinity-ajax'], 'field' => $field])
@@ -203,8 +207,8 @@ class DefaultController extends FrontController
             $entity = $form->getData();
             $errors = true;
 
-            if ($form->isSubmitted() &&
-                $field === 'profilePhotoWithDeleteButton' &&
+            if ($field === 'profilePhotoWithDeleteButton' &&
+                $form->isSubmitted() &&
                 $form->has(GlobalUserType::REMOVE_BUTTON_NAME) &&
                 $form->get(GlobalUserType::REMOVE_BUTTON_NAME)->isClicked()
             ) {
@@ -234,10 +238,10 @@ class DefaultController extends FrontController
                     case 'username':
                         $usernameCheck = $userManager->findUserByUsername($form->get('username')->getData());
 
-                        if (is_null($usernameCheck) && $connector->updateUser($user, ['username'])) {
+                        if (null === $usernameCheck && $connector->updateUser($user, ['username'])) {
                             $userManager->updateUser($entity);
                         } else {
-                            $this->addFlash(FlashMessages::DANGER, 'This username is used. Sorry.');
+                            $this->addFlash('danger', 'This username is used. Sorry.');
 
                             $user = $originalUser;
                         }
@@ -247,10 +251,10 @@ class DefaultController extends FrontController
                     case 'email':
                         $emailCheck = $userManager->findUserByUsername($form->get('email')->getData());
 
-                        if (is_null($emailCheck) && $connector->updateUser($user, ['email'])) {
+                        if (null === $emailCheck && $connector->updateUser($user, ['email'])) {
                             $userManager->updateUser($entity);
                         } else {
-                            $this->addFlash(FlashMessages::DANGER, 'This email is used. Sorry.');
+                            $this->addFlash('danger', 'This email is used. Sorry.');
                             $user = $originalUser;
                         }
 
@@ -278,7 +282,7 @@ class DefaultController extends FrontController
                         }
 
                         // update user anyway
-                        $this->addFlash(FlashMessages::INFO, 'User profile successfully updated');
+                        $this->addFlash('info', 'User profile successfully updated');
                         $userManager->updateUser($entity);
                         break;
                     default:
@@ -286,21 +290,21 @@ class DefaultController extends FrontController
 
                         if ($field === 'profilePhotoWithDeleteButton' &&
                             $entity->getProfilePhoto() &&
-                            is_null($entity->getProfilePhoto()->getOriginalPhotoUrl())
+                            null === $entity->getProfilePhoto()->getOriginalPhotoUrl()
                         ) {
                             $generator = $this->get('general_backend_core.services.profile_photo_url_generator');
 
                             $originalUrl = $generator->generateUrlToOriginalPhoto($entity->getProfilePhoto());
-                            $croopedUrl  = $generator->generateUrlToCroppedPhoto($entity->getProfilePhoto());
+                            $croppedUrl  = $generator->generateUrlToCroppedPhoto($entity->getProfilePhoto());
 
                             $entity->getProfilePhoto()->setOriginalPhotoUrl($originalUrl);
-                            $entity->getProfilePhoto()->setCroopedPhotoUrl($croopedUrl);
+                            $entity->getProfilePhoto()->setCroopedPhotoUrl($croppedUrl);
 
                             $entityManager->persist($entity->getProfilePhoto());
                             $entityManager->flush();
                         }
 
-                        $this->addFlash(FlashMessages::INFO, 'User profile successfully updated');
+                        $this->addFlash('info', 'User profile successfully updated');
 
                         break;
                 }
@@ -309,7 +313,7 @@ class DefaultController extends FrontController
             if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
                 if ($errors) {
                     foreach ($form->getErrors(true) as $error) {
-                        $this->addFlash(FlashMessages::WARNING, $error->getMessage());
+                        $this->addFlash('warning', $error->getMessage());
                     }
                 }
 
@@ -359,6 +363,9 @@ class DefaultController extends FrontController
      * @param Request $request
      *
      * @return Response
+     * @throws \Twig_Error_Syntax
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Loader
      * @throws \InvalidArgumentException
      * @throws \OutOfBoundsException
      * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
@@ -413,9 +420,9 @@ class DefaultController extends FrontController
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($entity);
-                $entityManager->flush($entity);
+                $entityManager->flush();
 
-                $this->addFlash(FlashMessages::INFO, 'User profile successfully updated');
+                $this->addFlash('info', 'User profile successfully updated');
             }
 
             $formRow['label'] = $formType->getLabel($form, $field);
@@ -438,15 +445,13 @@ class DefaultController extends FrontController
             $formRow['form'] = $form->createView();
             $formRow['id'] = $field;
 
-            if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
-                if (!$disableAll) {
-                    return $this->renderJsonTrinity(
-                        'SecurityBundle:Collector:security.html.twig',
-                        ['pageElement'=>$formRow, 'disabled' => false, 'user'=>$user],
-                        ['privacyFormBlock'.$field=>'privacyFormBlock'],
-                        'close'
-                    );
-                }
+            if (!$disableAll && $form->isSubmitted() && $request->isXmlHttpRequest()) {
+                return $this->renderJsonTrinity(
+                    'SecurityBundle:Collector:security.html.twig',
+                    ['pageElement'=>$formRow, 'disabled' => false, 'user'=>$user],
+                    ['privacyFormBlock'.$field=>'privacyFormBlock'],
+                    'close'
+                );
             }
             $privacyForms[] = $formRow;
         }
@@ -461,8 +466,13 @@ class DefaultController extends FrontController
 
     /**
      * @Route("/profile/user-payments", name="core_front_user_order_history")
+     * @param Request $request
+     *
      * @return Response
      * @throws \LogicException
+     * @throws \Twig_Error_Syntax
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Loader
      * @internal param AmemberConnector $amemberConnector
      */
     public function orderHistoryAction(Request $request)
@@ -473,7 +483,7 @@ class DefaultController extends FrontController
         $connector = $this->get($this->getParameter('connector_service_name'));
         $userInvoices = $connector->getUserInvoices($user);
 
-        $flofitFeaturesService = $this->get('general_backend_core.services.flofit_features');
+        $flofitFeaturesService = $this->get('front.twig.flofit_features');
 
         $digitalParameters = new CBBuyParameters();
         $digitalParameters->setBuyId(63);
@@ -519,9 +529,10 @@ class DefaultController extends FrontController
                     ]
                 );
 
-                $form->add('invoice', 'hidden', ['data'=>$userInvoice->getInvoiceId()]);
+                $form->add('invoice', HiddenType::class, ['data'=>$userInvoice->getInvoiceId()]);
 
-                $isImmersion = isset($userInvoice->getInvoiceItems()[0]) && $userInvoice->getInvoiceItems()[0]->haveCategory('Platinum Club RECURING')? '1':'0';
+                $isImmersion = isset($userInvoice->getInvoiceItems()[0]) &&
+                    $userInvoice->getInvoiceItems()[0]->haveCategory('Platinum Club RECURING');
 
                 $jsOnClickAction = 'return openCancelPopup(this, \''
                     .$userInvoice->getInvoiceItemNames()
@@ -529,7 +540,7 @@ class DefaultController extends FrontController
 
                 $form->add(
                     $userInvoice->getInvoiceId(),
-                    'button',
+                    ButtonType::class,
                     ['label'=>'Cancel','attr'=> ['onClick'=>$jsOnClickAction]]
                 );
 
@@ -538,23 +549,20 @@ class DefaultController extends FrontController
 
                 $parameters = $request->request->all();
 
-                if ($form->isSubmitted() &&
-                    isset($parameters['form']['invoice']) &&
-                    $parameters['form']['invoice'] === $userInvoice->getInvoiceId()) {
+                if (isset($parameters['form']['invoice']) &&
+                    $form->isSubmitted() &&
+                        $parameters['form']['invoice'] === $userInvoice->getInvoiceId()
+                ) {
                     $connector->cancelInvoice($userInvoice, $user);
 
                     $userInvoice->setCanceled();
 
-                    $this->addFlash(FlashMessages::SUCCESS, 'Invoice successfully canceled.');
+                    $this->addFlash('success', 'Invoice successfully canceled.');
 
                     return $this->renderJsonTrinity(
                         'VeniceFrontBundle:Core:orderHistory.html.twig',
-                        [
-                            'orderHistoryData'=>$row
-                        ],
-                        [
-                            'orderHistory'.$userInvoice->getInvoiceId()=>'orderHistory'
-                        ]
+                        ['orderHistoryData'=>$row],
+                        ['orderHistory'.$userInvoice->getInvoiceId()=>'orderHistory']
                     );
                 }
 
@@ -591,8 +599,8 @@ class DefaultController extends FrontController
 
         $user = $this->getUser();
 
-        $maropostConnector = $this->get('general_backend_core.services.maropost_connector');
-        $newsletterOptimizationService = $this->get('newsletter_optimalization');
+        $maropostConnector = $this->get('flofit.services.maropost_connector');
+        $newsletterOptimizationService = $this->get('flofit.newsletter_optimalization');
 
         if (!$user->isMaropostSynced()) {
             $newsletterOptimizationService->maropostSync($user, $maropostConnector->getUserInfo($user));

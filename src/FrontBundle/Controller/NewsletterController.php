@@ -4,7 +4,6 @@ namespace FrontBundle\Controller;
 
 use AppBundle\Entity\Newsletter\UserAnswer;
 use AppBundle\Newsletter\NewsletterOptimalization;
-use GeneralBackend\CoreBundle\Helpers\FlashMessages;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -107,7 +106,7 @@ class NewsletterController extends Controller
                 $maropostConnector->unsubscribeLists($this->getUser(), $listId);
             }
 
-            $this->addFlash(FlashMessages::SUCCESS, 'Successfully changed.');
+            $this->addFlash('success', 'Successfully changed.');
 //            return new JsonResponse(array('ok' => true));
         }
 
