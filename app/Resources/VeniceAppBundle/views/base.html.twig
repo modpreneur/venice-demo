@@ -40,7 +40,7 @@
 
     {% stylesheets
     '@FrontBundle/Resources/public/less/responzive.less'
-    filter="lessphp,cssrewrite" output="css/page.css" package="css" %}
+    filter="lessphp,cssrewrite" output="css/page.css" %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
     {% endstylesheets %}
 
@@ -313,7 +313,7 @@
     </div>
 
 
-    {% javascripts package="javascript" '@FrontBundle/Resources/public/javaScript/*' %}
+    {% javascripts '@FrontBundle/Resources/public/javaScript/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 

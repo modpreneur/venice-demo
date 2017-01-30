@@ -16,7 +16,7 @@
             {% endblock %}
         {% endembed %}
     {% else %}
-        {{ include(":CoreBundle/Front/default:headerProfile.html.twig", {"user":user,"displayName":false}, with_context=false) }}
+        {{ include("VeniceFrontBundle:Default:headerProfile.html.twig", {"user":user,"displayName":false}, with_context=false) }}
     {% endif %}
 {% endblock %}
 

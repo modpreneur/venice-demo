@@ -7,7 +7,7 @@
     <div class="left left-pdf">
         <i class="ff-text-left-page"></i>
         {% if access and daysRemaining == 0 %}
-            <a target="_blank" {% if content.haveDownloadName %}download="{{ content.getDownloadName() }}"{% endif %} href="{{ contentFile }}"><span class="name">{{ content.name }}</span></a>
+            <a target="_blank" {% if content.haveDownloadName %}download="{{ content.getDownloadName() }}"{% endif %} href="{{ content.link }}"><span class="name">{{ content.name }}</span></a>
         {% else %}
             <a target="_blank" href="{{ path("downloads_product_bundle_detail",{"handle":mainProduct.handle}) }}"><span class="name">{{ content.name }}</span></a>
         {% endif %}

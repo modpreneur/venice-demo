@@ -44,6 +44,15 @@ class DefaultController extends FrontController
     {
         $logger = $this->get('logger');
 
+        $socialService = $this->get('flofit.services.social_feed');
+
+        $postsCount = $this->getParameter('social_stream_number_of_posts_downloaded');
+        $socialStream = $socialService->getLatestPostsFromCache($postsCount);
+        
+        if (count($socialStream) == 0) {
+            $socialStream = $socialService->getLatestPosts($postsCount);
+        }
+
        // $socialService = $this->get('general_backend_core.services.social_feed');
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -51,7 +60,7 @@ class DefaultController extends FrontController
         return $this->render(
             'VeniceFrontBundle:Front:index.html.twig',
             [
-                'socialPosts' => [],
+                'socialPosts' => $socialStream,
                 'messages' => [],
                 'forumPosts' => '',
                 'blogArticles' => [$entityManager->getRepository(BlogArticle::class)->findBy([], ['id'=>'DESC'], 2)],
@@ -60,7 +69,7 @@ class DefaultController extends FrontController
                 'communityForumUrl' => $this->container->getParameter('forum_url'),
                 'workoutGuide'      => null,
                 'nutritionGuide'    => null,
-                'displayMobileAdv' => false,
+                'displayMobileAdv'  => false,
                 'displayQuickStartGuide' => null,
                 'firstLogin' => new \DateTime(),
             ]

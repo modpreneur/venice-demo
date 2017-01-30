@@ -1974,12 +1974,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "86a156577bd7a360b2e28b47d23819537d5317f5"
+                "reference": "b0a7a5c038934ef73d2bf18dc4c042242b0cd70c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/86a156577bd7a360b2e28b47d23819537d5317f5",
-                "reference": "86a156577bd7a360b2e28b47d23819537d5317f5",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/b0a7a5c038934ef73d2bf18dc4c042242b0cd70c",
+                "reference": "b0a7a5c038934ef73d2bf18dc4c042242b0cd70c",
                 "shasum": ""
             },
             "require": {
@@ -2042,7 +2042,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-01-26 10:33:07"
+            "time": "2017-01-27 10:48:45"
         },
         {
             "name": "fzaninotto/faker",
@@ -4265,12 +4265,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "59de820ecc182f5a0466517f83c58b41e4aa9af2"
+                "reference": "938dbf2af9125f55ed229ac71e428025025c1bef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/59de820ecc182f5a0466517f83c58b41e4aa9af2",
-                "reference": "59de820ecc182f5a0466517f83c58b41e4aa9af2",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/938dbf2af9125f55ed229ac71e428025025c1bef",
+                "reference": "938dbf2af9125f55ed229ac71e428025025c1bef",
                 "shasum": ""
             },
             "require": {
@@ -4359,7 +4359,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-01-25 15:36:15"
+            "time": "2017-01-27 10:47:29"
         },
         {
             "name": "monolog/monolog",

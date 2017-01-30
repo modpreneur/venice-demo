@@ -4,9 +4,33 @@ imports:
     - { resource: services.yml }
     - { resource: "@VeniceAppBundle/Resources/config/config.yml" }
 
-
 # You can override default configuration here or in the enviroment files (config_dev, config_prod).
 # Confiruration in the enviroment files will override configuration defined here
+
+#extends doctrine config from the venice framework
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            oldFlofit:
+                driver:   pdo_mysql
+                host:     '%database_host_flofit%'
+                port:     '%database_port_flofit%'
+                dbname:   '%database_name_flofit%'
+                user:     '%database_user_flofit%'
+                password: '%database_password_flofit%'
+                charset:  UTF8
+    orm:
+        default_entity_manager: default
+        entity_managers:
+            oldFlofit:
+                connection: oldFlofit
+                mappings:
+                    FlofitEntitiesBundle:
+                        type: annotation
+                        prefix: FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities
+                        dir: FlofitEntities/BlogBundle
+
 trinity_messages:
     sender_identification: "client_3"
 
@@ -68,7 +92,9 @@ venice_app:
         AppBundle\Entity\Product\Product: AppBundle\Form\Product\ProductType
         AppBundle\Entity\Product\StandardProduct: AppBundle\Form\Product\StandardProductType
         AppBundle\Entity\ProductAccess: AppBundle\Form\ProductAccessType
-        AppBundle\Entity\User: Venice\AppBundle\Form\User\UserType
+        AppBundle\Entity\User: AppBundle\Form\User\UserType
+        AppBundle\Entity\Category: AppBundle\Form\CategoryType
+        AppBundle\Entity\Tag: AppBundle\Form\TagType
 
     forms_override:
         # The RolesType from the framework is going to be replaced with RolesType from the application
@@ -93,7 +119,8 @@ venice_app:
         Venice\AppBundle\Entity\Product\StandardProduct: AppBundle\Entity\Product\StandardProduct
         Venice\AppBundle\Entity\ProductAccess: AppBundle\Entity\ProductAccess
         Venice\AppBundle\Entity\User: AppBundle\Entity\User
-#        Venice\AppBundle\Entity\Category: AppBundle\Entity\Category
+        Venice\AppBundle\Entity\Category: AppBundle\Entity\Category
+        Venice\AppBundle\Entity\Tag: AppBundle\Entity\Tag
 
 
     entity_mapping:
@@ -140,10 +167,15 @@ venice_app:
             map:
                 demo_blog_article: AppBundle\Entity\BlogArticle
 
-#        category:
-#            entity: Venice\AppBundle\Entity\Category
-#            map:
-#              demo_category: AppBundle\Entity\Category
+        category:
+            entity: Venice\AppBundle\Entity\Category
+            map:
+              demo_category: AppBundle\Entity\Category
+
+        tag:
+            entity: Venice\AppBundle\Entity\Tag
+            map:
+              demo_category: AppBundle\Entity\Tag
 
         content_product:
             entity: Venice\AppBundle\Entity\ContentProduct
@@ -159,10 +191,6 @@ venice_app:
             entity: Venice\AppBundle\Entity\Content\ContentInGroup
             map:
                 demo_content_in_group: AppBundle\Entity\Content\ContentInGroup
-
-
-
-
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"

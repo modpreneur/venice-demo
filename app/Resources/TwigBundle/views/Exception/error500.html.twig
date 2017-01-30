@@ -50,10 +50,13 @@
                     <div class="block-right">
                         <div class="navbar">
                             <ul>
-                                <li><a href="{{ path("core_front_staticpages_about") }}">About</a></li>
-                                <li><a href="{{ path("core_front_staticpages_terms") }}">Terms of use</a></li>
-                                <li><a href="{{ path("core_front_staticpages_privacy_and_policy") }}">Privacy Policy</a></li>
-                                <li><a href="{{ path("core_front_staticpages_support") }}">Help & FAQ</a></li>
+                                {% if app.user %}
+                                    {# @todo id #}
+                                    <li><a title="Support" class="fancybox fancybox-margin fancybox-support" data-fancybox-type="iframe" href="//resultsink.desk.com/customer/widget/emails/new?ticket%5Bcustom_refpage%5D=my.flofit.com&interaction%5Bname%5D={{ app.user.firstName }}%20{{ app.user.lastName }}&interaction%5Bemail%5D={{ app.user.email }}&ticket%5Bcustom_refpage%5D=my.flofit.com&ticket%5Bcustom_user_id%5D={{ app.user.id }}&ticket%5Bcustom_username%5D={{ app.user.username }}">Help</a></li>
+                                {% else %}
+                                    <li><a title="Support" class="fancybox fancybox-margin fancybox-support" data-fancybox-type="iframe" href="//resultsink.desk.com/customer/widget/emails/new?ticket%5Bcustom_refpage%5D=my.flofit.com">Help</a></li>
+                                {% endif %}
+                                {{ footerLinksBlock() }}
                             </ul>
                         </div>
                     </div>

@@ -119,6 +119,17 @@ services:
         tags:
             - { name: form.type }
 
+    app.form.category:
+        class: AppBundle\Form\CategoryType
+        parent: "venice.app.form.category"
+        tags:
+            - { name: form.type }
+
+    app.form.tag:
+        class: AppBundle\Form\TagType
+        parent: "venice.app.form.tag"
+        tags:
+            - { name: form.type }
 
     #------------------------------------------
 
@@ -172,3 +183,8 @@ services:
           class: AppBundle\SocialServices\GoogleSubscribeService
           arguments: ["@service_container"]
           tags: [ name: twig.extension ]
+
+
+    flofit.services.social_feed:
+         class: AppBundle\Services\SocialFeed
+         arguments: ["@service_container"]
