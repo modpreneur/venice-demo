@@ -35,21 +35,17 @@ class BlogController extends Controller
         $numberOfPosts = $this->getParameter('blog_number_of_posts_displayed');
         $entityManager = $this->getDoctrine()->getManager();
 
-//        $category = $entityManager->getRepository('AppBundle:Category')
-//            ->findOneBy(['name' => 'blog']);
-//
-//        $postCount = $entityManager->getRepository('AppBundle:BlogArticle')
-//            ->countPostsByCategory($category);
-//
-//        $posts = $entityManager->getRepository('AppBundle:BlogArticle')
-//            ->findAllPagesByCategory($category, true, $offset, $numberOfPosts);
-//
-        $count = $entityManager->getRepository(BlogArticle::class)->count();
+        $category = $entityManager->getRepository('AppBundle:Category')
+            ->findOneBy(['name' => 'blog']);
+
+        $articleCount = $entityManager->getRepository('AppBundle:BlogArticle')
+            ->getCountByCategory($category);
+
+        $blogArticles = $entityManager->getRepository('AppBundle:BlogArticle')
+            ->findArticlesByCategory($category, true, $offset, $numberOfPosts);
+
         $offset += $this->getParameter('blog_number_of_posts_displayed');
-        $displayLoadMore = $offset < $count and $count !== 0 and $count < $numberOfPosts;
-
-        $blogArticles = $entityManager->getRepository(BlogArticle::class)->findAll();
-
+        $displayLoadMore = $offset < $articleCount and $articleCount !== 0 and $articleCount < $numberOfPosts;
 
         return $this->render(
             'VeniceFrontBundle:Blog:index.html.twig',
@@ -74,7 +70,7 @@ class BlogController extends Controller
             'blogPost' => $blogArticle,
             'authorPublicProfileLink' => $this->generateUrl(
                 'core_front_user_public_profile',
-                ['username'=>$blogArticle->getPublisher()->getUsername()]
+                ['username'=>$blogArticle->getPublisher()]
             )
         ]);
     }
@@ -91,7 +87,7 @@ class BlogController extends Controller
             'blogPost' => $blogArticle,
             'authorPublicProfileLink' => $this->generateUrl(
                 'core_front_user_public_profile',
-                ['username'=>$blogArticle->getPublisher()->getUsername()]
+                ['username'=>$blogArticle->getPublisher()]
             ),
         ]);
     }

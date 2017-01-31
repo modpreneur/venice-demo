@@ -193,16 +193,16 @@
                                 <div class="message">
                                     <div class="item-img-icon absolute">
                                         <div class="rounded">
-                                            {% if blogArticle.publisher.profilePhoto is not null and blogArticle.publisher.profilePhoto.imageFile != "" %}
-                                                <img src="{{ blogArticle.Publisher.getProfilePhoto.croopedPhotoUrl }}" alt="profile image"/>
-                                            {% else %}
+                                            {#{% if blogArticle.getPublisher is not null and blogArticle.publisher.getprofilePhoto().imageFile != "" %}#}
+                                                {#<img src="{{ blogArticle.Publisher.getProfilePhoto.croopedPhotoUrl }}" alt="profile image"/>#}
+                                            {#{% else %}#}
                                                 <img src="{{ asset('Resources/public/images/site/default-profile-photo.png') }}" alt="profile image"/>
-                                            {% endif %}
+                                            {#{% endif %}#}
                                         </div>
                                     </div>
                                     <div class="message-content">
                                         <div class="name">{{ blogArticle.Title }}</div>
-                                        <div class="name user-name">{{ blogArticle.Publisher.username }}</div>
+                                        <div class="name user-name">{{ blogArticle.publisher }}</div>
                                         {% if blogArticle.dateToPublish is not null %}
                                             <span class="date">{{ blogArticle.dateToPublish|date("m/d/Y") }}</span>
                                         {% else %}
