@@ -45,9 +45,9 @@ twig:
 #       An absolute path to Venice
 #      '%kernel.root_dir%/../vendor/modpreneur/venice/src/Venice/AdminBundle/Resources/views': VeniceFramework
   form_themes:
+    - 'VeniceFrontBundle:Default:bowtieForms.html.twig'
     - 'TrinityAdminBundle:Form:bowtie_form_layout.html.twig'
     - 'TrinityAdminBundle:Form:color_layout.html.twig'
-    - 'VeniceFrontBundle:Default:bowtieForms.html.twig'
 
 
 assetic:
