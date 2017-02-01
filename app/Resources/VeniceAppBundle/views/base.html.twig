@@ -206,7 +206,7 @@
 
 
     <div id="wrap-body" class="blured">
-        {% set pageMenuHolder = knp_menu_get('VeniceFrontBundle:MenuBuilder:build') %}
+        {% set pageMenuHolder = knp_menu_get('main') %}
 
         {% block body %}
             <div class="jumbotron jumbotron-{{ random(7) }} {% block jumbotronClass %}{% endblock %}">
@@ -233,7 +233,6 @@
                     <div class="section main-menu">
                         <div class="container">
                             {% block menu %}
-                                Menu here
                                 {% include "VeniceFrontBundle:Default:menu.html.twig" %}
                             {% endblock %}
                         </div>

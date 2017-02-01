@@ -2,7 +2,10 @@
 
 namespace FrontBundle\Controller;
 
+use AppBundle\Entity\Newsletter\Answer;
+use AppBundle\Entity\Newsletter\Question;
 use AppBundle\Entity\Newsletter\UserAnswer;
+use AppBundle\Helpers\FlashMessages;
 use AppBundle\Newsletter\NewsletterOptimalization;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,8 +34,8 @@ class NewsletterController extends Controller
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $tags  = array('add_tags'=>array(),'remove_tags'=>array());
-        $lists = array('subscribe'=>array(),'unsubscribe'=>array());
+        $tags  = ['add_tags'=> [],'remove_tags'=> []];
+        $lists = ['subscribe'=> [],'unsubscribe'=> []];
 
         if ($form->isValid()) {
             $i = 0;
@@ -44,10 +47,15 @@ class NewsletterController extends Controller
                 foreach ($question->getAnswers() as $answer) {
                     /** @var Answer $answer */
                     /** @var UserAnswer $lastAnswer */
-                    $lastAnswer = $entityManager->getRepository('ModernEntrepreneurNewsletterOptimalizationBundle:UserAnswer')
+                    $lastAnswer = $entityManager->getRepository(UserAnswer::class)
                         ->getLastAnswer($answer, $this->getUser());
 
-                    if ((is_array($userAnsweredInForm) && in_array($answer->getId(),$userAnsweredInForm, false)) || $userAnsweredInForm === $answer->getId()) {
+                    if ((
+                            is_array($userAnsweredInForm)
+                            && in_array($answer->getId(), $userAnsweredInForm, false)
+                        )
+                        || $userAnsweredInForm === $answer->getId()
+                    ) {
                         if (null === $lastAnswer || ($lastAnswer && $lastAnswer->isClicked() === false)) {
                             $userAnswer = new UserAnswer();
                             $userAnswer->setQuestion($question);

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Services;
 
+use AppBundle\Entity\BillingPlan;
 use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\CoreBundle\Newsletter;
 use Venice\AppBundle\Entity\Invoice;
 use Venice\AppBundle\Entity\User;
@@ -30,13 +31,13 @@ abstract class AbstractConnector extends Connector
 
 
     /**
-     * @param BuyParameters $parameters
+     * @param BillingPlan $parameters
      * @param User $user
      * @param               $userStoredCC
      *
      * @return string
      */
-     abstract function generateBuyLink(BuyParameters $parameters, User $user, $userStoredCC);
+     abstract function generateBuyLink(BillingPlan $parameters, User $user, $userStoredCC);
 
 
     /**

@@ -3,7 +3,6 @@
 namespace AppBundle\Entity\Newsletter;
 
 use AppBundle\Entity\User;
-use GeneralBackend\CoreBundle\Entity\GlobalUser;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -16,7 +15,7 @@ class UserAnswerRepository extends EntityRepository
 {
     /**
      * @param  Answer     $answer
-     * @param  GlobalUser $globalUser
+     * @param  User $globalUser
      * @return UserAnswer
      */
     public function getLastAnswer(Answer $answer, User $globalUser)

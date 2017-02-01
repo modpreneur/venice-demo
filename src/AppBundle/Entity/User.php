@@ -30,11 +30,16 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     protected $UserChild;
 
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default" : false})
+     */
+    protected $maropostSynced;
+
     private $profilePhoto = null;
 
     /** @var  \DateTime */
     public $dateOfBirth;
-
 
     public $location = 'x';
 
@@ -53,8 +58,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     public function __construct()
     {
-        $this->dateOfBirth = new \DateTime(); //todo;
-
+        $this->dateOfBirth        = new \DateTime(); //todo;
         $this->lastPasswordChange = new \DateTime();
     }
 
@@ -168,5 +172,23 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     public function getPublic()
     {
         return $this->isPublic();
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isMaropostSynced()
+    {
+        return $this->maropostSynced;
+    }
+
+
+    /**
+     * @param bool $maropostSynced
+     */
+    public function setMaropostSynced(bool $maropostSynced)
+    {
+        $this->maropostSynced = $maropostSynced;
     }
 }

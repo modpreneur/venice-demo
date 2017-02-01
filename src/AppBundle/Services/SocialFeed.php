@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class SocialFeed
- * @package GeneralBackend\CoreBundle\Services
+ * @package AppBundle\Services
  */
 class SocialFeed
 {
@@ -57,7 +57,7 @@ class SocialFeed
             return strtotime($a->getDateTime()) - strtotime($b->getDateTime());
         });
 
-        $entityManager = $this->serviceContainer->get("doctrine")->getManager();
+        $entityManager = $this->serviceContainer->get('doctrine')->getManager();
         foreach ($this->feed as $post) {
             $entityManager->persist($post);
         }
@@ -67,12 +67,17 @@ class SocialFeed
     }
 
 
+    /**
+     * @param $config
+     *
+     * @return SocialPost[]|array
+     */
     public function getLatestPostsFromCache($config)
     {
-        $entityManager = $this->serviceContainer->get("doctrine")->getManager();
+        $entityManager = $this->serviceContainer->get('doctrine')->getManager();
 
         $this->feed = $entityManager->getRepository(SocialPost::class)
-            ->findBy(array(), array("dateTime" => "DESC"));
+            ->findBy([], ['dateTime' => 'DESC']);
 
         return $this->feed;
     }
@@ -80,7 +85,7 @@ class SocialFeed
 
     public function removeAllCachedPosts()
     {
-        $entityManager = $this->serviceContainer->get("doctrine")->getManager();
+        $entityManager = $this->serviceContainer->get('doctrine')->getManager();
 
         $posts = $entityManager->getRepository(SocialPost::class)
             ->findAll();
@@ -100,15 +105,15 @@ class SocialFeed
     private function getPostsFromSite($site, $limit)
     {
         switch ($site->getType()) {
-            case "facebook":
+            case 'facebook':
                 return $this->getFacebook($site->getAccount(), $limit);
-            case "twitter":
+            case 'twitter':
                 return $this->getTwitter($site->getAccount(), $limit);
-            case "instagram":
+            case 'instagram':
                 return $this->getInstagram($site->getAccount(), $limit);
         }
 
-        return array();
+        return [];
     }
 
 
@@ -117,6 +122,8 @@ class SocialFeed
      * @param int $limit
      *
      * @return SocialPost[]
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     * @throws \Facebook\Exceptions\FacebookSDKException
      */
     private function getFacebook($account, $limit)
     {
@@ -124,8 +131,8 @@ class SocialFeed
         $socialPosts = [];
         $url = '';
 
-        $appId = $this->serviceContainer->getParameter("facebook_client_id");
-        $appSecret = $this->serviceContainer->getParameter("facebook_client_secret");
+        $appId = $this->serviceContainer->getParameter('facebook_client_id');
+        $appSecret = $this->serviceContainer->getParameter('facebook_client_secret');
 
         $fb = new \Facebook\Facebook([
             'app_id' => $appId,
@@ -136,7 +143,7 @@ class SocialFeed
         try {
             // Returns a `Facebook\FacebookResponse` object
 //            $response = $fb->get('/me?fields=feed.limit('.$limit.'),name,picture,id', $token);
-            $response = $fb->get("/" . $account . "?fields=posts,feed.limit(10),name,picture,id",
+            $response = $fb->get('/' . $account . '?fields=posts,feed.limit(10),name,picture,id',
                 $fb->getApp()->getAccessToken());
         } catch (\Facebook\Exceptions\FacebookResponseException $e) {
             return $socialPosts;
@@ -149,31 +156,31 @@ class SocialFeed
         $fBposts = $response->getGraphUser();
         $decodedPosts = json_decode($fBposts);
 
-        foreach ($decodedPosts->{"posts"} as $post) {
+        foreach ($decodedPosts->{'posts'} as $post) {
             $a = new \ReflectionClass($post);
 
-            $type = "facebook";
-            $author = $decodedPosts->{"name"};
-            if (isset($post->{"created_time"})) {
+            $type = 'facebook';
+            $author = $decodedPosts->{'name'};
+            if (isset($post->{'created_time'})) {
                 //$dateTime = $post->{"created_time"}->{"date"};
-                $dateTime = new \DateTime($post->{"created_time"}->{"date"});
-                $dateTime = $dateTime->format("Y-m-d H:i:s");
+                $dateTime = new \DateTime($post->{'created_time'}->{'date'});
+                $dateTime = $dateTime->format('Y-m-d H:i:s');
             } else { // if couldn't find time, drop. TODO: maybe could be forced in FB api
                 continue;
             }
             $message = "";
-            if (isset($post->{"message"})) {
-                $message .= $post->{"message"};
+            if (isset($post->{'message'})) {
+                $message .= $post->{'message'};
             }
-            if (isset($post->{"story"})) {
-                $message .= "\n" . $post->{"story"};
+            if (isset($post->{'story'})) {
+                $message .= "\n" . $post->{'story'};
             }
-            $profilePic = $decodedPosts->{"picture"}->{"url"};
+            $profilePic = $decodedPosts->{'picture'}->{'url'};
 
-            if (isset($post->{"id"})) {
-                $url = "https://www.facebook.com/" . $post->{"id"};
+            if (isset($post->{'id'})) {
+                $url = 'https://www.facebook.com/' . $post->{'id'};
             } else {
-                $url = "https://www.facebook.com/" . $decodedPosts->{"id"};
+                $url = 'https://www.facebook.com/' . $decodedPosts->{'id'};
             }
 
             $socialPost = new SocialPost($type, $author, $dateTime, $message, $profilePic, $url);
@@ -196,10 +203,10 @@ class SocialFeed
     {
         $socialPosts = [];
 
-        $appId = $this->serviceContainer->getParameter("twitter_client_id");
-        $appSecret = $this->serviceContainer->getParameter("twitter_client_secret");
-        $token = $this->serviceContainer->getParameter("twitter_client_token");
-        $tokenSecret = $this->serviceContainer->getParameter("twitter_client_token_secret");
+        $appId = $this->serviceContainer->getParameter('twitter_client_id');
+        $appSecret = $this->serviceContainer->getParameter('twitter_client_secret');
+        $token = $this->serviceContainer->getParameter('twitter_client_token');
+        $tokenSecret = $this->serviceContainer->getParameter('twitter_client_token_secret');
 
         $settings = [
             'oauth_access_token' => $token,
@@ -209,7 +216,7 @@ class SocialFeed
         ];
         $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 
-        $getField = "?screen_name=" . $account . "&count=" . $limit;
+        $getField = '?screen_name=' . $account . '&count=' . $limit;
         $requestMethod = 'GET';
 
         //$twitter = new \Twitter\twitter\TwitterAPIExchange($settings);
@@ -220,19 +227,19 @@ class SocialFeed
 
         $decodedPosts = json_decode($posts);
 
-        if (isset($decodedPosts->{"errors"})) {
+        if (isset($decodedPosts->{'errors'})) {
             return $socialPosts;
         }
 
         foreach ($decodedPosts as $post) {
-            $type = "twitter";
-            $author = $post->{"user"}->{"name"};
+            $type = 'twitter';
+            $author = $post->{'user'}->{'name'};
             //$dateTime = $post->{"created_at"};
-            $dateTime = new \DateTime($post->{"created_at"});
-            $dateTime = $dateTime->format("Y-m-d H:i:s");
-            $message = $post->{"text"};
-            $profilePic = $post->{"user"}->{"profile_image_url_https"};
-            $url = "https://twitter.com/" . $post->{"user"}->{"screen_name"};
+            $dateTime = new \DateTime($post->{'created_at'});
+            $dateTime = $dateTime->format('Y-m-d H:i:s');
+            $message = $post->{'text'};
+            $profilePic = $post->{'user'}->{'profile_image_url_https'};
+            $url = 'https://twitter.com/' . $post->{'user'}->{'screen_name'};
 
             $socialPost = new SocialPost($type, $author, $dateTime, $message, $profilePic, $url);
 
@@ -246,16 +253,22 @@ class SocialFeed
     }
 
 
+    /**
+     * @param $account
+     * @param $limit
+     *
+     * @return array
+     */
     public function getInstagram($account, $limit)
     {
-        $appId = $this->serviceContainer->getParameter("instagram_client_id");
-        $appSecret = $this->serviceContainer->getParameter("instagram_client_secret");
+        $appId = $this->serviceContainer->getParameter('instagram_client_id');
+        $appSecret = $this->serviceContainer->getParameter('instagram_client_secret');
 
         $instagram = new Instagram(
             [
                 'apiKey' => $appId,
                 'apiSecret' => $appSecret,
-                "apiCallback" => ""
+                'apiCallback' => ""
             ]
         );
 
@@ -263,14 +276,14 @@ class SocialFeed
             $user = $instagram->searchUser($account, 1);
             $posts = $instagram->getUserMedia($user->data[0]->id, $limit);
 
-            $socialPosts = array();
+            $socialPosts = [];
             foreach ($posts->data as $post) {
-                $socialPosts[] = new SocialPost("instagram", $user->data[0]->username, new \DateTime(),
+                $socialPosts[] = new SocialPost('instagram', $user->data[0]->username, new \DateTime(),
                     $post->caption->text, $user->data[0]->profile_picture, $post->link);
             }
             return $socialPosts;
         } catch (\Exception $e) {
-            return array();
+            return [];
         }
     }
 
@@ -280,13 +293,16 @@ class SocialFeed
      */
     private function getSocialSites()
     {
-        $em = $this->serviceContainer->get("doctrine")->getManager();
+        $em = $this->serviceContainer->get('doctrine')->getManager();
         $sites = $em->getRepository(SocialSite::class)->findAll();
 
         return $sites;
     }
 
 
+    /**
+     * @return int
+     */
     public function countPosts()
     {
         return count($this->feed);

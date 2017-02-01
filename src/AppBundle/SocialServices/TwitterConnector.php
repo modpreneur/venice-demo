@@ -1,7 +1,9 @@
 <?php
+
 namespace AppBundle\SocialServices;
 
-use GeneralBackend\CoreBundle\Entity\SocialSite;
+use AppBundle\Services\Connector;
+
 
 /**
  * Class TwitterConnector
@@ -19,32 +21,36 @@ class TwitterConnector extends Connector
      */
     public function getUserIdByTokens($token, $tokenSecret)
     {
-        $appId = $this->serviceContainer->getParameter("twitter_client_id");
-        $appSecret = $this->serviceContainer->getParameter("twitter_client_secret");
+        $appId = $this->serviceContainer->getParameter('twitter_client_id');
+        $appSecret = $this->serviceContainer->getParameter('twitter_client_secret');
 
-        $settings = array(
+        $settings = [
             'oauth_access_token' => $token,
             'oauth_access_token_secret' => $tokenSecret,
             'consumer_key' => $appId,
             'consumer_secret' => $appSecret
-        );
+        ];
         $url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
         $requestMethod = 'GET';
 
         $twitter = new \TwitterAPIExchange($settings);
         $user = $twitter->buildOauth($url, $requestMethod)
-                         ->performRequest();
+            ->performRequest();
 
         $user = json_decode($user, true);
 
-        if(array_key_exists("id", $user))
-        {
-            return $user["id"];
+        if (array_key_exists('id', $user)) {
+            return $user['id'];
         }
 
-        if(array_key_exists("errors", $user))
-        {
-            $this->serviceContainer->get("logger")->addCritical("Errors in " . __FILE__ . " line:" . __LINE__ . ": ", $user["errors"]);
+        if (array_key_exists('errors', $user)) {
+            $this
+                ->serviceContainer
+                ->get('logger')
+                ->addCritical(
+                    'Errors in ' . __FILE__ . ' line:' . __LINE__ . ': ',
+                    $user['errors']
+                );
         }
 
         return null;

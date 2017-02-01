@@ -1,26 +1,32 @@
 {% extends "VeniceAppBundle::base.html.twig" %}
 
+
 {% block title %}
     Profile
 {% endblock %}
+
 
 {% block stylesheets %}
     {{ parent() }}
     <script src="{{ asset("Resources/public/crooper/cropper.min.js") }}"></script>
 {% endblock %}
 
+
 {% block headjavascripts %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("Resources/public/crooper/cropper.min.css") }}"/>
 {% endblock %}
 
+
 {% block profileHeaderUserBlock %}
     {{ include("VeniceFrontBundle:Default:menuProfile.html.twig", {"user":user}, with_context=false) }}
 {% endblock %}
 
+
 {% block profileJumbotronUserBlock %}
     {{ include("VeniceFrontBundle:Default:headerProfile.html.twig", {"user":user}, with_context=false) }}
 {% endblock %}
+
 
 {% block content %}
     <div class="profile-settings">

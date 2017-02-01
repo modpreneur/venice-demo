@@ -1,21 +1,38 @@
 services:
 
+
+
+  front.menu_builder:
+        class: FrontBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@service_container"]
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: main }
+
+
+  front.main_menu:
+      class: Knp\Menu\MenuItem
+      factory: ["@front.menu_builder", build]
+      arguments: ["@request_stack"]
+      tags:
+          - { name: knp_menu.menu, alias: main }
+
+
   front.twig.flofit_features:
-      class: FrontBundle\Twig\FlofitTemplateFeatures
-      arguments: ["@service_container", "@security.token_storage"]
-      tags: [ name: twig.extension ]
+    class: FrontBundle\Twig\FlofitTemplateFeatures
+    arguments: ["@service_container", "@security.token_storage"]
+    tags: [ name: twig.extension ]
 
 
   front.menu_listener:
-      class: FrontBundle\EventListener\ConfigureMenuListener
-      tags:
-        - { name: kernel.event_listener, event: front.menu_configure_event, method: onMenuConfigure }
-      arguments:
-          ["@service_container"]
+    class: FrontBundle\EventListener\ConfigureMenuListener
+    tags:
+      - { name: kernel.event_listener, event: front.menu_configure_event, method: onMenuConfigure }
+    arguments:
+        ["@service_container"]
 
 
   front.popup_service:
-          class: FrontBundle\Twig\PopupService
-          arguments: ["@service_container"]
-          tags: [ name: twig.extension ]
+    class: FrontBundle\Twig\PopupService
+    arguments: ["@service_container"]
+    tags: [ name: twig.extension ]
 

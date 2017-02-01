@@ -91,7 +91,6 @@ class TwitterSubscribeService extends AbstractSubscibeService
      */
     public function unsubscribe(User $user)
     {
-        //return $this->render("@ModernEntrepreneurGeneralBackendCore/TwitterSubscribeService/comments.html.twig",array("permanentLink"=>$parameters["permanentLink"]));
         $user->setTwitterAccessToken(null);
         $user->setTwitterId(null);
         $em = $this->serviceContainer->get('doctrine')->getManager();

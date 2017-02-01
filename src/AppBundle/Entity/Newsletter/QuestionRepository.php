@@ -3,7 +3,6 @@
 namespace AppBundle\Entity\Newsletter;
 
 use Doctrine\ORM\EntityRepository;
-use GeneralBackend\CoreBundle\Entity\GlobalUser;
 
 /**
  * QuestionRepository

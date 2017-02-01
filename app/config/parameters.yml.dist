@@ -104,3 +104,6 @@ parameters:
 
     google_client_id: 707014016730-tkm94ahnordhpp9bs7gnpk2pll56hr18
     google_client_secret: Jzv4zujtzy-hq-THIa33zeXu
+
+    maropost_account_id: 478
+    maropost_auth_token: 4cc55665ee6708ea9dd8eb6c8b0f3c59e96f9909
