@@ -1974,12 +1974,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "d01739f70df32e6ab441b23b88395ae26715c5f3"
+                "reference": "f230319d0ed822145bf73711082f31d983234c55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/d01739f70df32e6ab441b23b88395ae26715c5f3",
-                "reference": "d01739f70df32e6ab441b23b88395ae26715c5f3",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f230319d0ed822145bf73711082f31d983234c55",
+                "reference": "f230319d0ed822145bf73711082f31d983234c55",
                 "shasum": ""
             },
             "require": {
@@ -1989,7 +1989,8 @@
                 "symfony/framework-bundle": "^2.7 || ^3.0",
                 "symfony/security-bundle": "^2.7 || ^3.0",
                 "symfony/templating": "^2.7 || ^3.0",
-                "symfony/twig-bundle": "^2.7 || ^3.0"
+                "symfony/twig-bundle": "^2.7 || ^3.0",
+                "twig/twig": "^1.28 || ^2.0"
             },
             "conflict": {
                 "doctrine/doctrine-bundle": "<1.3",
@@ -2042,7 +2043,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-01-30 16:02:42"
+            "time": "2017-02-01 09:04:51"
         },
         {
             "name": "fzaninotto/faker",
@@ -3861,7 +3862,7 @@
             ],
             "authors": [
                 {
-                    "name": "KNPLabs Team",
+                    "name": "KnpLabs Team",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -4265,12 +4266,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "2fac2085f4ff7d24f3e86d90d7875e2820e478b2"
+                "reference": "59f43bce3458db051032e06bff6507db6c741c06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/2fac2085f4ff7d24f3e86d90d7875e2820e478b2",
-                "reference": "2fac2085f4ff7d24f3e86d90d7875e2820e478b2",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/59f43bce3458db051032e06bff6507db6c741c06",
+                "reference": "59f43bce3458db051032e06bff6507db6c741c06",
                 "shasum": ""
             },
             "require": {
@@ -4359,7 +4360,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-01-30 15:17:58"
+            "time": "2017-01-31 13:10:08"
         },
         {
             "name": "monolog/monolog",
@@ -7955,12 +7956,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "4397c32c6fe8644ffe5b17065049bd5509cda553"
+                "reference": "0434caa800bcef5fcaca7d13a68de047edd66809"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/4397c32c6fe8644ffe5b17065049bd5509cda553",
-                "reference": "4397c32c6fe8644ffe5b17065049bd5509cda553",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/0434caa800bcef5fcaca7d13a68de047edd66809",
+                "reference": "0434caa800bcef5fcaca7d13a68de047edd66809",
                 "shasum": ""
             },
             "require": {
@@ -8006,7 +8007,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2017-01-25 17:59:51"
+            "time": "2017-02-01 13:46:18"
         },
         {
             "name": "trinity/messages",
@@ -8195,16 +8196,16 @@
         },
         {
             "name": "trinity/settings",
-            "version": "v1.2.3",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-settings.git",
-                "reference": "fdd9259f1b5120357486366d5e68d1826a7888d0"
+                "reference": "3a1ee1f6796b8fe940ccbbb63d3faffb8fdfe20e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/fdd9259f1b5120357486366d5e68d1826a7888d0",
-                "reference": "fdd9259f1b5120357486366d5e68d1826a7888d0",
+                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/3a1ee1f6796b8fe940ccbbb63d3faffb8fdfe20e",
+                "reference": "3a1ee1f6796b8fe940ccbbb63d3faffb8fdfe20e",
                 "shasum": ""
             },
             "require": {
@@ -8253,7 +8254,7 @@
                 }
             ],
             "description": "Trinity Settings bundle",
-            "time": "2017-01-09 12:28:06"
+            "time": "2017-02-01 09:51:28"
         },
         {
             "name": "trinity/utils",
@@ -8261,12 +8262,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-utils.git",
-                "reference": "588907048091a6dfa52171d7f5e9faa327190d67"
+                "reference": "0dbe64431731f96c86cff5c024b8219a28bd9372"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-utils/zipball/588907048091a6dfa52171d7f5e9faa327190d67",
-                "reference": "588907048091a6dfa52171d7f5e9faa327190d67",
+                "url": "https://api.github.com/repos/modpreneur/trinity-utils/zipball/0dbe64431731f96c86cff5c024b8219a28bd9372",
+                "reference": "0dbe64431731f96c86cff5c024b8219a28bd9372",
                 "shasum": ""
             },
             "require": {
@@ -8280,7 +8281,7 @@
                 "symfony/http-kernel": "~2.8|~3.0",
                 "symfony/intl": "~3",
                 "trinity/core-interfaces": "dev-master",
-                "trinity/settings": "~1.1",
+                "trinity/settings": "~1.2",
                 "twig/twig": "~1"
             },
             "type": "symfony-bundle",
@@ -8308,7 +8309,7 @@
                 }
             ],
             "description": "Trinity Utils bundle",
-            "time": "2016-09-19 12:48:19"
+            "time": "2017-02-01 11:39:49"
         },
         {
             "name": "twig/extensions",
