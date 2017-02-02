@@ -23,10 +23,9 @@ class BlogArticleRepository extends \Venice\AppBundle\Entity\Repositories\BlogAr
             SELECT article
             FROM AppBundle:BlogArticle AS article
             WHERE :category MEMBER OF article.categories
-            AND article.dateToPublish <= :now
-            AND article.published = :published
-            ORDER BY article.dateToPublish DESC
-         ')
+            AND article.dateToPublish <= :now ' .
+            ($publishedOnly ? 'AND article.published = :published' : '')
+            . ' ORDER BY article.dateToPublish DESC')
             ->setParameters([
                 'category'=>$category,
                 'published'=>$publishedOnly,

@@ -38,7 +38,7 @@
                 {% if blogPost.commentsOn %}
                 <div class="row margin-top-20">
                     <div id="facebook-comment">
-                        {#{{ FacebookSubscribeServiceRender("commentsBlock",{"permanentLink":url("blog_permanent_post_detail",{"id":blogPost.id})}) }}#}
+                        {{ FacebookSubscribeServiceRender("commentsBlock",{"permanentLink":url("blog_permanent_post_detail",{"id":blogPost.id})}) }}
                     </div>
                 </div>
                 {% endif %}
