@@ -83,7 +83,7 @@ class FacebookSubscribeService extends AbstractSubscibeService
     public function renderCommentsBlock($parameters)
     {
         return $this->render(
-            'VeniceFrontBundle:FacebookSubscribeService/comments.html.twig',
+            'VeniceFrontBundle:FacebookSubscribeService:comments.html.twig',
             ['permanentLink' => $parameters['permanentLink']]
         );
     }

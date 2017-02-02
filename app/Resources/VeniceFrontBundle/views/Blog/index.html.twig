@@ -43,7 +43,13 @@
 
                     <div id="posts-load-more-block" class="text-center">
                         {% if displayLoadMore %}
-                            <a class="trinity-load-more button button-load-more margin-top-40" href="{{ path("blog_index_with_offset",{"offset":offset}) }}" data-after-click="Loading..." data-remove-element="#posts-load-more-block">Load More</a>
+                            <a class="trinity-load-more button button-load-more margin-top-40"
+                               href="{{ path("blog_index",{"offset":offset}) }}"
+                               data-after-click="Loading..."
+                               data-remove-element="#posts-load-more-block"
+                            >
+                                Load More
+                            </a>
                         {% endif %}
                     </div>
                 {% endblock %}

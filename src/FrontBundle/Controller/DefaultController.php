@@ -48,7 +48,14 @@ class DefaultController extends FrontController
 
        // $socialService = $this->get('general_backend_core.services.social_feed');
 
+
         $entityManager = $this->getDoctrine()->getManager();
+
+        $category = $entityManager->getRepository('AppBundle:Category')
+            ->findOneBy(['name' => 'blog']);
+
+        $blogArticles = $entityManager->getRepository('AppBundle:BlogArticle')
+            ->findArticlesByCategory($category, true, 0, 2);
 
         return $this->render(
             'VeniceFrontBundle:Front:index.html.twig',
@@ -56,7 +63,7 @@ class DefaultController extends FrontController
                 'socialPosts' => $socialStream,
                 'messages' => [],
                 'forumPosts' => '',
-                'blogArticles' => [$entityManager->getRepository(BlogArticle::class)->findBy([], ['id'=>'DESC'], 2)],
+                'blogArticles' => $blogArticles,
                 'productPosts' => [],
                 'communityInboxUrl' => $this->container->getParameter('forum_read_conversation_url'),
                 'communityForumUrl' => $this->container->getParameter('forum_url'),

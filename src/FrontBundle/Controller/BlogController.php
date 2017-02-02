@@ -19,7 +19,7 @@ class BlogController extends Controller
     use Ajax;
 
     /**
-     * @Route("", name="blog_index")
+     * @Route("/", name="blog_index")
      * @Route("/offset/{offset}", name="blog_index_with_offset")
      * @param Request $request
      * @param int $offset

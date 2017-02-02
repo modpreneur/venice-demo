@@ -42,7 +42,7 @@ abstract class AbstractSubscibeService extends \Twig_Extension
         } else {
             $this->initCodeIsRendered = true;
 
-            return $this->render('VeniceFrontBundle:Core:' .$this->getName(). '/init.html.twig');
+            return $this->render('VeniceFrontBundle:' .$this->getName(). ':init.html.twig');
         }
     }
 
