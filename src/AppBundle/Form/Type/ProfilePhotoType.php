@@ -8,8 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ProfilePhotoType
@@ -24,25 +22,27 @@ class ProfilePhotoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image_file',FileType::class, array(
-                'required'=>false,
-                'constraints' => array(
+            ->add('image_file', FileType::class, [
+                'required' => false,
+                'constraints' => [
 //                    new Assert\NotBlank()
-                )))
-            ->add('cropStartX',HiddenType::class, array(
-                'constraints' => array(
+                ]
+            ])
+            ->add('cropStartX', HiddenType::class, [
+                'constraints' => [
 //                    new Assert\NotBlank()
-                )))
-            ->add('cropStartY',HiddenType::class,  array(
-                'constraints' => array(
+                ]
+            ])
+            ->add('cropStartY', HiddenType::class, [
+                'constraints' => [
 //                    new Assert\NotBlank()
-                )))
-
-            ->add('cropSize',HiddenType::class,  array(
-                'constraints' => array(
+                ]
+            ])
+            ->add('cropSize', HiddenType::class, [
+                'constraints' => [
 //                    new Assert\NotBlank()
-                )))
-        ;
+                ]
+            ]);
     }
 
 
@@ -54,7 +54,7 @@ class ProfilePhotoType extends AbstractType
     public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'         => ProfilePhoto::class,
+            'data_class' => ProfilePhoto::class,
             'allow_extra_fields' => true // For API - changeProfilePhotoAction
         ]);
     }

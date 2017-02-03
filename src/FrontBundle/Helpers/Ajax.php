@@ -25,7 +25,7 @@ trait Ajax
      *
      * @return mixed
      */
-    public function renderAjax($view, array $viewParameters = array(), $block)
+    public function renderAjax($view, array $viewParameters = [], $block)
     {
         $templateContent = $this->get('twig')->loadTemplate($view);
 
@@ -58,8 +58,8 @@ trait Ajax
      */
     public function renderJsonTrinity(
         $view,
-        array $viewParameters = array(),
-        array $block = array(),
+        array $viewParameters = [],
+        array $block = [],
         $hashValue = null,
         $statusCode = 200
     ) {
@@ -67,7 +67,7 @@ trait Ajax
         /** @var \Twig_Template $templateContent */
         $templateContent = $this->get('twig')->loadTemplate($view);
 
-        $jsonParameters = array();
+        $jsonParameters = [];
         $jsonParameters['method'] = 'view';
         $jsonParameters['flashMessages'] = $this->generateFlashMessages();
 
@@ -105,14 +105,14 @@ trait Ajax
      */
     public function renderTrinity(
         $view,
-        array $viewParameters = array(),
-        array $block = array(),
+        array $viewParameters = [],
+        array $block = [],
         $hashValue = null,
         $statusCode = 200
     ) {
         /** @var Controller|Ajax $this */
         /** @var Request $request */
-        $request = $this->get('request');
+        $request = $this->get('request_stack')->getCurrentRequest();
 
         if ($request->isXmlHttpRequest()) {
             return $this->renderJsonTrinity($view, $viewParameters, $block, $hashValue, $statusCode);
@@ -131,7 +131,7 @@ trait Ajax
     {
         /** @var Controller|Ajax $this */
         /** @var Request $request */
-        $request = $this->get('request');
+        $request = $this->get('request_stack')->getCurrentRequest();
 
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse(['method' => 'redirect', 'url' => $url]);
@@ -147,19 +147,23 @@ trait Ajax
      *
      * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function redirectToRouteTrinity($route, array $parameters = array(), $status = 302)
+    public function redirectToRouteTrinity($route, array $parameters = [], $status = 302)
     {
         /** @var Controller|Ajax $this */
         return $this->redirectTrinity($this->generateUrl($route, $parameters), $status);
     }
 
+
     /**
      * @return string
+     * @throws \Twig_Error_Syntax
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Loader
      */
     private function generateFlashMessages()
     {
         /** @var Controller|Ajax $this */
-        $messages = "";
+        $messages = '';
         $templateContent = $this->get('twig')->loadTemplate('VeniceFrontBundle:Default:flashMessage.html.twig');
 
         /** @var Session $session */

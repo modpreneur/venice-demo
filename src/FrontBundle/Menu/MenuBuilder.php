@@ -43,6 +43,9 @@ class MenuBuilder implements ContainerAwareInterface
      * @param RequestStack $requestStack
      *
      * @return \Knp\Menu\ItemInterface
+     * @throws \Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException
+     * @throws \InvalidArgumentException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
     public function build(RequestStack $requestStack)
@@ -71,16 +74,8 @@ class MenuBuilder implements ContainerAwareInterface
 
         // ... blech
         foreach ($menu->getChildren() as $item) {
-            $item->setCurrent(
-                $item->getUri() === $requestStack->getCurrentRequest()->getRequestUri()
-            );
-
             if (!$item->isCurrent() && $item->hasChildren()) {
-                foreach ($item->getChildren() as $child) {
-                    $item->setCurrent(
-                        $child->getUri() === $requestStack->getCurrentRequest()->getRequestUri()
-                    );
-                }
+                $item->setCurrent(true);
             }
         }
 

@@ -7,6 +7,8 @@
 {% block content %}
     <div class="row newsletters">
         <div class="span-large-24 margin-top-30">
+
+            {% form_theme secondNewsOptimizationForm 'VeniceFrontBundle:Default:bowtieForms.html.twig' %}
             {{ form_start(secondNewsOptimizationForm) }}
             {% for formChildren in secondNewsOptimizationForm %}
                 {% if formChildren.vars.name not in ["_token", "submit"] %}

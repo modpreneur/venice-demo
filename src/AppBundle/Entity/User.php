@@ -26,6 +26,15 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
 
 
     /**
+     * @var ProfilePhoto
+     *
+     * @ORM\OneToOne(targetEntity="ProfilePhoto", inversedBy="user", cascade={"persist","merge","remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(name="profile_photo_id", referencedColumnName="id", nullable=true)
+     */
+    protected $profilePhoto;
+
+    /**
+     * @var string
      * @ORM\Column(type="string")
      */
     protected $UserChild;
@@ -36,16 +45,30 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     protected $maropostSynced;
 
-    private $profilePhoto = null;
-
-    /** @var  \DateTime */
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="date_of_birth_v", type="date", nullable=true, options={"default" = null})
+     */
     public $dateOfBirth;
 
-    public $location = 'x';
 
-    public $youtubeLink = 'http://youtube.com/user';
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $location;
 
-    public $snapchatNickname = 'getSnapchatNickname';
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    public $youtubeLink;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    public $snapchatNickname;
 
     /**
      * @var \DateTime
@@ -58,7 +81,6 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     public function __construct()
     {
-        $this->dateOfBirth        = new \DateTime(); //todo;
         $this->lastPasswordChange = new \DateTime();
     }
 
@@ -93,21 +115,31 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
 
 
     /**
-     * @return null
+     * Set profilePhoto
+     *
+     * @param ProfilePhoto $profilePhoto
+     * @return User
      */
-    public function getProfilePhoto()
+    public function setProfilePhoto(ProfilePhoto $profilePhoto = null)
     {
-        return $this->profilePhoto;
+        $this->profilePhoto = $profilePhoto;
+
+        if ($profilePhoto) {
+            $this->profilePhoto->setUser($this);
+        }
+
+        return $this;
     }
 
 
     /**
-     * @param bool $profilePhoto
+     * Get profilePhoto
+     *
+     * @return ProfilePhoto
      */
-    public function setProfilePhoto($profilePhoto)
+    public function getProfilePhoto()
     {
-        return true;
-        //$this->profilePhoto = $profilePhoto;
+        return $this->profilePhoto;
     }
 
 
@@ -118,7 +150,6 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     public function daysRemainingToUnlock(Product $product)
     {
-        return 0;
         return $product->daysRemainingToUnlock($this);
     }
 
@@ -141,9 +172,12 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     }
 
 
+    /**
+     * @return string
+     */
     public function getLocation()
     {
-        return '';
+        return $this->location;
     }
 
 
@@ -152,7 +186,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     public function getLastPasswordChange(): \DateTime
     {
-        return new \DateTime();
+        return new \DateTime(); // @todo
         return $this->lastPasswordChange;
     }
 
@@ -190,5 +224,21 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     public function setMaropostSynced(bool $maropostSynced)
     {
         $this->maropostSynced = $maropostSynced;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getAge()
+    {
+        $date = $this->getDateOfBirth();
+
+        if (!$date) {
+            return null;
+        }
+
+        $now  = new \DateTime();
+        return $now->diff($date)->y;
     }
 }

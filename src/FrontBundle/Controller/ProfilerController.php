@@ -2,13 +2,14 @@
 
 namespace FrontBundle\Controller;
 
-
 use AppBundle\Entity\Newsletter\Answer;
 use AppBundle\Entity\Newsletter\UserAnswer;
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\GlobalUserType;
+use AppBundle\Form\Type\PrivacySettingsType;
 use AppBundle\Helpers\FlashMessages;
 use AppBundle\Newsletter\NewsletterOptimalization;
+use AppBundle\Privacy\PrivacySettings;
 use AppBundle\Services\AbstractConnector;
 use AppBundle\Services\MaropostConnector;
 use Doctrine\ORM\EntityManager;
@@ -18,7 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Trinity\Bundle\SettingsBundle\Manager\SettingsManager;
+
 
 /**
  * Class ProfilerController
@@ -28,9 +29,7 @@ use Trinity\Bundle\SettingsBundle\Manager\SettingsManager;
  */
 class ProfilerController extends Controller
 {
-
     use Ajax;
-
 
     /**
      * @Route("/", name="core_front_user_profile_edit")
@@ -67,7 +66,7 @@ class ProfilerController extends Controller
             'dateOfBirth',
             'preferredUnits',
             'location',
-            'socialNetworks'
+            'socialNetworks',
         ];
 
         $items = [];
@@ -87,6 +86,7 @@ class ProfilerController extends Controller
 
         /* @todo
         if (!$user->isMaropostSynced()) {
+         *
          * $newsletterOptimizationService->maropostSync($user, $maropostConnector->getUserInfo($user));
          * $user->setMaropostSynced(true);
          * $entityManager->persist($user);
@@ -94,19 +94,18 @@ class ProfilerController extends Controller
          * }*/
 
         $session = $this->get('session');
-        $plainTextPass = $session->get('plainPassword');
+        //$plainTextPass = $session->get('plainPassword');
 
         foreach ($fields as $field) {
-            $formType = new GlobalUserType($user, $field);
-
             $form = $this
                 ->createForm(GlobalUserType::class, $user, ['attr' => ['class' => 'trinity-ajax'], 'field' => $field])
+
                 ->add(
                     'submit',
                     SubmitType::class,
                     [
                         'label' => 'Save',
-                        'attr' => [
+                        'attr'  => [
                             'data-class-after-click' => 'progress-saving',
                             'data-disable-after-click' => true,
                             'displayClose' => true,
@@ -114,7 +113,11 @@ class ProfilerController extends Controller
                     ]
                 );
 
-            $form->handleRequest($request);
+            if ($request->request->has('global_user')) {
+                if (array_key_exists($field, $request->request->get('global_user'))) {
+                    $form->handleRequest($request);
+                }
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
 
@@ -203,7 +206,7 @@ class ProfilerController extends Controller
                     default:
                         $userManager->updateUser($entity);
 
-                        if ($field === 'profilePhotoWithDeleteButton' &&
+                        if ($field === 'profilePhoto' &&
                             $entity->getProfilePhoto() &&
                             is_null($entity->getProfilePhoto()->getOriginalPhotoUrl())
                         ) {
@@ -219,7 +222,7 @@ class ProfilerController extends Controller
                             $entityManager->flush();
                         }
 
-                        $this->addFlash(FlashMessages::INFO, 'User profile successfully updated');
+                        $this->addFlash(FlashMessages::INFO, 'User profile successfully updated.');
 
                         break;
                 }
@@ -234,7 +237,7 @@ class ProfilerController extends Controller
 
                 return $this->renderJsonTrinity(
                     'VeniceFrontBundle:Core:edit.html.twig',
-                    ['form' => $form->createView(), 'user' => $user],
+                    ['form' => $form->createView(), 'user' => $user, 'pageElements' => $items],
                     [$field . 'Block', 'profileHeaderUserBlock', 'profileJumbotronUserBlock', 'publicLinkBlock'],
                     $form->isValid() ? 'close' : null
                 );
@@ -243,6 +246,7 @@ class ProfilerController extends Controller
             $items[$field] = $form->createView();
         }
 
+
         $fistNewsOptimizationForm = new NewsletterOptimalization($this->container);
         $firstFormCustomizeNewsletter = $fistNewsOptimizationForm->createForm(1, $this->getUser()); // group  1 in db
 
@@ -250,7 +254,7 @@ class ProfilerController extends Controller
             'VeniceFrontBundle:Core:edit.html.twig',
             [
                 'pageElements' => $items,
-                'user' => $this->getUser(),
+                'user'         => $this->getUser(),
                 'fistNewsOptimizationForm' => $firstFormCustomizeNewsletter->createView()
             ]
         );
@@ -258,7 +262,7 @@ class ProfilerController extends Controller
 
 
     /**
-     * @Route("/profile/edit")
+     * @Route("/edit")
      */
     public function profileEditAction()
     {
@@ -267,7 +271,7 @@ class ProfilerController extends Controller
 
 
     /**
-     * @Route("/profile/privacy", name="core_front_user_profile_privacy")
+     * @Route("/privacy", name="core_front_user_profile_privacy")
      * @param Request $request
      *
      * @return Response
@@ -284,15 +288,13 @@ class ProfilerController extends Controller
      */
     public function privacyAction(Request $request)
     {
-
-        /** @var SettingsManager $settings */
-        $settings = $this->get('trinity.settings');
-
         /** @var User $user */
         $user = $this->getUser();
 
+        $privacySettings = $this
+            ->get('flofit.privacy_settings')
+            ->getPrivacySettings($user);
 
-        $privacySettings = $settings->get('userSettings', $user->getId(), 'user-settings');
         $disableAll = false;
 
         $fields = [
@@ -307,13 +309,13 @@ class ProfilerController extends Controller
         $privacyForms = [];
         foreach ($fields as $field) {
             $formRow = [];
-            $formType = new PrivacySettingsType($this->getUser(), $field);
 
             $form = $this
                 ->createForm(
-                    $formType,
+                    PrivacySettingsType::class,
                     $privacySettings,
                     [
+                        'user' => $user,
                         'attr' => [
                             'class' => 'trinity-ajax',
                             'data-on-submit-callback' => 'privacyFormSubmit',
@@ -321,7 +323,7 @@ class ProfilerController extends Controller
                         ]
                     ]
                 )
-                ->add('submit', 'submit', ['label' => 'Save', 'attr' => ['data-after-click' => 'Saving']]);
+                ->add('submit', SubmitType::class, ['label' => 'Save', 'attr' => ['data-after-click' => 'Saving']]);
 
             $form->handleRequest($request);
 
@@ -334,18 +336,16 @@ class ProfilerController extends Controller
                     $entity->disableAll();
                 }
 
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($entity);
-                $entityManager->flush($entity);
+                $this->get('flofit.privacy_settings')
+                    ->save($entity, $user);
 
                 $this->addFlash(FlashMessages::INFO, 'User profile successfully updated');
             }
 
-            $formRow['label'] = $formType->getLabel($form, $field);
+            $formRow['label'] = PrivacySettingsType::getLabel($form, $field);
             $formRow['value'] = $form->get($field)->getData();
 
             $formField = $form->get($field);
-
 
             $value = $form->get($field)->getViewData();
             if (array_key_exists('choices', $formField->getConfig()->getOptions()) &&
@@ -365,7 +365,7 @@ class ProfilerController extends Controller
             if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
                 if (!$disableAll) {
                     return $this->renderJsonTrinity(
-                        'SecurityBundle:Collector:security.html.twig',
+                        'VeniceFrontBundle:Core:privacy.html.twig',
                         ['pageElement' => $formRow, 'disabled' => false, 'user' => $user],
                         ['privacyFormBlock' . $field => 'privacyFormBlock'],
                         'close'
@@ -376,7 +376,7 @@ class ProfilerController extends Controller
         }
 
         return $this->renderTrinity(
-            'SecurityBundle:Collector:security.html.twig',
+            'VeniceFrontBundle:Core:privacy.html.twig',
             ['pageElements' => $privacyForms, 'disabled' => $disableAll, 'user' => $user],
             ['privacyBlock'],
             'close'
@@ -385,7 +385,7 @@ class ProfilerController extends Controller
 
 
     /**
-     * @Route("/profile/newsletters", name="core_front_user_profile_newsletters")
+     * @Route("/newsletters", name="core_front_user_profile_newsletters")
      * @return Response
      * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
      * @throws \Symfony\Component\Routing\Exception\MissingMandatoryParametersException
@@ -424,5 +424,4 @@ class ProfilerController extends Controller
             ['secondNewsOptimizationForm' => $secondFormCustomizeNewsletter->createView()]
         );
     }
-
 }

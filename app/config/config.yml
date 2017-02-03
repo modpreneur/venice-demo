@@ -34,7 +34,14 @@ doctrine:
 
 trinity_settings:
    settings:
-      userSettings: ~
+      user_settings.publicProfile: true
+      user_settings.displayEmail: true
+      user_settings.birthDateStyle: 1
+      user_settings.displayFullName: true
+      user_settings.displayLocation: true
+      user_settings.displayForumActivity: true
+      user_settings.displaySocialMedia: true
+
 
 trinity_messages:
     sender_identification: "client_3"

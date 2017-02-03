@@ -1,12 +1,15 @@
 {% extends "form_div_layout.html.twig" %}
 
+
 {%- block form_start -%}
     {{- parent() -}}
 {%- endblock form_start -%}
 
+
 {%- block form -%}
     {{- parent() -}}
 {%- endblock form -%}
+
 
 {%- block collection_row -%}
     <div class="collection row">
@@ -45,6 +48,7 @@
     </div>
 {%- endblock choice_widget_collapsed -%}
 
+
 {% block button_row %}
     {#first and last btn in row must have  attr class first-btn and last-btn see readme.md for example#}
 
@@ -60,6 +64,7 @@
     {% endif %}
 
 {% endblock button_row %}
+
 
 {%- block button_widget -%}
     {%- if label is empty -%}
@@ -83,9 +88,7 @@
 
 
 {%- block form_row -%}
-
     {% set choice = false %}
-
 
     {% for prefix in form.vars.block_prefixes %}
         {% if prefix == 'choice' %}
@@ -93,10 +96,7 @@
         {% endif %}
     {% endfor %}
 
-
-
     <div class="row double-row" id="row_{{ id }}">
-
 
         <div class="span-large-10 form-left sub-label" style="padding-left: 0;">
             {{- form_label(form) -}}
@@ -105,7 +105,6 @@
         <div class="span-none-padding-large-14 form-right checkbox-inline">
             {{- form_widget(form) -}}
         </div>
-
 
         {{- form_errors(form) -}}
     </div>

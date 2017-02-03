@@ -13,11 +13,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class ConfigureMenuListener
 {
-    const SUPER_ADMIN           = 'ROLE_SUPER_ADMIN';
-    const MODIFICATION_LOG_ROLE = 'ROLE_ADMIN_MODIFICATION_LOG';
-    const MODIFICATION_USERS    = 'ROLE_ADMIN_USERS_EDIT';
-    const SOCIAL_EDIT           = 'ROLE_ADMIN_SOCIAL_EDIT';
-    const PAGES_EDIT            = 'ROLE_ADMIN_PAGES_EDIT';
+    const SUPER_ADMIN            = 'ROLE_SUPER_ADMIN';
+    const MODIFICATION_LOG_ROLE  = 'ROLE_ADMIN_MODIFICATION_LOG';
+    const MODIFICATION_USERS     = 'ROLE_ADMIN_USERS_EDIT';
+    const SOCIAL_EDIT            = 'ROLE_ADMIN_SOCIAL_EDIT';
+    const PAGES_EDIT             = 'ROLE_ADMIN_PAGES_EDIT';
 
 
     /**

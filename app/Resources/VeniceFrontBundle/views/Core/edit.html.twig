@@ -64,11 +64,11 @@
                                         {{ form_widget(form.profilePictureRemoveButton) }}
                                     {% endif %}
                                     <div class="text-center">
-                                    {% if user.profilePhoto is null %}
-                                        <img id="image-before-upload" height="200" width="200" style="display: none" src=""/>
-                                    {% else %}
-                                        <img id="image-before-upload" height="200" width="200" src="{{ user.profilePhoto.originalPhotoUrl }}"/>
-                                    {% endif %}
+                                        {% if user.profilePhoto is null %}
+                                            <img id="image-before-upload" height="200" width="200" style="display: none" src=""/>
+                                        {% else %}
+                                            <img id="image-before-upload" height="200" width="200" src="{{ user.profilePhoto.originalPhotoUrl }}"/>
+                                        {% endif %}
                                     </div>
                                 {{ form_row(form.submit) }}
                                 {{ form_end(form) }}
@@ -128,7 +128,7 @@
                     </div>
 
                     <div id="socialBlock" data-on-display="EditProfile.refreshProfile">
-                    {% block socialBlock %}
+                    {% block socialNetworksBlock %}
 
                         {# @todo
                         {% set haveFacebookSubscription = FacebookSubscribeService.haveSubscription(user) %}

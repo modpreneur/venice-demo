@@ -5,9 +5,10 @@ namespace AppBundle\Form\Type;
 use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 
 /**
  * Class SingleItemType
@@ -18,9 +19,9 @@ abstract class SingleItemType extends AbstractType
     /** @var  \ReflectionClass */
     protected static $reflectionClass;
 
-    protected static $availableFields = null;
+    protected static $availableFields = [];
 
-    protected $ignoredFields;
+    protected $ignoredFields = [];
 
     protected $field;
 
@@ -34,7 +35,6 @@ abstract class SingleItemType extends AbstractType
      */
     public function __construct()
     {
-
     }
 
 
@@ -48,45 +48,62 @@ abstract class SingleItemType extends AbstractType
         $this->entity  = $options['data'];
         $this->options = $options;
 
-        $this->ignoredFields = [];
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($builder, $options) {
+            $user = $event->getData();
 
-        if (is_null(SingleItemType::$availableFields)) {
-            SingleItemType::$availableFields = [];
-
-            SingleItemType::$reflectionClass = new \ReflectionClass($this->entity);
+            SingleItemType::$reflectionClass = new \ReflectionClass($user);
 
             foreach (SingleItemType::$reflectionClass->getProperties() as $property) {
                 SingleItemType::$availableFields[] = $property->getName();
             }
-        }
+        }, 10);
+    }
 
 
+    /**
+     * @param FormInterface $form
+     *
+     * @throws \Exception
+     */
+    public function initFields(FormInterface $form)
+    {
+        $config = $form->getConfig()->getOptions();
+
+        //dump(SingleItemType::$availableFields);
         $thisClass = new \ReflectionClass($this);
         if (is_null($this->field)) {
             foreach (SingleItemType::$availableFields as $field) {
                 if (!in_array($field, $this->ignoredFields)) {
-                    $this->setField($field, $thisClass, $builder, $options);
+                    $this->setField($field, $thisClass, $form, $config);
                 }
             }
         } elseif (is_array($this->field)) {
             foreach ($this->field as $field) {
                 if (!in_array($field, $this->ignoredFields)) {
-                    $this->setField($field, $thisClass, $builder, $options);
+                    $this->setField($field, $thisClass, $form, $config);
                 }
             }
         } else {
-            $this->setField($this->field, $thisClass, $builder, $options);
+            $this->setField($this->field, $thisClass, $form, $config);
         }
     }
 
 
-    protected function setField($field, \ReflectionClass $thisClass, FormBuilderInterface $builder, array $options)
+    /**
+     * @param $field
+     * @param \ReflectionClass $thisClass
+     * @param FormInterface $builder
+     * @param array $options
+     *
+     * @throws \Exception
+     */
+    protected function setField($field, \ReflectionClass $thisClass, $builder, array $options)
     {
         if (!is_null($field) && !in_array($field, SingleItemType::$availableFields)) {
-            //throw new \Exception("Can't change this field [$field]");
+            throw new \Exception("Can't change this field [$field]");
         }
 
-        $specialFieldSetter = "set" . ucfirst($field);
+        $specialFieldSetter = 'set' . ucfirst($field);
 
         try {
             $setterMethod = $thisClass->getMethod($specialFieldSetter);
@@ -98,12 +115,17 @@ abstract class SingleItemType extends AbstractType
     }
 
 
+    /**
+     * @param OptionsResolver $resolver
+     *
+     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => User::class,
             'field'      => null
-        ));
+        ]);
     }
 
 
@@ -116,14 +138,27 @@ abstract class SingleItemType extends AbstractType
     }
 
 
-    public function getLabel(FormInterface $form, $field)
+    /**
+     * @param FormInterface $form
+     * @param $field
+     *
+     * @return mixed|string
+     */
+    public static function getLabel(FormInterface $form, $field)
     {
-        $item = $form->get($field);
-        $label = $item->getConfig()->getOption("label");
+        $item  = $form->get($field);
+        $label = $item->getConfig()->getOption('label');
 
         if (is_null($label)) {
-            $label = ucfirst(strtolower(preg_replace('/(?|([a-z\d])([A-Z])|([^\^])([A-Z][a-z]))/', '$1 $2',
-                $item->getName())));
+            $label = ucfirst(
+                strtolower(
+                    preg_replace(
+                        '/(?|([a-z\d])([A-Z])|([^\^])([A-Z][a-z]))/',
+                        '$1 $2',
+                        $item->getName()
+                    )
+                )
+            );
         }
 
         return $label;
@@ -137,7 +172,7 @@ abstract class SingleItemType extends AbstractType
     {
         $formName = SingleItemType::$reflectionClass->getShortName();
 
-        $formName = strtolower(str_replace("\\", "_", $formName));
+        $formName = strtolower(str_replace("\\", '_', $formName));
 
         if (!is_null($this->field) && !is_array($this->field)) {
             $formName .= strtolower($this->field);

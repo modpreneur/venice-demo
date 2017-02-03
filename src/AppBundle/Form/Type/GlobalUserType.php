@@ -6,10 +6,15 @@ use AppBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 
@@ -19,133 +24,264 @@ use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
  */
 class GlobalUserType extends SingleItemType
 {
-    const REMOVE_BUTTON_NAME = "profilePictureRemoveButton";
+    const REMOVE_BUTTON_NAME = 'profilePictureRemoveButton';
 
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     *
+     * @throws \Exception
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
 
-        if (!in_array("fullName", GlobalUserType::$availableFields)) {
-            GlobalUserType::$availableFields[] = "fullName";
-            GlobalUserType::$availableFields[] = "fullPassword";
-            GlobalUserType::$availableFields[] = "newPassword";
-            GlobalUserType::$availableFields[] = "location";
-            GlobalUserType::$availableFields[] = "socialNetworks";
-            GlobalUserType::$availableFields[] = "profilePhotoWithDeleteButton";
-        }
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($builder) {
+            if (!in_array('fullName', GlobalUserType::$availableFields)) {
+                GlobalUserType::$availableFields[] = 'fullName';
+                GlobalUserType::$availableFields[] = 'fullPassword';
+                GlobalUserType::$availableFields[] = 'newPassword';
+                GlobalUserType::$availableFields[] = 'location';
+                GlobalUserType::$availableFields[] = 'socialNetworks';
+                GlobalUserType::$availableFields[] = 'profilePhotoWithDeleteButton';
+            }
+
+            $this->initFields($event->getForm());
+        }, 1);
     }
 
 
-    public function setFullName(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setFullName(FormInterface $form, array $options)
     {
-        $builder->add("firstName");
-        $builder->add("lastName");
+        $form->add('fullName', HiddenType::class, [
+            'data'   => '',
+            'mapped' => false
+        ]);
+        $form->add('firstName', TextType::class);
+        $form->add('lastName', TextType::class);
     }
 
 
-    public function setDateOfBirth(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setDateOfBirth(FormInterface $form, array $options)
     {
-        $builder->add("dateOfBirth", DateType::class, array(
+        $form->add('dateOfBirth', DateType::class, [
             'years' => range(date('Y') - 100, date('Y') - 10)
-        ));
+        ]);
     }
 
 
-    public function setFullPassword(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Validator\Exception\ConstraintDefinitionException
+     * @throws \Symfony\Component\Validator\Exception\InvalidOptionsException
+     * @throws \Symfony\Component\Validator\Exception\MissingOptionsException
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setFullPassword(FormInterface $form, array $options)
     {
-        $builder->add('current_password', PasswordType::class, array(
+        $form->add('current_password', PasswordType::class, [
             'label' => 'form.current_password',
             'translation_domain' => 'FOSUserBundle',
-            'mapped' => false,
+            'mapped'      => false,
             'constraints' => new UserPassword(),
-        ));
-        $builder->add('plainPassword', RepeatedType::class, array(
-            'type'            => PasswordType::class,
-            'options'         => array('translation_domain' => 'FOSUserBundle'),
-            'first_options'   => array('label' => 'form.new_password'),
-            'second_options'  => array('label' => 'form.new_password_confirmation'),
-            'invalid_message' => 'fos_user.password.mismatch',
-        ));
-    }
+        ]);
 
-
-    public function setNewPassword(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('plainPassword', RepeatedType::class, array(
+        $form->add('plainPassword', RepeatedType::class, [
             'type' => PasswordType::class,
-            'options' => array('translation_domain' => 'FOSUserBundle'),
-            'first_options' => array('label' => 'Password'),
-            'second_options' => array('label' => 'Confirm New Password'),
+            'options' => ['translation_domain' => 'FOSUserBundle'],
+            'first_options' => ['label' => 'form.new_password'],
+            'second_options' => ['label' => 'form.new_password_confirmation'],
             'invalid_message' => 'fos_user.password.mismatch',
-        ));
+        ]);
     }
 
 
-    public function setLocation(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setNewPassword(FormInterface $form, array $options)
     {
-        $builder->add("location");
+        $form->add('plainPassword', RepeatedType::class, [
+            'type' => PasswordType::class,
+            'options' => ['translation_domain' => 'FOSUserBundle'],
+            'first_options' => ['label' => 'Password'],
+            'second_options' => ['label' => 'Confirm New Password'],
+            'invalid_message' => 'fos_user.password.mismatch',
+        ]);
     }
 
 
-    public function setPreferredUnits(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setLocation(FormInterface $form, array $options)
     {
-        $builder->add("preferredUnits", ChoiceType::class,
-            array(
-                "choices" => array(
-                    User::PREFERRED_IMPERIAL => "Imperial",
-                    User::PREFERRED_METRIC   => "Metric"
-                )
-            )
+        $form->add('location', TextType::class);
+    }
+
+
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setPreferredUnits(FormInterface $form, array $options)
+    {
+        $form->add(
+            'preferredUnits',
+            ChoiceType::class,
+            [
+                'choices' => [
+                    User::PREFERRED_IMPERIAL => 'Imperial',
+                    User::PREFERRED_METRIC   => 'Metric'
+                ]
+            ]
         );
     }
 
 
-    public function setProfilePhoto(FormBuilderInterface $builder, array $options)
+    /**á
+     *
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setProfilePhoto(FormInterface $form, array $options)
     {
-        $builder->add("profilePhoto", ProfilePhotoType::class);
+        $form->add('profilePhotoWithDeleteButton', HiddenType::class, [
+            'mapped'   => false,
+            'required' => true,
+            'data'     => true,
+        ]);
+
+        $form->add('profilePhoto', ProfilePhotoType::class);
     }
 
 
-    public function setProfilePhotoWithDeleteButton(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setProfilePhotoWithDeleteButton(FormInterface $form, array $options)
     {
-        $builder->add("profilePhoto", ProfilePhotoType::class, array("required" => false));
+        $form->add('profilePhoto', ProfilePhotoType::class, ['required' => false, 'mapped' => 'profilePhoto']);
+
+        $form->add('profilePhotoWithDeleteButton', HiddenType::class, [
+            'mapped'   => false,
+            'required' => true,
+            'data'     => true,
+        ]);
 
         if ($this->entity->getProfilePhoto()) {
-            $builder->add(self::REMOVE_BUTTON_NAME, "submit", array("label" => "Remove photo"));
+            $form->add(self::REMOVE_BUTTON_NAME, SubmitType::class, ['label' => 'Remove photo']);
         }
     }
 
 
-    public function setSocialNetworks(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setSocialNetworks(FormInterface $form, array $options)
     {
-        $builder->add("youtubeLink", TextType::class,
-            array(
-                "required" => false
-            ));
-        $builder->add("snapchatNickname", TextType::class,
-            array(
-                "required" => false
-            ));
-    }
+        $form->add('socialNetworks', HiddenType::class, [
+            'mapped' => false,
+            'data'   => '',
+        ]);
 
-
-    public function setEmail(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add("email", EmailType::class,
-            array(
-                "required" => true
-            )
+        $form->add(
+            'youtubeLink',
+            TextType::class,
+            [
+                'required' => false
+            ]
+        );
+        $form->add(
+            'snapchatNickname',
+            TextType::class,
+            [
+                'required' => false
+            ]
         );
     }
 
 
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setEmail(FormInterface $form, array $options)
+    {
+        $form->add(
+            'email',
+            EmailType::class,
+            [
+                'required' => true
+            ]
+        );
+    }
+
+
+    /**
+     * @param OptionsResolver $resolver
+     *
+     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'intention' => 'change_password'
-        ));
+        ]);
     }
 }

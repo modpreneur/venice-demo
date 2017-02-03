@@ -188,3 +188,9 @@ services:
     flofit.services.social_feed:
          class: AppBundle\Services\SocialFeed
          arguments: ["@service_container"]
+
+
+    flofit.privacy_settings:
+        class: AppBundle\Privacy\PrivacySettingsManager
+        arguments:
+          - "@trinity.settings"
