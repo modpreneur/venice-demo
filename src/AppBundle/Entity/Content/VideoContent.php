@@ -48,6 +48,7 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
     {
         parent::__construct();
 
+        $this->downloadType = '';
         $this->needGear = false;
     }
 

@@ -9,7 +9,7 @@ use Venice\AppBundle\Entity\Product\Product;
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\UserRepository")
  * Class User
  *
- * @N\Source(columns="necktieId, username, email, firstName, lastName, avatar, locked, phoneNumber, website, country, region, city, addressLine1, addressLine2, postalCode")
+ * @N\Source(columns="necktieId, username, email, firstName, lastName, avatar, locked, phoneNumber, website")
  * Users cannot be created on client so there is no need to use POST
  * @N\Methods(types={"put", "delete"})
  */
@@ -81,6 +81,9 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     public function __construct()
     {
+        parent::__construct();
+
+        $this->dateOfBirth        = new \DateTime(); //todo;
         $this->lastPasswordChange = new \DateTime();
     }
 
