@@ -47,33 +47,36 @@
                 {% else %}
                     {% for orderHistoryData in viewData %}
                         {% block orderHistory %}
-                            <div class="news row {% if orderHistoryData.invoice.status != 3 %}current{% endif %}" id="orderHistory{{ orderHistoryData.invoice.invoiceId }}">
+                            <div class="news row {% if orderHistoryData.invoice.status != 3 %}current{% endif %}" id="orderHistory{{ orderHistoryData.invoice.id }}">
                                 <div >
                                     <div class="news-name span-xlarge-7 span-large-7 span-medium-7 span-small-15 span-mini-24 offset-large-2 offset-medium-0 offset-small-0">
                                         <span>
-                                            {% for invoiceItem in orderHistoryData.invoice.invoiceItems %}
-                                                {{ invoiceItem.title }}
+                                            {% for invoiceItem in orderHistoryData.invoice.items %}
+                                                {{ invoiceItem }}
                                             {% endfor %}
                                         </span>
                                     </div>
                                     <div class="span-xlarge-3 span-large-3 span-medium-4 span-small-9 span-mini-24 date">
-                                        <span>{{ orderHistoryData.invoice.startedDate|date("m/d/Y") }}</span>
+                                        <span>{{ orderHistoryData.invoice.transactionTime|date("m/d/Y") }}</span>
                                     </div>
                                     <div class="span-medium-1 span-vector">
                                         <span class="vector"></span>
                                     </div>
                                     <div class="span-xlarge-7 span-large-6 span-medium-7 span-small-15 span-mini-24 price">
-                                        <span>{{ orderHistoryData.invoice.priceString }}</span>
+                                        <span>{{ orderHistoryData.invoice.stringPrice }}</span>
                                     </div>
                                     <div class="span-xlarge-4 span-large-5 span-medium-6 span-small-9 span-mini-24 info-pay">
                                         {% if orderHistoryData.invoice.status == 2 %}
+
+                                            {# @todo @JakubFajkus
                                             <div class="button-group">
                                             {% if orderHistoryData.invoice.haveAnyInvoiceItemWithCategory("PRODUCT TRIAL") %}
                                                 <button onclick="openUpgradeDialog();" class="upgrade">Upgrade</button>
                                                 <span>{{ form(orderHistoryData.form) }}</span>
                                             {% else %}
-                                                <span id="{{ orderHistoryData.invoice.invoiceId }}">{{ form(orderHistoryData.form) }}</span>
+                                                <span id="{{ orderHistoryData.invoice.id }}">{{ form(orderHistoryData.form) }}</span>
                                             {% endif %}
+                                            #}
                                             </div>
                                         {% elseif orderHistoryData.invoice.status == 3 %}
                                             <span class="canceled"><i class="ff-remove"></i>Canceled</span>

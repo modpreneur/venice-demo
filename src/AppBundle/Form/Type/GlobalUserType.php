@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\ProfilePhoto;
 use AppBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -130,8 +131,8 @@ class GlobalUserType extends SingleItemType
         $form->add('plainPassword', RepeatedType::class, [
             'type' => PasswordType::class,
             'options' => ['translation_domain' => 'FOSUserBundle'],
-            'first_options' => ['label' => 'Password'],
-            'second_options' => ['label' => 'Confirm New Password'],
+            'first_options'   => ['label' => 'Password'],
+            'second_options'  => ['label' => 'Confirm New Password'],
             'invalid_message' => 'fos_user.password.mismatch',
         ]);
     }
@@ -191,7 +192,9 @@ class GlobalUserType extends SingleItemType
             'data'     => true,
         ]);
 
-        $form->add('profilePhoto', ProfilePhotoType::class);
+        $form->add('profilePhoto', ProfilePhotoType::class, [
+            'required' => false, 'mapped' => 'profilePhoto'
+        ]);
     }
 
 
@@ -210,7 +213,6 @@ class GlobalUserType extends SingleItemType
         $form->add('profilePhotoWithDeleteButton', HiddenType::class, [
             'mapped'   => false,
             'required' => true,
-            'data'     => true,
         ]);
 
         if ($this->entity->getProfilePhoto()) {

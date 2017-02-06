@@ -9,10 +9,30 @@ services:
         class: Aws\S3\S3Client
         arguments:
             -
-              key: %amazon_s3_key%
-              secret: %amazon_s3_secret%
               region: %amazon_s3_region%
               version: 'latest'
+              credentials:
+                  key: "%amazon_s3_key%"
+                  secret: "%amazon_s3_secret%"
+
+
+    acme.imagine.cache.resolver.amazon_s3:
+        class: Liip\ImagineBundle\Imagine\Cache\Resolver\AwsS3Resolver
+        arguments:
+            - "@flofit_amazon_s3"
+            - "%amazon_s3_bucket%"
+        tags:
+            - { name: 'liip_imagine.cache.resolver', resolver: 'profile_photos' }
+
+
+    venice.imagine.cache.resolver.proxy:
+        class: Liip\ImagineBundle\Imagine\Cache\Resolver\ProxyResolver
+        arguments:
+            - "@acme.imagine.cache.resolver.amazon_s3"
+            - [ 'https://cdn.flofit.com' ]
+        tags:
+            - { name: 'liip_imagine.cache.resolver', resolver: 'proxy' }
+
 
     flofit.menu.renderer:
         class: Knp\Menu\Matcher\Matcher

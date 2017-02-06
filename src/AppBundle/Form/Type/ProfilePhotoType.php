@@ -2,7 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
-use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\CoreBundle\ProfilePhoto;
+use AppBundle\Entity\ProfilePhoto;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -51,7 +51,7 @@ class ProfilePhotoType extends AbstractType
      *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => ProfilePhoto::class,

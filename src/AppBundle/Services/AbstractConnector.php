@@ -3,9 +3,9 @@
 namespace AppBundle\Services;
 
 use AppBundle\Entity\BillingPlan;
+use AppBundle\Entity\Invoice;
+use AppBundle\Entity\User;
 use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\CoreBundle\Newsletter;
-use Venice\AppBundle\Entity\Invoice;
-use Venice\AppBundle\Entity\User;
 
 
 /**

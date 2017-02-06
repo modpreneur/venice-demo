@@ -123,8 +123,13 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      * @param ProfilePhoto $profilePhoto
      * @return User
      */
-    public function setProfilePhoto(ProfilePhoto $profilePhoto = null)
+    public function setProfilePhoto($profilePhoto = null)
     {
+        if (is_array($profilePhoto)) {
+            dump(1);
+            $profilePhoto = new ProfilePhoto($profilePhoto);
+        }
+
         $this->profilePhoto = $profilePhoto;
 
         if ($profilePhoto) {

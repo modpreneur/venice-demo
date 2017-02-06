@@ -732,16 +732,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.10",
+            "version": "v2.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "fc376f7a61498e18520cd6fa083752a4ca08072b"
+                "reference": "1b1effbddbdc0f40d1c8f849f44bcddac4f52a48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fc376f7a61498e18520cd6fa083752a4ca08072b",
-                "reference": "fc376f7a61498e18520cd6fa083752a4ca08072b",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/1b1effbddbdc0f40d1c8f849f44bcddac4f52a48",
+                "reference": "1b1effbddbdc0f40d1c8f849f44bcddac4f52a48",
                 "shasum": ""
             },
             "require": {
@@ -799,7 +799,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-01-23 23:17:10"
+            "time": "2017-02-04 21:20:13"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -1974,12 +1974,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "f230319d0ed822145bf73711082f31d983234c55"
+                "reference": "a314d4aef3c3a34742bb6ae99065f27e6e49e000"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f230319d0ed822145bf73711082f31d983234c55",
-                "reference": "f230319d0ed822145bf73711082f31d983234c55",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/a314d4aef3c3a34742bb6ae99065f27e6e49e000",
+                "reference": "a314d4aef3c3a34742bb6ae99065f27e6e49e000",
                 "shasum": ""
             },
             "require": {
@@ -2043,7 +2043,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-02-01 09:04:51"
+            "time": "2017-02-02 14:13:19"
         },
         {
             "name": "fzaninotto/faker",
@@ -3622,7 +3622,7 @@
                     "homepage": "http://github.com/knplabs/Gaufrette/contributors"
                 },
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 }
             ],
@@ -3862,7 +3862,7 @@
             ],
             "authors": [
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -4266,12 +4266,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "59f43bce3458db051032e06bff6507db6c741c06"
+                "reference": "450b864c1540946078e4f7774a62cf90926a1ec5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/59f43bce3458db051032e06bff6507db6c741c06",
-                "reference": "59f43bce3458db051032e06bff6507db6c741c06",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/450b864c1540946078e4f7774a62cf90926a1ec5",
+                "reference": "450b864c1540946078e4f7774a62cf90926a1ec5",
                 "shasum": ""
             },
             "require": {
@@ -4360,7 +4360,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-01-31 13:10:08"
+            "time": "2017-02-03 14:34:03"
         },
         {
             "name": "monolog/monolog",
@@ -5599,16 +5599,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.9",
+            "version": "5.7.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "69f832b87c731d5cacad7f91948778fe98335fdd"
+                "reference": "a6ad2472daba76b0689042b7709f86d4f06bcaab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/69f832b87c731d5cacad7f91948778fe98335fdd",
-                "reference": "69f832b87c731d5cacad7f91948778fe98335fdd",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a6ad2472daba76b0689042b7709f86d4f06bcaab",
+                "reference": "a6ad2472daba76b0689042b7709f86d4f06bcaab",
                 "shasum": ""
             },
             "require": {
@@ -5625,11 +5625,11 @@
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": "^1.0.6",
                 "phpunit/phpunit-mock-objects": "^3.2",
-                "sebastian/comparator": "~1.2.2",
+                "sebastian/comparator": "^1.2.4",
                 "sebastian/diff": "~1.2",
                 "sebastian/environment": "^1.3.4 || ^2.0",
                 "sebastian/exporter": "~2.0",
-                "sebastian/global-state": "^1.0 || ^2.0",
+                "sebastian/global-state": "^1.1",
                 "sebastian/object-enumerator": "~2.0",
                 "sebastian/resource-operations": "~1.0",
                 "sebastian/version": "~1.0|~2.0",
@@ -5677,7 +5677,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-28 06:14:33"
+            "time": "2017-02-05 15:31:31"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -6585,16 +6585,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.19",
+            "version": "v3.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "d57c2f297d17ee82baf8cae0b16dae34a9378784"
+                "reference": "ed86f6fb1753e76b39ff8b87f527045ca6b97169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/d57c2f297d17ee82baf8cae0b16dae34a9378784",
-                "reference": "d57c2f297d17ee82baf8cae0b16dae34a9378784",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/ed86f6fb1753e76b39ff8b87f527045ca6b97169",
+                "reference": "ed86f6fb1753e76b39ff8b87f527045ca6b97169",
                 "shasum": ""
             },
             "require": {
@@ -6649,7 +6649,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-01-10 19:42:56"
+            "time": "2017-02-02 15:31:23"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -7633,12 +7633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "801cb95579e178b88f6c17f30fbd6692e8c0af82"
+                "reference": "968d16ebbfa90649bcc5cb4b966d3ba26b8068e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/801cb95579e178b88f6c17f30fbd6692e8c0af82",
-                "reference": "801cb95579e178b88f6c17f30fbd6692e8c0af82",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/968d16ebbfa90649bcc5cb4b966d3ba26b8068e1",
+                "reference": "968d16ebbfa90649bcc5cb4b966d3ba26b8068e1",
                 "shasum": ""
             },
             "require": {
@@ -7682,7 +7682,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2017-01-30 15:04:00"
+            "time": "2017-02-03 12:33:58"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -7728,12 +7728,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-core-entities.git",
-                "reference": "02d4428163cff3ad641c44251d984940143e74a5"
+                "reference": "640e32426969595042afb903fe9dd2e4b6d20fb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-core-entities/zipball/02d4428163cff3ad641c44251d984940143e74a5",
-                "reference": "02d4428163cff3ad641c44251d984940143e74a5",
+                "url": "https://api.github.com/repos/modpreneur/trinity-core-entities/zipball/640e32426969595042afb903fe9dd2e4b6d20fb3",
+                "reference": "640e32426969595042afb903fe9dd2e4b6d20fb3",
                 "shasum": ""
             },
             "require": {
@@ -7773,7 +7773,7 @@
                 }
             ],
             "description": "Trinity Framework",
-            "time": "2017-01-04 14:46:15"
+            "time": "2017-02-02 15:12:39"
         },
         {
             "name": "trinity/core-interfaces",
@@ -7956,12 +7956,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "0434caa800bcef5fcaca7d13a68de047edd66809"
+                "reference": "1b8e23d55c93274b5ffb3e6ee9c05b3e928e215f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/0434caa800bcef5fcaca7d13a68de047edd66809",
-                "reference": "0434caa800bcef5fcaca7d13a68de047edd66809",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/1b8e23d55c93274b5ffb3e6ee9c05b3e928e215f",
+                "reference": "1b8e23d55c93274b5ffb3e6ee9c05b3e928e215f",
                 "shasum": ""
             },
             "require": {
@@ -8007,7 +8007,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2017-02-01 13:46:18"
+            "time": "2017-02-02 11:53:19"
         },
         {
             "name": "trinity/messages",
@@ -8196,16 +8196,16 @@
         },
         {
             "name": "trinity/settings",
-            "version": "v1.2.4",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-settings.git",
-                "reference": "3a1ee1f6796b8fe940ccbbb63d3faffb8fdfe20e"
+                "reference": "90cefaf2a4477781cecec7b48434c4dbcb1babe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/3a1ee1f6796b8fe940ccbbb63d3faffb8fdfe20e",
-                "reference": "3a1ee1f6796b8fe940ccbbb63d3faffb8fdfe20e",
+                "url": "https://api.github.com/repos/modpreneur/trinity-settings/zipball/90cefaf2a4477781cecec7b48434c4dbcb1babe6",
+                "reference": "90cefaf2a4477781cecec7b48434c4dbcb1babe6",
                 "shasum": ""
             },
             "require": {
@@ -8254,7 +8254,7 @@
                 }
             ],
             "description": "Trinity Settings bundle",
-            "time": "2017-02-01 09:51:28"
+            "time": "2017-02-03 07:48:38"
         },
         {
             "name": "trinity/utils",

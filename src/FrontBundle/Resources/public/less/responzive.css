@@ -1816,7 +1816,7 @@ select * {
   filter: alpha(opacity=50);
   opacity: 0.6;
 }
-.profile-settings #globaluserprofilephotowithdeletebutton_profilePictureRemoveButton {
+.profile-settings #global_user_profilePictureRemoveButton {
   width: 200px;
   padding: 5px 8px;
   margin-bottom: 20px;
@@ -1824,7 +1824,7 @@ select * {
   background-color: #BD1515;
   border: solid 1px #BD1515;
 }
-.profile-settings #globaluserprofilephotowithdeletebutton_profilePictureRemoveButton:hover {
+.profile-settings #global_user_profilePictureRemoveButton:hover {
   background-color: transparent;
   color: #BD1515;
 }

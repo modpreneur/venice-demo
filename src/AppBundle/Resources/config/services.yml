@@ -194,3 +194,16 @@ services:
         class: AppBundle\Privacy\PrivacySettingsManager
         arguments:
           - "@trinity.settings"
+
+
+    flofit.services.profile_photo_url_generator:
+        class: AppBundle\Services\ProfilePhotoUrlGenerator
+        arguments: ["@liip_imagine.cache.manager","@service_container"]
+
+
+    flofit.global_user_listener:
+        class: AppBundle\EventListener\UserListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }

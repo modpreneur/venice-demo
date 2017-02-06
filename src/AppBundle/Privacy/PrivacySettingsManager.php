@@ -49,6 +49,8 @@ class PrivacySettingsManager
         foreach (self::FIELDS as $field) {
             $fieldF = 'set' . ucfirst($field);
             $setting->{$fieldF}($this->settings->get($field, $user->getId(), 'user_settings'));
+
+            dump($this->settings->get($field, $user->getId(), 'user_settings'));
         }
 
         return $setting;
@@ -65,8 +67,12 @@ class PrivacySettingsManager
 
         foreach (self::FIELDS as $field) {
             $fieldF = 'get' . ucfirst($field);
-            $value = $entity->{$fieldF}();
-            $setting->{$fieldF}($this->settings->set($field, $value, $user->getId(), 'user_settings'));
+            if (!method_exists($entity, $fieldF)) {
+                $fieldF = 'is' . ucfirst($field);
+            }
+
+            $value  = $entity->{$fieldF}();
+            $setting->set($field, $value, $user->getId(), 'user_settings');
         }
     }
 }

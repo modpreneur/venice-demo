@@ -2,6 +2,8 @@
 
 namespace FrontBundle\Controller;
 
+use AppBundle\Entity\BillingPlan;
+use AppBundle\Entity\Invoice;
 use AppBundle\Entity\Newsletter\Answer;
 use AppBundle\Entity\Newsletter\UserAnswer;
 use AppBundle\Entity\User;
@@ -15,10 +17,13 @@ use AppBundle\Services\MaropostConnector;
 use Doctrine\ORM\EntityManager;
 use FrontBundle\Helpers\Ajax;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 
 
 /**
@@ -303,7 +308,7 @@ class ProfilerController extends Controller
             'birthDateStyle',
             'displayLocation',
             'displayForumActivity',
-            'displaySocialMedia'
+            'displaySocialMedia',
         ];
 
         $privacyForms = [];
@@ -320,12 +325,18 @@ class ProfilerController extends Controller
                             'class' => 'trinity-ajax',
                             'data-on-submit-callback' => 'privacyFormSubmit',
                             'data-ajax-done-callback' => 'privacyFormAjaxDone'
-                        ]
+                        ],
+                        'field' => $field
                     ]
                 )
                 ->add('submit', SubmitType::class, ['label' => 'Save', 'attr' => ['data-after-click' => 'Saving']]);
 
-            $form->handleRequest($request);
+
+            if ($request->request->has('privacy_settings')) {
+                if (array_key_exists($field, $request->request->get('privacy_settings'))) {
+                    $form->handleRequest($request);
+                }
+            }
 
             if ($form->isSubmitted() && $form->isValid()) {
                 /** @var PrivacySettings $entity */
@@ -360,7 +371,7 @@ class ProfilerController extends Controller
             }
 
             $formRow['form'] = $form->createView();
-            $formRow['id'] = $field;
+            $formRow['id']   = $field;
 
             if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
                 if (!$disableAll) {
@@ -422,6 +433,143 @@ class ProfilerController extends Controller
         return $this->render(
             'VeniceFrontBundle:Core:newsletters.html.twig',
             ['secondNewsOptimizationForm' => $secondFormCustomizeNewsletter->createView()]
+        );
+    }
+
+    /**
+     * @Route("/unsubscribe/{socialSite}")
+     * @param $socialSite
+     *
+     * @return Response
+     * @throws \LogicException
+     * @internal param GlobalUser $user
+     */
+    public function unsubscribeAction($socialSite)
+    {
+        $subscribeService = $this->get('general_backend_core.services.'.$socialSite.'_subscribe_service');
+        $user = $this->getUser();
+        $subscribeService->unsubscribe($user);
+        return $this->redirectToRoute('core_front_user_profile_edit');
+    }
+
+
+    /**
+     * @Route("/user-payments", name="core_front_user_order_history")
+     * @param Request $request
+     *
+     * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \LogicException
+     * @throws \Twig_Error_Syntax
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Loader
+     */
+    public function orderHistoryAction(Request $request)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $connector = $this->get($this->getParameter('connector_service_name'));
+        $userInvoices = $connector->getUserInvoices($user);
+
+        $flofitFeaturesService = $this->get('front.twig.flofit_features');
+
+        $digitalParameters = new BillingPlan();
+        //$digitalParameters->setBuyId(63);
+
+        $shippingParameters = new BillingPlan();
+        //$shippingParameters->setBuyId(64);
+
+        $digitalProductLink = $flofitFeaturesService->generateOCBLinkByBuyParameters($digitalParameters, true, $user);
+        $digitalShippingProductLink = $flofitFeaturesService->generateOCBLinkByBuyParameters(
+            $shippingParameters,
+            true,
+            $user,
+            [],
+            'ocb-shipping'
+        );
+
+        if (count($userInvoices) === 0) {
+            return $this->render(
+                'VeniceFrontBundle:Core:orderHistory.html.twig',
+                [
+                    'viewData' => null,
+                    'digitalProductBuyLink' => $digitalProductLink,
+                    'digitalShippingProductLink' => $digitalShippingProductLink,
+                ]
+            );
+        }
+        $viewData = [];
+
+        foreach ($userInvoices as $userInvoice) {
+            /** @var Invoice $userInvoice */
+            $row = [];
+            $row['invoice'] = $userInvoice;
+
+            if ($userInvoice->getStatus() === Invoice::INVOICE_STATUS_RECURRING) {
+                $form = $this->createFormBuilder(
+                    null,
+                    [
+                        'attr' =>
+                        [
+                            'id' => 'form'.$userInvoice->getId(),
+                            'class' => 'trinity-ajax',
+                            'data-on-submit-callback' => 'paymentsFormSubmit'
+                        ]
+                    ]
+                );
+
+                $form->add('invoice', HiddenType::class, ['data' => $userInvoice->getId()]);
+
+                $isImmersion = isset($userInvoice->getItems()[0]) &&
+                    $userInvoice->getItems()[0]->haveCategory('Platinum Club RECURING');
+
+                $jsOnClickAction = 'return openCancelPopup(this, \''
+                    .$userInvoice->getInvoiceItemNames()
+                    .'\', {$isImmersion});';
+
+                $form->add(
+                    $userInvoice->getInvoiceId(),
+                    ButtonType::class,
+                    ['label'=>'Cancel','attr'=> ['onClick'=>$jsOnClickAction]]
+                );
+
+                $form = $form->getForm();
+                $form->handleRequest($request);
+
+                $parameters = $request->request->all();
+
+                if (isset($parameters['form']['invoice']) &&
+                    $form->isSubmitted() &&
+                    $parameters['form']['invoice'] === $userInvoice->getInvoiceId()
+                ) {
+                    $connector->cancelInvoice($userInvoice, $user);
+
+                    $userInvoice->setCanceled();
+
+                    $this->addFlash('success', 'Invoice successfully canceled.');
+
+                    return $this->renderJsonTrinity(
+                        'VeniceFrontBundle:Core:orderHistory.html.twig',
+                        ['orderHistoryData'=>$row],
+                        ['orderHistory'.$userInvoice->getInvoiceId()=>'orderHistory']
+                    );
+                }
+
+                $row['form'] = $form->createView();
+            }
+
+            $viewData[] = $row;
+        }
+
+
+        return $this->render(
+            'VeniceFrontBundle:Core:orderHistory.html.twig',
+            [
+                'viewData' => $viewData,
+                'digitalProductBuyLink' => $digitalProductLink,
+                'digitalShippingProductLink' => $digitalShippingProductLink
+            ]
         );
     }
 }

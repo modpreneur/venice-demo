@@ -6,6 +6,9 @@ use AppBundle\Entity\User;
 use AppBundle\Privacy\PrivacySettings;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -14,10 +17,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PrivacySettingsType extends SingleItemType
 {
-    private $classicChoice = [1 => 'Public', 0 => 'Private'];
+    private $classicChoice = ['Public' => true, 'Private' => false];
 
     /** @var User */
     protected $user;
+
+
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     *
+     * @throws \Exception
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        parent::buildForm($builder, $options);
+        
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($builder, $options) {
+            $this->initFields($event->getForm());
+        }, 1);
+    }
 
 
     /**
@@ -35,10 +54,14 @@ class PrivacySettingsType extends SingleItemType
 
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param FormInterface $builder
      * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
-    public function setBirthDateStyle(FormBuilderInterface $builder, array $options)
+    public function setBirthDateStyle(FormInterface $builder, array $options)
     {
         $user = $options['user'];
 
@@ -48,8 +71,7 @@ class PrivacySettingsType extends SingleItemType
                 ChoiceType::class,
                 [
                     'choices' => [
-                        0,
-                        'Birth date is not set.'
+                        'Birth date is not set.' => 0
                     ],
                     'disabled' => true,
                     'attr' => ['icon' => 'ff-time']
@@ -61,10 +83,10 @@ class PrivacySettingsType extends SingleItemType
                 ChoiceType::class,
                 [
                     'choices' => [
-                        PrivacySettings::FORMAT_BIRTH_DATE_NONE => 'Private',
-                        PrivacySettings::FORMAT_BIRTH_DATE_AGE => $this->user->getAge() . ' years old',
-                        PrivacySettings::FORMAT_BIRTH_DATE_DAY => $this->user->getDateOfBirth()->format("jS \\o\\f F"),
-                        PrivacySettings::FORMAT_BIRTH_DATE_FULL => $this->user->getDateOfBirth()->format('m/d/Y'),
+                        'Private' => PrivacySettings::FORMAT_BIRTH_DATE_NONE,
+                        $this->user->getAge() . ' years old' => PrivacySettings::FORMAT_BIRTH_DATE_AGE,
+                        $this->user->getDateOfBirth()->format("jS \\o\\f F") => PrivacySettings::FORMAT_BIRTH_DATE_DAY,
+                        $this->user->getDateOfBirth()->format('m/d/Y') => PrivacySettings::FORMAT_BIRTH_DATE_FULL,
                     ],
                     'attr' => ['icon' => 'ff-time']
                 ]
@@ -74,10 +96,14 @@ class PrivacySettingsType extends SingleItemType
 
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param FormInterface $builder
      * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
-    public function setPublicProfile(FormBuilderInterface $builder, array $options)
+    public function setPublicProfile(FormInterface $builder, array $options)
     {
         $builder->add(
             'publicProfile',
@@ -88,10 +114,14 @@ class PrivacySettingsType extends SingleItemType
 
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param FormInterface $builder
      * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
-    public function setDisplayEmail(FormBuilderInterface $builder, array $options)
+    public function setDisplayEmail(FormInterface $builder, array $options)
     {
         $builder->add(
             'displayEmail',
@@ -102,10 +132,14 @@ class PrivacySettingsType extends SingleItemType
 
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param FormInterface $builder
      * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
-    public function setDisplayLocation(FormBuilderInterface $builder, array $options)
+    public function setDisplayLocation(FormInterface $builder, array $options)
     {
         $builder->add(
             'displayLocation',
@@ -116,10 +150,14 @@ class PrivacySettingsType extends SingleItemType
 
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param FormInterface $builder
      * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
-    public function setDisplayForumActivity(FormBuilderInterface $builder, array $options)
+    public function setDisplayForumActivity(FormInterface $builder, array $options)
     {
         $builder->add(
             'displayForumActivity',
@@ -130,10 +168,14 @@ class PrivacySettingsType extends SingleItemType
 
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param FormInterface $builder
      * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
-    public function setDisplayProgressGraph(FormBuilderInterface $builder, array $options)
+    public function setDisplayProgressGraph(FormInterface $builder, array $options)
     {
         $builder->add(
             'displayProgressGraph',
@@ -144,10 +186,14 @@ class PrivacySettingsType extends SingleItemType
 
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param FormInterface $builder
      * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
-    public function setDisplayFullName(FormBuilderInterface $builder, array $options)
+    public function setDisplayFullName(FormInterface $builder, array $options)
     {
         $builder->add(
             'displayFullName',
@@ -158,10 +204,14 @@ class PrivacySettingsType extends SingleItemType
 
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param FormInterface $builder
      * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
-    public function setDisplaySocialMedia(FormBuilderInterface $builder, array $options)
+    public function setDisplaySocialMedia(FormInterface $builder, array $options)
     {
         $builder->add(
             'displaySocialMedia',

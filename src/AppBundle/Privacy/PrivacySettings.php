@@ -11,8 +11,8 @@ use AppBundle\Entity\User;
 class PrivacySettings
 {
     const FORMAT_BIRTH_DATE_NONE = 0;
-    const FORMAT_BIRTH_DATE_AGE = 1;
-    const FORMAT_BIRTH_DATE_DAY = 2;
+    const FORMAT_BIRTH_DATE_AGE  = 1;
+    const FORMAT_BIRTH_DATE_DAY  = 2;
     const FORMAT_BIRTH_DATE_FULL = 3;
 
     /**

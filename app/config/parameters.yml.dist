@@ -87,7 +87,7 @@ parameters:
     amazon_s3_secret: 'your-aws-secret'
     amazon_s3_bucket: 'your-bucket.example_com'
     amazon_s3_region: 'your-bucket-region'
-
+    amazon_base_path_with_bucket: https://%amazon_s3_bucket%.s3.amazonaws.com/
     amazon_cloud_front_link_expiration: 300
 
 

@@ -22,6 +22,7 @@ class AppKernel extends Venice\AppBundle\Kernel\VeniceKernel
         $veniceBundles[] = new \AdminBundle\AdminBundle();
         $veniceBundles[] = new \BunnyBundle\BunnyBundle();
         $veniceBundles[] = new \FrontBundle\FrontBundle();
+
         $veniceBundles[] = new \DataTransferBundle\DataTransferBundle();
 
         // others ------------
@@ -30,8 +31,9 @@ class AppKernel extends Venice\AppBundle\Kernel\VeniceKernel
         $veniceBundles[] = new BmatznerJQueryBundle();
         $veniceBundles[] = new DoctrineMigrationsBundle();
         $veniceBundles[] = new FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntitiesBundle();
-       // $veniceBundles[] = new Amazon();
-
+        $veniceBundles[] = new Vich\UploaderBundle\VichUploaderBundle();
+        $veniceBundles[] = new \Liip\ImagineBundle\LiipImagineBundle;
+        // $veniceBundles[] = new Amazon();
 
         return $veniceBundles;
     }

@@ -211,6 +211,74 @@ doctrine_migrations:
     table_name: migration_versions
     name: Application Migrations
 
+liip_imagine:
+    loaders:
+        stream.profile_photos:
+            stream:
+                wrapper: https://%amazon_s3_bucket%.s3.amazonaws.com/profile_photos_original/
+    cache: profile_photos
+    filter_sets:
+        profile_picture_cropped:
+          data_loader: stream.profile_photos
+          quality: 75
+
+
+knp_gaufrette:
+    stream_wrapper: ~
+    adapters:
+        amazon_adapter:
+            aws_s3:
+                service_id: flofit_amazon_s3 #this needs to match the "service" you defined above
+                bucket_name: %amazon_s3_bucket%
+                options:
+                    directory: profile_photos_original
+                    create: false
+                    acl: 'public-read'
+
+
+        amazon_assets:
+            aws_s3:
+                service_id: flofit_amazon_s3 #this needs to match the "service" you defined above
+                bucket_name: %amazon_s3_bucket%
+                detect_content_type: true
+                options:
+                    directory: assets
+                    create: true
+                    acl: 'public-read'
+
+
+        froala_uploads:
+              aws_s3:
+                  service_id: flofit_amazon_s3 #this needs to match the "service" you defined above
+                  bucket_name: flofit-uploads
+                  detect_content_type: true
+                  options:
+                      create: true
+                      acl: 'public-read'
+
+
+    filesystems:
+        aws_profile_photos_original:
+            adapter: amazon_adapter
+        aws_assets:
+            adapter: amazon_assets
+        aws_froala_uploads:
+            adapter: froala_uploads
+
+
+vich_uploader:
+    db_driver: orm
+    storage: gaufrette
+    mappings:
+        user_profile:
+            uri_prefix:
+            upload_destination: aws_profile_photos_original
+            delete_on_remove: true
+            delete_on_update: true
+            namer: vich_uploader.namer_uniqid
+            inject_on_load: true
+            namer: ~
+
 
 parameters: #todo: necktie?!
     trinity.search.doctrine_prefix: "NecktieAppBundle"

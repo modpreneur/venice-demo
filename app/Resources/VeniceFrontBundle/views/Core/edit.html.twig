@@ -138,6 +138,7 @@
                         #}
 
                         {% set hasSocial = false %}
+                            {# @todo
                             <div class="row relative">
                                 <div class="span-large-6 span-medium-8 span-small-24 offset-large-5 offset-medium-3 offset-small-0">
                                     <a href="#social-networks" class="profile-settings-link"><i class="ff-share"></i>My social networks</a>
@@ -157,9 +158,12 @@
                                         {% endif %}
                                     </div>
                                     #}
-                                </div>
+                              {# @todo  </div>
                                 <a href="#social-networks" class="profile-settings-edit nice-scroll-parent">EDIT</a>
                             </div>
+                            #}
+
+                            {# @todo
                             <div class="row">
                                 <div class="span-medium-13 offset-large-13 offset-medium-11">
                                     <div id="social-networks" class="profile-settings-content">
@@ -210,6 +214,7 @@
                                                 {#<a href=""><i class="ff-insta-negative"></i><span>Add account</span></a>#}
                                             {#</div>#}
                                         {#{% endif %}#}
+                                        {# @todo
                                             <div class="social-info">
                                             {% form_theme pageElements.socialNetworks 'VeniceFrontBundle:Default:bowtieFormsDoubleLabel.html.twig' %}
                                             {{ form(pageElements.socialNetworks) }}
@@ -217,7 +222,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>#}
                     {% endblock %}
                     </div>
 

@@ -31,14 +31,6 @@ abstract class SingleItemType extends AbstractType
 
 
     /**
-     * SingleItemType constructor.
-     */
-    public function __construct()
-    {
-    }
-
-
-    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */

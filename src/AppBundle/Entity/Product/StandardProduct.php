@@ -69,7 +69,7 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
      * @ORM\Column(type="string")
      */
     protected $customTemplateName;
-    
+
 
     /**
      * StandardProduct constructor.
@@ -79,7 +79,7 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
         parent::__construct();
 
         $this->StandardProductChild = 'standard product from application';
-        $this->customTemplateName   = 'VeniceFrontbundle:BundleProduct:bundleProductPlatinumMix.html.twig';
+        $this->customTemplateName = 'VeniceFrontbundle:BundleProduct:bundleProductPlatinumMix.html.twig';
     }
 
 
@@ -249,4 +249,15 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
     {
         return $this->getDefaultBillingPlan();
     }
+
+
+    /**
+     * @todo
+     * @return int
+     */
+    public function daysRemainingToUnlock()
+    {
+        return 0;
+    }
+
 }
