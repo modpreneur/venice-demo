@@ -2,6 +2,7 @@
 
 namespace AppBundle\Services;
 
+use GuzzleHttp\Client;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -10,6 +11,20 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class Connector
 {
+    protected $curl;
+
+
+    /**
+     * @return Client
+     */
+    protected function getClient()
+    {
+        return new Client(['cookies' => true,
+            'headers' => ['content-type' => 'application/json', 'Accept' => 'application/json']
+        ]);
+    }
+
+
     /**
      * Connector constructor.
      *
@@ -19,61 +34,68 @@ class Connector
     {
         $this->serviceContainer = $serviceContainer;
 
-        //$this->curl = $serviceContainer->get("anchovy.curl");
+        //$this->curl = $serviceContainer->get('anchovy.curl');
     }
 
 
+    /**
+     * @param $url
+     *
+     * @return array|mixed
+     */
     public function getJson($url)
     {
-        $response = $this->curl->setMethod("GET")->setURL($url)->execute();
+        $response = $this->getClient()->get($url, [ 'content-type' => 'application/json', 'Accept' => 'application/json']);
+        $body = $response->getBody();
+        $decoded = json_decode($body, true);
 
+        return is_null($decoded) ? [] : $decoded;
+    }
+
+
+    /**
+     * @param $url
+     * @param array $parameters
+     *
+     * @return array|mixed
+     */
+    public function putAndGetJson($url, $parameters = [])
+    {
+        $response = $this->getClient()->put($url. $parameters);
+        $body = $response->getBody();
         $decoded = json_decode($response, true);
 
         return is_null($decoded) ? [] : $decoded;
     }
 
 
-    public function putAndGetJson($url, $parameters = array())
+    /**
+     * @param $url
+     * @param array $parameters
+     * @param array $options
+     *
+     * @return array|mixed
+     */
+    public function postAndGetJson($url, $parameters = [], $options = [])
     {
-        $response = $this->curl->setMethod("PUT", $parameters)->setURL($url)->execute();
-
+        $response = $this->getClient()->post($url);
         $decoded = json_decode($response, true);
 
         return is_null($decoded) ? [] : $decoded;
     }
 
 
-    public function postAndGetJson($url, $parameters = array(), $options = array())
+    /**
+     * @param $url
+     * @param array $parameters
+     *
+     * @return array|mixed
+     */
+    public function postJson($url, $parameters = [])
     {
-        foreach ($options as $key => $option) {
-            $this->curl->setOption($key, $option);
-        }
+        $response = $this->getClient()->post($url, $parameters);
 
-        $response = $this->curl->setMethod("POST", $parameters)->setURL($url)->execute();
-
-        $decoded = json_decode($response, true);
-
-        return is_null($decoded) ? [] : $decoded;
-    }
-
-
-    public function postJson($url, $parameters = array())
-    {
-        $jsonData = json_encode($parameters);
-
-        $request = $this->curl->setMethod("POST", array())->setURL($url);
-        $request->setOption("CURLOPT_POSTFIELDS", $jsonData);
-        $request->setOption("CURLOPT_RETURNTRANSFER", true);
-
-        $request->setOption("CURLOPT_HTTPHEADER", array(
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($jsonData)
-            )
-        );
-
-        $response = $request->execute();
-
-        $decoded = json_decode($response, true);
+        $decoded = json_decode($response->getBody(), true);
 
         return is_null($decoded) ? [] : $decoded;
     }

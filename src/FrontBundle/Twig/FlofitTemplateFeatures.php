@@ -7,6 +7,7 @@ use AppBundle\Entity\Content\PdfContent;
 use AppBundle\Entity\Product\ShippingProduct;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Vanilla\Conversation;
 use AppBundle\Services\AbstractConnector;
 use Aws\CloudFront\CloudFrontClient;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -36,14 +37,18 @@ class FlofitTemplateFeatures extends \Twig_Extension
      *
      * @param ContainerInterface $serviceContainer
      * @param TokenStorage $tokenStorage
+     *
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      */
     public function __construct(ContainerInterface $serviceContainer, TokenStorage $tokenStorage)
     {
         $this->serviceContainer = $serviceContainer;
         $this->tokenStorage     = $tokenStorage;
 
-        //$this->forumConnector     = $serviceContainer->get($this->serviceContainer->getParameter("forum_service_name"));
-        //$this->staticPagesService = $serviceContainer->get("general_backend_core.services.static_pages_service");
+        $this->forumConnector     = $serviceContainer->get($this->serviceContainer->getParameter('forum_service_name'));
+        $this->staticPagesService = $serviceContainer->get('flofit.static_pages_service');
     }
 
 
@@ -97,6 +102,7 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
     /**
      * @return mixed
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      * @throws \Symfony\Component\Security\Core\Exception\AuthenticationException
@@ -125,10 +131,12 @@ class FlofitTemplateFeatures extends \Twig_Extension
             }
         }
 
+        dump($unreaded);
+
         $readAllUrl = $this->serviceContainer->getParameter('forum_read_all_url');
         $conversationUrl = $this->serviceContainer->getParameter('forum_read_conversation_url');
 
-        $html =  $templater->render(
+        $html = $templater->render(
             'VeniceFrontBundle:FlofitFeatures:messagesBlock.html.twig',
             [
                 'readAllUrl'      => $readAllUrl,
@@ -188,6 +196,7 @@ class FlofitTemplateFeatures extends \Twig_Extension
      * @param bool $onlyForRequesterIp
      *
      * @return string
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      * @throws \InvalidArgumentException
      */
     public function generateSecureLink(PdfContent $product, $expireSeconds = null, $onlyForRequesterIp = false)
@@ -214,27 +223,46 @@ class FlofitTemplateFeatures extends \Twig_Extension
     }
 
 
+    /**
+     * @param $seconds
+     *
+     * @return string
+     */
     public function minutesAndSecondsString($seconds)
     {
         $mins = floor($seconds / 60);
         $secs = floor($seconds % 60);
 
-        return str_pad($mins, 2, "0", STR_PAD_LEFT) . ":" . str_pad($secs, 2, "0", STR_PAD_LEFT);
+        return str_pad($mins, 2, '0', STR_PAD_LEFT) . ':' . str_pad($secs, 2, '0', STR_PAD_LEFT);
     }
 
 
+    /**
+     * @return mixed
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     */
     public function getForumLink()
     {
-        return $this->serviceContainer->getParameter("forum_url");
+        return $this->serviceContainer->getParameter('forum_url');
     }
 
 
+    /**
+     * @return mixed
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     */
     public function getMessagesLink()
     {
-        return $this->serviceContainer->getParameter("messages_url");
+        return $this->serviceContainer->getParameter('messages_url');
     }
 
 
+    /**
+     * @param $parameter
+     *
+     * @return mixed
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     */
     public function getValueFromParameter($parameter)
     {
         return $this->serviceContainer->getParameter($parameter);
@@ -264,14 +292,29 @@ class FlofitTemplateFeatures extends \Twig_Extension
     }
 
 
+    /**
+     * @param Product $product
+     * @param User|null $user
+     * @param array $otherParams
+     *
+     * @return string
+     */
     public function generateMobileOCBLink(Product $product, User $user = null, array $otherParams = [])
     {
         return $this->generateOCBLinkByBuyParameters($product->getBuyCBMobileParameters(), true, $user, $otherParams,
-            "ocb-mobile");
+            'ocb-mobile');
     }
 
 
-
+    /**
+     * @param BillingPlan $buyParameters
+     * @param $useStoredCard
+     * @param User|null $user
+     * @param array $otherParams
+     * @param string $ocbAction
+     *
+     * @return string
+     */
     public function generateOCBLinkByBuyParameters(
         BillingPlan $buyParameters,
         $useStoredCard,
@@ -290,8 +333,8 @@ class FlofitTemplateFeatures extends \Twig_Extension
             $user = $this->getUser();
         }
 
-        if (substr($amemberURL, strlen($amemberURL)) != "/") {
-            $amemberURL .= "/";
+        if (substr($amemberURL, strlen($amemberURL)) != '/') {
+            $amemberURL .= '/';
         }
 
         $amemberURL .= "payment/c-b/{$ocbAction}?";
@@ -306,13 +349,21 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
         $otherParamsString = "";
         if (count($otherParams) > 0) {
-            $otherParamsString = "&" . http_build_query($otherParams);
+            $otherParamsString = '&' . http_build_query($otherParams);
         }
 
         return $amemberURL . $buyParameters . $otherParamsString;
     }
 
 
+    /**
+     * @param User|null $user
+     *
+     * @return string
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     */
     public function getLastCard(User $user = null)
     {
         if (is_null($user)) {
@@ -320,11 +371,11 @@ class FlofitTemplateFeatures extends \Twig_Extension
         }
 
         /** @var AbstractConnector $connector */
-        $connector = $this->serviceContainer->get($this->serviceContainer->getParameter("connector_service_name"));
+        $connector = $this->serviceContainer->get($this->serviceContainer->getParameter('connector_service_name'));
 
         $lastPaymentInfo = $connector->getLastPaymentInfo($user);
         if (is_null($lastPaymentInfo)) {
-            return "stored";
+            return 'stored';
         }
 
         return $lastPaymentInfo->getPaymentMethod();
@@ -356,7 +407,7 @@ class FlofitTemplateFeatures extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
+        return [
             new \Twig_Function(
                 'notificationBlock',
                 [
@@ -367,18 +418,19 @@ class FlofitTemplateFeatures extends \Twig_Extension
             new \Twig_Function('messagesBlock', [$this, 'messagesBlock', ['is_safe' => ['html']]]),
 
             new \Twig_Function('footerLinksBlock', [$this, 'footerLinksBlock',
-                array('is_safe' => array('html'))
+                ['is_safe' => ['html']]
             ]),
 
             new \Twig_Function(
                 'productRenderer',
-                [$this, 'productRenderer', array('is_safe' => array('html'))]
+                [$this, 'productRenderer', ['is_safe' => ['html']]]
             ),
 
             new \Twig_Function(
                 'generateSecureLink',
                 [$this, 'generateSecureLink',
-                array('is_safe' => array('html'))]
+                ['is_safe' => ['html']]
+                ]
             ),
 
             new \Twig_Function('minutesAndSecondsString', [$this, 'minutesAndSecondsString']),
@@ -388,7 +440,7 @@ class FlofitTemplateFeatures extends \Twig_Extension
                 [
                     $this,
                     'passwordCheckerBlock',
-                    array('is_safe' => array('html'))
+                    ['is_safe' => ['html']]
                 ]
             ),
 
@@ -399,7 +451,7 @@ class FlofitTemplateFeatures extends \Twig_Extension
             new \Twig_Function('getForumLink', [$this, 'getForumLink']),
             new \Twig_Function('getMessagesLink', [$this, 'getMessagesLink']),
             new \Twig_Function('getValueFromParameter', [$this, 'getValueFromParameter']),
-        );
+        ];
     }
 
 

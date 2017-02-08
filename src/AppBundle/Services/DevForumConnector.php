@@ -2,7 +2,10 @@
 
 namespace AppBundle\Services;
 
-use Venice\AppBundle\Entity\User;
+use AppBundle\Entity\User;
+use AppBundle\Entity\Vanilla\Conversation;
+use AppBundle\Entity\Vanilla\Message;
+
 
 /**
  * Class DevForumConnector
@@ -12,43 +15,50 @@ class DevForumConnector extends AbstractForumConnector
 {
     public function getConversations(User $user)
     {
-        return array();
+        return [];
     }
+
 
     public function getMessages(User $user, Conversation $conversation)
     {
-        return array();
+        return [];
     }
 
+
     /**
-     * @return Array<Message>
+     * @return array
      */
     public function getLastMessages(User $user)
     {
-        return array();
+        return [];
     }
+
 
     /**
      * @param Message $message
-     * @return bool
+     *
+     * @return array
      */
     public function sendMessage(User $user, Message $message)
     {
-        return array();
+        return [];
     }
+
 
     /**
      * @param User $user
+     *
      * @return mixed
      */
     public function getLatestForumPosts(User $user)
     {
-        return array();
+        return [];
     }
+
 
     /**
      * @param User $user
-     * @param string     $participants users involved in a conversation. Format: username1,username2,username3,...
+     * @param string $participants users involved in a conversation. Format: username1,username2,username3,...
      *
      * @return Conversation|null
      */
@@ -57,10 +67,11 @@ class DevForumConnector extends AbstractForumConnector
         return null;
     }
 
+
     /**
      * @param User $sender
-     * @param string     $participants users involved in a conversation. Format: username1,username2,username3,...
-     * @param string     $body         body of the first message
+     * @param string $participants users involved in a conversation. Format: username1,username2,username3,...
+     * @param string $body body of the first message
      *
      * @return array|true returns true on success, array of error messages on failure
      */
@@ -69,29 +80,32 @@ class DevForumConnector extends AbstractForumConnector
         return true;
     }
 
+
     /**
      * @param User $user
      *
-     * @return Array<Category>
+     * @return array
      */
     public function getCategories(User $user)
     {
-        return array();
+        return [];
     }
 
+
     /**
-     * @param User          $user
+     * @param User $user
      * @param int|string|Category $category
      *
      * @return mixed
      */
     public function getForumPostsByCategory(User $user, $category)
     {
-        return array();
+        return [];
     }
 
+
     /**
-     * @param User    $user
+     * @param User $user
      * @param int|ForumPost $forumPost
      *
      * @return ForumPost|null
@@ -101,6 +115,7 @@ class DevForumConnector extends AbstractForumConnector
         return null;
     }
 
+
     /**
      * @param User $user
      *
@@ -108,6 +123,6 @@ class DevForumConnector extends AbstractForumConnector
      */
     public function getAllUsers(User $user)
     {
-        return array();
+        return [];
     }
 }

@@ -1,8 +1,12 @@
 <?php
 namespace AppBundle\Services;
 
+use AppBundle\Entity\User;
+use AppBundle\Entity\Vanilla\Conversation;
+use AppBundle\Entity\Vanilla\ForumPost;
+use AppBundle\Entity\Vanilla\Message;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Venice\AppBundle\Entity\User;
+
 
 /**
  * Class AbstractForumConnector
@@ -11,8 +15,13 @@ use Venice\AppBundle\Entity\User;
 abstract class AbstractForumConnector extends Connector
 {
     private $container;
-    
 
+
+    /**
+     * AbstractForumConnector constructor.
+     *
+     * @param ContainerInterface $serviceContainer
+     */
     public function __construct(ContainerInterface $serviceContainer)
     {
         parent::__construct($serviceContainer);

@@ -107,3 +107,9 @@ parameters:
 
     maropost_account_id: 478
     maropost_auth_token: 4cc55665ee6708ea9dd8eb6c8b0f3c59e96f9909
+
+    forum_secret_key: b154a1d1-d75e-40c8-ad03-18fe61a17d1e
+
+    forum_auth_cookie_name: Vanilla
+    forum_auth_cookie_salt: A3X88X2UCR
+    forum_auth_cookie_domain: .flofit.com

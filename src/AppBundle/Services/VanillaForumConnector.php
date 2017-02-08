@@ -2,9 +2,15 @@
 
 namespace AppBundle\Services;
 
+use AppBundle\Entity\User;
+use AppBundle\Entity\Vanilla\Conversation;
+use AppBundle\Entity\Vanilla\ForumPost;
+use AppBundle\Entity\Vanilla\Message;
 use Doctrine\ORM\EntityManager;
+use GuzzleHttp\Cookie\CookieJar;
+use InvalidArgumentException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Venice\AppBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Cookie;
 
 /**
  * Class VanillaForumConnector
@@ -12,20 +18,21 @@ use Venice\AppBundle\Entity\User;
  */
 class VanillaForumConnector extends AbstractForumConnector
 {
-    const API_SEARCH = "/api/search";
-    const API_CATEGORIES = "/api/categories";
-    const API_CONVERSATIONS = "/api/conversations";
-    const API_CONVERSATION = "/api/conversations/:id";
-    const API_NEW_MESSAGE = "/api/conversations/:id/messages";
-    const API_ALL_USERS = "/api/users/summary";
-    const API_FLAG_CONVERSATION_AS_READ = "/messages/:id";
-    const API_DISCUSSIONS = "/api/discussions";
-    const API_DISCUSSIONS_FIND = "/api/discussions/:id";
+    const API_SEARCH = '/api/search';
+    const API_CATEGORIES = '/api/categories';
+    const API_CONVERSATIONS = '/api/conversations';
+    const API_CONVERSATION = '/api/conversations/:id';
+    const API_NEW_MESSAGE = '/api/conversations/:id/messages';
+    const API_ALL_USERS = '/api/users/summary';
+    const API_FLAG_CONVERSATION_AS_READ = '/messages/:id';
+    const API_DISCUSSIONS = '/api/discussions';
+    const API_DISCUSSIONS_FIND = '/api/discussions/:id';
 
     private $secret;
 
     private $forumUrl;
 
+    /** @var EntityManager  */
     private $entityManager;
 
     private $customAuthUser;
@@ -41,13 +48,16 @@ class VanillaForumConnector extends AbstractForumConnector
     {
         parent::__construct($serviceContainer);
 
-        $this->forumUrl = $this->serviceContainer->getParameter("forum_url");
-        $this->secret = $this->serviceContainer->getParameter("forum_secret_key");
-        $this->entityManager = $entityManager;
+        $this->forumUrl = $this->serviceContainer->getParameter('forum_url');
+        $this->secret   = $this->serviceContainer->getParameter('forum_secret_key');
+        $this->entityManager  = $entityManager;
         $this->customAuthUser = null;
     }
 
 
+    /**
+     * @return mixed|null
+     */
     private function getUser()
     {
         if (null === $token = $this->serviceContainer->get('security.token_storage')->getToken()) {
@@ -62,9 +72,12 @@ class VanillaForumConnector extends AbstractForumConnector
     }
 
 
+    /**
+     * @return string
+     */
     protected function createCookieString()
     {
-        $cookiesString = "";
+        $cookiesString = '';
         $cookies = $this->createAuthCookies(is_null($this->customAuthUser) ? $this->getUser() : $this->customAuthUser);
 
         foreach ($cookies as $cookie) {
@@ -76,45 +89,74 @@ class VanillaForumConnector extends AbstractForumConnector
     }
 
 
+    /**
+     * @param $url
+     *
+     * @return array|mixed
+     */
     public function getJson($url)
     {
         $cookiesString = $this->createCookieString();
 
-        $response = $this->curl->setMethod("GET")->setOption("CURLOPT_COOKIE", $cookiesString)->setURL($url)->execute();
+        $newCookie = \GuzzleHttp\Cookie\SetCookie::fromString($cookiesString);
+        $newCookie->setDomain($this->serviceContainer->getParameter('forum_url'));
 
-        $decoded = json_decode($response, true);
+        $cookieJar = new CookieJar(true);
+        $cookieJar->setCookie($newCookie);
 
-        return is_null($decoded) ? array() : $decoded;
+        $response = $this->getClient()->get($url, ['cookies' => $cookieJar]);
+        $decoded  = json_decode($response->getBody(), true);
+
+        return is_null($decoded) ? [] : $decoded;
     }
 
 
-    public function putAndGetJson($url, $parameters = array())
+    /**
+     * @param $url
+     * @param array $parameters
+     *
+     * @return array|mixed
+     */
+    public function putAndGetJson($url, $parameters = [])
     {
         $cookiesString = $this->createCookieString();
 
-        $response = $this->curl->setMethod("PUT", $parameters)->setOption("CURLOPT_COOKIE",
+        $response = $this->curl->setMethod('PUT', $parameters)->setOption('CURLOPT_COOKIE',
             $cookiesString)->setURL($url)->execute();
 
         $decoded = json_decode($response, true);
 
-        return is_null($decoded) ? array() : $decoded;
+        return is_null($decoded) ? [] : $decoded;
     }
 
 
-    public function postAndGetJson($url, $parameters = array(), $options = array())
+    /**
+     * @param $url
+     * @param array $parameters
+     * @param array $options
+     *
+     * @return array|mixed
+     */
+    public function postAndGetJson($url, $parameters = [], $options = [])
     {
         $cookiesString = $this->createCookieString();
 
-        $response = $this->curl->setMethod("POST", $parameters)->setOption("CURLOPT_COOKIE",
+        $response = $this->curl->setMethod('POST', $parameters)->setOption('CURLOPT_COOKIE',
             $cookiesString)->setURL($url)->execute();
 
         $decoded = json_decode($response, true);
 
-        return is_null($decoded) ? array() : $decoded;
+        return is_null($decoded) ? [] : $decoded;
     }
 
 
-    public function postJson($url, $parameters = array())
+    /**
+     * @param $url
+     * @param array $parameters
+     *
+     * @return array|mixed
+     */
+    public function postJson($url, $parameters = [])
     {
         $cookiesString = $this->createCookieString();
 
@@ -122,12 +164,12 @@ class VanillaForumConnector extends AbstractForumConnector
 
         $curl = curl_init($url);
 
-        $headers = array(
-            "Content-Type: application/json",
-            "Accept: application/json",
-        );
+        $headers = [
+            'Content-Type: application/json',
+            'Accept: application/json',
+        ];
 
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($curl, CURLOPT_COOKIE, $cookiesString);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonData);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -147,23 +189,34 @@ class VanillaForumConnector extends AbstractForumConnector
 
         $decoded = json_decode($response, true);
 
-        return is_null($decoded) ? array() : $decoded;
+        return is_null($decoded) ? [] : $decoded;
     }
 
 
+    /**
+     * @param $requestValues
+     *
+     * @return string
+     */
     private function createToken($requestValues)
     {
         ksort($requestValues, SORT_STRING);
-        $imploded = implode("-", $requestValues);
+        $imploded = implode('-', $requestValues);
 
-        return hash_hmac("sha256", strtolower($imploded), $this->secret);
+        return hash_hmac('sha256', strtolower($imploded), $this->secret);
     }
 
 
+    /**
+     * @param $data
+     * @param $key
+     *
+     * @return string
+     */
     private function createHash($data, $key)
     {
         if (isset($key[63])) {
-            $Key = pack("H32", md5($key));
+            $Key = pack('H32', md5($key));
         } else {
             $Key = str_pad($key, 64, chr(0));
         }
@@ -171,89 +224,112 @@ class VanillaForumConnector extends AbstractForumConnector
         $InnerPad = (substr($Key, 0, 64) ^ str_repeat(chr(0x36), 64));
         $OuterPad = (substr($Key, 0, 64) ^ str_repeat(chr(0x5C), 64));
 
-        $hash = md5($OuterPad . pack("H32", md5($InnerPad . $data)));
+        $hash = md5($OuterPad . pack('H32', md5($InnerPad . $data)));
 
         return $hash;
     }
 
 
+    /**
+     * @param User $user
+     * @param $exp
+     *
+     * @return string
+     */
     private function createCookieValue(User $user, $exp)
     {
-        $keyData = $user->getCommunityId() . "-" . $exp;
+        $keyData = $user->getCommunityId() . '-' . $exp;
 
-        $key = $this->createHash($keyData, $this->serviceContainer->getParameter("forum_auth_cookie_salt"));
+        $key = $this->createHash($keyData, $this->serviceContainer->getParameter('forum_auth_cookie_salt'));
         $hash = $this->createHash($keyData, $key);
 
-        $value = implode('|', array($keyData, $hash, \time(), $user->getCommunityId(), $exp));
+        $value = implode('|', [$keyData, $hash, \time(), $user->getCommunityId(), $exp]);
 
         return $value;
     }
 
 
+    /**
+     * @return array
+     */
     private function getCookies()
     {
-        $request = $this->serviceContainer->get("request");
+        $request = $this->serviceContainer->get('request');
 
-        $cookie = array();
+        $cookie = [];
 
-        $cookieName = $this->serviceContainer->getParameter("forum_auth_cookie_name");
 
-        if ($request->cookies->has($cookieName)) {
-            $cookie[] = $request->cookies->get($cookieName);
-        }
-
-        if ($request->cookies->has($cookieName) . "-Volatile") {
-            $cookie[] = $request->cookies->get($cookieName . "-Volatile");
+        if ($request->cookies->has($cookieName) . '-Volatile') {
+            $cookie[] = $request->cookies->get($cookieName . '-Volatile');
         }
 
         return $cookie;
     }
 
 
+    /**
+     * @return array
+     */
     public function getCookieNames()
     {
-        $cookieName = $this->serviceContainer->getParameter("forum_auth_cookie_name");
+        $cookieName = $this->serviceContainer->getParameter('forum_auth_cookie_name');
 
-        return array($cookieName, $cookieName . "-Volatile");
+        return [$cookieName, $cookieName . '-Volatile'];
     }
 
 
+    /**
+     * @param User $user
+     * @param null $domain
+     * @param null $exp
+     *
+     * @return array
+     */
     public function createAuthCookies(User $user, $domain = null, $exp = null)
     {
-        $cookies = array();
+        $cookies = [];
 
         if (is_null($exp)) {
             $exp = \time() + 60 * 60 * 24 * 2;
         }
 
-        $cookies[] = new Cookie($this->serviceContainer->getParameter("forum_auth_cookie_name"),
+        $cookies[] = new Cookie($this->serviceContainer->getParameter('forum_auth_cookie_name'),
             $this->createCookieValue($user, $exp), $exp, null, $domain);
-        $cookies[] = new Cookie($this->serviceContainer->getParameter("forum_auth_cookie_name") . "-Volatile",
+        $cookies[] = new Cookie($this->serviceContainer->getParameter('forum_auth_cookie_name') . '-Volatile',
             $this->createCookieValue($user, $exp), $exp, null, $domain);
 
         return $cookies;
     }
 
 
+    /**
+     * @param null $domain
+     * @param null $exp
+     *
+     * @return array
+     */
     public function createDeleteCookies($domain = null, $exp = null)
     {
-        $cookies = array();
+        $cookies = [];
 
         $exp = time() - 36000;
 
-        $cookies[] = new Cookie($this->serviceContainer->getParameter("forum_auth_cookie_name"), "", $exp, null,
+        $cookies[] = new Cookie($this->serviceContainer->getParameter('forum_auth_cookie_name'), "", $exp, null,
             $domain);
-        $cookies[] = new Cookie($this->serviceContainer->getParameter("forum_auth_cookie_name") . "-Volatile", "", $exp,
+        $cookies[] = new Cookie($this->serviceContainer->getParameter('forum_auth_cookie_name') . '-Volatile', "", $exp,
             null, $domain);
 
         return $cookies;
     }
 
 
+    /**
+     * @return int|string
+     */
     public function getCommunityIdFromCookies()
     {
-        $request = $this->serviceContainer->get("request");
-        $cookieName = $this->serviceContainer->getParameter("forum_auth_cookie_name");
+        $request = $this->serviceContainer->get('request');
+        $cookieName = $this->serviceContainer->getParameter('forum_auth_cookie_name');
 
         if (!$request->cookies->has($cookieName)) {
             return 0;
@@ -262,19 +338,25 @@ class VanillaForumConnector extends AbstractForumConnector
         /** @var  $cookie */
         $cookie = $request->cookies->get($cookieName);
 
-        return substr($cookie, 0, strpos($cookie, "-"));
+        return substr($cookie, 0, strpos($cookie, '-'));
     }
 
 
+    /**
+     * @param $user
+     * @param $endpointUrl
+     *
+     * @return string
+     */
     private function createUrl($user, $endpointUrl)
     {
         $timestamp = (new \DateTime())->getTimestamp();
 
-        $parameters = array(
-            "email" => $user->getEmail(),
-            "username" => $user->getUsername(),
-            "timestamp" => $timestamp
-        );
+        $parameters = [
+            'email'     => $user->getEmail(),
+            'username'  => $user->getUsername(),
+            'timestamp' => $timestamp
+        ];
 
         $url = $this->forumUrl . $endpointUrl . "&username={$user->getUsername()}&email={$user->getEmail()}&timestamp={$timestamp}&token={$this->createToken($parameters)}";
 
@@ -282,22 +364,27 @@ class VanillaForumConnector extends AbstractForumConnector
     }
 
 
+    /**
+     * @param User $user
+     *
+     * @return array
+     */
     public function getCategories(User $user)
     {
         $categoriesUrl = self::API_CATEGORIES;
         $url = $this->createUrl($user, $categoriesUrl);
 
-        $categories = $this->getJson($url)["Categories"];
+        $categories = $this->getJson($url)['Categories'];
 
         $categoriesObjects = [];
         foreach ($categories as $category) {
             $categoriesObjects[] = new Category(
-                $category["CategoryID"],
-                $category["CountDiscussions"],
-                $category["CountComments"],
-                $category["Name"],
-                $category["Description"],
-                $category["DateUpdated"]
+                $category['CategoryID'],
+                $category['CountDiscussions'],
+                $category['CountComments'],
+                $category['Name'],
+                $category['Description'],
+                $category['DateUpdated']
             );
         }
 
@@ -313,20 +400,25 @@ class VanillaForumConnector extends AbstractForumConnector
      */
     public function getLatestForumPosts(User $user, $raw = false)
     {
-        $forumPosts = array();
+        dump(1);
+        $forumPosts = [];
 
         $url = $this->createUrl($user, self::API_DISCUSSIONS);
         $forum = $this->getJson($url);
+
+        dump($forum);
 
         if ($raw == true) {
             return $forum;
         }
 
-        if (!array_key_exists("Discussions", $forum)) {
+        dump($forum);
+
+        if (!array_key_exists('Discussions', $forum)) {
             return [];
         }
 
-        foreach ($forum{"Discussions"} as $discussion) {
+        foreach ($forum{'Discussions'} as $discussion) {
             $id = $discussion{'DiscussionID'};
             $url = $discussion{'Url'};
             $name = $discussion{'Name'};
@@ -338,7 +430,7 @@ class VanillaForumConnector extends AbstractForumConnector
             $countComments = $discussion{'CountComments'};
             $username = $discussion{'FirstName'};
             $lastCommentDateTime = $discussion{'DateLastComment'};
-            $author = $this->entityManager->getRepository("ModernEntrepreneurGeneralBackendCoreBundle:User")->findOneBy(["username" => $username]);
+            $author = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
             $forumPosts[] = new ForumPost(
                 $id,
                 $url,
@@ -359,6 +451,13 @@ class VanillaForumConnector extends AbstractForumConnector
     }
 
 
+    /**
+     * @param User $user
+     * @param User|null $author
+     * @param null $count
+     *
+     * @return array
+     */
     public function getLatestForumPostsOfUser(User $user, User $author = null, $count = null)
     {
         if (is_null($author)) {
@@ -401,7 +500,7 @@ class VanillaForumConnector extends AbstractForumConnector
                 if ($category->getName() != null) {
                     $category = $category->getName();
                 } else {
-                    throw new InvalidArgumentException("Category object has to contain id or name");
+                    throw new InvalidArgumentException('Category object has to contain id or name');
                 }
             }
         }
@@ -451,55 +550,60 @@ class VanillaForumConnector extends AbstractForumConnector
             if (is_numeric($forumPost)) {
                 $forumPostId = $forumPost;
             } else {
-                throw new InvalidArgumentException("Discussion parameter ");
+                throw new InvalidArgumentException('Discussion parameter ');
             }
         }
 
         $postUrl = $this->createUrl($user, self::API_DISCUSSIONS_FIND);
-        $postUrl = str_replace(":id", $forumPostId, $postUrl);
+        $postUrl = str_replace(':id', $forumPostId, $postUrl);
         $response = $this->getJson($postUrl);
 
         if ($raw === true) {
             return $response;
         }
 
-        if (array_key_exists("Code", $response) && $response["Code"] == 404) {
+        if (array_key_exists('Code', $response) && $response['Code'] == 404) {
             return null;
         }
 
-        $postArray = $response["Discussion"];
-        $comments = $response["Comments"];
+        $postArray = $response['Discussion'];
+        $comments = $response['Comments'];
 
         $forumPostObject = new ForumPost(
-            $postArray["DiscussionID"],
-            $postArray["Url"],
-            $postArray["Name"],
-            $postArray["Body"],
-            $postArray["CategoryID"],
-            $postArray["Category"],
-            $postArray["LastDate"],
-            $postArray["CountViews"],
-            $postArray["CountComments"],
-            $postArray["InsertName"]
+            $postArray['DiscussionID'],
+            $postArray['Url'],
+            $postArray['Name'],
+            $postArray['Body'],
+            $postArray['CategoryID'],
+            $postArray['Category'],
+            $postArray['LastDate'],
+            $postArray['CountViews'],
+            $postArray['CountComments'],
+            $postArray['InsertName']
         );
 
         foreach ($comments as $commentArray) {
             $comment = new Comment(
-                $commentArray["CommentID"],
-                $commentArray["DiscussionID"],
-                $commentArray["InsertName"],
-                $commentArray["Body"],
-                ($commentArray["DateUpdated"]) ?: $commentArray["DateInserted"]
+                $commentArray['CommentID'],
+                $commentArray['DiscussionID'],
+                $commentArray['InsertName'],
+                $commentArray['Body'],
+                ($commentArray['DateUpdated']) ?: $commentArray['DateInserted']
             );
 
             $forumPostObject->addComment($comment);
         }
 
         return $forumPostObject;
-
     }
 
 
+    /**
+     * @param User $user
+     * @param bool $raw
+     *
+     * @return array|mixed
+     */
     public function getAllUsers(User $user, $raw = false)
     {
         $url = $this->createUrl($user, self::API_ALL_USERS);
@@ -509,52 +613,62 @@ class VanillaForumConnector extends AbstractForumConnector
             return $response;
         }
 
-        if (!array_key_exists("UserData", $response)) {
+        if (!array_key_exists('UserData', $response)) {
             return [];
         }
 
         $usernames = [];
-        foreach ($response["UserData"] as $userArray) {
-            if (array_key_exists("Name", $userArray)) {
-                $usernames[] = $userArray["Name"];
+        foreach ($response['UserData'] as $userArray) {
+            if (array_key_exists('Name', $userArray)) {
+                $usernames[] = $userArray['Name'];
             }
         }
 
         $users = $this
             ->serviceContainer
-            ->get("doctrine.orm.entity_manager")
-            ->getRepository("ModernEntrepreneurGeneralBackendCoreBundle:User")
+            ->get('doctrine.orm.entity_manager')
+            ->getRepository(User::class)
             ->getUsersByUsernames($usernames);
 
         return $users;
     }
 
 
+    /**
+     * @param User $user
+     * @param bool $raw
+     *
+     * @return array|mixed
+     */
     public function getConversations(User $user, $raw = false)
     {
         $url = $this->createUrl($user, self::API_CONVERSATIONS);
 
         $conversations = $this->getJson($url);
+
+        dump($conversations);
         if ($raw == true) {
             return $conversations;
         }
 
-        $convParsed = array();
-        $entityManager = $this->serviceContainer->get("doctrine")->getManager();
+        $convParsed = [];
+        $entityManager = $this->serviceContainer->get('doctrine')->getManager();
 
-        if (!array_key_exists("Conversations", $conversations)) {
-            return array();
+        if (!array_key_exists('Conversations', $conversations)) {
+            return [];
         }
 
-        foreach ($conversations["Conversations"] as $conversation) {
-            $participants = array();
-            foreach ($conversation["Participants"] as $participant) {
-                if ($participant["Name"] != $user->getUsername()) {
-                    $participantEnt = $entityManager->getRepository("ModernEntrepreneurGeneralBackendCoreBundle:User")
-                        ->findOneBy(array("username" => $participant["Name"]));
+        dump($conversations);
+
+        foreach ($conversations['Conversations'] as $conversation) {
+            $participants = [];
+            foreach ($conversation['Participants'] as $participant) {
+                if ($participant['Name'] != $user->getUsername()) {
+                    $participantEnt = $entityManager->getRepository(User::class)
+                        ->findOneBy(['username' => $participant['Name']]);
 
                     if (is_null($participantEnt)) {
-                        $participants[] = $participant["Name"];
+                        $participantModernEntrepreneurGeneralBackendCoreBundles[] = $participant['Name'];
                     } else {
                         $participants[] = $participantEnt;
                     }
@@ -562,12 +676,12 @@ class VanillaForumConnector extends AbstractForumConnector
             }
 
             $convParsed[] = new Conversation(
-                $conversation["ConversationID"],
-                $conversation["Subject"],
-                $conversation["LastBody"],
-                $conversation["DateUpdated"],
-                $conversation["CountNewMessages"],
-                $conversation["CountReadMessages"],
+                $conversation['ConversationID'],
+                $conversation['Subject'],
+                $conversation['LastBody'],
+                $conversation['DateUpdated'],
+                $conversation['CountNewMessages'],
+                $conversation['CountReadMessages'],
                 $participants
             );
         }
@@ -597,7 +711,7 @@ class VanillaForumConnector extends AbstractForumConnector
                 }
             }
 
-            $participantsString = implode(",", $participantsArray);
+            $participantsString = implode(',', $participantsArray);
 
             if ($participantsString == $participants) {
                 return $conversation;
@@ -608,13 +722,20 @@ class VanillaForumConnector extends AbstractForumConnector
     }
 
 
+    /**
+     * @param User $sender
+     * @param string $participants
+     * @param string $body
+     *
+     * @return array|bool|mixed
+     */
     public function createConversation(User $sender, $participants, $body)
     {
         $url = $this->createUrl($sender, self::API_CONVERSATIONS);
 
-        $response = $this->postJson($url, ["To" => $participants, "Body" => $body]);
+        $response = $this->postJson($url, ['To' => $participants, 'Body' => $body]);
 
-        if (!array_key_exists("Code", $response)) {
+        if (!array_key_exists('Code', $response)) {
             return true;
         } else {
             return $response;
@@ -622,27 +743,39 @@ class VanillaForumConnector extends AbstractForumConnector
     }
 
 
+    /**
+     * @param User $user
+     * @param Conversation $conversation
+     *
+     * @return mixed
+     */
     public function deleteConversation(User $user, Conversation $conversation)
     {
         $url = $this->createUrl($user, self::API_CONVERSATION);
-        $url = str_replace(":id", $conversation->getConversationId(), $url);
+        $url = str_replace(':id', $conversation->getConversationId(), $url);
 
         $cookiesString = $this->createCookieString();
 
-        $response = $this->curl->setMethod("DELETE")->setOption("CURLOPT_COOKIE",
+        $response = $this->curl->setMethod('DELETE')->setOption('CURLOPT_COOKIE',
             $cookiesString)->setURL($url)->execute();
 
         return $response;
     }
 
 
+    /**
+     * @param User $user
+     * @param Message $message
+     *
+     * @return array|bool|mixed
+     */
     public function sendMessage(User $user, Message $message)
     {
         $url = $this->createUrl($user, self::API_NEW_MESSAGE);
-        $url = str_replace(":id", $message->getConversationId(), $url);
+        $url = str_replace(':id', $message->getConversationId(), $url);
 
-        $response = $this->postJson($url, array("Body" => $message->getBody()));
-        if (array_key_exists("Messages", $response)) {
+        $response = $this->postJson($url, ['Body' => $message->getBody()]);
+        if (array_key_exists('Messages', $response)) {
             return true;
         } else {
             return $response;
@@ -650,37 +783,44 @@ class VanillaForumConnector extends AbstractForumConnector
     }
 
 
+    /**
+     * @param User $user
+     * @param Conversation $conversation
+     * @param bool $raw
+     *
+     * @return array|mixed|null
+     */
     public function getMessages(User $user, Conversation $conversation, $raw = false)
     {
         $url = $this->createUrl($user, self::API_CONVERSATION);
-        $url = str_replace(":id", $conversation->getConversationId(), $url);
+        $url = str_replace(':id', $conversation->getConversationId(), $url);
         $messages = $this->getJson($url);
 
         if ($raw == true) {
             return $messages;
         }
 
-        if (!array_key_exists("Messages", $messages)) {
+        if (!array_key_exists('Messages', $messages)) {
             return null;
         }
 
-        $entityManager = $this->serviceContainer->get("doctrine")->getManager();
+        $entityManager = $this->serviceContainer->get('doctrine')->getManager();
 
-        $msgParsed = array();
+        $msgParsed = [];
 
-        foreach ($messages["Messages"] as $message) {
-            $author = $entityManager->getRepository("ModernEntrepreneurGeneralBackendCoreBundle:User")
-                ->findOneBy(array("username" => $message["InsertName"]));
+        foreach ($messages['Messages'] as $message) {
+            $author = $entityManager->getRepository(User::class)
+                ->findOneBy(['username' => $message['InsertName']]);
             if (is_null($author)) {
-                $author = $message["InsertName"];
+                $author = $message['InsertName'];
             }
 
             $msgParsed[] = new Message(
-                $message["MessageID"],
-                $message["ConversationID"],
+                $message['MessageID'],
+                $message['ConversationID'],
                 $author,
-                $message["DateInserted"],
-                $message["Body"]
+                $message['DateInserted'],
+                $message['Body']
             );
         }
 

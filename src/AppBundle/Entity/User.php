@@ -126,7 +126,6 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     public function setProfilePhoto($profilePhoto = null)
     {
         if (is_array($profilePhoto)) {
-            dump(1);
             $profilePhoto = new ProfilePhoto($profilePhoto);
         }
 
@@ -248,5 +247,14 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
 
         $now  = new \DateTime();
         return $now->diff($date)->y;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getCommunityId()
+    {
+        return 0;
     }
 }

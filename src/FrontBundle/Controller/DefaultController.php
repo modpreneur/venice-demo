@@ -4,6 +4,7 @@ namespace FrontBundle\Controller;
 
 use AppBundle\Entity\BillingPlan;
 use AppBundle\Entity\BlogArticle;
+use AppBundle\Services\VanillaForumConnector;
 use FrontBundle\Helpers\Ajax;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -57,12 +58,19 @@ class DefaultController extends FrontController
         $blogArticles = $entityManager->getRepository('AppBundle:BlogArticle')
             ->findArticlesByCategory($category, true, 0, 2);
 
+
+        /** @var VanillaForumConnector $messagesService */
+        $messagesService = $this->get($this->getParameter('forum_service_name'));
+        $messages = $messagesService->getConversations($this->getUser());
+
+        $latestForumPosts = $messagesService->getLatestForumPosts($this->getUser());
+
         return $this->render(
             'VeniceFrontBundle:Front:index.html.twig',
             [
                 'socialPosts' => $socialStream,
-                'messages'    => [],
-                'forumPosts'  => '',
+                'messages'    => $messages,
+                'forumPosts'  => $latestForumPosts,
                 'blogArticles' => $blogArticles,
                 'productPosts' => [],
                 'communityInboxUrl' => $this->container->getParameter('forum_read_conversation_url'),
