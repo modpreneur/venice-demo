@@ -28,24 +28,23 @@
                         </div>
                     </div>
 
-                    {% set allProducts = productsService.getAllLoadedProducts() %}
-
                     {% if not access %}
                         <div class="filter-not-access">
-                            {% for product in allProducts %}
-                                {% if product.downloadType != "shippingproduct" %}
+                            {% for contentProduct in allContentProducts %}
+                                {% if contentProduct.product.isDigital() %}
                                     <div class="downloads-dashboard row">
-                                        {{ productRenderer(product,"downloadsDashboard",false,true) }}
+                                        {{ productRenderer(bundleProduct, contentProduct.content,"downloadsDashboard",false,true) }}
                                     </div>
                                 {% endif %}
                             {% endfor %}
                             <div class="disabled"></div>
                         </div>
                     {% else %}
-                        {% for product in allProducts %}
-                            {% if product.downloadType != "shippingproduct" %}
+                        {% for contentProduct in allContentProducts %}
+                            {{ dump(product) }}
+                            {% if contentProduct.product.isDigital() %}
                                 <div class="downloads-dashboard row">
-                                    {{ productRenderer(product,"downloadsDashboard",false) }}
+                                    {#{{ productRenderer(contentProduct.product,"downloadsDashboard",false) }}#}
                                 </div>
                             {% endif %}
                         {% endfor %}

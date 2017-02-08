@@ -40,6 +40,13 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
      */
     protected $downloadType;
 
+    /**
+     * @var string
+     *
+     * * @ORM\Column(type="string", length=255, nullable=true, options={"default"=null})
+     */
+    protected $httpStream;
+
 
     /**
      * VideoContent constructor.
@@ -50,6 +57,7 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
 
         $this->downloadType = '';
         $this->needGear = false;
+        $this->httpStream = '';
     }
 
 
@@ -106,7 +114,7 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
     /**
      * @return string
      */
-    public function getDownloadType(): string
+    public function getDownloadType()
     {
         return $this->downloadType;
     }
@@ -118,5 +126,21 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
     public function setDownloadType(string $downloadType)
     {
         $this->downloadType = $downloadType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHttpStream()
+    {
+        return $this->httpStream;
+    }
+
+    /**
+     * @param string $httpStream
+     */
+    public function setHttpStream(string $httpStream)
+    {
+        $this->httpStream = $httpStream;
     }
 }

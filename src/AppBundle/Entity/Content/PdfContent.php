@@ -74,7 +74,10 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
      */
     public function getDownloadType(): string
     {
-        return $this->downloadType;
+        // TODO: @JakubFajkus
+
+        return "who knows";
+//        return $this->downloadType;
     }
 
 

@@ -18,6 +18,9 @@ class ProductGroup
 {
     const HANDLE_FLOFIT     = 'flofit';
     const HANDLE_FLOMERSION = 'platinumclub';
+    const HANDLE_PLATINUM_MIX = 'platinum-mix';
+    const HANDLE_NUTRITION_AND_MEALS = 'nutrition-and-meals';
+    const HANDLE_7_DAY_RIP_MIX = '7-day-rip-mix';
 
     /**
      * @var integer
