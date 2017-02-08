@@ -131,8 +131,6 @@ class FlofitTemplateFeatures extends \Twig_Extension
             }
         }
 
-        dump($unreaded);
-
         $readAllUrl = $this->serviceContainer->getParameter('forum_read_all_url');
         $conversationUrl = $this->serviceContainer->getParameter('forum_read_conversation_url');
 
