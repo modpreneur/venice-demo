@@ -1,10 +1,17 @@
 {% extends "VeniceFrontBundle:BundleProduct:BundleProductDetail.html.twig" %}
 
+
 {% block buyModal %}
     {{ include("VeniceFrontBundle:BuyPopup:buyPopup.html.twig",{product:bundleProduct}) }}
 {% endblock %}
 
+
+{% block menu %}
+{% endblock %}
+
+
 {% block jumbotronClass %}jumbotron-platinum{% endblock %}
+
 
 {% block headerInside %}
     <div class="row">
@@ -19,6 +26,7 @@
         </div>
     </div>
 {% endblock %}
+
 
 {% block popTrialFlow %}
     {% if app.user is not null %}

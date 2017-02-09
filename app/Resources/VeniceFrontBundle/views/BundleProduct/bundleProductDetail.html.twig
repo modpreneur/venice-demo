@@ -1,10 +1,12 @@
 {% extends "VeniceFrontBundle:Products:layout.html.twig" %}
 
-{% block title %}
-    {{ bundleProduct.name }}
-{% endblock %}
 
 {% block menu %}
+{% endblock %}
+
+
+{% block title %}
+    {{ bundleProduct.name }}
 {% endblock %}
 
 
@@ -37,11 +39,7 @@
                             {% for contentProduct in allContentProducts %}
                                 {% if contentProduct.product.isDigital() %}
                                     <div class="downloads-dashboard row">
-<<<<<<< HEAD
-                                        {{ productRenderer(bundleProduct, product, "downloadsDashboard",false,true) }}
-=======
                                         {{ productRenderer(bundleProduct, contentProduct.content,"downloadsDashboard",false,true) }}
->>>>>>> origin/master
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -52,11 +50,7 @@
                             {{ dump(product) }}
                             {% if contentProduct.product.isDigital() %}
                                 <div class="downloads-dashboard row">
-<<<<<<< HEAD
-                                    {{ productRenderer(bundleProduct, product, "downloadsDashboard",false) }}
-=======
                                     {#{{ productRenderer(contentProduct.product,"downloadsDashboard",false) }}#}
->>>>>>> origin/master
                                 </div>
                             {% endif %}
                         {% endfor %}
