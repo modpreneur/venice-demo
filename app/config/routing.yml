@@ -18,3 +18,8 @@ AdminBundle:
 FrontBundle:
     resource: "@FrontBundle/Controller"
     type:     annotation
+
+
+AppBundle:
+    resource: "@AppBundle/Controller"
+    type:     annotation

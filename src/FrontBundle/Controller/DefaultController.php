@@ -47,9 +47,6 @@ class DefaultController extends FrontController
             $socialStream = $socialService->getLatestPosts($postsCount);
         }
 
-       // $socialService = $this->get('general_backend_core.services.social_feed');
-
-
         $entityManager = $this->getDoctrine()->getManager();
 
         $category = $entityManager->getRepository('AppBundle:Category')

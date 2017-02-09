@@ -108,7 +108,7 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
      */
     public function getDownloadType(): string
     {
-        return $this->downloadType;
+        return $this->downloadType ?? '';
     }
 
 

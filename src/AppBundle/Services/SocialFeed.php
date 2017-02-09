@@ -38,6 +38,11 @@ class SocialFeed
      * @param int $count
      *
      * @return SocialPost[]
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     * @throws \Facebook\Exceptions\FacebookSDKException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \InvalidArgumentException
      */
     public function getLatestPosts($count)
     {
@@ -57,12 +62,16 @@ class SocialFeed
             return strtotime($a->getDateTime()) - strtotime($b->getDateTime());
         });
 
-        $entityManager = $this->serviceContainer->get('doctrine')->getManager();
+        $entityManager = $this
+            ->serviceContainer
+            ->get('doctrine')
+            ->getManager();
+
         foreach ($this->feed as $post) {
             $entityManager->persist($post);
         }
-        $entityManager->flush();
 
+        $entityManager->flush();
         return $this->feed;
     }
 
@@ -71,12 +80,17 @@ class SocialFeed
      * @param $config
      *
      * @return SocialPost[]|array
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
      */
     public function getLatestPostsFromCache($config)
     {
         $entityManager = $this->serviceContainer->get('doctrine')->getManager();
 
-        $this->feed = $entityManager->getRepository(SocialPost::class)
+        $this->feed = $entityManager
+            ->getRepository(SocialPost::class)
             ->findBy([], ['dateTime' => 'DESC']);
 
         return $this->feed;
@@ -101,6 +115,8 @@ class SocialFeed
      * @param int $limit
      *
      * @return array
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     * @throws \Facebook\Exceptions\FacebookSDKException
      */
     private function getPostsFromSite($site, $limit)
     {
@@ -118,11 +134,11 @@ class SocialFeed
 
 
     /**
-     * @param $token
-     * @param int $limit
+     *
+     * @param $account
+     * @param $limit
      *
      * @return SocialPost[]
-     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      * @throws \Facebook\Exceptions\FacebookSDKException
      */
     private function getFacebook($account, $limit)
@@ -172,6 +188,9 @@ class SocialFeed
             if (isset($post->{'message'})) {
                 $message .= $post->{'message'};
             }
+
+            $message = preg_replace('/[\\\]\S{5}/u', '', $message);
+
             if (isset($post->{'story'})) {
                 $message .= "\n" . $post->{'story'};
             }
@@ -198,6 +217,8 @@ class SocialFeed
      * @param int $limit
      *
      * @return SocialPost[]
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     * @throws \Exception
      */
     private function getTwitter($account, $limit)
     {
@@ -258,6 +279,7 @@ class SocialFeed
      * @param $limit
      *
      * @return array
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      */
     public function getInstagram($account, $limit)
     {
@@ -290,6 +312,9 @@ class SocialFeed
 
     /**
      * @return SocialSite[]
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \InvalidArgumentException
      */
     private function getSocialSites()
     {

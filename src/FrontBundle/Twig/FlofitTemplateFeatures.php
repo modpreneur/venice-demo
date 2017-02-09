@@ -314,12 +314,16 @@ class FlofitTemplateFeatures extends \Twig_Extension
      * @return string
      */
     public function generateOCBLinkByBuyParameters(
-        BillingPlan $buyParameters,
+        $buyParameters,
         $useStoredCard,
         User $user = null,
         array $otherParams = [],
         $ocbAction = 'ocb'
     ) {
+        dump($buyParameters);
+
+        return 'http://url.cz';
+
         //$amemberURL = $this->serviceContainer->getParameter("amember_url");
         //$secretKey  = $this->serviceContainer->getParameter("amember_user_hash_key");
         // @todo

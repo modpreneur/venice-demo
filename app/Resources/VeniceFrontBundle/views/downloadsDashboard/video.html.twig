@@ -1,27 +1,19 @@
 {% set videoHref =  content.videoHd ~";"~ content.videoHq ~";"~ content.videoLq ~";"~ content.videoMobile %}
 
 {#
-    {% if product.HTTPstream is not null %}
-        {% set videoHref = videoHref ~ ";" ~ product.HTTPstream %}
-    {% endif %}
+{% if mainProduct.HTTPstream is not null %}
+    {% set videoHref = videoHref ~ ";" ~ mainProduct.HTTPstream %}
+{% endif %}
+
 #}
 
 {% if dummy %}
     {% set videoHref ="#" %}
-
 {% endif %}
-
 
 <div class="{% if not access %}not-purchased{% endif %}">
     <div class="left">
-
-        {% if access and daysRemaining == 0 %}
-            <a href="#" id="link_id_{{ content.id }}" data-video="{{ videoHref }}" class="videoPlayButton a-thumbnail {% if access and daysRemaining == 0 %}access{% endif %} "><img src="{{ content.generateVimeoThumbnail(727) }}" width="107" height="67" alt=""/></a>
-        {% else %}
-            <a class="videoPlayButton a-thumbnail" href="{{ path("downloads_product_bundle_detail",{"handle":mainProduct.handle}) }}">
-                <img src="{{ content.generateVimeoThumbnail(727) }}" width="107" height="67" alt=""/>
-            </a>
-        {% endif %}
+        <a href="#" id="link_id_{{ content.id }}" data-video="{{ videoHref }}" class="videoPlayButton a-thumbnail {% if access and daysRemaining == 0 %}access{% endif %} "><img src="{{ content.generateVimeoThumbnail(727) }}" width="107" height="67" alt=""/></a>
 
         {% if access and daysRemaining == 0 %}
             <img class="access-play-button display-inline-block display-none-medium" src="{{ asset('Resources/public/images/site/play-button-blue.png') }}" alt=""/>
@@ -32,7 +24,7 @@
         {% if access and daysRemaining == 0 %}
             <a data-video="{{ videoHref }}" href="#" class="a-name videoPlayButton"><span class="name">{{ content.name }}</span></a>
         {% else %}
-            <a href="{{ path("downloads_product_bundle_detail", {"handle": mainProduct.handle}) }}"><span class="name">{{ content.name }}</span></a>
+            <a href="{{ path("downloads_product_bundle_detail", {"handle":mainProduct.handle}) }}"><span class="name">{{ content.name }}</span></a>
         {% endif %}
     </div>
     <div class="right">
@@ -42,17 +34,16 @@
         <i class="ff-time"></i><span class="icon-name h-divider">{{ minutesAndSecondsString(content.duration) }}</span>
 
         <div class="display-inline-block-medium display-none">
-            {% if access and daysRemaining == 0 %}
-                <a class="videoPlayButton" data-video="{{ videoHref }}" href="#"><i class="ff-play"></i><span class="icon-name">Play</span></a>
-            {% elseif access and daysRemaining > 0 %}
-                <span>Wait {{ daysRemaining }} days!</span>
-            {% else %}
-                <a class="button button-primary display-inline" href="{{ path("downloads_product_bundle_detail",{"handle":mainProduct.handle}) }}">Learn more</a>
-            {% endif %}
+        {% if access and daysRemaining == 0 %}
+            <a class="videoPlayButton" data-video="{{ videoHref }}" href="#"><i class="ff-play"></i><span class="icon-name">Play</span></a>
+        {% elseif access and daysRemaining > 0 %}
+            <span>Wait {{ daysRemaining }} days!</span>
+        {% else %}
+            <a class="button button-primary display-inline" href="{{ path("downloads_product_bundle_detail",{"handle":mainProduct.handle}) }}">Learn more</a>
+        {% endif %}
         </div>
     </div>
 </div>
-
 
 {% if playLink is defined %}
     <script>

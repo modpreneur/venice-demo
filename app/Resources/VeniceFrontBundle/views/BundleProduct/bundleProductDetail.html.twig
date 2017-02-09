@@ -4,6 +4,10 @@
     {{ bundleProduct.name }}
 {% endblock %}
 
+{% block menu %}
+{% endblock %}
+
+
 {% block content %}
     <div class="downloads-dashboard-main-content landing-page">
         <div class="row">
@@ -35,7 +39,7 @@
                             {% for product in allProducts %}
                                 {% if product.downloadType != "shippingproduct" %}
                                     <div class="downloads-dashboard row">
-                                        {{ productRenderer(product,"downloadsDashboard",false,true) }}
+                                        {{ productRenderer(bundleProduct, product, "downloadsDashboard",false,true) }}
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -45,7 +49,7 @@
                         {% for product in allProducts %}
                             {% if product.downloadType != "shippingproduct" %}
                                 <div class="downloads-dashboard row">
-                                    {{ productRenderer(product,"downloadsDashboard",false) }}
+                                    {{ productRenderer(bundleProduct, product, "downloadsDashboard",false) }}
                                 </div>
                             {% endif %}
                         {% endfor %}

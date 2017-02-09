@@ -245,6 +245,9 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
     }
 
 
+    /**
+     * @return \Venice\AppBundle\Entity\BillingPlan
+     */
     public function getbuyCBParameters()
     {
         return $this->getDefaultBillingPlan();

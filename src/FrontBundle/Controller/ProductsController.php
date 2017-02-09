@@ -241,14 +241,18 @@ class ProductsController extends Controller
             ->getRepository(StandardProduct::class)
             ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
-        return $this->render($bundleProduct->getCustomTemplateName(),
+        dump($bundleProduct->getCustomTemplateName());
+
+        return $this->render(
+            $bundleProduct->getCustomTemplateName(),
             [
                 'access' => $user->haveAccess($bundleProduct),
                 'productsService' => $productsService,
                 'upsellProducts' => $upsellProducts,
                 'bundleProduct' => $bundleProduct,
                 'activeModule' => $module
-            ]);
+            ]
+        );
     }
 
 
