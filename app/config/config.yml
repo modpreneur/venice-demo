@@ -287,6 +287,11 @@ vich_uploader:
             inject_on_load: true
             namer: ~
 
+fos_user:
+  from_email:
+      address:      noreply@example.com
+      sender_name:  Flofit
+
 
 parameters: #todo: necktie?!
     trinity.search.doctrine_prefix: "NecktieAppBundle"
