@@ -75,6 +75,20 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     private $lastPasswordChange;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true, name="flomersion_start")
+     */
+    protected $flomersionStart;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true, name="flomersion_end")
+     */
+    protected $flomersionEnd;
+
 
     /**
      * User constructor.
@@ -256,5 +270,37 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     public function getCommunityId()
     {
         return 0;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFlomersionStart()
+    {
+        return $this->flomersionStart;
+    }
+
+    /**
+     * @param \DateTime $flomersionStart
+     */
+    public function setFlomersionStart($flomersionStart)
+    {
+        $this->flomersionStart = $flomersionStart;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFlomersionEnd()
+    {
+        return $this->flomersionEnd;
+    }
+
+    /**
+     * @param \DateTime $flomersionEnd
+     */
+    public function setFlomersionEnd($flomersionEnd)
+    {
+        $this->flomersionEnd = $flomersionEnd;
     }
 }

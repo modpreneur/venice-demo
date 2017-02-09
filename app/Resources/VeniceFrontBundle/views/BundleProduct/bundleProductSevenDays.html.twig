@@ -1,14 +1,23 @@
+<<<<<<< HEAD
 {% extends "VeniceFrontBundle:BundleProduct:BundleProductDetail.html.twig" %}
+=======
+{% extends "VeniceFrontBundle:BundleProduct:bundleProductDetail.html.twig" %}
+>>>>>>> origin/master
 
 
 {% block buyModal %}
     {{ include("VeniceFrontBundle:BuyPopup:buyPopup.html.twig",{product:bundleProduct}) }}
 {% endblock %}
 
+<<<<<<< HEAD
 
 {% block jumbotronClass %}jumbotron-seven-days{% endblock %}
 
 
+=======
+{% block jumbotronClass %}jumbotron-seven-days{% endblock %}
+
+>>>>>>> origin/master
 {% block headerInside %}
     <div class="row">
         <div class="span-small-14 margin-top-50">
@@ -23,7 +32,10 @@
     </div>
 {% endblock %}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 {% block popTrialFlow %}
     {% if app.user is not null %}
         {% set afterTrialPopup = afterTrialExpires(app.user) %}

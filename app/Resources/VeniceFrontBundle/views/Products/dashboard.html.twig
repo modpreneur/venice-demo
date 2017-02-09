@@ -7,6 +7,7 @@
 {% block jumbotronClass %}jumbotron-dashboard{% endblock %}
 
 {% block headerInside %}
+    {#TODO: tododoo looks like a shit when uncommented#}
     {#<div class="abs-center">#}
         {#<img src="{{ asset('Resources/public/images/site/florida-gear.png') }}" alt=""/>#}
         {#<h1>PLATINUM<span>CLUB</span></h1>#}
@@ -33,29 +34,26 @@
                         </div>
                     </div>
 
-                    {% set allVideoContents = productsService.getContentByType("videoproduct") %}
-                    {#{% set videoproducts = allVideoProducts|slice(0,productsService.getDefaultLength) %}#}
-                    {#{% set videoproductLoadOffset = videoproducts|length %}#}
-                    {#{% set videoproductDisplayLoadMoreButton = (videoproductLoadOffset + productsService.getDefaultLength) < allVideoProducts|length %}#}
-                    {#{% if notVisibleFromStart is defined and not notVisibleFromStart %}ajax-hidden{% endif %}#}
+                    {% set videoContentLoadOffset = workouts|length %}
+                    {% set videoContentDisplayLoadMoreButton = (videoContentLoadOffset + videosAndMealPlansLoadOffset) < workouts|length %}
 
-                    {#<div id="videoproductBlock" class="ajax-append ajax-slide-down">#}
-                    {#{% block allVideoProducts %}#}
+                    <div id="videoproductBlock" class="ajax-append ajax-slide-down">
+                    {% block allVideoProducts %}
 
-                        {% for videoContent in allVideoContents %}
+                        {% for workout in workouts %}
                         <div class="downloads-dashboard row ">
-                            {{ productRenderer(currentProduct, videoContent, "vidoeDashboard") }}
+                            {{ productRenderer(currentProduct, workout, "vidoeDashboard") }}
                         </div>
                         {% endfor %}
-                        {#{% if videoproducts|length != 0 and videoproductDisplayLoadMoreButton %}#}
-                        {#<div class="row" id="videoproduct-load-more-block">#}
-                            {#<div class="span-mini-24 text-center margin-vertical-20">#}
-                                {#<a class="trinity-load-more button button-load-more" href="{{ path("downloads_web_apai_load_more_flofit",{"type":"videoproduct","start":videoproductLoadOffset}) }}" data-after-click="Loading..." data-remove-element="#videoproduct-load-more-block">Load More</a>#}
-                            {#</div>#}
-                        {#</div>#}
-                        {#{% endif %}#}
-                    {#{% endblock %}#}
-                    {#</div>#}
+                        {% if workouts|length != 0 and videoContentDisplayLoadMoreButton %}
+                        <div class="row" id="videoproduct-load-more-block">
+                            <div class="span-mini-24 text-center margin-vertical-20">
+                                <a class="trinity-load-more button button-load-more" href="{{ path("downloads_web_api_load_more_flofit",{"type":"videoproduct","start":videoContentLoadOffset}) }}" data-after-click="Loading..." data-remove-element="#videoproduct-load-more-block">Load More</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endblock %}
+                    </div>
                 </div>
 
                 <div id="books-and-training-calendars">
@@ -72,29 +70,27 @@
                         </div>
                     </div>
 
-                    {% set allDownloadContent = productsService.getContentByType("downloadproduct") %}
-                    {#{% set downloadproducts = allDownloadProducts|slice(0,productsService.getDefaultLength) %}#}
-                    {#{% set downloadsprodutctLoadOffset = downloadproducts|length %}#}
-                    {#{% set downloadproductDisplayLoadMoreButton = (downloadsprodutctLoadOffset + productsService.getDefaultLength) < allDownloadProducts|length %}#}
-                    {#{% if notVisibleFromStart is defined and not notVisibleFromStart %}ajax-hidden{% endif %}#}
+                    {% set pdfContentLoadOffset = mealPlans|length %}
+                    {% set downloadproductDisplayLoadMoreButton = (pdfContentLoadOffset + videosAndMealPlansLoadOffset) < mealPlans|length %}
+                    {% if notVisibleFromStart is defined and not notVisibleFromStart %}ajax-hidden{% endif %}
 
-                    {#<div id="downloadproductBlock" class="ajax-append ajax-slide-down">#}
-                    {#{% block downloadproductBlock %}#}
-                        {% for downloadContent in allDownloadContent %}
+                    <div id="downloadproductBlock" class="ajax-append ajax-slide-down">
+                    {% block downloadproductBlock %}
+                        {% for downloadContent in mealPlans %}
                         <div class="downloads-dashboard row">
                             {{ productRenderer(currentProduct, downloadContent, "downloadsDashboard") }}
                         </div>
                         {% endfor %}
 
-                        {#{% if downloadproducts|length != 0 and downloadproductDisplayLoadMoreButton %}#}
-                            {#<div class="row" id="downloads-load-more-block">#}
-                                {#<div class="span-mini-24 text-center margin-vertical-20">#}
-                                    {#<a class="trinity-load-more button button-load-more" href="{{ path("downloads_web_api_load_more_flofit",{"type":"downloadproduct","start":downloadsprodutctLoadOffset}) }}" data-after-click="Loading..." data-remove-element="#downloads-load-more-block">Load More</a>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#{% endif %}#}
-                    {#{% endblock %}#}
-                    {#</div>#}
+                        {% if mealPlans|length != 0 and downloadproductDisplayLoadMoreButton %}
+                            <div class="row" id="downloads-load-more-block">
+                                <div class="span-mini-24 text-center margin-vertical-20">
+                                    <a class="trinity-load-more button button-load-more" href="{{ path("downloads_web_api_load_more_flofit",{"type":"downloadproduct","start":pdfContentLoadOffset}) }}" data-after-click="Loading..." data-remove-element="#downloads-load-more-block">Load More</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                    </div>
                  </div>
 
                 <div id="add-ons" class="recomended">

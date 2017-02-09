@@ -5,6 +5,7 @@ namespace AppBundle\Entity\Product;
 use AppBundle\Entity\ProductGroup;
 use Doctrine\ORM\Mapping as ORM;
 use Trinity\NotificationBundle\Annotations as N;
+use Venice\AppBundle\Entity\Interfaces\ContentProductInterface;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\StandardProductRepository")
@@ -79,7 +80,7 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
         parent::__construct();
 
         $this->StandardProductChild = 'standard product from application';
-        $this->customTemplateName = 'VeniceFrontbundle:BundleProduct:bundleProductPlatinumMix.html.twig';
+        $this->customTemplateName   = 'VeniceFrontbundle:BundleProduct:bundleProductPlatinumMix.html.twig';
     }
 
 

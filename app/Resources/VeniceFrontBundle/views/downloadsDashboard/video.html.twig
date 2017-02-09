@@ -1,5 +1,6 @@
 {% set videoHref =  content.videoHd ~";"~ content.videoHq ~";"~ content.videoLq ~";"~ content.videoMobile %}
 
+<<<<<<< HEAD
 {#
 {% if mainProduct.HTTPstream is not null %}
     {% set videoHref = videoHref ~ ";" ~ mainProduct.HTTPstream %}
@@ -7,6 +8,12 @@
 
 #}
 
+=======
+{% if content.httpStream is not null %}
+    {% set videoHref = videoHref ~ ";" ~ content.httpStream %}
+{% endif %}
+
+>>>>>>> origin/master
 {% if dummy %}
     {% set videoHref ="#" %}
 {% endif %}
@@ -24,7 +31,11 @@
         {% if access and daysRemaining == 0 %}
             <a data-video="{{ videoHref }}" href="#" class="a-name videoPlayButton"><span class="name">{{ content.name }}</span></a>
         {% else %}
+<<<<<<< HEAD
             <a href="{{ path("downloads_product_bundle_detail", {"handle":mainProduct.handle}) }}"><span class="name">{{ content.name }}</span></a>
+=======
+            <a href="{{ path("downloads_product_bundle_detail",{"handle":mainProduct.handle}) }}"><span class="name">{{ mainProduct.name }}</span></a>
+>>>>>>> origin/master
         {% endif %}
     </div>
     <div class="right">

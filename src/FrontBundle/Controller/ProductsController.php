@@ -3,6 +3,7 @@
 namespace FrontBundle\Controller;
 
 use AppBundle\Entity\BillingPlan;
+use AppBundle\Entity\Content\PdfContent;
 use AppBundle\Entity\Content\VideoContent;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductGroup;
@@ -54,30 +55,62 @@ class ProductsController extends Controller
             return $this->redirectToRoute('downloads_dashboard');
         }
 
-        /** @var ProductGroup $productGroup */
-        $productGroup = $entityManager->getRepository(ProductGroup::class)
-            ->findOneBy(['handle' => ProductGroup::HANDLE_FLOFIT]);
+//        /** @var ProductGroup $productGroup */
+//        $productGroup = $entityManager->getRepository(ProductGroup::class)
+//            ->findOneBy(['handle' => ProductGroup::HANDLE_FLOFIT]);
+//
+//        $productsService = $this->get('flofit.products_service');
+//
+//        $productsService->initialSetup($productGroup->getProducts(), $this->getUser());
 
-        $productsService = $this->get('flofit.products_service');
-
-        //$products = $entityManager->getRepository(Product::class)->findBy(['handle' => ProductGroup::HANDLE_FLOFIT]);
-
-        $productsService->initialSetup($productGroup->getProducts(), $this->getUser());
 
         $upsellProducts = $entityManager->getRepository(StandardProduct::class)
             ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
-        $currentProduct = $entityManager
+        $flofitProduct = $entityManager
             ->getRepository(Product::class)
-            ->findOneBy(['handle' => $productGroup::HANDLE_FLOFIT]);
+            ->findOneBy(['handle' => ProductGroup::HANDLE_FLOFIT]);
+
+        $platinumMixProduct = $entityManager
+            ->getRepository(Product::class)
+            ->findOneBy(['handle' => ProductGroup::HANDLE_PLATINUM_MIX]);
+
+        $nutritionAndMealsProduct = $entityManager
+            ->getRepository(Product::class)
+            ->findOneBy(['handle' => ProductGroup::HANDLE_NUTRITION_AND_MEALS]);
+
+        $sevenDayRipMixProduct = $entityManager
+            ->getRepository(Product::class)
+            ->findOneBy(['handle' => ProductGroup::HANDLE_7_DAY_RIP_MIX]);
+
+        $flofitWorkouts = $entityManager->getRepository(VideoContent::class)
+            ->getByProducts([$flofitProduct->getId(), $platinumMixProduct->getId()]);
+
+//        dump($flofitWorkouts);
+//        foreach ($flofitWorkouts as $flofitWorkout) {
+//            dump($flofitWorkout->getType());
+//        }
+//        dump($entityManager->getRepository(PdfContent::class), get_class($entityManager->getRepository(PdfContent::class)));die();
+        $flofitMealPlans = $entityManager->getRepository(PdfContent::class)
+            ->getByProducts([$flofitProduct->getId(), $nutritionAndMealsProduct->getId(), $sevenDayRipMixProduct->getId(), $platinumMixProduct->getId()]);
+
+////
+//        dump($flofitMealPlans);
+//        foreach ($flofitMealPlans as $flofitWorkout) {
+////            dump($flofitWorkout->getType());
+//        }
+//
+//        die();
 
         return $this->render(
             'VeniceFrontBundle:Products:dashboard.html.twig',
             [
-                'productsService' => $productsService,
+                'workouts'        => $flofitWorkouts,
+                'mealPlans'       => $flofitMealPlans,
                 'upsellProducts'  => $upsellProducts,
                 'fbPixel'         => $fbPixel,
-                'currentProduct'  => $currentProduct,
+                'currentProduct'  => $flofitProduct,
+                'videosAndMealPlansLoadOffset'  => $this->container->getParameter('downloads_number_of_product_displayed'),
             ]
         );
     }
@@ -228,31 +261,42 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function bundleProductAction(StandardProduct $bundleProduct, $module = 1)
+    public function bundleProductAction(StandardProduct $product, $module = 1)
     {
         /** @var User $user */
         $user = $this->getUser();
 
         $productsService = $this->get('flofit.products_service');
-        $productsService->initialSetup([$bundleProduct], $this->getUser());
+        $productsService->initialSetup([$product], $this->getUser());
 
         /** @var StandardProduct $upsellProducts */
         $upsellProducts = $this->getDoctrine()->getManager()
             ->getRepository(StandardProduct::class)
             ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
+<<<<<<< HEAD
         dump($bundleProduct->getCustomTemplateName());
 
         return $this->render(
             $bundleProduct->getCustomTemplateName(),
+=======
+        return $this->render($product->getCustomTemplateName(),
+>>>>>>> origin/master
             [
-                'access' => $user->haveAccess($bundleProduct),
+                'access' => $user->haveAccess($product),
                 'productsService' => $productsService,
                 'upsellProducts' => $upsellProducts,
+<<<<<<< HEAD
                 'bundleProduct' => $bundleProduct,
                 'activeModule' => $module
             ]
         );
+=======
+                'bundleProduct' => $product,
+                'activeModule' => $module,
+                'allContentProducts' => $product->getContentProducts()
+            ]);
+>>>>>>> origin/master
     }
 
 
