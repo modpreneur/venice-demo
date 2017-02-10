@@ -17,7 +17,7 @@
                     <a class="button button-functional" href="{{ path("blog_index") }}"><i class="ff-arrow-left"></i><span>Blog</span></a>
                 </div>
                 <div class="offset-medium-4 offset-large-0 span-large-4 span-medium-5 span-small-12 text-center">
-                    <a href="{{ authorPublicProfileLink }}"><i class="ff-person"></i><span>{{ blogPost.publisher }}</span></a>
+                    <a href="{{ authorPublicProfileLink }}"><i class="ff-person"></i><span>{{ blogPost.publisher.fullNameOrUsername }}</span></a>
                 </div>
                 <div class="span-large-4 span-medium-6 span-small-12 text-center">
                     <i class="ff-calendar-day"></i><span>{{ blogPost.dateToPublish|date("m/d/y") }}</span>

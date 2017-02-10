@@ -19,6 +19,7 @@ class Version20170128130252 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE product CHANGE description description LONGTEXT DEFAULT NULL');
+        $this->addSql('ALTER TABLE content ADD download_type VARCHAR(255) DEFAULT NULL');
     }
 
     /**
@@ -30,5 +31,6 @@ class Version20170128130252 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE product CHANGE description description VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci');
+        $this->addSql('ALTER TABLE content DROP download_type');
     }
 }
