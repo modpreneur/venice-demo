@@ -8,11 +8,9 @@ use AppBundle\Entity\Content\VideoContent;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductGroup;
 use AppBundle\Entity\User;
-
 use AppBundle\Services\AbstractConnector;
 use AppBundle\Services\ProductsPage;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Mapping\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +40,7 @@ class ProductsController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
 
         /** @var User $user */
-        $user    = $this->getUser();
+        $user = $this->getUser();
         $session = $this->get('session');
         $fbPixel = $request->get('fbPixel');
 
@@ -92,7 +90,12 @@ class ProductsController extends Controller
 //        }
 //        dump($entityManager->getRepository(PdfContent::class), get_class($entityManager->getRepository(PdfContent::class)));die();
         $flofitMealPlans = $entityManager->getRepository(PdfContent::class)
-            ->getByProducts([$flofitProduct->getId(), $nutritionAndMealsProduct->getId(), $sevenDayRipMixProduct->getId(), $platinumMixProduct->getId()]);
+            ->getByProducts([
+                $flofitProduct->getId(),
+                $nutritionAndMealsProduct->getId(),
+                $sevenDayRipMixProduct->getId(),
+                $platinumMixProduct->getId()
+            ]);
 
 ////
 //        dump($flofitMealPlans);
@@ -105,12 +108,12 @@ class ProductsController extends Controller
         return $this->render(
             'VeniceFrontBundle:Products:dashboard.html.twig',
             [
-                'workouts'        => $flofitWorkouts,
-                'mealPlans'       => $flofitMealPlans,
-                'upsellProducts'  => $upsellProducts,
-                'fbPixel'         => $fbPixel,
-                'currentProduct'  => $flofitProduct,
-                'videosAndMealPlansLoadOffset'  => $this->container->getParameter('downloads_number_of_product_displayed'),
+                'workouts' => $flofitWorkouts,
+                'mealPlans' => $flofitMealPlans,
+                'upsellProducts' => $upsellProducts,
+                'fbPixel' => $fbPixel,
+                'currentProduct' => $flofitProduct,
+                'videosAndMealPlansLoadOffset' => $this->container->getParameter('downloads_number_of_product_displayed'),
             ]
         );
     }
@@ -122,6 +125,8 @@ class ProductsController extends Controller
      * @Route("/platinumclub/video", name="downloads_product_flomersion")
      * @Route("/platinumclub/video/{handle}", name="downloads_product_flomersion_video_play")
      * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \LogicException
      */
     public function flomersionAction($handle = null)
     {
@@ -161,7 +166,7 @@ class ProductsController extends Controller
         $access = false;
         if ($product) {
             /** @var User $user */
-            $user   = $this->getUser();
+            $user = $this->getUser();
             $access = $user->hasAccessToProduct($product);
         }
 
@@ -172,10 +177,10 @@ class ProductsController extends Controller
         return $this->render(
             'VeniceFrontBundle:Products:flomersion.html.twig',
             [
-                'access'          => $access,
+                'access' => $access,
                 'productsService' => $productsService,
-                'playId'          => $playId,
-                'product'         => $currentProduct,
+                'playId' => $playId,
+                'product' => $currentProduct,
             ]
         );
     }
@@ -185,6 +190,10 @@ class ProductsController extends Controller
      * @Route("/product/platinumclub", name="downloads_platinumclub_detail_video")
      * @Route("/product/platinumclub/module/{module}", name="downloads_platinumclub_video_detail_with_module")
      * @return Response
+     * @throws \LogicException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      */
     public function productPlatinumClubAction($module = 1)
     {
@@ -208,7 +217,7 @@ class ProductsController extends Controller
             ->getRepository(StandardProduct::class)
             ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
-        $buyParams  = new BillingPlan();
+        $buyParams = new BillingPlan();
         $parameters = [];
 
         $trial = 7;
@@ -257,15 +266,19 @@ class ProductsController extends Controller
     /**
      * @Route("/product/{handle}", name="downloads_product_bundle_detail")
      * @Route("/product/{handle}/module/{module}", name="downloads_product_bundle_detail_with_module")
-     * @param StandardProduct $bundleProduct
+     * @param StandardProduct $product
+     * @param int $module
      *
      * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
+     * @internal param StandardProduct $bundleProduct
+     *
      */
     public function bundleProductAction(StandardProduct $product, $module = 1)
     {
         /** @var User $user */
         $user = $this->getUser();
-
         $productsService = $this->get('flofit.products_service');
         $productsService->initialSetup([$product], $this->getUser());
 
@@ -274,7 +287,8 @@ class ProductsController extends Controller
             ->getRepository(StandardProduct::class)
             ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
-        return $this->render($product->getCustomTemplateName(),
+        return $this->render(
+            $product->getCustomTemplateName(),
             [
                 'access' => $user->haveAccess($product),
                 'productsService' => $productsService,
@@ -282,7 +296,8 @@ class ProductsController extends Controller
                 'bundleProduct' => $product,
                 'activeModule' => $module,
                 'allContentProducts' => $product->getContentProducts()
-            ]);
+            ]
+        );
     }
 
 
@@ -290,7 +305,10 @@ class ProductsController extends Controller
      * @Route("/vlog/detail/{handle}",name="downloads_product_vlog_detail")
      * @param VlogProduct $vlogProduct
      *
+     * @todo
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \LogicException
      */
     public function vlogDetailsAction(Request $request, VlogProduct $vlogProduct)
     {
@@ -303,14 +321,14 @@ class ProductsController extends Controller
         $authorPublicProfileLink = "";
         if ($vlogProduct->getPublisher()) {
             $authorPublicProfileLink = $this->generateUrl('core_front_user_public_profile',
-                array('username' => $vlogProduct->getPublisher()->getUserName()));
+                ['username' => $vlogProduct->getPublisher()->getUserName()]);
         }
 
         return $this->render(':DownloadsBundle/Front:vlogProductDetails.html.twig',
-            array(
+            [
                 'vlogProduct' => $vlogProduct,
                 'authorPublicProfileLink' => $authorPublicProfileLink
-            )
+            ]
         );
     }
 
@@ -319,14 +337,16 @@ class ProductsController extends Controller
      * @Route("/pernament/post/{id}", name="vlog_permanent_post_detail")
      * @param VlogProduct $vlogProduct
      *
+     * @todo
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function pernamentPostLink(VlogProduct $vlogProduct)
     {
         return $this->render(':DownloadsBundle/Front:vlogProductDetails.html.twig',
-            array(
+            [
                 'vlogProduct' => $vlogProduct
-            )
+            ]
         );
     }
 }

@@ -1,10 +1,17 @@
 {% extends "VeniceFrontBundle:BundleProduct:bundleProductDetail.html.twig" %}
 
+
 {% block buyModal %}
     {% include "VeniceFrontBundle:BuyPopup:ocbPopup.html.twig" %}
 {% endblock %}
 
+
+{% block menu %}
+{% endblock %}
+
+
 {% block jumbotronClass %}jumbotron-platinum-club{% endblock %}
+
 
 {% block headerInside %}
     <div class="row">
@@ -17,6 +24,7 @@
         </div>
     </div>
 {% endblock %}
+
 
 {% block content %}
     <div class="downloads-dashboard-main-content landing-page">

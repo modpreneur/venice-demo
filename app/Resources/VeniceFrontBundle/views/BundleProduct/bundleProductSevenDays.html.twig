@@ -1,11 +1,17 @@
 {% extends "VeniceFrontBundle:BundleProduct:bundleProductDetail.html.twig" %}
 
 
+{% block menu %}
+{% endblock %}
+
+
 {% block buyModal %}
     {{ include("VeniceFrontBundle:BuyPopup:buyPopup.html.twig",{product:bundleProduct}) }}
 {% endblock %}
 
+
 {% block jumbotronClass %}jumbotron-seven-days{% endblock %}
+
 
 {% block headerInside %}
     <div class="row">
@@ -20,6 +26,7 @@
         </div>
     </div>
 {% endblock %}
+
 
 {% block popTrialFlow %}
     {% if app.user is not null %}

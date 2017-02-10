@@ -14,7 +14,14 @@
 
 <div class="{% if not access %}not-purchased{% endif %}">
     <div class="left">
-        <a href="#" id="link_id_{{ content.id }}" data-video="{{ videoHref }}" class="videoPlayButton a-thumbnail {% if access and daysRemaining == 0 %}access{% endif %} "><img src="{{ content.generateVimeoThumbnail(727) }}" width="107" height="67" alt=""/></a>
+
+        {% if access and daysRemaining == 0 %}
+            <a href="#" id="link_id_{{ content.id }}" data-video="{{ videoHref }}" class="videoPlayButton a-thumbnail {% if access and daysRemaining == 0 %}access{% endif %} "><img src="{{ content.generateVimeoThumbnail(727) }}" width="107" height="67" alt=""/></a>
+        {% else %}
+            <a class="videoPlayButton a-thumbnail" href="{{ path("downloads_product_bundle_detail",{"handle":mainProduct.handle}) }}">
+                <img src="{{ content.generateVimeoThumbnail(727) }}" width="107" height="67" alt=""/>
+            </a>
+        {% endif %}
 
         {% if access and daysRemaining == 0 %}
             <img class="access-play-button display-inline-block display-none-medium" src="{{ asset('Resources/public/images/site/play-button-blue.png') }}" alt=""/>

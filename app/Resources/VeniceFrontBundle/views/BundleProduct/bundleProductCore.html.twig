@@ -5,6 +5,9 @@
     {{ include("VeniceFrontBundle:BuyPopup:buyPopup.html.twig", {product:bundleProduct}) }}
 {% endblock %}
 
+{% block menu %}
+{% endblock %}
+
 
 {% block jumbotronClass %}jumbotron-core{% endblock %}
 
@@ -17,7 +20,9 @@
         <div class="span-small-9 span-medium-7 margin-top-100 text-center headline-button">
             <h1>{{ bundleProduct.name }}</h1>
             {% if not access %}
-                <label for="bundle-product-modal-input" class="button button-buy-jumbotron uppercase buy-modal-open"></label>
+                <label for="bundle-product-modal-input" class="button button-buy-jumbotron uppercase buy-modal-open">
+                    <span>BUY NOW</span>
+                </label>
             {% endif %}
         </div>
     </div>

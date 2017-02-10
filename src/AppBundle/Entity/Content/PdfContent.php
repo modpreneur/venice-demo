@@ -74,10 +74,8 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
      */
     public function getDownloadType(): string
     {
+        return $this->downloadType ?? '';
         // TODO: @JakubFajkus
-
-        return "who knows";
-//        return $this->downloadType;
     }
 
 
@@ -89,6 +87,10 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
         $this->downloadType = $downloadType;
     }
 
+
+    /**
+     * @return bool
+     */
     public function haveDownloadName()
     {
         return false;

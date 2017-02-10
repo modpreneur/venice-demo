@@ -1,8 +1,14 @@
 {% extends "VeniceFrontBundle:Products:layout.html.twig" %}
 
+
+{% block menu %}
+{% endblock %}
+
+
 {% block title %}
     {{ bundleProduct.name }}
 {% endblock %}
+
 
 {% block content %}
     <div class="downloads-dashboard-main-content landing-page">
@@ -41,7 +47,6 @@
                         </div>
                     {% else %}
                         {% for contentProduct in allContentProducts %}
-                            {{ dump(product) }}
                             {% if contentProduct.product.isDigital() %}
                                 <div class="downloads-dashboard row">
                                     {#{{ productRenderer(contentProduct.product,"downloadsDashboard",false) }}#}

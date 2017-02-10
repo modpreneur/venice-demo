@@ -5,7 +5,7 @@ namespace AppBundle\Entity\SocialStream;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="social_post")
+ * @ORM\Table(name="social_post", options={"collate":"utf8mb4_general_ci", "charset":"utf8mb4"})
  * @ORM\Entity
  */
 class SocialPost
@@ -72,6 +72,15 @@ class SocialPost
         $this->message = $message;
         $this->profilePic = $profilePic;
         $this->url = $url;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
 

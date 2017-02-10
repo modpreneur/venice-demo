@@ -12,6 +12,14 @@ doctrine:
     dbal:
         default_connection: default
         connections:
+            default:
+              charset:  utf8mb4
+              default_table_options:
+                charset: utf8mb4
+                collate: utf8mb4_unicode_ci
+              options:
+                1002: "SET NAMES 'utf8mb4'"
+
             oldFlofit:
                 driver:   pdo_mysql
                 host:     '%database_host_flofit%'
@@ -19,7 +27,7 @@ doctrine:
                 dbname:   '%database_name_flofit%'
                 user:     '%database_user_flofit%'
                 password: '%database_password_flofit%'
-                charset:  UTF8
+
     orm:
         default_entity_manager: default
         entity_managers:
@@ -278,6 +286,11 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             inject_on_load: true
             namer: ~
+
+fos_user:
+  from_email:
+      address:      noreply@example.com
+      sender_name:  Flofit
 
 
 parameters: #todo: necktie?!
