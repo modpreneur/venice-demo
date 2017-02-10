@@ -45,16 +45,17 @@ $(document).ready(function(){
 /**
  * Created by ondrejbohac on 01.07.15.
  */
+
 var EditProfilePicture = {
     setFormItems : function(data){
-        $("#globaluserprofilephotowithdeletebutton_profilePhoto_cropStartX").val(data.x);
-        $("#globaluserprofilephotowithdeletebutton_profilePhoto_cropStartY").val(data.y);
-        $("#globaluserprofilephotowithdeletebutton_profilePhoto_cropSize").val(data.width);
+        $("#global_user_profilePhoto_cropStartX").val(data.x);
+        $("#global_user_profilePhoto_cropStartY").val(data.y);
+        $("#global_user_profilePhoto_cropSize").val(data.width);
     },
     refresh : function(){
         var image = $("#image-before-upload");
         if(image.length != 0){
-            $("#globaluserprofilephotowithdeletebutton_profilePhoto_image_file").change(function(fileEvent){
+            $("#global_user_profilePhoto_image_file").change(function(fileEvent){
                 if(fileEvent.target.files && fileEvent.target.files[0]){
                     var reader = new FileReader();
                     reader.onload = function(e){
