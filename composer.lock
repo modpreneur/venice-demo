@@ -4270,12 +4270,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "f033544956f304dbc0c6c363f5179c5b61f6032b"
+                "reference": "214ec24024984a0c19d5455c28cbfaa8007c2c14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/f033544956f304dbc0c6c363f5179c5b61f6032b",
-                "reference": "f033544956f304dbc0c6c363f5179c5b61f6032b",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/214ec24024984a0c19d5455c28cbfaa8007c2c14",
+                "reference": "214ec24024984a0c19d5455c28cbfaa8007c2c14",
                 "shasum": ""
             },
             "require": {
@@ -4364,7 +4364,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-02-10 13:12:40"
+            "time": "2017-02-10 14:05:12"
         },
         {
             "name": "monolog/monolog",
@@ -7896,12 +7896,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-grid.git",
-                "reference": "b1f929c3500505a2d44e046022b274f98d029265"
+                "reference": "bfc4844a9a472717f5c85c923e0a6f4905169fa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/b1f929c3500505a2d44e046022b274f98d029265",
-                "reference": "b1f929c3500505a2d44e046022b274f98d029265",
+                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/bfc4844a9a472717f5c85c923e0a6f4905169fa9",
+                "reference": "bfc4844a9a472717f5c85c923e0a6f4905169fa9",
                 "shasum": ""
             },
             "require": {
@@ -7953,7 +7953,7 @@
                 }
             ],
             "description": "Trinity Grid bundle",
-            "time": "2017-01-11 15:11:10"
+            "time": "2017-02-10 13:57:12"
         },
         {
             "name": "trinity/logger",
