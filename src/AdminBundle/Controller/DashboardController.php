@@ -11,7 +11,7 @@ use Venice\AdminBundle\Controller\DashboardController as VeniceDashboardControll
 class DashboardController extends VeniceDashboardController
 {
     /**
-     * @Route("/admin", name="admin_dashboard")
+     * @Route("/admin/", name="admin_dashboard")
      */
     public function indexAction(Request $request)
     {
