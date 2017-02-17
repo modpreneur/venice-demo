@@ -54,6 +54,10 @@ trinity_settings:
 trinity_messages:
     sender_identification: "client_3"
 
+#trinity_admin:
+#    froala_editor_settings:
+#        pluginsEnabled: ['url']
+
 
 twig:
 #  paths:
