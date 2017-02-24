@@ -272,6 +272,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
         return 0;
     }
 
+
     /**
      * @return \DateTime
      */
@@ -279,6 +280,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     {
         return $this->flomersionStart;
     }
+
 
     /**
      * @param \DateTime $flomersionStart
@@ -288,6 +290,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
         $this->flomersionStart = $flomersionStart;
     }
 
+
     /**
      * @return \DateTime
      */
@@ -295,6 +298,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     {
         return $this->flomersionEnd;
     }
+
 
     /**
      * @param \DateTime $flomersionEnd
