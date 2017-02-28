@@ -572,4 +572,31 @@ class ProfilerController extends Controller
             ]
         );
     }
+
+    /**
+     * @Route("/p/{username}", name="core_front_user_public_profile")
+     * @param User $user
+     * @return Response
+     */
+    public function publicProfileAction(User $user)
+    {
+        $forumService = $this->get('flofit.prod_env_forum_connector');
+
+        $posts = $forumService->getLatestForumPostsOfUser($user, $user, 4);
+        $link = $this->getParameter('forum_send_new_message');
+
+        $privacySettings = $this
+            ->get('flofit.privacy_settings')
+            ->getPrivacySettings($user);
+
+        return $this->render(
+            'VeniceFrontBundle:Core:publicProfile.html.twig',
+            [
+                'user' => $user,
+                'sendMessageLink' => $link,
+                'forumPosts'   => $posts,
+                'userSettings' => $privacySettings
+            ]
+        );
+    }
 }

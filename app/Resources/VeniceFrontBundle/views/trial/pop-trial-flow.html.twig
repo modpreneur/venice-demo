@@ -7,9 +7,9 @@
 
         <div class="cart-box">
 
-            {% if has_setting_value('productOfferId', 'introFree', app.user, 'user') or has_setting_value('productOfferId', 'introFreePa', app.user, 'user') %}
+            {% if app.user.hasProductOfferId("introFree") or app.user.hasProductOfferId("introFreePa") %}
                 <div class="item">
-                    <h2>Monthly Subscriptionno
+                    <h2>Monthly Subscription
                         <small>Online Access to the Entire FLO&nbsp;FIT Program</small>
                     </h2>
                     <p>Pay a low monthly fee for access to the entire FLO&nbsp;FIT program, including all workouts, books, and training calendars. <br><span class="display-block"><strong>Cancel or upgrade anytime with just “2&nbsp;clicks”.</strong></span></p>
@@ -21,7 +21,7 @@
                     </div>
                     <a href="{{ path('buy_link_after_trial', {'user_choice': 1}) }}" class="btn btn-sec" id="pop-expire-offerclick-1">START NOW</a>
                 </div>
-            {% elseif  has_setting_value('productOfferId', 'introFreeHp', app.user, 'user') %}
+            {% elseif app.user.hasProductOfferId("introFreeHp") %}
                 <div class="item">
                     <h2>Monthly Subscription
                         <small>Online Access to the Entire FLO&nbsp;FIT Program</small>
@@ -51,7 +51,8 @@
                 </div>
             {% endif %}
 
-            {% if has_setting_value('productOfferId', 'introFree', app.user, 'user') or  has_setting_value('productOfferId', 'introFreePa', app.user, 'user') %}
+
+            {% if app.user.hasProductOfferId("introFree") or app.user.hasProductOfferId("introFreePa")  %}
                 <div class="item">
                     <h2>Digital Streaming<small>and Online Access</small></h2>
                     <p>Streaming workout videos and online access to the entire FLO&nbsp;FIT program. <br>This is a single, one-time payment for <span class="display-block"><strong class="display-inline">LIFETIME</strong> access.</span></p>
@@ -65,8 +66,7 @@
                     </div>
                     <a href="{{ path('buy_link_after_trial', {'user_choice': 2}) }}" class="btn btn-sec" id="pop-expire-offerclick-2">START NOW</a>
                 </div>
-
-            {% elseif has_setting_value('productOfferId', 'introFreeHp', app.user, 'user') %}
+            {% elseif app.user.hasProductOfferId("introFreeHp") %}
                 <div class="item">
                     <h2>Digital Streaming<small>and Online Access</small></h2>
                     <p>Streaming workout videos and online access to the entire FLO&nbsp;FIT program. <br>This is a single, one-time payment for <span class="display-block"><strong class="display-inline">LIFETIME</strong> access.</span></p>
@@ -96,7 +96,9 @@
                 </div>
             {% endif %}
 
-            {%  if has_setting_value('productOfferId', 'introFree', app.user, 'user') or has_setting_value('productOfferId', 'introFreePa', app.user, 'user') %}
+
+
+            {% if app.user.hasProductOfferId("introFree") or app.user.hasProductOfferId("introFreePa")  %}
                 <div class="item active">
                     <div class="barge">Best Value</div>
                     <h2>Get Both<small>Digital Streaming and Online Access PLUS DVDs and Books Shipped</small></h2>
@@ -112,7 +114,7 @@
                     </div>
                     <a href="{{ path('buy_link_after_trial', {'user_choice': 3}) }}" class="btn btn-sec" id="pop-expire-offerclick-3">START NOW</a>
                 </div>
-            {% elseif has_setting_value('productOfferId', 'introFreeHp', app.user, 'user') %}
+            {% elseif app.user.hasProductOfferId("introFreeHp") %}
                 <div class="item active">
                     <div class="barge">Best Value</div>
                     <h2>Get Both<small>Digital Streaming and Online Access PLUS DVDs and Books Shipped</small></h2>
@@ -150,7 +152,6 @@
     </div>
 </div>
 
-{#
 <script>
     $(document).ready(function () {
         ga('send', 'event', 'intro-free-be', 'pop-expire-open', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
@@ -166,5 +167,3 @@
         });
     });
 </script>
-
-#}

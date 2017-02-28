@@ -53,7 +53,8 @@
                             {#{{ TwitterSubscribeServiceRender("loginButton") }}#}
                         </div>
                         <div class="row">
-                            <a href="{{ path("fos_user_resetting_request") }}" class="forgot">Forgot username/password?</a>
+                            reset
+                            {# <a href="{{ path("fos_user_resetting_request") }}" class="forgot">Forgot username/password?</a> #}
                         </div>
                     </div>
                 </div>
@@ -115,4 +116,4 @@
             createCookie("Vanilla-Volatile","",-1);
         });
     </script>
-{% endblock fos_user_content %}
+{% endblock %}

@@ -42,6 +42,8 @@ doctrine:
 
 trinity_settings:
    settings:
+      app.trial: 7
+
       user_settings.publicProfile: true
       user_settings.displayEmail: true
       user_settings.birthDateStyle: 1
@@ -49,7 +51,12 @@ trinity_settings:
       user_settings.displayLocation: true
       user_settings.displayForumActivity: true
       user_settings.displaySocialMedia: true
-
+      user.productOfferId: ~
+      user.trialStart: ~
+      user.trialEnd: ~
+      user.trialExtendPopupShown: false
+      user.trialEndPopupShown: false
+      user.trial7daysEndPopupShown: false
 
 trinity_messages:
     sender_identification: "client_3"
@@ -70,6 +77,8 @@ twig:
 
 
 assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
     bundles:  [ TrinityAdminBundle, VeniceFrontBundle, VeniceAppBundle, Uran1980FancyBoxBundle, BmatznerJQueryBundle, FrontBundle ]
     filters:
        lessphp:
@@ -291,10 +300,12 @@ vich_uploader:
             inject_on_load: true
             namer: ~
 
+
 fos_user:
   from_email:
-      address:      noreply@example.com
-      sender_name:  Flofit
+    address: info@getnecktie.com
+    sender_name: Flofit
+
 
 
 parameters: #todo: necktie?!

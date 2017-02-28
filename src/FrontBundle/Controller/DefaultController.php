@@ -1,17 +1,10 @@
 <?php
 
 namespace FrontBundle\Controller;
-
-use AppBundle\Entity\BillingPlan;
-use AppBundle\Entity\BlogArticle;
 use AppBundle\Services\VanillaForumConnector;
 use FrontBundle\Helpers\Ajax;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Venice\AppBundle\Entity\User;
-use Venice\AppBundle\Entity\Invoice;
 use Venice\FrontBundle\Controller\FrontController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -78,27 +71,6 @@ class DefaultController extends FrontController
                 'displayQuickStartGuide' => null,
                 'firstLogin' => new \DateTime(),
             ]
-        );
-    }
-
-
-    /**
-     * @Route("/p/{username}", name="core_front_user_public_profile")
-     * @param User $user
-     * @return Response
-     */
-    public function publicProfileAction(User $user)
-    {
-        $forumService = $this->get('general_backend_core.services.forum_connector');
-
-        $forumService->setCustomAuthUser($user);
-
-        $posts = $forumService->getLatestForumPostsOfUser($user, $user, 4);
-        $link = $this->getParameter('forum_send_new_message');
-
-        return $this->render(
-            'VeniceFrontBundle:Core:publicProfile.html.twig',
-            ['user' => $user,'sendMessageLink' => $link,'forumPosts' => $posts]
         );
     }
 

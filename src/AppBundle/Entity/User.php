@@ -307,4 +307,14 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     {
         $this->flomersionEnd = $flomersionEnd;
     }
+
+
+    /**
+     * @todo
+     * @return string
+     */
+    public function getfacebookId()
+    {
+        return 'id';
+    }
 }

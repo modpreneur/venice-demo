@@ -21,7 +21,6 @@
     </div>
 </div>
 
-{#
 <script>
     $(document).ready(function () {
         ga('send', 'event', 'product-detail-be', 'interested-{{ product.handle }}-open', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
@@ -34,5 +33,3 @@
         });
     });
 </script>
-
-#}

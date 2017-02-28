@@ -1,0 +1,27 @@
+{#Reminder 2 days before#}
+<input type="checkbox" id="trial-modal-input" class="display-none">
+<div class="trial-flow" {#style="display: none;"#}>
+    <label for="trial-modal-input" class="trial-modal-label trial-modal-open"></label>
+    <div class="trial-flow-wrapper">
+        <label for="trial-modal-input" class="trial-modal-label-cross trial-modal-open"><i class="ff-cross2"></i></label>
+
+        <h1>Your 7-Day FREE trial will expire soon</h1>
+        <p class="long-text">Add your credit card to extend your free trial for 7 additional days</p>
+
+        <a href="{{ path('buy_link_extend_trial') }}" class="button button-card" id="pop-3-day-7day-take">YES</a>
+        <label for="trial-modal-input" class="button button-another" id="pop-3-day-7day-no">NO</label>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        ga('send', 'event', 'intro-free-be', 'pop-3-day-open', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+
+        $("#pop-3-day-7day-take").click(function () {
+            ga('send', 'event', 'intro-free-be', 'pop-3-day-7day-take', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+        });
+        $("#pop-3-day-7day-no").click(function () {
+            ga('send', 'event', 'intro-free-be', 'pop-3-day-7day-no', '{% if app.user.facebookId is not null %}{{ app.user.facebookId }}{% else %}email{% endif %}');
+        });
+    });
+</script>

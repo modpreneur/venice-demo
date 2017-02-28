@@ -21,14 +21,12 @@ use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Anchovy\CURLBundle\CURL\Curl;
 use Doctrine\ORM\EntityManager;
 use GeneralBackend\CoreBundle\Entity\GlobalUser;
 use GeneralBackend\CoreBundle\Form\Handler\GlobalUserHandler;
 use GeneralBackend\CoreBundle\Form\Type\GlobalUserType;
 use GeneralBackend\CoreBundle\Services\AmemberConnector;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
  * Class StaticPagesController

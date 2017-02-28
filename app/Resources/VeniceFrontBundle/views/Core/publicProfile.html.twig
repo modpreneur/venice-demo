@@ -1,12 +1,18 @@
 {% extends "VeniceAppBundle::base.html.twig" %}
 
+
+{% block menu %}
+{% endblock %}
+
+
 {% block title %}
     Public profile - {{ user.username }}
 {% endblock %}
 
+
 {% block headerInside %}
-    {% if user.privacySettings.publicProfile %}
-        {% embed(":CoreBundle/Front/default:headerProfile.html.twig") with {"user":user,"displayName":user.privacySettings.displayFullName}  %}
+    {% if userSettings.publicProfile %}
+        {% embed("VeniceFrontBundle:Default:headerProfile.html.twig") with {"user":user,"displayName":userSettings.displayFullName}  %}
             {% block messageButton %}
                 {% if app.user is not null %}
                     <div>
@@ -20,11 +26,12 @@
     {% endif %}
 {% endblock %}
 
+
 {% block content %}
     <div class="profile-settings">
         <div class="row">
             <div class="span-large-24">
-                {% if user.privacySettings.publicProfile %}
+                {% if userSettings.publicProfile %}
                 <div class="block-title">Public profile</div>
 
                 <div class="profile-settings-main">
@@ -54,7 +61,7 @@
                         {#</div>#}
                     {#{% endif %}#}
 
-                    {% if user.privacySettings.displayEmail %}
+                    {% if userSettings.displayEmail %}
                     <div class="row relative">
                         <div class="span-large-6 offset-large-5 span-medium-7 offset-medium-3 offset-small-0">
                             <span class="profile-settings-link"><i class="ff-sign-mail"></i>E-mail</span>
@@ -68,11 +75,11 @@
                     </div>
                     {% endif %}
 
-                    {% if user.privacySettings.birthDateStyle != 0 %}
+                    {% if userSettings.birthDateStyle != 0 %}
                     <div class="row relative">
                         <div class="span-large-6 offset-large-5 span-medium-7 offset-medium-3 offset-small-0">
                             <span class="profile-settings-link"><i class="ff-time"></i>
-                            {% if user.privacySettings.birthDateStyle == 1 %}
+                            {% if userSettings.birthDateStyle == 1 %}
                                 Age of user
                             {% else %}
                                 Date of birth
@@ -82,9 +89,9 @@
                         <div class="span-medium-12 span-large-11">
                             <div class="profile-settings-info">
                                 <span>
-                                {% if user.privacySettings.birthDateStyle == 1 %}
+                                {% if userSettings.birthDateStyle == 1 %}
                                     {{ user.age }} years
-                                {% elseif user.privacySettings.birthDateStyle == 2 %}
+                                {% elseif userSettings.birthDateStyle == 2 %}
                                     {{ user.dateOfBirth|date("jS \\o\\f F") }}
                                 {% else %}
                                     {{ user.dateOfBirth|date("Y/m/d") }}
@@ -95,7 +102,8 @@
                     </div>
                     {% endif %}
 
-                    {% if user.privacySettings.displaySocialMedia %}
+                    {% if userSettings.displaySocialMedia %}
+                    {#
                         <div class="row relative">
                             <div class="span-large-6 offset-large-5 span-medium-7 offset-medium-3 offset-small-0">
                                 <span class="profile-settings-link"><i class="ff-share"></i>Social networks</span>
@@ -126,6 +134,7 @@
                                 </div>
                             </div>
                         </div>
+                    #}
                     {% endif %}
 
                     {#<div class="row relative">#}
@@ -153,7 +162,7 @@
 {% endblock %}
 
 {% block section %}
-    {% if user.privacySettings.publicProfile  and forumPosts is not empty  %}
+    {% if userSettings.publicProfile  and forumPosts is not empty  %}
     <div class="bg-activity">
         <div class="container">
             <div class="row padding-bottom-65">
@@ -176,7 +185,7 @@
                 {#</div>#}
                 {#{% endif %}#}
 
-                {% if user.privacySettings.displayProgressGraph%}
+                {% if userSettings.displayProgressGraph%}
                     <div class="span-large-24">
                         <div class="widget-box">
                             <div class="widget-header green">

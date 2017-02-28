@@ -1,8 +1,7 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "VeniceAppBundle::base.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
-{% block bodyFullReset %}login-page{% endblock %}
-{% block fos_user_content %}
+{% block bodyFull %}
+<body class="{% block bodyFullReset %}{% endblock %}">
     <div class="login-main">
         <div class="section header-main-logo">
             <div class="container">
@@ -18,22 +17,22 @@
                 <div class="row">
                     <div class="span-mini-24">
                         <span class="text-login">Log in</span>
-                        <form action="{{ path("fos_user_security_check") }}" method="post">
-                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        <form action="form_action_url" method="post">
+                            <input type="hidden" name="_csrf_token" value="form_csrf_token" />
                             <label for="username">
                                 <i class="ff-sign-mail"></i>
-                                <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="enter your username or e-mail" required="required"/>
+                                <input type="text" id="username" name="_username" value="form_username" placeholder="enter your username or e-mail" required="required"/>
                             </label>
                             <label for="password">
                                 <i class="ff-lock"></i>
                                 <input type="password" id="password" name="_password" placeholder="enter your password" required="required"/>
                             </label>
-                            {% if error %}
-                                <div class="invalid-credentials">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                            {% endif %}
+
+                            <div class="invalid-credentials">form_errors</div>
+
                             <div class="row">
                                 <input type="checkbox" id="remember_me" name="_remember_me" value="on" class="display-none" />
-                                <label for="remember_me" class="remember"><span>Keep me logged in</span></label>
+                                <label for="remember_me" class="remember"><span>Remember me</span></label>
                             </div>
                             <div class="row">
                                 <span class="input-login">
@@ -45,15 +44,15 @@
                             </div>
                         </form>
                         <div class="row">
-                            <a href="" id="facebook-login-button" class="button-facebook"><i class="ff-facebook1"></i>Login with Facebook</a>
-                            <a href="" id="google-login-button" class="button-google"><i class="ico-google-plus"></i>Login with Google</a>
+                            <a href="form_fb_login" id="facebook-login-button" class="button-facebook"><i class="ff-facebook1"></i>Login with Facebook</a>
+                            <a href="form_gplus_login" id="google-login-button" class="button-google"><i class="ico-google-plus"></i>Login with Google</a>
                             {#<a href="" class="button-google"><i class="ico-google-plus"></i>Login with Google</a>#}
                             {#<a href="{{ path("hwi_oauth_service_redirect",{"service":"twitter"}) }}" class="button-twitter"><i class="ff-twitter1"></i>Login with Twitter</a>#}
                             {#{{ FacebookSubscribeServiceRender("loginButton") }}#}
                             {#{{ TwitterSubscribeServiceRender("loginButton") }}#}
                         </div>
                         <div class="row">
-                            <a href="{{ path("fos_user_resetting_request") }}" class="forgot">Forgot username/password?</a>
+                            <a href="" class="forgot">Forgot username/password?</a>
                         </div>
                     </div>
                 </div>
@@ -115,4 +114,5 @@
             createCookie("Vanilla-Volatile","",-1);
         });
     </script>
-{% endblock fos_user_content %}
+</body>
+{% endblock %}

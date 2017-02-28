@@ -214,3 +214,13 @@ services:
       arguments:
         - "@service_container"
         - "@doctrine.orm.entity_manager"
+
+
+    flofit.trial.listener:
+      class: AppBundle\EventListener\UserTrialAccessListener
+      arguments:
+        - "@security.token_storage"
+        - "@trinity.settings"
+        - "@doctrine.orm.entity_manager"
+      tags:
+        - {name: kernel.event_subscriber}
