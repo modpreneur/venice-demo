@@ -1,15 +1,3 @@
-VeniceAppBundle:
-    resource: "@VeniceAdminBundle/Resources/config/routing.yml"
-
-
-VeniceAdminBundle:
-    resource: "@VeniceAppBundle/Resources/config/routing.yml"
-
-
-VeniceFrontBundle:
-    resource: "@VeniceFrontBundle/Resources/config/routing.yml"
-
-
 AdminBundle:
     resource: "@AdminBundle/Controller"
     type:     annotation
@@ -23,3 +11,15 @@ FrontBundle:
 AppBundle:
     resource: "@AppBundle/Controller"
     type:     annotation
+
+
+VeniceAppBundle:
+     resource: "@VeniceAdminBundle/Resources/config/routing.yml"
+
+
+VeniceAdminBundle:
+     resource: "@VeniceAppBundle/Resources/config/routing.yml"
+
+
+VeniceFrontBundle:
+     resource: "@VeniceFrontBundle/Resources/config/routing.yml"
