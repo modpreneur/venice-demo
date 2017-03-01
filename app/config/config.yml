@@ -6,6 +6,9 @@ imports:
 
 
 parameters:
+    trinity.search.doctrine_prefix: "NecktieAppBundle"
+    trinity.search.namespace: "Necktie\\AppBundle\\Entity"
+
     url_mike_saffaie_facebook: https://www.facebook.com/pages/Mike-Saffaie/359627120721911
     url_mike_saffaie_twitter: https://twitter.com/califitmike
     url_mike_saffaie_instagram: https://instagram.com/califitmike
@@ -366,9 +369,3 @@ fos_user:
   from_email:
     address: info@getnecktie.com
     sender_name: Flofit
-
-
-
-parameters: #todo: necktie?!
-    trinity.search.doctrine_prefix: "NecktieAppBundle"
-    trinity.search.namespace: "Necktie\\AppBundle\\Entity"
