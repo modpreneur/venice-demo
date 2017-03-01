@@ -320,7 +320,7 @@ class FlofitTemplateFeatures extends \Twig_Extension
         array $otherParams = [],
         $ocbAction = 'ocb'
     ) {
-        dump($buyParameters);
+//        dump($buyParameters);
 
         return 'http://url.cz';
 

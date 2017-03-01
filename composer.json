@@ -103,7 +103,46 @@
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "database_host" : "SYMFONY__DATABASE_HOST",
+                "database_port" : "SYMFONY__DATABASE_PORT",
+                "database_name" : "SYMFONY__DATABASE_NAME",
+                "database_user" : "SYMFONY__DATABASE_USER",
+                "database_password" : "SYMFONY__DATABASE_PASSWORD",
+                "database_host_flofit" : "SYMFONY__DATABASE_HOST_FLOFIT",
+                "database_port_flofit" : "SYMFONY__DATABASE_PORT_FLOFIT",
+                "database_name_flofit" : "SYMFONY__DATABASE_NAME_FLOFIT",
+                "database_user_flofit" : "SYMFONY__DATABASE_USER_FLOFIT",
+                "database_password_flofit" : "SYMFONY__DATABASE_PASSWORD_FLOFIT",
+                "necktie_client_id" : "SYMFONY__NECKTIE_CLIENT_ID",
+                "necktie_client_short_id" : "SYMFONY__NECKTIE_CLIENT_SHORT_ID",
+                "necktie_client_secret" : "SYMFONY__NECKTIE_CLIENT_SECRET",
+                "necktie_url" : "SYMFONY__NECKTIE_URL",
+                "mailer_transport" : "SYMFONY__MAILER_TRANSPORT",
+                "mailer_host" : "SYMFONY__MAILER_HOST",
+                "mailer_user" : "SYMFONY__MAILER_USER",
+                "mailer_password" : "SYMFONY__MAILER_PASSWORD",
+                "secret" : "SYMFONY__SECRET",
+                "login_route" : "SYMFONY__LOGIN_ROUTE",
+                "login_response_route" : "SYMFONY__LOGIN_RESPONSE_ROUTE",
+                "primary_gateway_service" : "SYMFONY__PRIMARY_GATEWAY_SERVICE",
+                "redis_dsn" : "SYMFONY__REDIS_DSN",
+                "froala_editor_key" : "SYMFONY__FROALA_EDITOR_KEY",
+                "rabbit_url" : "SYMFONY__RABBIT_URL",
+                "rabbit_port" : "SYMFONY__RABBIT_PORT",
+                "rabbit_user" : "SYMFONY__RABBIT_USER",
+                "rabbit_password" : "SYMFONY__RABBIT_PASSWORD",
+                "client_identification" : "SYMFONY__CLIENT_IDENTIFICATION",
+                "elasticsearch_host" : "SYMFONY__ELASTICSEARCH_HOST",
+                "cookie_domain" : "SYMFONY__COOKIE_DOMAIN",
+                "amazon_s3_key" : "SYMFONY__AMAZON_S3_KEY",
+                "amazon_s3_secret" : "SYMFONY__AMAZON_S3_SECRET",
+                "amazon_s3_bucket" : "SYMFONY__AMAZON_S3_BUCKET",
+                "amazon_s3_region" : "SYMFONY__AMAZON_S3_REGION",
+                "amazon_base_path_with_bucket" : "SYMFONY__AMAZON_BASE_PATH_WITH_BUCKET",
+                "amazon_cloud_front_link_expiration" : "SYMFONY__AMAZON_CLOUD_FRONT_LINK_EXPIRATION"
+            }
         }
     }
 }

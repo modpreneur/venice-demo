@@ -52,9 +52,9 @@ MESSAGE;
         $message = Message::unpack($message);
         try {
             $entities = $reader->read($message);
-            dump('XXXXXXXXXXXXXXXXXXXX FAILED XXXXXXXXXXXXXXXXXXXX ');
+//            dump('XXXXXXXXXXXXXXXXXXXX FAILED XXXXXXXXXXXXXXXXXXXX ');
         } catch (AssociationEntityNotFoundException $e) {
-            dump('OOOOOOOOOOOOOOOOOOOOOOOO OK OOOOOOOOOOOOOOOOOOOOOOOO');
+//            dump('OOOOOOOOOOOOOOOOOOOOOOOO OK OOOOOOOOOOOOOOOOOOOOOOOO');
         }
 
         $output->writeln('readed!');

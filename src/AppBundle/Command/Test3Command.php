@@ -28,7 +28,7 @@ class Test3Command extends ContainerAwareCommand
 
         $dispatcher = $this->getContainer()->get('event_dispatcher');
         if ($dispatcher->hasListeners(Events::DISABLE_NOTIFICATION)) {
-            dump('DISAVBLE');
+//            dump('DISAVBLE');
             $event = new DisableNotificationEvent();
             $dispatcher->dispatch(
                 Events::DISABLE_NOTIFICATION,
