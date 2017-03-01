@@ -111,7 +111,7 @@ class ProfilePhotoUrlGenerator
                 ->resolve($rcPath, 'profile_picture_cropped');
         } catch (\Exception $exception) {
             $request = $this->serviceContainer->get('request_stack')->getCurrentRequest();
-            dump($exception);
+//            dump($exception);
 
             return $request->getUriForPath(
                 'Resources/public/images/site/default-profile-photo.png'
