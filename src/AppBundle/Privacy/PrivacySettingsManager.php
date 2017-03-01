@@ -50,7 +50,7 @@ class PrivacySettingsManager
             $fieldF = 'set' . ucfirst($field);
             $setting->{$fieldF}($this->settings->get($field, $user->getId(), 'user_settings'));
 
-            dump($this->settings->get($field, $user->getId(), 'user_settings'));
+//            dump($this->settings->get($field, $user->getId(), 'user_settings'));
         }
 
         return $setting;

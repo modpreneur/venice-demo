@@ -61,9 +61,9 @@ MESSAGE;
         $product = $entities[1];
 
         if ($product->getDefaultBillingPlan() !== $bp || $bp->getProduct() !== $product) {
-            dump('XXXXXXXXXXXXXXXXXXXX FAILED XXXXXXXXXXXXXXXXXXXX ');
+//            dump('XXXXXXXXXXXXXXXXXXXX FAILED XXXXXXXXXXXXXXXXXXXX ');
         } else {
-            dump('OOOOOOOOOOOOOOOOOOOOOOOO OK OOOOOOOOOOOOOOOOOOOOOOOO');
+//            dump('OOOOOOOOOOOOOOOOOOOOOOOO OK OOOOOOOOOOOOOOOOOOOOOOOO');
         }
 
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
