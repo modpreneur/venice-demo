@@ -1,6 +1,7 @@
 <?php
 
 namespace FrontBundle\Controller;
+
 use AppBundle\Services\VanillaForumConnector;
 use FrontBundle\Helpers\Ajax;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * Class DefaultController
  * @package FrontBundle\Controller
  *
- * @Route("/front")
+ * @Route("/")
  */
 class DefaultController extends FrontController
 {
