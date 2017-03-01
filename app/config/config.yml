@@ -4,6 +4,67 @@ imports:
     - { resource: services.yml }
     - { resource: "@VeniceAppBundle/Resources/config/config.yml" }
 
+
+parameters:
+    url_mike_saffaie_facebook: https://www.facebook.com/pages/Mike-Saffaie/359627120721911
+    url_mike_saffaie_twitter: https://twitter.com/califitmike
+    url_mike_saffaie_instagram: https://instagram.com/califitmike
+    url_mike_saffaie_youtube: https://www.youtube.com/channel/UC8ZTr6n7uWVVGWUomJHSaKA
+
+    url_flo_fit_facebook: https://www.facebook.com/GetFLOFIT
+    url_flo_fit_twitter: https://twitter.com/getflofit
+    url_flo_fit_instagram: https://instagram.com/getflofit
+    url_flo_fit_youtube: https://www.youtube.com/channel/UCqjt-Tod1JMGgsjVevl4Lwg
+
+    url_flo_rida_facebook: https://www.facebook.com/officialflo
+    url_flo_rida_twitter: https://twitter.com/official_flo
+    url_flo_rida_instagram: https://instagram.com/official_flo
+    url_flo_rida_youtube: https://www.youtube.com/channel/UCBRFlde39a2U4nAkmGqJwAQ
+
+    url_natalie_larose_facebook: https://www.facebook.com/NatalieLaRoseMusic
+    url_natalie_larose_twitter: https://twitter.com/natalielarose
+    url_natalie_larose_instagram: https://instagram.com/natalielarose
+    url_natalie_larose_youtube: https://www.youtube.com/channel/UCL1TElUgyJX9PRacUphrSsA
+
+    social_stream_reload_min_time: 300
+    blog_number_of_posts_displayed: 5
+    downloads_number_of_product_displayed: 5
+    social_stream_number_of_posts_downloaded: 4
+    number_of_blog_posts: 2
+    number_of_product_posts: 4
+
+    forum_url: 'http://community.flofit.com'
+    forum_read_all_url: 'http://community.flofit.com/messages/inbox'
+    forum_read_conversation_url: 'http://community.flofit.com/messages/'
+    forum_send_new_message: http://community.flofit.com/messages/add/
+
+    messages_url: http://localhost:8888/FlofitCommunity/index.php?p=/messages
+
+    connector_service_name: flofit.dev_env_connector
+    forum_service_name:     flofit.dev_env_forum_connector
+
+    facebook_client_id: 748756945252163
+    facebook_client_secret: b1ff879b869c5d8058317656d41f7caf
+
+    twitter_client_id: 5XwU6T0OvcxPLeAvsBIPPsaUO # GET FLO FIT TWITTER ACC
+    twitter_client_secret: v4rCuvlllMbCvpUA1UsfWgEM2eJwiupwtp6OQeziaXenK9RuHg
+    twitter_client_token: 2866139031-30xun4SajVzz2A5RwiGE28NXNfZKDXaTojNJLs6
+    twitter_client_token_secret: 6W7FStt3iJnm7kXXei4KKUyrlEdVzMwHYNtVkpmlotoCw
+
+    instagram_client_id: 0c1781ac48094ae5b51467456b435ff0
+    instagram_client_secret: 0b6d9489c5c7b7dd0527bb5a73089f44
+
+    google_client_id: 707014016730-tkm94ahnordhpp9bs7gnpk2pll56hr18
+    google_client_secret: Jzv4zujtzy-hq-THIa33zeXu
+
+    maropost_account_id: 478
+    maropost_auth_token: 4cc55665ee6708ea9dd8eb6c8b0f3c59e96f9909
+
+    forum_secret_key: b154a1d1-d75e-40c8-ad03-18fe61a17d1e
+    forum_auth_cookie_name: Vanilla
+    forum_auth_cookie_salt: A3X88X2UCR
+    forum_auth_cookie_domain: .flofit.com
+
 # You can override default configuration here or in the enviroment files (config_dev, config_prod).
 # Confiruration in the enviroment files will override configuration defined here
 
