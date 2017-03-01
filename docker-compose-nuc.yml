@@ -2,22 +2,45 @@ version: '2'
 
 services:
 
-  web:
+  php_fpm:
     restart: always
     build:
       context: .
-      dockerfile: Dockerfile
-    ports:
-        - "8888:80"
-        - "9003:9003"
-    expose:
-      - "8888"
+      dockerfile: docker/phpFpm/nuc/Dockerfile
     links:
-      - mysql:database
-      - redis:redis
-      - elasticsearch:elasticsearch
+#      - mysql:mysql
+      - postgres:database
+      - redis
+      - rabbit_mq
+      - elasticsearch
+      - electron_render_service
+      - mail_dev
+    ports:
+      #php-fpm
+      - "9090:9090"
+      #supervisor
+      - "9002:9002"
+      #livJs
+      - "3001:3001"
+    expose:
+      - "9002"
+      - "3001"
     volumes:
       - .:/var/app
+    external_links:
+      - necktiegateway_gateway_1:gateway
+
+  nginx:
+    restart: always
+    image: modpreneur/necktie-nginx:0.3
+    ports:
+        - 80:80
+    links:
+        - php_fpm
+    volumes_from:
+        - php_fpm
+    volumes:
+      - ./logs/nginx/:/var/log/nginx
 
 
   elasticsearch:
@@ -28,13 +51,35 @@ services:
 
 
   redis:
+    restart: always
     extends:
       file: docker-compose.yml
       service: redis
 
 
-  mysql:
+  postgres:
     restart: always
     extends:
       file: docker-compose.yml
-      service: mysql
+      service: postgres
+
+
+  rabbit_mq:
+    restart: always
+    extends:
+      file: docker-compose.yml
+      service: rabbit_mq
+
+
+  electron_render_service:
+    restart: always
+    extends:
+      file: docker-compose.yml
+      service: electron_render_service
+
+
+  mail_dev:
+    restart: always
+    extends:
+      file: docker-compose.yml
+      service: mail_dev
