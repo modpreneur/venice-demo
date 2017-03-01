@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+
+  web:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - "8888:80"
+        - "9003:9003"
+    expose:
+      - "8888"
+    links:
+      - mysql:database
+      - redis:redis
+      - elasticsearch:elasticsearch
+    volumes:
+      - .:/var/app
+
+
+  elasticsearch:
+    restart: always
+    extends:
+      file: docker-compose.yml
+      service: elasticsearch
+
+
+  redis:
+    extends:
+      file: docker-compose.yml
+      service: redis
+
+
+  mysql:
+    restart: always
+    extends:
+      file: docker-compose.yml
+      service: mysql
