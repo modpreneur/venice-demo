@@ -72,7 +72,7 @@ class Version20170117081345m extends AbstractMigration
 
         $this->addSql("
             INSERT INTO `user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`, `necktie_id`, `preferred_units`, `date_of_birth`, `locked`, `discriminator`, `user_child`, `first_name`, `last_name`, `phone_number`, `website`, `avatar`, `public`) VALUES
-    (1,	'superAdmin',	'superadmin',	'superAdmin@webvalley.cz',	'superadmin@webvalley.cz',	1,	'',	'',	'2017-01-17 11:49:14',	NULL,	NULL,	'a:2:{i:0;s:9:\"ROLE_USER\";i:1;s:16:\"ROLE_SUPER_ADMIN\";}',	2,	'imperial',	'2017-01-17',	0,	'demo_user',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1);
+    (1,	'oldSuperAdmin',	'oldsuperadmin',	'oldsuperAdmin@webvalley.cz',	'oldsuperadmin@webvalley.cz',	1,	'',	'',	'2017-01-17 11:49:14',	NULL,	NULL,	'a:2:{i:0;s:9:\"ROLE_USER\";i:1;s:16:\"ROLE_SUPER_ADMIN\";}',	null,	'imperial',	'2017-01-17',	0,	'demo_user',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1);
         ");
     }
 
