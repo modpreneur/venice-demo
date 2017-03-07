@@ -17,7 +17,6 @@ services:
       #supervisor
       - "9003:9003"
     expose:
-      - "8888"
       - "9003"
     volumes:
       - .:/var/app
@@ -50,7 +49,7 @@ services:
 
 
   mysql:
-    image: mysql/mysql-server:5.7
+    image: mysql/mysql-server
     ports:
       - 3308:3306
     environment:
