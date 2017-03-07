@@ -3,7 +3,7 @@ version: '2'
 services:
 
   php_fpm:
-  restart: always
+    restart: always
     build:
       context: .
       dockerfile: docker/phpFpm/nuc/Dockerfile
