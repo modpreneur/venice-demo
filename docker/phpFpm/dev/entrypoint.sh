@@ -42,8 +42,6 @@ chmod -R 0777 /var/app/var/logs
 ENV=dev supervisord -c /var/app/supervisor/supervisord.conf
 supervisorctl -c /var/app/supervisor/supervisord.conf reload
 
-bin/console necktie:bunny:setup
-
 chmod -R 0777 /var/app/var/cache
 chmod -R 0777 /var/app/var/logs
 chown www-data:www-data /var/app/var/logs

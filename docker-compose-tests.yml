@@ -1,30 +1,26 @@
 version: '2'
 services:
 
-
   php_fpm:
     image: modpreneur/necktie-fpm-test:0.7
     links:
-#      - mysql:mysql
-      - postgres:database
+      - mysql:mysql
       - redis
-      - rabbit_mq
       - elasticsearch
-      - electron_render_service
     ports:
       #php-fpm
-      - "9090:9090"
+      - "9092:9090"
       #supervisor
-      - "9002:9002"
+      - "9003:9003"
     expose:
-      - "9002"
+      - "9003"
     volumes:
       - .:/var/app
 
   nginx:
     image: modpreneur/necktie-nginx:0.3
     ports:
-        - 8000:80
+        - 8888:80
     links:
         - php_fpm
     volumes_from:
@@ -42,27 +38,16 @@ services:
       file: docker-compose.yml
       service: redis
 
-  postgres:
+  mysql:
+    restart: always
     extends:
       file: docker-compose.yml
-      service: postgres
-
-  rabbit_mq:
-    extends:
-      file: docker-compose.yml
-      service: rabbit_mq
-
-  electron_render_service:
-    extends:
-      file: docker-compose.yml
-      service: electron_render_service
-
+      service: mysql
 
   hub:
     image: selenium/hub
     ports:
       - 4444:4444
-
 
   chrome:
     image: selenium/standalone-chrome-debug
