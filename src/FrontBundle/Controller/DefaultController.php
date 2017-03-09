@@ -51,11 +51,12 @@ class DefaultController extends FrontController
 
 
         /** @var VanillaForumConnector $messagesService */
-        $messagesService = $this->get($this->getParameter('forum_service_name'));
+        $messagesService = $this->get('flofit.prod_env_forum_connector');
         $messages = $messagesService->getConversations($this->getUser());
 
         $latestForumPosts = $messagesService->getLatestForumPosts($this->getUser());
 
+        // @todo
         return $this->render(
             'VeniceFrontBundle:Front:index.html.twig',
             [

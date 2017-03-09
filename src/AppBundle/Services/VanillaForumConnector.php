@@ -302,7 +302,12 @@ class VanillaForumConnector extends AbstractForumConnector
      */
     public function getLatestForumPosts(User $user, $raw = false)
     {
+        var_dump(2);
+        exit;
+
         $forumPosts = [];
+
+        dump(1);
 
         $url = $this->createUrl($user, self::API_DISCUSSIONS);
         $forum = $this->getJson($url);
@@ -314,6 +319,8 @@ class VanillaForumConnector extends AbstractForumConnector
         if (!array_key_exists('Discussions', $forum)) {
             return [];
         }
+
+        dump(1);
 
         foreach ($forum{'Discussions'} as $discussion) {
             $id = $discussion{'DiscussionID'};

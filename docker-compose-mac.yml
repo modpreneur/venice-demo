@@ -1,39 +1,68 @@
 version: '2'
-
 services:
 
-php_fpm:
+  php_fpm:
     build:
       context: .
       dockerfile: docker/phpFpm/dev/Dockerfile
     env_file: docker/.env
     links:
-      - mysql:mysql
+#      - mysql:mysql
+      - mysql:database
       - redis
       - elasticsearch
     ports:
       #php-fpm
-      - "9092:9090"
+      - "8888:9090"
       #supervisor
-      - "9003:9003"
+      - "9005:9005"
     expose:
-      - "9003"
+      - "9002"
+      - "3001"
+    external_links:
+      - necktiegateway_gateway_1:gateway
     volumes:
-        - .:/var/app
-        - /Volumes/RAM_Disk:/var/app/var/cache
+      - .:/var/app
+      - /Volumes/RAM_Disk:/var/app/var/cache
+    environment:
+      - GLOB_RUN_NPM=true
 
 
   nginx:
-        image: modpreneur/necktie-nginx-dev:0.3
-        ports:
-            - 8888:80
-        links:
-            - php_fpm
-        volumes_from:
-            - php_fpm
-        volumes:
-          - ./logs/nginx/:/var/log/nginx
+    image: modpreneur/necktie-nginx-dev:0.3
+    ports:
+        - 8080:80
+    links:
+        - php_fpm
+    volumes_from:
+        - php_fpm
+    volumes:
+      - ./logs/nginx/:/var/log/nginx
 
+#  web:
+#    build:
+#      context: .
+#      dockerfile: docker/dev/Dockerfile
+#    ports:
+#      - "80:80"
+#      - "9002:9002"
+#    expose:
+#      - "8000"
+#      - "9002"
+#    links:
+#      - postgres:database
+#      - redis
+#      - rabbit_mq
+#      - elasticsearch
+#      - electron_render_service
+#      - mail_dev
+#    external_links:
+#      - necktiegateway_gateway_1:gateway
+#    volumes:
+#      - .:/var/app
+#      - /Volumes/RAM_Disk:/var/app/var/cache
+#    environment:
+#      - GLOB_RUN_NPM=true
 
 
   elasticsearch:
@@ -52,3 +81,29 @@ php_fpm:
     extends:
       file: docker-compose.yml
       service: mysql
+
+
+#  blackfire:
+#      extends:
+#        file: docker-compose.yml
+#        service: blackfire
+
+
+#  hub:
+#    image: selenium/hub
+#    ports:
+#      - 4444:4444
+
+
+  chrome:
+    image: selenium/standalone-chrome-debug
+    ports:
+        - 5900
+        - 5901
+        - 49160
+    privileged: true
+    links:
+        - php_fpm
+    shm_size: 1g
+
+

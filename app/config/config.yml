@@ -36,12 +36,12 @@ parameters:
     number_of_blog_posts: 2
     number_of_product_posts: 4
 
-    forum_url: 'http://community.flofit.com'
-    forum_read_all_url: 'http://community.flofit.com/messages/inbox'
-    forum_read_conversation_url: 'http://community.flofit.com/messages/'
-    forum_send_new_message: http://community.flofit.com/messages/add/
+    forum_url: '88.146.49.119:9999'
+    forum_read_all_url: '88.146.49.119:9999/messages/inbox'
+    forum_read_conversation_url: '88.146.49.119:9999/messages/'
+    forum_send_new_message: '88.146.49.119:9999/messages/add/'
 
-    messages_url: http://localhost:8888/FlofitCommunity/index.php?p=/messages
+    messages_url: '88.146.49.119:9999/index.php?p=/messages'
 
     connector_service_name: flofit.dev_env_connector
     forum_service_name:     flofit.dev_env_forum_connector
