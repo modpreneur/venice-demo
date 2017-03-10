@@ -103,18 +103,22 @@ class VanillaForumConnector extends AbstractForumConnector
      */
     public function getJson($url)
     {
-        $cookiesString = $this->createCookieString();
+        try {
+            $cookiesString = $this->createCookieString();
 
-        $newCookie = \GuzzleHttp\Cookie\SetCookie::fromString($cookiesString);
-        $newCookie->setDomain($this->serviceContainer->getParameter('forum_url'));
+            $newCookie = \GuzzleHttp\Cookie\SetCookie::fromString($cookiesString);
+            $newCookie->setDomain($this->serviceContainer->getParameter('forum_url'));
 
-        $cookieJar = new CookieJar(true);
-        $cookieJar->setCookie($newCookie);
+            $cookieJar = new CookieJar(true);
+            $cookieJar->setCookie($newCookie);
 
-        $response = $this->getClient()->get($url, ['cookies' => $cookieJar]);
-        $decoded = json_decode($response->getBody(), true);
+            $response = $this->getClient()->get($url, ['cookies' => $cookieJar]);
+            $decoded = json_decode($response->getBody(), true);
 
-        return is_null($decoded) ? [] : $decoded;
+            return is_null($decoded) ? [] : $decoded;
+        } catch (\Exception $exception) {
+            return [];
+        }
     }
 
 
@@ -169,7 +173,7 @@ class VanillaForumConnector extends AbstractForumConnector
         $key = $this->createHash($keyData, $this->serviceContainer->getParameter('forum_auth_cookie_salt'));
         $hash = $this->createHash($keyData, $key);
 
-        return  implode('|', [$keyData, $hash, \time(), $user->getCommunityId(), $exp]);
+        return implode('|', [$keyData, $hash, \time(), $user->getCommunityId(), $exp]);
     }
 
 
@@ -302,12 +306,7 @@ class VanillaForumConnector extends AbstractForumConnector
      */
     public function getLatestForumPosts(User $user, $raw = false)
     {
-        var_dump(2);
-        exit;
-
         $forumPosts = [];
-
-        dump(1);
 
         $url = $this->createUrl($user, self::API_DISCUSSIONS);
         $forum = $this->getJson($url);
@@ -320,7 +319,6 @@ class VanillaForumConnector extends AbstractForumConnector
             return [];
         }
 
-        dump(1);
 
         foreach ($forum{'Discussions'} as $discussion) {
             $id = $discussion{'DiscussionID'};
@@ -407,6 +405,38 @@ class VanillaForumConnector extends AbstractForumConnector
         }
 
         return $convParsed;
+    }
+
+
+    /**
+     * @param User $user
+     * @param User|null $author
+     * @param null $count
+     *
+     * @return array
+     */
+    public function getLatestForumPostsOfUser(User $user, User $author = null, $count = null)
+    {
+        if (is_null($author)) {
+            $author = $user;
+        }
+
+        $posts = $this->getLatestForumPosts($user);
+        $filteredPosts = [];
+        $filteredCount = 0;
+
+        /** @var ForumPost $post */
+        foreach ($posts as $post) {
+            if ($post->getAuthor() == $author->getUsername()) {
+                $filteredPosts[] = $post;
+
+                if (++$filteredCount >= $count) {
+                    break;
+                }
+            }
+        }
+
+        return $filteredPosts;
     }
 
 

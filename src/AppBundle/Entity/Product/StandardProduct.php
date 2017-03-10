@@ -80,7 +80,7 @@ class StandardProduct extends \Venice\AppBundle\Entity\Product\StandardProduct
         parent::__construct();
 
         $this->StandardProductChild = 'standard product from application';
-        $this->customTemplateName   = 'VeniceFrontbundle:BundleProduct:bundleProductPlatinumMix.html.twig';
+        $this->customTemplateName   = 'VeniceFrontBundle:BundleProduct:bundleProductPlatinumMix.html.twig';
     }
 
 

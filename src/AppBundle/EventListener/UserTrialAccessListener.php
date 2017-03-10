@@ -117,7 +117,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
                 }
             }
 
-            if (!$user->hasAccessToProduct($product)) {
+            if ($product && !$user->hasAccessToProduct($product)) {
                 $this->createUserAccess($user, $product);
             }
         }
