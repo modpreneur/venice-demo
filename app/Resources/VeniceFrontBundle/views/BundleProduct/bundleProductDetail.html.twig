@@ -47,7 +47,7 @@
                         </div>
                     {% else %}
                         {% for contentProduct in allContentProducts %}
-                            {% if contentProduct.product.isDigital() %}
+                            {% if contentProduct.product.isDigital() and (contentProduct.content.getType == "pdf" or contentProduct.content.getType == "video") %}
                                 <div class="downloads-dashboard row">
                                     {{ productRenderer(contentProduct.product,contentProduct.content, "downloadsDashboard",false) }}
                                 </div>
