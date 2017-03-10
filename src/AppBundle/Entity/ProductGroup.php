@@ -16,7 +16,7 @@ use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
  */
 class ProductGroup
 {
-    const HANDLE_FLOFIT     = 'flo-fit-workout-program';
+    const HANDLE_FLOFIT     = 'flofit';
     const HANDLE_FLOMERSION = 'platinumclub';
     const HANDLE_PLATINUM_MIX = 'platinum-mix';
     const HANDLE_NUTRITION_AND_MEALS = 'nutrition-and-meals';

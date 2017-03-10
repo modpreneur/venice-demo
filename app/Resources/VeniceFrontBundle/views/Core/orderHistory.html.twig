@@ -67,16 +67,18 @@
                                     </div>
                                     <div class="span-xlarge-4 span-large-5 span-medium-6 span-small-9 span-mini-24 info-pay">
                                         {% if orderHistoryData.invoice.status == 2 %}
-
-                                            {# @todo @JakubFajkus
                                             <div class="button-group">
-                                            {% if orderHistoryData.invoice.haveAnyInvoiceItemWithCategory("PRODUCT TRIAL") %}
+
+                                            {#todo: if the invoice is recurring and was a trial(determine with bp-tag#}
+                                            {#{% if orderHistoryData.invoice.haveAnyInvoiceItemWithCategory("PRODUCT TRIAL") %}#}{# todo: use billing plan to determine the trial? #}
                                                 <button onclick="openUpgradeDialog();" class="upgrade">Upgrade</button>
                                                 <span>{{ form(orderHistoryData.form) }}</span>
-                                            {% else %}
-                                                <span id="{{ orderHistoryData.invoice.id }}">{{ form(orderHistoryData.form) }}</span>
-                                            {% endif %}
-                                            #}
+                                            {#todo: the invoice was recurring but it was not a trial#}
+                                            {#shows Cancel button#}
+                                            {#{% else %}#}
+                                                {#<span id="{{ orderHistoryData.invoice.id }}">{{ form(orderHistoryData.form) }}</span>#}
+                                            {#{% endif %}#}
+
                                             </div>
                                         {% elseif orderHistoryData.invoice.status == 3 %}
                                             <span class="canceled"><i class="ff-remove"></i>Canceled</span>

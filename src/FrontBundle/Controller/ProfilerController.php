@@ -469,8 +469,8 @@ class ProfilerController extends Controller
         /** @var User $user */
         $user = $this->getUser();
 
-        $connector = $this->get($this->getParameter('connector_service_name'));
-        $userInvoices = $connector->getUserInvoices($user);
+        $connector = $this->get('venice.app.necktie_gateway');
+        $userInvoices = $connector->getInvoices($user);
 
         $flofitFeaturesService = $this->get('front.twig.flofit_features');
 
@@ -506,7 +506,7 @@ class ProfilerController extends Controller
             $row = [];
             $row['invoice'] = $userInvoice;
 
-            if ($userInvoice->getStatus() === Invoice::INVOICE_STATUS_RECURRING) {
+            if ($userInvoice->getStatus() === Invoice::STATUS_RECURRING) {
                 $form = $this->createFormBuilder(
                     null,
                     [
@@ -521,15 +521,18 @@ class ProfilerController extends Controller
 
                 $form->add('invoice', HiddenType::class, ['data' => $userInvoice->getId()]);
 
-                $isImmersion = isset($userInvoice->getItems()[0]) &&
-                    $userInvoice->getItems()[0]->haveCategory('Platinum Club RECURING');
+// 1. if immersion, allow to cancel the recurring
+// 2. upgrade - wtf??!????!?!??!?!?!
 
-                $jsOnClickAction = 'return openCancelPopup(this, \''
-                    .$userInvoice->getInvoiceItemNames()
-                    .'\', {$isImmersion});';
+                //$isImmersion = isset($userInvoice->getItems()[0]) && $userInvoice->getItems()[0]->haveCategory('Platinum Club RECURING'); ORIGINAL
+                $isImmersion = isset($userInvoice->getItems()[0]) && //todo remove and check for billing plan tag!
+                    $userInvoice->getItems()[0] == 'Platinum Club';
+
+//                $jsOnClickAction = "return openCancelPopup(this, \"".$userInvoice->getInvoiceItems()."\", {$isImmersion});"; //todo!
+                $jsOnClickAction = "return openCancelPopup(this, \"DUMMY\", {$isImmersion});";
 
                 $form->add(
-                    $userInvoice->getInvoiceId(),
+                    $userInvoice->getId(),
                     ButtonType::class,
                     ['label'=>'Cancel','attr'=> ['onClick'=>$jsOnClickAction]]
                 );
@@ -541,19 +544,25 @@ class ProfilerController extends Controller
 
                 if (isset($parameters['form']['invoice']) &&
                     $form->isSubmitted() &&
-                    $parameters['form']['invoice'] === $userInvoice->getInvoiceId()
+                    $parameters['form']['invoice'] === $userInvoice->getId()
                 ) {
-                    $connector->cancelInvoice($userInvoice, $user);
 
-                    $userInvoice->setCanceled();
+                    //redirect to necktie cancel
 
-                    $this->addFlash('success', 'Invoice successfully canceled.');
+//                    $necktieUrl = $this->getParameter('necktie_url') . ; // todo!
 
-                    return $this->renderJsonTrinity(
-                        'VeniceFrontBundle:Core:orderHistory.html.twig',
-                        ['orderHistoryData'=>$row],
-                        ['orderHistory'.$userInvoice->getInvoiceId()=>'orderHistory']
-                    );
+
+//                    $connector->cancelInvoice($userInvoice, $user);
+//
+//                    $userInvoice->setCanceled();
+//
+//                    $this->addFlash('success', 'Invoice successfully canceled.');
+//
+//                    return $this->renderJsonTrinity(
+//                        'VeniceFrontBundle:Core:orderHistory.html.twig',
+//                        ['orderHistoryData'=>$row],
+//                        ['orderHistory'.$userInvoice->getId()=>'orderHistory']
+//                    );
                 }
 
                 $row['form'] = $form->createView();

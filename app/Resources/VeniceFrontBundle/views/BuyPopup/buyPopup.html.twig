@@ -11,7 +11,7 @@
             {% if bundleProduct.buyCBParameters.price %}
                 <span class="price">{{ bundleProduct.buyCBParameters.price }}</span>
             {% else %}
-                <span class="price">{{ generatePriceString(bundleProduct.buyCBParameters) }}</span>
+                <span class="price">{{ generatePriceString(bundleProduct.getDefaultBillingPlan) }}</span>
             {% endif %}
         </div>
         <div class="row">

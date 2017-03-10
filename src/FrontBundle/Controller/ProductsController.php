@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Venice\AppBundle\Entity\Product\Product;
 
 /**
- * Class DownloadsController
+ * Class ProductsController
  *
  * @Route("/products")
  *
@@ -108,11 +108,11 @@ class ProductsController extends Controller
         return $this->render(
             'VeniceFrontBundle:Products:dashboard.html.twig',
             [
-                'workouts' => $flofitWorkouts,
-                'mealPlans' => $flofitMealPlans,
-                'upsellProducts' => $upsellProducts,
+                'workouts' => $flofitWorkouts ?? [],
+                'mealPlans' => $flofitMealPlans?? [],
+                'upsellProducts' => $upsellProducts?? [],
                 'fbPixel' => $fbPixel,
-                'currentProduct' => $flofitProduct,
+                'currentProduct' => $flofitProduct?? [],
                 'videosAndMealPlansLoadOffset' => $this->container->getParameter('downloads_number_of_product_displayed'),
             ]
         );
