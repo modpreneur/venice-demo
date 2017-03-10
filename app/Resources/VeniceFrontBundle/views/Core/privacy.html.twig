@@ -24,14 +24,14 @@
                                                 <div class="profile-settings-info">
                                                     {% if pageElement.id == "birthDateStyle"  %}
                                                         <span>
-                                                            {% if user.dateOfBirth == null %}
+                                                            {% if user.getDateOfBirth() == null %}
                                                                 Not set
                                                             {% else %}
-                                                                {% if user.privacySettings.birthDateStyle == 0 %}
+                                                                {% if get_setting('birthDateStyle', user, 'user_settings') == 0 %}
                                                                     Private
-                                                                {% elseif user.privacySettings.birthDateStyle == 1 %}
+                                                                {% elseif get_setting('birthDateStyle', user, 'user_settings') == 1 %}
                                                                     {{ user.age }} years
-                                                                {% elseif user.privacySettings.birthDateStyle == 2 %}
+                                                                {% elseif get_setting('birthDateStyle', user, 'user_settings') == 2 %}
                                                                     {{ user.dateOfBirth|date("jS \\o\\f F") }}
                                                                 {% else %}
                                                                     {{ user.dateOfBirth|date("Y/m/d") }}
