@@ -49,7 +49,7 @@
                         {% for contentProduct in allContentProducts %}
                             {% if contentProduct.product.isDigital() %}
                                 <div class="downloads-dashboard row">
-                                    {#{{ productRenderer(contentProduct.product,"downloadsDashboard",false) }}#}
+                                    {{ productRenderer(contentProduct.product,"downloadsDashboard",false) }}
                                 </div>
                             {% endif %}
                         {% endfor %}
