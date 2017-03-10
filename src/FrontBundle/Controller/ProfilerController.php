@@ -507,65 +507,7 @@ class ProfilerController extends Controller
             $row['invoice'] = $userInvoice;
 
             if ($userInvoice->getStatus() === Invoice::STATUS_RECURRING) {
-                $form = $this->createFormBuilder(
-                    null,
-                    [
-                        'attr' =>
-                        [
-                            'id' => 'form'.$userInvoice->getId(),
-                            'class' => 'trinity-ajax',
-                            'data-on-submit-callback' => 'paymentsFormSubmit'
-                        ]
-                    ]
-                );
-
-                $form->add('invoice', HiddenType::class, ['data' => $userInvoice->getId()]);
-
-// 1. if immersion, allow to cancel the recurring
-// 2. upgrade - wtf??!????!?!??!?!?!
-
-                //$isImmersion = isset($userInvoice->getItems()[0]) && $userInvoice->getItems()[0]->haveCategory('Platinum Club RECURING'); ORIGINAL
-                $isImmersion = isset($userInvoice->getItems()[0]) && //todo remove and check for billing plan tag!
-                    $userInvoice->getItems()[0] == 'Platinum Club';
-
-//                $jsOnClickAction = "return openCancelPopup(this, \"".$userInvoice->getInvoiceItems()."\", {$isImmersion});"; //todo!
-                $jsOnClickAction = "return openCancelPopup(this, \"DUMMY\", {$isImmersion});";
-
-                $form->add(
-                    $userInvoice->getId(),
-                    ButtonType::class,
-                    ['label'=>'Cancel','attr'=> ['onClick'=>$jsOnClickAction]]
-                );
-
-                $form = $form->getForm();
-                $form->handleRequest($request);
-
-                $parameters = $request->request->all();
-
-                if (isset($parameters['form']['invoice']) &&
-                    $form->isSubmitted() &&
-                    $parameters['form']['invoice'] === $userInvoice->getId()
-                ) {
-
-                    //redirect to necktie cancel
-
-//                    $necktieUrl = $this->getParameter('necktie_url') . ; // todo!
-
-
-//                    $connector->cancelInvoice($userInvoice, $user);
-//
-//                    $userInvoice->setCanceled();
-//
-//                    $this->addFlash('success', 'Invoice successfully canceled.');
-//
-//                    return $this->renderJsonTrinity(
-//                        'VeniceFrontBundle:Core:orderHistory.html.twig',
-//                        ['orderHistoryData'=>$row],
-//                        ['orderHistory'.$userInvoice->getId()=>'orderHistory']
-//                    );
-                }
-
-                $row['form'] = $form->createView();
+                $row['cancelLink'] = $this->getParameter('necktie_url') . '/payment/click-bank/cancel/' . $userInvoice->getReceipt();
             }
 
             $viewData[] = $row;
