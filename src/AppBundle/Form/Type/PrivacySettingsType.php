@@ -84,9 +84,9 @@ class PrivacySettingsType extends SingleItemType
                 [
                     'choices' => [
                         'Private' => PrivacySettings::FORMAT_BIRTH_DATE_NONE,
-                        $this->user->getAge() . ' years old' => PrivacySettings::FORMAT_BIRTH_DATE_AGE,
-                        $this->user->getDateOfBirth()->format("jS \\o\\f F") => PrivacySettings::FORMAT_BIRTH_DATE_DAY,
-                        $this->user->getDateOfBirth()->format('m/d/Y') => PrivacySettings::FORMAT_BIRTH_DATE_FULL,
+                        $user->getAge() . ' years old' => PrivacySettings::FORMAT_BIRTH_DATE_AGE,
+                        $user->getDateOfBirth()->format("jS \\o\\f F") => PrivacySettings::FORMAT_BIRTH_DATE_DAY,
+                        $user->getDateOfBirth()->format('m/d/Y') => PrivacySettings::FORMAT_BIRTH_DATE_FULL,
                     ],
                     'attr' => ['icon' => 'ff-time']
                 ]
