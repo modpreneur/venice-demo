@@ -115,8 +115,6 @@ class VanillaForumConnector extends AbstractForumConnector
         $response = $this->getClient()->get($url, ['cookies' => $cookieJar]);
         $decoded  = json_decode($response->getBody(), true);
 
-        dump($url);
-
         return is_null($decoded) ? [] : $decoded;
     }
 
