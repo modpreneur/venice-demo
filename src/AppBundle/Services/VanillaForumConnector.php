@@ -99,26 +99,25 @@ class VanillaForumConnector extends AbstractForumConnector
      * @param $url
      *
      * @return array|mixed
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      */
     public function getJson($url)
     {
-        try {
-            $cookiesString = $this->createCookieString();
+        $cookiesString = $this->createCookieString();
 
-            $newCookie = \GuzzleHttp\Cookie\SetCookie::fromString($cookiesString);
-            $newCookie->setDomain($this->serviceContainer->getParameter('forum_url'));
+        $cookie = \GuzzleHttp\Cookie\SetCookie::fromString($cookiesString);
+        $cookie->setDomain('.flofit.com');
 
-            $cookieJar = new CookieJar(true);
-            $cookieJar->setCookie($newCookie);
+        $cookieJar = new CookieJar();
+        $cookieJar->setCookie($cookie);
 
-            $response = $this->getClient()->get($url, ['cookies' => $cookieJar]);
-            $decoded = json_decode($response->getBody(), true);
+        $response = $this->getClient()->get($url, ['cookies' => $cookieJar]);
+        $decoded  = json_decode($response->getBody(), true);
 
-            return is_null($decoded) ? [] : $decoded;
-        } catch (\Exception $exception) {
-            return [];
-        }
+        dump($url);
+
+        return is_null($decoded) ? [] : $decoded;
     }
 
 
@@ -414,6 +413,7 @@ class VanillaForumConnector extends AbstractForumConnector
      * @param null $count
      *
      * @return array
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      */
     public function getLatestForumPostsOfUser(User $user, User $author = null, $count = null)
     {

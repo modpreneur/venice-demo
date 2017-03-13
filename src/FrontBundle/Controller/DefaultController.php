@@ -54,7 +54,9 @@ class DefaultController extends FrontController
         $messagesService = $this->get('flofit.prod_env_forum_connector');
         $messages = $messagesService->getConversations($this->getUser());
 
+
         $latestForumPosts = $messagesService->getLatestForumPosts($this->getUser());
+        //$latestForumPosts = [];
 
         // @todo
         return $this->render(

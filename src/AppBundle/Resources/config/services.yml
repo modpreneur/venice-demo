@@ -139,11 +139,6 @@ services:
         arguments: ["@service_container"]
 
 
-    flofit.dev_env_forum_connector: #todo services
-        class: AppBundle\Services\DevForumConnector
-        arguments: ["@service_container"]
-
-
     flofit.products_service: #todo services
       class: AppBundle\Services\ProductsPage
       arguments:

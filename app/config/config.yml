@@ -36,15 +36,15 @@ parameters:
     number_of_blog_posts: 2
     number_of_product_posts: 4
 
-    forum_url: '88.146.49.119:9999'
-    forum_read_all_url: '88.146.49.119:9999/messages/inbox'
-    forum_read_conversation_url: '88.146.49.119:9999/messages/'
-    forum_send_new_message: '88.146.49.119:9999/messages/add/'
+    forum_url: 'http://community.flofit.getnecktie.com'
+    forum_read_all_url: 'http://community.flofit.getnecktie.com/messages/inbox'
+    forum_read_conversation_url: 'http://community.flofit.getnecktie.com/messages/'
+    forum_send_new_message: 'http://community.flofit.getnecktie.com/messages/add/'
 
-    messages_url: '88.146.49.119:9999/index.php?p=/messages'
+    messages_url: 'http://community.flofit.getnecktie.com/index.php?p=/messages'
 
     connector_service_name: flofit.dev_env_connector
-    forum_service_name:     flofit.dev_env_forum_connector
+    forum_service_name:     flofit.prod_env_forum_connector
 
     facebook_client_id: 748756945252163
     facebook_client_secret: b1ff879b869c5d8058317656d41f7caf
@@ -63,10 +63,10 @@ parameters:
     maropost_account_id: 478
     maropost_auth_token: 4cc55665ee6708ea9dd8eb6c8b0f3c59e96f9909
 
-    forum_secret_key: b154a1d1-d75e-40c8-ad03-18fe61a17d1e
+    forum_secret_key: 8894eee8-3d3c-4ea4-8465-5447d69a2f16
     forum_auth_cookie_name: Vanilla
     forum_auth_cookie_salt: A3X88X2UCR
-    forum_auth_cookie_domain: .flofit.com
+    forum_auth_cookie_domain: .getnecktie.com
 
 # You can override default configuration here or in the enviroment files (config_dev, config_prod).
 # Confiruration in the enviroment files will override configuration defined here

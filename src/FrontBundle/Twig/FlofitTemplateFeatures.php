@@ -65,6 +65,8 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
     /**
      * @return \Twig_Markup
+     * @throws \Twig_Error
+     * @throws \RuntimeException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
@@ -85,6 +87,8 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
     /**
      * @return \Twig_Markup
+     * @throws \Twig_Error
+     * @throws \RuntimeException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
@@ -102,6 +106,8 @@ class FlofitTemplateFeatures extends \Twig_Extension
 
     /**
      * @return mixed
+     * @throws \Twig_Error
+     * @throws \RuntimeException
      * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
@@ -194,6 +200,8 @@ class FlofitTemplateFeatures extends \Twig_Extension
      * @param bool $onlyForRequesterIp
      *
      * @return string
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      * @throws \InvalidArgumentException
      */
