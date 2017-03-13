@@ -121,6 +121,9 @@ trinity_settings:
       user.trialExtendPopupShown: false
       user.trialEndPopupShown: false
       user.trial7daysEndPopupShown: false
+      user.displayQuickStartGuide: true
+      user.firstLogin: true
+      user.communityId: ~
 
 trinity_messages:
     sender_identification: "client_3"

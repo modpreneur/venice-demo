@@ -2,6 +2,7 @@
 
 namespace FrontBundle\Controller;
 
+use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Services\VanillaForumConnector;
 use FrontBundle\Helpers\Ajax;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,7 @@ class DefaultController extends FrontController
 {
     use Ajax;
 
+
     /**
      * @param Request $request
      *
@@ -26,11 +28,17 @@ class DefaultController extends FrontController
      * @Route("/", name="landing_page")
      *
      * @return Response
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\ORMInvalidArgumentException
+     * @throws \Trinity\Bundle\SettingsBundle\Exception\PropertyNotExistsException
      * @throws \LogicException
      */
     public function indexAction(Request $request)
     {
-        $logger = $this->get('logger');
+        $productService = $this->get('flofit.product_posts_service');
+        $products = $productService
+            ->getLatestProductPosts($this->getParameter('number_of_product_posts'));
 
         $socialService = $this->get('flofit.services.social_feed');
 
@@ -54,28 +62,47 @@ class DefaultController extends FrontController
         $messagesService = $this->get('flofit.prod_env_forum_connector');
         $messages = $messagesService->getConversations($this->getUser());
 
-
         $latestForumPosts = $messagesService->getLatestForumPosts($this->getUser());
         //$latestForumPosts = [];
 
+        $workoutGuide = $entityManager->getRepository(StandardProduct::class)
+            ->findOneBy(['handle' => 'workout-guide-book']);
+
+        $nutritionGuide = $entityManager->getRepository(StandardProduct::class)
+            ->findOneBy(['handle' => 'nutrition-guide']);
+
         // @todo
-        return $this->render(
+
+        $render = $this->render(
             'VeniceFrontBundle:Front:index.html.twig',
             [
                 'socialPosts' => $socialStream,
                 'messages'    => $messages,
                 'forumPosts'  => $latestForumPosts,
                 'blogArticles' => $blogArticles,
-                'productPosts' => [],
+                'productPosts' => $products,
                 'communityInboxUrl' => $this->container->getParameter('forum_read_conversation_url'),
                 'communityForumUrl' => $this->container->getParameter('forum_url'),
-                'workoutGuide'      => null,
-                'nutritionGuide'    => null,
+                'workoutGuide'      => $workoutGuide,
+                'nutritionGuide'    => $nutritionGuide,
                 'displayMobileAdv'  => false,
-                'displayQuickStartGuide' => null,
-                'firstLogin' => new \DateTime(),
+                'displayQuickStartGuide' => $this
+                    ->get('trinity.settings')
+                    ->get('displayQuickStartGuide', $this->getUser()->getId(), 'user'),
+                'firstLogin' => $this
+                    ->get('trinity.settings')
+                    ->get('firstLogin', $this->getUser()->getId(), 'user'),
             ]
         );
+
+        $this
+            ->get('trinity.settings')
+            ->set('displayQuickStartGuide', false, $this->getUser()->getId(), 'user');
+
+        $this->get('trinity.settings')
+            ->set('firstLogin', false, $this->getUser()->getId(), 'user');
+
+        return $render;
     }
 
 

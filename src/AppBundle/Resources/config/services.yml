@@ -219,3 +219,16 @@ services:
         - "@doctrine.orm.entity_manager"
       tags:
         - {name: kernel.event_subscriber}
+
+
+    flofit.product_posts_service:
+        class: AppBundle\Services\ProductPostsService
+        arguments:
+          - "@doctrine.orm.entity_manager"
+
+
+    flofit.kerner_listener:
+        class: AppBundle\EventListener\KernelListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

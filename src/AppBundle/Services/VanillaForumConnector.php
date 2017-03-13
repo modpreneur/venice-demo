@@ -99,23 +99,26 @@ class VanillaForumConnector extends AbstractForumConnector
      * @param $url
      *
      * @return array|mixed
-     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
-     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      */
     public function getJson($url)
     {
-        $cookiesString = $this->createCookieString();
+        try {
+            $cookiesString = $this->createCookieString();
 
-        $cookie = \GuzzleHttp\Cookie\SetCookie::fromString($cookiesString);
-        $cookie->setDomain('.flofit.com');
+            $cookie = \GuzzleHttp\Cookie\SetCookie::fromString($cookiesString);
+            $cookie->setDomain($this->serviceContainer->getParameter('forum_auth_cookie_domain'));
 
-        $cookieJar = new CookieJar();
-        $cookieJar->setCookie($cookie);
+            $cookieJar = new CookieJar(true);
+            $cookieJar->setCookie($cookie);
 
-        $response = $this->getClient()->get($url, ['cookies' => $cookieJar]);
-        $decoded  = json_decode($response->getBody(), true);
+            $response = $this->getClient()->get($url, ['cookies' => $cookieJar]);
+            /** @var TYPE_NAME $response */
+            $decoded  = json_decode($response->getBody(), true);
 
-        return is_null($decoded) ? [] : $decoded;
+            return is_null($decoded) ? [] : $decoded;
+        } catch (\Exception $exception) {
+            return [];
+        }
     }
 
 
@@ -161,11 +164,19 @@ class VanillaForumConnector extends AbstractForumConnector
      * @param $exp
      *
      * @return string
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Trinity\Bundle\SettingsBundle\Exception\PropertyNotExistsException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      */
     private function createCookieValue(User $user, $exp)
     {
-        $keyData = $user->getCommunityId() . '-' . $exp;
+        $communityId = $this
+            ->serviceContainer
+            ->get('trinity.settings')
+            ->get('communityId', $user->getId(), 'user');
+
+        $keyData = $communityId . '-' . $exp;
 
         $key = $this->createHash($keyData, $this->serviceContainer->getParameter('forum_auth_cookie_salt'));
         $hash = $this->createHash($keyData, $key);
@@ -254,7 +265,7 @@ class VanillaForumConnector extends AbstractForumConnector
      */
     public function getCommunityIdFromCookies()
     {
-        $request = $this->serviceContainer->get('request');
+        $request = $this->serviceContainer->get('request_stack')->getCurrentRequest();
         $cookieName = $this->serviceContainer->getParameter('forum_auth_cookie_name');
 
         if (!$request->cookies->has($cookieName)) {

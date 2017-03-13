@@ -111,51 +111,21 @@
                 </div>
             </div>
 
-            {% if firstLogin %}
-                <div id="widget-homepage" class="widgets">
-                    <div id="dashboard-mobile-adv">
+
+            <div id="widget-homepage" class="widgets {% if displayQuickStartGuide and displayMobileAdv %}widget-both{% endif %}">
+                {% if displayQuickStartGuide %}
+                    <div id="dashboard-mobile-qsg">
                         <div class="span-medium-24 mobile-app-padding">
-                            <div class="download-mobile-app row">
-                                <h1>Get the FREE App to Access FLO&nbsp;FIT<small>On Your Phone or Tablet</small></h1>
-                                <div class="download">
-                                    <a data-log-click="MOBILE-APP-ADVERTISEMENT-IOS" href="https://itunes.apple.com/cz/app/flo-fit/id1052231777"><img src="{{ asset('Resources/public/images/site/dash-mobile-app-apple.png') }}" alt="Apple" class="img-responsive"/></a>
-                                    <a data-log-click="MOBILE-APP-ADVERTISEMENT-ANDROIDMOBILE-APP-ADVERTISEMENT-IOS" href="https://play.google.com/store/apps/details?id=com.digitalshelfspace.flofit"><img src="{{ asset('Resources/public/images/site/dash-mobile-app-android.png') }}" alt="Android" class="img-responsive"/></a>
-                                </div>
-                                <label onclick="ActionsLogger.logAction('MOBILE-APP-ADVERTISEMENT-CLOSE');closeDashboardMobileAdv();" for="close-download-mobile-app"><i class="ff ff-cross2"></i></label>
+                            <div class="start-guilde-box">
+                                <label for="start-guilde" class="start-guide-label">
+                                    <span>Quick Start <span>Guide</span><i class="ff-arrow-light-long-right"></i></span>
+                                </label>
+                                <label onclick="ActionsLogger.logAction('QUICKSTART-GUIDE-ADVERTISEMENT-CLOSE');closeDashboardMobileQSG();" for="close-download-mobile-app" class="close-guilde-box"><i class="ff ff-cross2"></i></label>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% else %}
-                <div id="widget-homepage" class="widgets {% if displayQuickStartGuide and displayMobileAdv %}widget-both{% endif %}">
-                    {% if displayQuickStartGuide %}
-                        <div id="dashboard-mobile-qsg">
-                            <div class="span-medium-24 mobile-app-padding">
-                                <div class="start-guilde-box">
-                                    <label for="start-guilde" class="start-guide-label">
-                                        <span>Quick Start <span>Guide</span><i class="ff-arrow-light-long-right"></i></span>
-                                    </label>
-                                    <label onclick="ActionsLogger.logAction('QUICKSTART-GUIDE-ADVERTISEMENT-CLOSE');closeDashboardMobileQSG();" for="close-download-mobile-app" class="close-guilde-box"><i class="ff ff-cross2"></i></label>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% if displayMobileAdv %}
-                        <div id="dashboard-mobile-adv">
-                            <div class="span-medium-24 mobile-app-padding">
-                                <div class="download-mobile-app row">
-                                    <h1>Get the FREE App to Access FLO&nbsp;FIT<small>On Your Phone or Tablet</small></h1>
-                                    <div class="download">
-                                        <a data-log-click="MOBILE-APP-ADVERTISEMENT-IOS" href="https://itunes.apple.com/cz/app/flo-fit/id1052231777"><img src="{{ asset('Resources/public/images/site/dash-mobile-app-apple.png') }}" alt="Apple" class="img-responsive"/></a>
-                                        <a data-log-click="MOBILE-APP-ADVERTISEMENT-ANDROIDMOBILE-APP-ADVERTISEMENT-IOS" href="https://play.google.com/store/apps/details?id=com.digitalshelfspace.flofit"><img src="{{ asset('Resources/public/images/site/dash-mobile-app-android.png') }}" alt="Android" class="img-responsive"/></a>
-                                    </div>
-                                    <label onclick="ActionsLogger.logAction('MOBILE-APP-ADVERTISEMENT-CLOSE');closeDashboardMobileAdv();" for="close-download-mobile-app"><i class="ff ff-cross2"></i></label>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                </div>
-            {% endif %}
+                {% endif %}
+            </div>
 
 
             <div class="span-large-8 span-medium-12 padding-left-10 double-box-span">
