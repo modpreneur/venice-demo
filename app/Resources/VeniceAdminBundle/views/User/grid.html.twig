@@ -1,0 +1,20 @@
+{% block cell__id %}
+    {{ row.getId() }}
+{% endblock %}
+
+{% block cell_id %}
+    {{ value }}
+{% endblock %}
+
+{% block cell_username %}
+    <a title="Go to {{ value }}" href="{{ path('admin_user_tabs',{'id':row.getId()}) }}">{{ value }}</a>
+{% endblock %}
+
+{% block cell_details %}
+    <a href="{{ path('admin_user_tabs', {'id':row.getId()}) }}" class="button-small pull-right margin-right-10">Get details</a>
+
+    {% if is_granted('ROLE_USER_SWITCHER') %}
+        <a class="button-small pull-right margin-right-10" href="{{ path('homepage', {'_switch_user': row.getUserName()}) }}">Login as</a>
+    {% endif %}
+
+{% endblock %}
