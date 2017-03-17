@@ -31,6 +31,23 @@ class SchemaController extends Controller
         return $this->render('VeniceFrontBundle:Schema:request.html.twig');
     }
 
+    /**
+     * @Route("/check-email", name="schema-check-email-page")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function checkEmailAction()
+    {
+        return $this->render('VeniceFrontBundle:Schema:check_email.html.twig');
+    }
+
+    /**
+     * @Route("/already-requested", name="schema-already-requested-page")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function alreadyRequestedAction()
+    {
+        return $this->render('VeniceFrontBundle:Schema:passwordAlreadyRequested.html.twig');
+    }
 
     /**
      * @Route("/new", name="schema-new-page")

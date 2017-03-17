@@ -21,7 +21,10 @@
                     <div class="span-mini-24">
                         <span class="text-login">Reset Password</span>
                         <br>
-                        <span class="color-white font-20">{{ 'resetting.check_email'|trans({'%email%': email}) }}</span>
+                        <span class="color-white font-20">An email has been sent to your email. It contains an activation link you must click to activate your account.</span>
+                        <form action="{{ path('fos_user_security_login') }}" class="user-form margin-top-30">
+                            <input id="_submit" type="submit" value="Back to Log in">
+                        </form>
                     </div>
                 </div>
             </div>
