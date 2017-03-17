@@ -15,9 +15,10 @@ services:
       #php-fpm
       - "8888:9090"
       #supervisor
-      - "9005:9005"
+      - "9003:9003"
     expose:
       - "9002"
+      - "9003"
       - "3001"
     external_links:
       - necktiegateway_gateway_1:gateway
