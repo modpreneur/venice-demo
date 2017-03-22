@@ -507,7 +507,11 @@ class ProfilerController extends Controller
             $row['invoice'] = $userInvoice;
 
             if ($userInvoice->getStatus() === Invoice::STATUS_RECURRING) {
-                $row['cancelLink'] = $this->getParameter('necktie_url') . '/payment/click-bank/cancel/' . $userInvoice->getReceipt();
+                $profileUrl = $this->generateUrl('core_front_user_order_history');
+
+                $receipt = $userInvoice->getReceipt();
+                $necktieUrl =  $this->getParameter('necktie_url');
+                $row['cancelLink'] = "$necktieUrl/payment/click-bank/cancel/$receipt?projectUrl=$profileUrl";
             }
 
             $viewData[] = $row;
