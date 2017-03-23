@@ -17,8 +17,6 @@ use AppBundle\Services\MaropostConnector;
 use Doctrine\ORM\EntityManager;
 use FrontBundle\Helpers\Ajax;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -100,6 +98,11 @@ class ProfilerController extends Controller
 
         $session = $this->get('session');
         //$plainTextPass = $session->get('plainPassword');
+
+        // Change password controller will redirect here only if password change was successful.
+        if (strpos($request->headers->get('referer'), 'change-password')) {
+            $this->addFlash(FlashMessages::INFO, 'Password successfully changed.');
+        }
 
         foreach ($fields as $field) {
             $form = $this
@@ -507,7 +510,11 @@ class ProfilerController extends Controller
             $row['invoice'] = $userInvoice;
 
             if ($userInvoice->getStatus() === Invoice::STATUS_RECURRING) {
-                $row['cancelLink'] = $this->getParameter('necktie_url') . '/payment/click-bank/cancel/' . $userInvoice->getReceipt();
+                $profileUrl = $this->generateUrl('core_front_user_order_history');
+
+                $receipt = $userInvoice->getReceipt();
+                $necktieUrl =  $this->getParameter('necktie_url');
+                $row['cancelLink'] = "$necktieUrl/payment/click-bank/cancel/$receipt?projectUrl=$profileUrl";
             }
 
             $viewData[] = $row;

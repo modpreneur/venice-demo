@@ -38,9 +38,9 @@ fi
 chown -R www-data:www-data /var/app/var/logs
 chmod -R 0777 /var/app/var/logs
 
-#supervisor - load config from necktie
-ENV=dev supervisord -c /var/app/supervisor/supervisord.conf
-supervisorctl -c /var/app/supervisor/supervisord.conf reload
+#supervisor - load config from venice framework
+supervisord -c vendor/modpreneur/venice/supervisor/supervisord.conf
+supervisorctl -c vendor/modpreneur/venice/supervisor/supervisord.conf status
 
 chmod -R 0777 /var/app/var/cache
 chmod -R 0777 /var/app/var/logs

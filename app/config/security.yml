@@ -82,6 +82,9 @@ security:
         - { path: ^/schema/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/schema/request, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/schema/new, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/schema/already-requested, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/schema/check-email, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/schema/change-password, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         - { path: ^/css, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/js, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -8,22 +8,22 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.24.4",
+            "version": "3.24.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2823e0a0742505f655b0cb3bcdb10844f60e6078"
+                "reference": "23c34a2892594790a59c68dd71371602e0d08fae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2823e0a0742505f655b0cb3bcdb10844f60e6078",
-                "reference": "2823e0a0742505f655b0cb3bcdb10844f60e6078",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/23c34a2892594790a59c68dd71371602e0d08fae",
+                "reference": "23c34a2892594790a59c68dd71371602e0d08fae",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^5.3.1|^6.2.1",
                 "guzzlehttp/promises": "~1.0",
-                "guzzlehttp/psr7": "^1.3.1, !=1.4.0",
+                "guzzlehttp/psr7": "^1.4.1",
                 "mtdowling/jmespath.php": "~2.2",
                 "php": ">=5.5"
             },
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-03-14T00:56:44+00:00"
+            "time": "2017-03-21T19:39:19+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -1973,12 +1973,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "4a6415b1254db6e8ea0886ead5c35888c02ccaf9"
+                "reference": "88b87249206fd867d5de8cee82e60885c0c8f749"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/4a6415b1254db6e8ea0886ead5c35888c02ccaf9",
-                "reference": "4a6415b1254db6e8ea0886ead5c35888c02ccaf9",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/88b87249206fd867d5de8cee82e60885c0c8f749",
+                "reference": "88b87249206fd867d5de8cee82e60885c0c8f749",
                 "shasum": ""
             },
             "require": {
@@ -2042,7 +2042,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-03-09 15:14:58"
+            "time": "2017-03-19 13:49:51"
         },
         {
             "name": "fzaninotto/faker",
@@ -2427,16 +2427,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855"
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/0d6c7ca039329247e4f0f8f8f6506810e8248855",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
                 "shasum": ""
             },
             "require": {
@@ -2488,7 +2488,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-02-27T10:51:17+00:00"
+            "time": "2017-03-20T17:10:46+00:00"
         },
         {
             "name": "guzzlehttp/ringphp",
@@ -3647,20 +3647,20 @@
         },
         {
             "name": "knplabs/knp-gaufrette-bundle",
-            "version": "0.3.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpGaufretteBundle.git",
-                "reference": "44cf552e14031517516458b0e394f16dd36a131b"
+                "reference": "06d91a8a575773cd0361c1246c9c499b6bdd5d68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpGaufretteBundle/zipball/44cf552e14031517516458b0e394f16dd36a131b",
-                "reference": "44cf552e14031517516458b0e394f16dd36a131b",
+                "url": "https://api.github.com/repos/KnpLabs/KnpGaufretteBundle/zipball/06d91a8a575773cd0361c1246c9c499b6bdd5d68",
+                "reference": "06d91a8a575773cd0361c1246c9c499b6bdd5d68",
                 "shasum": ""
             },
             "require": {
-                "knplabs/gaufrette": "~0.1.7|~0.2",
+                "knplabs/gaufrette": "~0.1.7|~0.2|~0.3",
                 "symfony/framework-bundle": "~2.0|~3.0"
             },
             "require-dev": {
@@ -3701,7 +3701,7 @@
                 "filesystem",
                 "media"
             ],
-            "time": "2016-01-16T00:12:11+00:00"
+            "time": "2017-03-16T21:01:25+00:00"
         },
         {
             "name": "knplabs/knp-menu",
@@ -4293,12 +4293,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "cadbafaae95c6c09c258baea0bd79a931e624cac"
+                "reference": "e8992352494bae808878bee51080d38231f190c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/cadbafaae95c6c09c258baea0bd79a931e624cac",
-                "reference": "cadbafaae95c6c09c258baea0bd79a931e624cac",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/e8992352494bae808878bee51080d38231f190c5",
+                "reference": "e8992352494bae808878bee51080d38231f190c5",
                 "shasum": ""
             },
             "require": {
@@ -4384,10 +4384,10 @@
             ],
             "description": "Venice framework",
             "support": {
-                "source": "https://github.com/modpreneur/venice/tree/VENICE-57-cancel-rebill",
+                "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-03-10 15:15:49"
+            "time": "2017-03-17 16:32:03"
         },
         {
             "name": "monolog/monolog",
@@ -5635,16 +5635,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.15",
+            "version": "5.7.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b99112aecc01f62acf3d81a3f59646700a1849e5"
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b99112aecc01f62acf3d81a3f59646700a1849e5",
-                "reference": "b99112aecc01f62acf3d81a3f59646700a1849e5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/68752b665d3875f9a38a357e3ecb35c79f8673bf",
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
                 "shasum": ""
             },
             "require": {
@@ -5713,7 +5713,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-02T15:22:43+00:00"
+            "time": "2017-03-19T16:52:12+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -6621,16 +6621,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.23",
+            "version": "v3.0.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "d3601fd5709168ace7a1ca6eefa2619a1632b7f7"
+                "reference": "472b339cf0c82f3a033b29f85d9d9cada3cd1a9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/d3601fd5709168ace7a1ca6eefa2619a1632b7f7",
-                "reference": "d3601fd5709168ace7a1ca6eefa2619a1632b7f7",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/472b339cf0c82f3a033b29f85d9d9cada3cd1a9c",
+                "reference": "472b339cf0c82f3a033b29f85d9d9cada3cd1a9c",
                 "shasum": ""
             },
             "require": {
@@ -6687,7 +6687,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-03-02T20:17:28+00:00"
+            "time": "2017-03-21T23:34:44+00:00"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -7466,16 +7466,16 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v2.5.3",
+            "version": "v2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/swiftmailer-bundle.git",
-                "reference": "b59a70d03b948e29d070b6c4416b4a03af4748ec"
+                "reference": "8ab32ce31a7156621fb92e0466586186beb89759"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/b59a70d03b948e29d070b6c4416b4a03af4748ec",
-                "reference": "b59a70d03b948e29d070b6c4416b4a03af4748ec",
+                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/8ab32ce31a7156621fb92e0466586186beb89759",
+                "reference": "8ab32ce31a7156621fb92e0466586186beb89759",
                 "shasum": ""
             },
             "require": {
@@ -7521,7 +7521,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2017-03-02T16:47:57+00:00"
+            "time": "2017-03-21T21:47:36+00:00"
         },
         {
             "name": "symfony/symfony",
@@ -7730,12 +7730,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-bunny-bundle.git",
-                "reference": "b4636549b9b03fc288cf161ab90f2e39f10c4545"
+                "reference": "23ad812ce366489c990293b26ec0166b4c6ade71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-bunny-bundle/zipball/b4636549b9b03fc288cf161ab90f2e39f10c4545",
-                "reference": "b4636549b9b03fc288cf161ab90f2e39f10c4545",
+                "url": "https://api.github.com/repos/modpreneur/trinity-bunny-bundle/zipball/23ad812ce366489c990293b26ec0166b4c6ade71",
+                "reference": "23ad812ce366489c990293b26ec0166b4c6ade71",
                 "shasum": ""
             },
             "require": {
@@ -7760,7 +7760,7 @@
                 "MIT"
             ],
             "description": "Symfony bundle that makes using RabbitMQ easy. Without meta classes.",
-            "time": "2016-12-09 17:51:35"
+            "time": "2017-03-22 09:50:00"
         },
         {
             "name": "trinity/core-entities",
@@ -7996,12 +7996,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "4484ba86ff68cc5bf9df8571dfd20214bcb2e4d4"
+                "reference": "1d0eb0f1be433d5c16e82fc87cc51415fa739ea9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/4484ba86ff68cc5bf9df8571dfd20214bcb2e4d4",
-                "reference": "4484ba86ff68cc5bf9df8571dfd20214bcb2e4d4",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/1d0eb0f1be433d5c16e82fc87cc51415fa739ea9",
+                "reference": "1d0eb0f1be433d5c16e82fc87cc51415fa739ea9",
                 "shasum": ""
             },
             "require": {
@@ -8047,7 +8047,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2017-03-13 13:00:25"
+            "time": "2017-03-16 10:47:07"
         },
         {
             "name": "trinity/messages",
@@ -8100,12 +8100,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-notifications.git",
-                "reference": "07240a5d27c5209809be82545a6629dd08a271f1"
+                "reference": "7772b903aba0eed1d66a4887c64807039a016ea4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/07240a5d27c5209809be82545a6629dd08a271f1",
-                "reference": "07240a5d27c5209809be82545a6629dd08a271f1",
+                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/7772b903aba0eed1d66a4887c64807039a016ea4",
+                "reference": "7772b903aba0eed1d66a4887c64807039a016ea4",
                 "shasum": ""
             },
             "require": {
@@ -8160,7 +8160,7 @@
                 }
             ],
             "description": "Trinity Notification bundle",
-            "time": "2017-03-03 09:31:28"
+            "time": "2017-03-17 14:59:13"
         },
         {
             "name": "trinity/search",
@@ -8302,12 +8302,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-utils.git",
-                "reference": "ebd649bc914cb27e59bc8e2bbea213bf57e84a56"
+                "reference": "7361fa0e8f4408853fbde48607e62149e8a07f3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-utils/zipball/ebd649bc914cb27e59bc8e2bbea213bf57e84a56",
-                "reference": "ebd649bc914cb27e59bc8e2bbea213bf57e84a56",
+                "url": "https://api.github.com/repos/modpreneur/trinity-utils/zipball/7361fa0e8f4408853fbde48607e62149e8a07f3e",
+                "reference": "7361fa0e8f4408853fbde48607e62149e8a07f3e",
                 "shasum": ""
             },
             "require": {
@@ -8349,7 +8349,7 @@
                 }
             ],
             "description": "Trinity Utils bundle",
-            "time": "2017-03-10 17:11:37"
+            "time": "2017-03-22 14:41:55"
         },
         {
             "name": "twig/extensions",
@@ -8405,16 +8405,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "29bb02dde09ff56291d30f7687eb8696918023af"
+                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/29bb02dde09ff56291d30f7687eb8696918023af",
-                "reference": "29bb02dde09ff56291d30f7687eb8696918023af",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9718186a5df85a4f7917e78d3ffcabc204c75d25",
+                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25",
                 "shasum": ""
             },
             "require": {
@@ -8424,12 +8424,12 @@
             "require-dev": {
                 "psr/container": "^1.0",
                 "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~3.2"
+                "symfony/phpunit-bridge": "~3.3@dev"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -8464,7 +8464,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-02-27T00:16:20+00:00"
+            "time": "2017-03-22T15:41:51+00:00"
         },
         {
             "name": "uran1980/fancybox-bundle",
