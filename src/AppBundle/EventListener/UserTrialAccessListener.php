@@ -184,7 +184,6 @@ class UserTrialAccessListener implements EventSubscriberInterface
             $this->entityManager->commit();
         } catch (\Exception $exception) {
             $this->entityManager->rollback();
-            throw $exception;
         }
 
         return $access;
