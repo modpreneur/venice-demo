@@ -30,8 +30,8 @@ class BuyLinkController extends Controller
 {
 
     private $FLOFIT_67dollars = 41; // FLO FIT Online Workout System + Limited Time Bonuses: Get Access Now!
-    private $FLOFIT_37dollars = 0; // 30
-    private $FLOFIT_67dollarsPlusDVDs = 25; // 25
+    private $FLOFIT_37dollars = 30;
+    private $FLOFIT_67dollarsPlusDVDs = 25;
     private $CBID_to_necktieId = [
         1   => 546,
         10  => 571,
