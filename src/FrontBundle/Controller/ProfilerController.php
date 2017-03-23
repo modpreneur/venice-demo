@@ -17,8 +17,6 @@ use AppBundle\Services\MaropostConnector;
 use Doctrine\ORM\EntityManager;
 use FrontBundle\Helpers\Ajax;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -100,6 +98,11 @@ class ProfilerController extends Controller
 
         $session = $this->get('session');
         //$plainTextPass = $session->get('plainPassword');
+
+        // Change password controller will redirect here only if password change was successful.
+        if (strpos($request->headers->get('referer'), 'change-password')) {
+            $this->addFlash(FlashMessages::INFO, 'Password successfully changed.');
+        }
 
         foreach ($fields as $field) {
             $form = $this

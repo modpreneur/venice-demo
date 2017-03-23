@@ -8,7 +8,13 @@
             <span>{{ secondLabel }}</span>
         </div>
     </div>
-    <a href="#{{ id }}" class="profile-settings-edit nice-scroll-parent">EDIT</a>
+    <a href="
+    {% if edit_item_href is defined %}
+        {{ edit_item_href }}
+    {% else %}
+        #{{ id }}
+    {% endif %}
+    " class="profile-settings-edit {{ (edit_item_href is defined) ? '':'nice-scroll-parent' }}">EDIT</a>
 </div>
 <div class="row">
     <div class="span-medium-24">

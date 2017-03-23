@@ -137,6 +137,8 @@ twig:
 #  paths:
 #       An absolute path to Venice
 #      '%kernel.root_dir%/../vendor/modpreneur/venice/src/Venice/AdminBundle/Resources/views': VeniceFramework
+  globals:
+    necktie_url: '%necktie_url%'
   form_themes:
     - 'VeniceFrontBundle:Default:bowtieForms.html.twig'
     - 'TrinityAdminBundle:Form:bowtie_form_layout.html.twig'

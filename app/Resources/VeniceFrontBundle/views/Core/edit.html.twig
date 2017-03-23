@@ -110,7 +110,14 @@
                             {% set lastChangeText = "Password hasn't been changed yet." %}
                         {% endif %}
                         {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithLabel.html.twig' %}
-                        {{ include("VeniceFrontBundle:Core/items:editItem.html.twig",{"id":"password","label":"Password","content": form(form),"icon":"ff-lock", "secondLabel":lastChangeText}, with_context=false) }}
+                        {{ include("VeniceFrontBundle:Core/items:editItem.html.twig", {
+                            "id":"password",
+                            "label":"Password",
+                            "content": form(form),
+                            "icon":"ff-lock",
+                            "edit_item_href": necktie_url ~ "/profile/change-password",
+                            "secondLabel":lastChangeText
+                        }, with_context=false) }}
                     {% endblock %}
                     </div>
 

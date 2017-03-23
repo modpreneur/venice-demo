@@ -6679,6 +6679,9 @@ select * {
   color: #ff1a1a;
   font-weight: 300;
 }
+.reset-pass-step-body form p:empty {
+  display: none;
+}
 .reset-pass-step-body .login .input-reset-pass label {
   width: 100%;
 }

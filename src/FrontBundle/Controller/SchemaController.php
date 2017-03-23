@@ -50,6 +50,15 @@ class SchemaController extends Controller
     }
 
     /**
+     * @Route("/change-password", name="schema-change-password-page")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function passwordChangeAction()
+    {
+        return $this->render('VeniceFrontBundle:Schema:change_password.html.twig');
+    }
+
+    /**
      * @Route("/new", name="schema-new-page")
      * @return \Symfony\Component\HttpFoundation\Response
      */
