@@ -200,7 +200,9 @@ class ProductsController extends Controller
         /** @var User $user */
         $user = $this->getUser();
 
-        $bundleProduct = $this->getDoctrine()->getManager()
+        $em = $this->getDoctrine()->getManager();
+
+        $bundleProduct = $em
             ->getRepository(StandardProduct::class)
             ->findOneBy(['handle' => 'platinumclub']);
 
@@ -213,12 +215,11 @@ class ProductsController extends Controller
         $productsService->initialSetup([$bundleProduct], $this->getUser());
 
         /** @var StandardProduct $upsellProducts */
-        $upsellProducts = $this->getDoctrine()->getManager()
+        $upsellProducts = $em
             ->getRepository(StandardProduct::class)
             ->findBy(['isRecommended' => 1], ['upsellOrder' => 'ASC']);
 
-        $buyParams = new BillingPlan();
-        $parameters = [];
+
 
         $trial = 7;
 
@@ -236,9 +237,15 @@ class ProductsController extends Controller
         */
 
         $featuresService = $this->get('front.twig.flofit_features');
+        $generator = $this->get('venice.app.buy_url_generator');
 
-        $parameters['buyLinkCCT'] = $featuresService->generateOCBLinkByBuyParameters($buyParams, true, $user);
-        $parameters['buyLinkCCF'] = $featuresService->generateOCBLinkByBuyParameters($buyParams, false, $user);
+        $billingPlan = $em->getRepository(BillingPlan::class)
+            ->findOneBy(['necktieId' => 578]); // WHERE TO STORE THIS CONSTANTS?
+        $parameters = [];
+
+        $product = $billingPlan->getProduct();
+        $parameters['buyLinkCCT'] = $generator->generateBuyUrl($product, $billingPlan->getId(), true);
+        $parameters['buyLinkCCF'] = $generator->generateBuyUrl($product, $billingPlan->getId(), false);
 
         $parameters['taxPriceStr'] = '$0.00';
         $parameters['totalPriceStr'] = '$0.00';

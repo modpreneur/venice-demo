@@ -177,12 +177,8 @@ class BuyLinkController extends Controller
      */
     public function buyLink36Action(Request $request)
     {
-
-
-
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-
 
         /** @var User $user */
         $user = $this->getUser();
