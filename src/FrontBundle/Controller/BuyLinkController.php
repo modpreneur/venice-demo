@@ -173,7 +173,7 @@ class BuyLinkController extends Controller
      * @Route("/buy-link/extend-trial", name="buy_link_extend_trial")
      * @param Request $request
      *
-     * @return JsonResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function buyLink36Action(Request $request)
     {
@@ -209,7 +209,8 @@ class BuyLinkController extends Controller
 
             $product = $billingPlan->getProduct(); // if not null
             $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-            return new JsonResponse(['url' => $url]);
+//            return new JsonResponse(['url' => $url]);
+            return $this->redirect($url);
         }
 
         $userTrialStart = $settings->get('trialStart', $user, 'user');
@@ -232,9 +233,10 @@ class BuyLinkController extends Controller
 
         $product = $billingPlan->getProduct(); // if not null
         $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-        return new JsonResponse(['url' => $url]);
+//        return new JsonResponse(['url' => $url]);
 ////        return $this->redirect("http://{$productId}.flofit.pay.clickbank.net/?cbfid={$cbfid}&vtid={$vtid}&cbskin=13358&email={$user->getEmail()}&name={$user->getFirstName()} {$user->getLastName()}");
 //        return $this->redirect("http://{$productId}.flofit.pay.clickbank.net/?cbfid={$cbfid}&vtid=hello&cbskin=13358&email={$user->getEmail()}&name={$user->getFirstName()} {$user->getLastName()}");
+        return $this->redirect($url);
     }
 
     /**
@@ -271,7 +273,8 @@ class BuyLinkController extends Controller
 
             $product = $billingPlan->getProduct(); // if not null
             $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-            return new JsonResponse(['url' => $url]);
+//            return new JsonResponse(['url' => $url]);
+            return $this->redirect($url);
 //            return $this->redirect("http://30.flofit.pay.clickbank.net/?vtid={$vtid}&cbskin=13358&cbfid={$cbfId}");
         }
 
@@ -295,7 +298,8 @@ class BuyLinkController extends Controller
 
         $product = $billingPlan->getProduct(); // if not null
         $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-        return new JsonResponse(['url' => $url]);
+//        return new JsonResponse(['url' => $url]);
+        return $this->redirect($url);
 
         //upgrade popup 67 na cb
 //        return $this->redirect("http://{$productId}.flofit.pay.clickbank.net/?vtid={$vtid}&cbskin={$cbfid}&cbfid={$cbfid}&email={$user->getEmail()}&name={$user->getFirstName()} {$user->getLastName()}");
@@ -305,7 +309,7 @@ class BuyLinkController extends Controller
      * @Route("/buy-link/upgrade-trial", name="buy_link_upgrade_trial")
      * @param Request $request
      *
-     * @return JsonResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function buyLinkTrialUpgradeAction(Request $request)
     {
@@ -332,8 +336,8 @@ class BuyLinkController extends Controller
             ]]);
         $product = $billingPlan->getProduct(); // if not null
         $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-        return new JsonResponse(['url' => $url]);
-
+//        return new JsonResponse(['url' => $url]);
+        return $this->redirect($url);
 //        if (!$user) {
 //            return $this->redirect('http://25.flofit.pay.clickbank.net?cbfid=26406&vtid=introfreebe2408&cbskin=13358');
 //        } else {
