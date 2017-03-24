@@ -141,32 +141,54 @@ class BuyLinkController extends Controller
     ];
 
     /**
-     * @Route("/buy-link/test", name="buy_link_test")
+     * @Route("/buy-link/test7days", name="buy_link_7_test")
      * @param Request $request
      *
      * @return JsonResponse
      */
-    public function testAction(Request $request)
+    public function test7Action(Request $request)
     {
+        $dateFrom = new \DateTime('2016-01-01');
+        $dateTo = new \DateTime('2016-01-08');
+        $settings = $this->get('trinity.settings');
+        $settings->set('trialStart', $dateFrom, $this->getUser(), 'user');
+        $settings->set('trialEnd', $dateTo, $this->getUser(), 'user');
 
+        return new JsonResponse(['url' => 'OK', 'start' => $dateFrom, 'end' => $dateTo]);
+    }
 
-        return new JsonResponse(['url' => 'OK']);
-        /** @var EntityManager $em */
-        $em = $this->getDoctrine()->getManager();
+    /**
+     * @Route("/buy-link/test14days", name="buy_link_14_test")
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function test14Action(Request $request)
+    {
+        $dateFrom = new \DateTime('2016-01-01');
+        $dateTo = new \DateTime('2016-01-15');
+        $settings = $this->get('trinity.settings');
+        $settings->set('trialStart', $dateFrom, $this->getUser(), 'user');
+        $settings->set('trialEnd', $dateTo, $this->getUser(), 'user');
 
-        $product =  new StandardProduct();
-        $product->setName('test');
-        $product->setNecktieId(1);
-        $billing_plan = new \AppBundle\Entity\BillingPlan();
-        $billing_plan->setProduct($product);
-        $billing_plan->setNecktieId(595);
-        $billing_plan->setInitialPrice(5.0);
+        return new JsonResponse(['url' => 'OK', 'start' => $dateFrom, 'end' => $dateTo]);
+    }
 
-        $em->persist($product);
-        $em->persist($billing_plan);
-        $em->flush();
+    /**
+     * @Route("/buy-link/test2days", name="buy_link_2_test")
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function test2Action(Request $request)
+    {
+        $dateFrom = new \DateTime('2017-03-18');
+        $dateTo = new \DateTime('2017-03-25');
+        $settings = $this->get('trinity.settings');
+        $settings->set('trialStart', $dateFrom, $this->getUser(), 'user');
+        $settings->set('trialEnd', $dateTo, $this->getUser(), 'user');
 
-        return new JsonResponse(['url' => 'OK']);
+        return new JsonResponse(['url' => 'OK', 'start' => $dateFrom, 'end' => $dateTo]);
     }
 
     /**
