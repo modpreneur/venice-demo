@@ -272,16 +272,16 @@
         {% endblock %}
 
 
-        {# todo
+        {# todo#}
         {% block popTrialFlow %}
             {% if app.user is not null %}
                 {{ afterTrialExpires(app.user) }}
                 {{ beforeTrialExpires(app.user) }}
             {% endif %}
             {#{% include ":CoreBundle/Front/core/trial:two-days-before.html.twig" %}#}
-        {#
-            {% endblock %}
-        #}
+
+        {% endblock %}
+        {##}
 
         {% block bodyjavascripts %}{% endblock %}
         <script>
