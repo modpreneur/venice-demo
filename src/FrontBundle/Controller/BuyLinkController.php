@@ -152,11 +152,26 @@ class BuyLinkController extends Controller
     {
 
         $settings = $this->get('trinity.settings');
-
-        $dateFrom = $settings->get('trialStart', $this->getUser(), 'user');
-        $dateTo = $settings->get('trialEnd', $this->getUser(), 'user');
+        $dateFrom = $settings->get('trialStart', $this->getUser()->getId(), 'user');
+        $dateTo = $settings->get('trialEnd', $this->getUser()->getId(), 'user');
 
         return new JsonResponse(['url' => 'OK', 'start' => $dateFrom, 'end' => $dateTo]);
+    }
+    /**
+     * @Route("/buy-link/testtrialclear", name="buy_link_clear_test")
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function testclearAction(Request $request)
+    {
+
+        $settings = $this->get('trinity.settings');
+
+        $settings->clear($this->getUser(), 'user');
+        $settings->clear($this->getUser()->getId(), 'user');
+
+        return new JsonResponse(['url' => 'OK']);
     }
 
     /**
@@ -170,8 +185,8 @@ class BuyLinkController extends Controller
         $dateFrom = new \DateTime('2016-01-01');
         $dateTo = new \DateTime('2016-01-08');
         $settings = $this->get('trinity.settings');
-        $settings->set('trialStart', $dateFrom, $this->getUser(), 'user');
-        $settings->set('trialEnd', $dateTo, $this->getUser(), 'user');
+        $settings->set('trialStart', $dateFrom, $this->getUser()->getId(), 'user');
+        $settings->set('trialEnd', $dateTo, $this->getUser()->getId(), 'user');
 
         return new JsonResponse(['url' => 'OK', 'start' => $dateFrom, 'end' => $dateTo]);
     }
@@ -187,8 +202,8 @@ class BuyLinkController extends Controller
         $dateFrom = new \DateTime('2016-01-01');
         $dateTo = new \DateTime('2016-01-15');
         $settings = $this->get('trinity.settings');
-        $settings->set('trialStart', $dateFrom, $this->getUser(), 'user');
-        $settings->set('trialEnd', $dateTo, $this->getUser(), 'user');
+        $settings->set('trialStart', $dateFrom, $this->getUser()->getId(), 'user');
+        $settings->set('trialEnd', $dateTo, $this->getUser()->getId(), 'user');
 
         return new JsonResponse(['url' => 'OK', 'start' => $dateFrom, 'end' => $dateTo]);
     }
@@ -204,8 +219,8 @@ class BuyLinkController extends Controller
         $dateFrom = new \DateTime('2017-03-18');
         $dateTo = new \DateTime('2017-03-25');
         $settings = $this->get('trinity.settings');
-        $settings->set('trialStart', $dateFrom, $this->getUser(), 'user');
-        $settings->set('trialEnd', $dateTo, $this->getUser(), 'user');
+        $settings->set('trialStart', $dateFrom, $this->getUser()->getId(), 'user');
+        $settings->set('trialEnd', $dateTo, $this->getUser()->getId(), 'user');
 
         return new JsonResponse(['url' => 'OK', 'start' => $dateFrom, 'end' => $dateTo]);
     }
