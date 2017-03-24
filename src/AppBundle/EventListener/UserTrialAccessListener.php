@@ -5,11 +5,13 @@ namespace AppBundle\EventListener;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductAccess;
 use Doctrine\ORM\EntityManager;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Trinity\Bundle\SettingsBundle\Manager\SettingsManager;
 use Venice\AppBundle\Entity\User;
+use Venice\AppBundle\Interfaces\NecktieGatewayInterface;
 
 /**
  * Class UserTrialAccessListener
@@ -32,6 +34,22 @@ class UserTrialAccessListener implements EventSubscriberInterface
      */
     private $entityManager;
 
+    /**
+     * @var NecktieGatewayInterface
+     */
+    private $necktieGateway;
+
+    /**
+     * necktie id of the billing plan, which is used to give user an facebook access
+     *
+     * @var int
+     */
+    private $necktieFacebookTrialBillingPlan;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
      * UserTrialAccessListener constructor.
@@ -39,12 +57,17 @@ class UserTrialAccessListener implements EventSubscriberInterface
      * @param TokenStorage $token
      * @param SettingsManager $settings
      * @param EntityManager $entityManager
+     * @param NecktieGatewayInterface $necktieGateway
+     * @param int $necktieFacebookTrialBillingPlan
      */
-    public function __construct(TokenStorage $token, SettingsManager $settings, EntityManager $entityManager)
+    public function __construct(TokenStorage $token, SettingsManager $settings, EntityManager $entityManager, NecktieGatewayInterface $necktieGateway, LoggerInterface $logger, int $necktieFacebookTrialBillingPlan)
     {
         $this->token = $token;
+        $this->logger = $logger;
         $this->settings = $settings;
         $this->entityManager = $entityManager;
+        $this->necktieGateway = $necktieGateway;
+        $this->necktieFacebookTrialBillingPlan = $necktieFacebookTrialBillingPlan;
     }
 
 
@@ -163,22 +186,27 @@ class UserTrialAccessListener implements EventSubscriberInterface
      */
     private function createUserAccess(User $user, StandardProduct $product)
     {
+        $givenProductAccess = null;
         $this->entityManager->beginTransaction();
         [$trialStart, $trialEnd] = $this->getStartAndEndDate($user->getId());
 
         try {
-            $access = new ProductAccess();
-            $access->setUser($user);
-            $access->setProduct($product);
-            $access->setCreatedAt(new \DateTime());
-            $access->setFromDate($trialStart);
-            $access->setToDate($trialEnd);
-            $access->setNecktieId(1);
+            $productAccessId = $this->necktieGateway->createTrialProductAccess($user, $this->necktieFacebookTrialBillingPlan);
 
-            $product->addProductAccess($access);
+            if (!$productAccessId) {
+                //todo: log
+//                $this->logger
+                return null;
+            }
 
-            $this->entityManager->persist($access);
-            $this->entityManager->persist($product);
+            $givenProductAccess = $this->necktieGateway->getProductAccess($this->getUser(), $productAccessId);
+            if (!$givenProductAccess) {
+                //todo: log
+
+                return null;
+            }
+
+            $this->entityManager->persist($givenProductAccess);
             $this->entityManager->flush();
 
             $this->entityManager->commit();
@@ -186,6 +214,6 @@ class UserTrialAccessListener implements EventSubscriberInterface
             $this->entityManager->rollback();
         }
 
-        return $access;
+        return $givenProductAccess;
     }
 }

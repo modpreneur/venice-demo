@@ -141,7 +141,8 @@
                 "amazon_s3_bucket" : "SYMFONY__AMAZON_S3_BUCKET",
                 "amazon_s3_region" : "SYMFONY__AMAZON_S3_REGION",
                 "amazon_base_path_with_bucket" : "SYMFONY__AMAZON_BASE_PATH_WITH_BUCKET",
-                "amazon_cloud_front_link_expiration" : "SYMFONY__AMAZON_CLOUD_FRONT_LINK_EXPIRATION"
+                "amazon_cloud_front_link_expiration" : "SYMFONY__AMAZON_CLOUD_FRONT_LINK_EXPIRATION",
+                "facebook_trial_necktie_billing_plan_id" : "SYMFONY__FACEBOOK_TRIAL_NECKTIE_BILLING_PLAN_ID"
             }
         }
     }
