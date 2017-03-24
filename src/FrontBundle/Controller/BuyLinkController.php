@@ -252,7 +252,10 @@ class BuyLinkController extends Controller
         $settings = $this->get('trinity.settings');
 
 
-        if (!$user || (!$settings->get('trialStart', $user, 'user') || !$settings->get('trialEnd', $user, 'user'))) {
+        if (!$user ||
+            !$settings->get('trialStart', $user->getId(), 'user') ||
+            !$settings->get('trialEnd', $user->getId(), 'user')
+        ) {
             /** @var \AppBundle\Entity\BillingPlan $billingPlan */
             $billingPlan = $em->getRepository(\AppBundle\Entity\BillingPlan::class)
                 ->findOneBy(['necktieId' => $this->CBID_to_necktieId[
@@ -265,13 +268,13 @@ class BuyLinkController extends Controller
             return $this->redirect($url);
         }
 
-        $userTrialStart = $settings->get('trialStart', $user, 'user');
+        $userTrialStart = $settings->get('trialStart', $user->getId(), 'user');
         $now = new \DateTime();
         $daysToTrial = $now->diff($userTrialStart, true)->d + 1;
 
-        if ($settings->get('productOfferId', $user, 'user') == 'introFreePa') {
+        if ($settings->get('productOfferId', $user->getId(), 'user') == 'introFreePa') {
             $productId = $this->productsExtend895($daysToTrial);
-        } elseif ($settings->get('productOfferId', $user, 'user') == 'introFreeHp') {
+        } elseif ($settings->get('productOfferId', $user->getId(), 'user') == 'introFreeHp') {
             $productId = $this->productsExtend1295($daysToTrial);
         } else {
             $productId = $this->productsExtend895($daysToTrial);
@@ -331,9 +334,9 @@ class BuyLinkController extends Controller
         }
 
 
-        if ($settings->get('productOfferId', $user, 'user') == 'introFreePa') {
+        if ($settings->get('productOfferId', $user->getId(), 'user') == 'introFreePa') {
             $prodCbf = $this->productsAfter895($choice);
-        } elseif ($settings->get('productOfferId', $user, 'user') == 'introFreeHp') {
+        } elseif ($settings->get('productOfferId', $user->getId(), 'user') == 'introFreeHp') {
             $prodCbf = $this->productsAfter1295($choice);
         } else {
             $prodCbf = $this->productsAfter495($choice);
