@@ -1,6 +1,9 @@
 imports:
     - { resource: config.yml }
 
+parameters:
+  forum_url: 'http://necktie.docker:8889'
+
 framework:
     router:
         resource: "%kernel.root_dir%/config/routing_dev.yml"
