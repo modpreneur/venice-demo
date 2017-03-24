@@ -140,6 +140,25 @@ class BuyLinkController extends Controller
         9   => 570,
     ];
 
+
+
+    /**
+     * @Route("/buy-link/testtrialshow", name="buy_link_show_test")
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function testshowAction(Request $request)
+    {
+
+        $settings = $this->get('trinity.settings');
+
+        $dateFrom = $settings->get('trialStart', $this->getUser(), 'user');
+        $dateTo = $settings->get('trialEnd', $this->getUser(), 'user');
+
+        return new JsonResponse(['url' => 'OK', 'start' => $dateFrom, 'end' => $dateTo]);
+    }
+
     /**
      * @Route("/buy-link/test7days", name="buy_link_7_test")
      * @param Request $request
