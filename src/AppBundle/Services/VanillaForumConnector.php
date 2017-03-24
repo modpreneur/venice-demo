@@ -113,7 +113,7 @@ class VanillaForumConnector extends AbstractForumConnector
 
             $response = $this->getClient()->get($url, ['cookies' => $cookieJar]);
             /** @var TYPE_NAME $response */
-            $decoded  = json_decode($response->getBody(), true);
+            $decoded = json_decode($response->getBody(), true);
 
             return is_null($decoded) ? [] : $decoded;
         } catch (\Exception $exception) {
@@ -495,5 +495,65 @@ class VanillaForumConnector extends AbstractForumConnector
         }
 
         return $msgParsed;
+    }
+
+
+    /**
+     * @param null $domain
+     * @param null $exp
+     *
+     * @return array
+     */
+    public function createDeleteCookies($domain = null, $exp = null)
+    {
+        $cookies = [];
+        $exp = time() - 36000;
+
+        $cookies[] = new Cookie($this
+            ->serviceContainer
+            ->getParameter('forum_auth_cookie_name'), '', $exp, null, $domain);
+
+        $cookies[] = new Cookie(
+            $this
+                ->serviceContainer
+                ->getParameter('forum_auth_cookie_name') . '-Volatile', '', $exp, null, $domain);
+
+        return $cookies;
+    }
+
+
+    /**
+     * @param User $user
+     * @param bool $raw
+     *
+     * @return User[]|array|mixed
+     */
+    public function getAllUsers(User $user, $raw = false)
+    {
+        $url = $this->createUrl($user, self::API_ALL_USERS);
+        $response = $this->getJson($url);
+
+        if ($raw === true) {
+            return $response;
+        }
+
+        if (!array_key_exists('UserData', $response)) {
+            return [];
+        }
+
+        $usernames = [];
+        foreach ($response['UserData'] as $userArray) {
+            if (array_key_exists('Name', $userArray)) {
+                $usernames[] = $userArray['Name'];
+            }
+        }
+
+        $users = $this
+            ->serviceContainer
+            ->get('doctrine.orm.entity_manager')
+            ->getRepository(User::class)
+            ->findBy(['username' => $usernames]);
+
+        return $users;
     }
 }
