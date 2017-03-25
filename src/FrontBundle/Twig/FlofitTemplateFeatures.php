@@ -168,12 +168,15 @@ class FlofitTemplateFeatures extends \Twig_Extension
     {
         $user = $this->getUser();
 
+        if ($content->getType() === 'group') {
+            return '';
+        }
+
         $templater = $this->serviceContainer->get('templating');
         if ($product instanceof ShippingProduct) {
             return '';
         } else {
             // removed part ?? check
-
             try {
                 $html =  $templater->render(
                     'VeniceFrontBundle:' . $template . ':' . strtolower($content->getType()) . '.html.twig',
