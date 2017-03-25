@@ -78,6 +78,7 @@ class ProfilePhotoUrlGenerator
                 ]
             ];
 
+
             $rcPath = $this->cacheManager->getRuntimePath($profilePhoto->getImageName(), $runtimeConfig);
 
             if (!$this->cacheManager->isStored($rcPath, 'profile_picture_cropped')) {
@@ -111,10 +112,8 @@ class ProfilePhotoUrlGenerator
                 ->resolve($rcPath, 'profile_picture_cropped');
         } catch (\Exception $exception) {
             $request = $this->serviceContainer->get('request_stack')->getCurrentRequest();
-//            dump($exception);
-
             return $request->getUriForPath(
-                'Resources/public/images/site/default-profile-photo.png'
+                '/Resources/public/images/site/default-profile-photo.png'
             );
         }
     }
