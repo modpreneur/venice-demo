@@ -36,7 +36,7 @@ parameters:
     number_of_blog_posts: 2
     number_of_product_posts: 4
 
-    forum_url: 'necktie.docker:8889'
+
     forum_read_all_url: '%forum_url%/messages/inbox'
     forum_read_conversation_url: '%forum_url%/messages/'
     forum_send_new_message: '%forum_url%/messages/add/'
