@@ -244,7 +244,7 @@ class ProductsController extends Controller
         $parameters = [];
 
         $product = $billingPlan->getProduct();
-        $parameters['buyLinkCCT'] = $generator->generateBuyUrl($product, $billingPlan->getId(), true);
+        $parameters['buyLinkCCT'] = $generator->generateBuyUrl($product, $billingPlan->getId(), false); //was false, but necktie does not like that, when the user has not invoices
         $parameters['buyLinkCCF'] = $generator->generateBuyUrl($product, $billingPlan->getId(), false);
 
         $parameters['taxPriceStr'] = '$0.00';
