@@ -218,7 +218,8 @@ services:
         - "@trinity.settings"
         - "@doctrine.orm.entity_manager"
         - "@venice.app.necktie_gateway"
-        - "%%facebook_trial_necktie_billing_plan_id%%"
+        - "@monolog.logger"
+        - "%facebook_trial_necktie_billing_plan_id%"
       tags:
         - {name: kernel.event_subscriber}
 

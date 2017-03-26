@@ -48,3 +48,4 @@ parameters:
     amazon_base_path_with_bucket: https://%amazon_s3_bucket%.s3.amazonaws.com/
     amazon_cloud_front_link_expiration: 300
     forum_url: 'necktie.docker:8889'
+    facebook_trial_necktie_billing_plan_id: 592

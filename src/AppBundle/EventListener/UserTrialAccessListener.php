@@ -4,6 +4,7 @@ namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductAccess;
+use AppBundle\Entity\ProductGroup;
 use Doctrine\ORM\EntityManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -77,7 +78,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'kernel.request' => 'onKernelRequest'
+            'kernel.request' => 'onKernelRequest',
         ];
     }
 
@@ -89,8 +90,6 @@ class UserTrialAccessListener implements EventSubscriberInterface
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        return;
-
         if (!$event->isMasterRequest() &&
             $event->getRequest()->get('_route') !== 'downloads_dashboard'
         ) {
@@ -121,15 +120,15 @@ class UserTrialAccessListener implements EventSubscriberInterface
     private function processUserAccess(User $user)
     {
         $userId = $user->getId();
-        $now = new \DateTime();
         [$trialStart, $trialEnd] = $this->getStartAndEndDate($userId);
+        $now = new \DateTime();
 
         if ($trialStart <= $now && $trialEnd <= $now) {
-            // has trial
+            // had trial and the trial is over, now
             $product = $this
                 ->entityManager
                 ->getRepository(StandardProduct::class)
-                ->findOneBy(['handle' => 'flofit']);
+                ->findOneBy(['handle' => ProductGroup::HANDLE_FLOFIT]);
 
             // trial vypršel
             if ($now > $trialEnd) {
@@ -147,7 +146,6 @@ class UserTrialAccessListener implements EventSubscriberInterface
             }
         }
     }
-
 
     /**
      * @param int $userId
@@ -167,7 +165,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
 
         if ($trialStart === null) {
             $trialStart = new \DateTime();
-            $trialEnd   = new \DateTime();
+            $trialEnd = new \DateTime();
             $trialEnd->add(new \DateInterval('P7D'));
 
             $this->settings->set('trialStart', $trialStart, $userId, 'user');
@@ -184,26 +182,30 @@ class UserTrialAccessListener implements EventSubscriberInterface
      * @param $product
      *
      * @return ProductAccess
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Exception
      */
     private function createUserAccess(User $user, StandardProduct $product)
     {
+        $billPlanId = $this->necktieFacebookTrialBillingPlan;
         $givenProductAccess = null;
         $this->entityManager->beginTransaction();
-        [$trialStart, $trialEnd] = $this->getStartAndEndDate($user->getId());
 
         try {
-            $productAccessId = $this->necktieGateway->createTrialProductAccess($user, $this->necktieFacebookTrialBillingPlan);
+            $productAccessId = $this->necktieGateway
+                ->createTrialProductAccess($user, $billPlanId);
 
             if (!$productAccessId) {
-                //todo: log
-//                $this->logger
+                $this->logger->error('Could not create trial product access on necktie with necktie id: '.$billPlanId);
+
                 return null;
             }
 
-            $givenProductAccess = $this->necktieGateway->getProductAccess($this->getUser(), $productAccessId);
+            $givenProductAccess = $this->necktieGateway->getProductAccess($user, $productAccessId);
             if (!$givenProductAccess) {
-                //todo: log
+                $this->logger->error(
+                    'Could not get trial product access from necktie with necktie id: '.$productAccessId
+                );
 
                 return null;
             }
@@ -213,7 +215,9 @@ class UserTrialAccessListener implements EventSubscriberInterface
 
             $this->entityManager->commit();
         } catch (\Exception $exception) {
+            $this->logger->error('Could not persist trial product access from necktie due to exception', [$exception]);
             $this->entityManager->rollback();
+            $givenProductAccess = null;
         }
 
         return $givenProductAccess;
