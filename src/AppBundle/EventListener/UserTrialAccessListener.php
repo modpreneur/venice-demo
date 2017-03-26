@@ -90,8 +90,6 @@ class UserTrialAccessListener implements EventSubscriberInterface
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        return; //todo: @TomasJancar - uncomment when the necktie version on amazon has the newest code
-
         if (!$event->isMasterRequest() &&
             $event->getRequest()->get('_route') !== 'downloads_dashboard'
         ) {
