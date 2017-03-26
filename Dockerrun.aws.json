@@ -11,7 +11,7 @@
   "containerDefinitions": [
     {
       "name": "php_fpm",
-      "image": "modpreneur/necktie-fpm:0.7",
+      "image": "modpreneur/necktie-fpm:0.8",
       "entryPoint": ["sh", "./entrypoint.sh"],
       "essential": true,
       "memory": 768,
