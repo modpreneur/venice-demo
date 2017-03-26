@@ -123,7 +123,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
         [$trialStart, $trialEnd] = $this->getStartAndEndDate($userId);
         $now = new \DateTime();
 
-        if ($trialStart <= $now && $trialEnd <= $now) {
+        if ($trialStart <= $now && $trialEnd >= $now) {
             // had trial and the trial is over, now
             $product = $this
                 ->entityManager
