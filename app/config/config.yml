@@ -36,12 +36,12 @@ parameters:
     number_of_blog_posts: 2
     number_of_product_posts: 4
 
-    forum_url: 'http://community.flofit.getnecktie.com'
-    forum_read_all_url: 'http://community.flofit.getnecktie.com/messages/inbox'
-    forum_read_conversation_url: 'http://community.flofit.getnecktie.com/messages/'
-    forum_send_new_message: 'http://community.flofit.getnecktie.com/messages/add/'
 
-    messages_url: 'http://community.flofit.getnecktie.com/index.php?p=/messages'
+    forum_read_all_url: '%forum_url%/messages/inbox'
+    forum_read_conversation_url: '%forum_url%/messages/'
+    forum_send_new_message: '%forum_url%/messages/add/'
+
+    messages_url: '%forum_url%/messages'
 
     connector_service_name: flofit.dev_env_connector
     forum_service_name:     flofit.prod_env_forum_connector
@@ -368,6 +368,11 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             inject_on_load: true
             namer: ~
+
+fos_rest:
+  serializer:
+          serialize_null: true
+
 
 
 fos_user:

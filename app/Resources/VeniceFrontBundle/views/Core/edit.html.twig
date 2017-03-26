@@ -104,11 +104,15 @@
                     {% set form = pageElements.fullPassword %}
                     <div id="fullPasswordBlock" data-on-display="EditProfile.refreshProfile">
                     {% block fullPasswordBlock %}
+                        {% set lastChangeText = "*******" %}
+                        {#
                         {% if user.lastPasswordChange is not null %}
-                            {% set lastChangeText =  "Last change " ~ user.lastPasswordChange|humanDate|lower %}
+                            {% set lastChangeText = "*******" %}
+                                 {% set lastChangeText =  "Last change 1" ~ user.lastPasswordChange|humanDate|lower %}
                         {% else %}
                             {% set lastChangeText = "Password hasn't been changed yet." %}
                         {% endif %}
+                         #}
                         {% form_theme form 'VeniceFrontBundle:Default:bowtieFormsWithLabel.html.twig' %}
                         {{ include("VeniceFrontBundle:Core/items:editItem.html.twig", {
                             "id":"password",

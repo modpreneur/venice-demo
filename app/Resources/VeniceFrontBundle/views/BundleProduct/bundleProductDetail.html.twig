@@ -37,7 +37,7 @@
                     {% if not access %}
                         <div class="filter-not-access">
                             {% for contentProduct in allContentProducts %}
-                                {% if contentProduct.product.isDigital() %}
+                                {% if contentProduct.product.isDigital() and contentProduct.content.getType() != 'group' %}
                                     <div class="downloads-dashboard row">
                                         {{ productRenderer(bundleProduct, contentProduct.content,"downloadsDashboard",false,true) }}
                                     </div>

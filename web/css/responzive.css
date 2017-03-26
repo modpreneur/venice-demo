@@ -8428,3 +8428,10 @@ select * {
   color: #E21717 !important;
   font-size: 20px;
 }
+
+.profile-settings-main i{
+  font-size: 27px;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+

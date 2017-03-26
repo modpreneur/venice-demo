@@ -3,9 +3,7 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\User;
-use GeneralBackend\CoreBundle\Entity\GlobalUser;
-use GeneralBackend\CoreBundle\Services\AmemberConnector;
-use GeneralBackend\CoreBundle\Services\VanillaForumConnector;
+use AppBundle\Services\VanillaForumConnector;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
@@ -46,7 +44,7 @@ class KernelListener
             ->serviceContainer
             ->get('trinity.settings');
 
-        /** @var GlobalUser $user */
+        /** @var User $user */
         $user = $this->getUser();
 
         if ($user === null) {
@@ -54,14 +52,15 @@ class KernelListener
         }
 
         if ($event->isMasterRequest()) {
-            $request  = $event->getRequest();
+            $request = $event->getRequest();
             $response = $event->getResponse();
 
             /** @var VanillaForumConnector $vanillaService */
             $vanillaService = $this->serviceContainer->get('flofit.prod_env_forum_connector');
-
+            
             $cId = $setting->get('communityId', $user->getId(), 'user');
-            if ($user && $cId < 0) {
+
+            if ($user && ($cId < 0 || $cId === null)) {
                 $setting->set('communityId', $vanillaService->getCommunityIdFromCookies(), $user->getId(), 'user');
             }
 
@@ -70,7 +69,7 @@ class KernelListener
                     $response->headers->setCookie($cookie);
                 }
             }
-
+            
             if (!$request
                     ->cookies->has($this->serviceContainer->getParameter('forum_auth_cookie_name'))
                 && !is_null($user) && $user->getCommunityId() > 0

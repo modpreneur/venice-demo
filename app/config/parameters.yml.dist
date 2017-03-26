@@ -29,9 +29,9 @@ parameters:
     primary_gateway_service: necktie
     secondary_gateway_service:
     redis_dsn: 'redis://venice_pass@redis'
-    amazon_s3_bucket: test-modpreneur
-    amazon_s3_key: AKIAJH3FKN6SGDGI6JKA
-    amazon_s3_secret: 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
+    amazon_s3_bucket: flofit-prod
+    amazon_s3_key: AKIAJJT4CMPP27JCSALA
+    amazon_s3_secret: 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
     amazon_s3_region: us-west-2
     froala_editor_key: ~
 
@@ -47,5 +47,4 @@ parameters:
 
     amazon_base_path_with_bucket: https://%amazon_s3_bucket%.s3.amazonaws.com/
     amazon_cloud_front_link_expiration: 300
-
-    facebook_trial_necktie_billing_plan_id: 592
+    forum_url: 'necktie.docker:8889'
