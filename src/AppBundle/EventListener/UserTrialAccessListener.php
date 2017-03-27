@@ -90,7 +90,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (!$event->isMasterRequest() && $event->getRequest()->get('_route') !== 'landing_page' ) {
+        if (!$event->isMasterRequest()) {
             return;
         }
 
