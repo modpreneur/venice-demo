@@ -90,10 +90,6 @@ class UserTrialAccessListener implements EventSubscriberInterface
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (!$event->isMasterRequest()) {
-            return;
-        }
-
         if ($this->token->getToken() === null) {
             return;
         }
