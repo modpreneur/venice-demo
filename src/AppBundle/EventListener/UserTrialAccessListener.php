@@ -90,6 +90,10 @@ class UserTrialAccessListener implements EventSubscriberInterface
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
+        if (!$event->isMasterRequest()) {
+            return;
+        }
+
         if ($this->token->getToken() === null) {
             return;
         }
@@ -102,7 +106,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
             return;
         }
 
-        $this->processUserAccess($user);
+        $this->giveUserTrialAccess($user);
     }
 
 
@@ -111,7 +115,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
      *
      * @throws \Exception
      */
-    private function processUserAccess(User $user)
+    public function giveUserTrialAccess(User $user)
     {
         $userId = $user->getId();
         [$trialStart, $trialEnd] = $this->getStartAndEndDate($userId);

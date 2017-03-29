@@ -36,6 +36,8 @@ class DefaultController extends FrontController
      */
     public function indexAction(Request $request)
     {
+        $this->get('flofit.trial.listener')->giveUserTrialAccess($this->getUser());
+
         $productService = $this->get('flofit.product_posts_service');
         $products = $productService
             ->getLatestProductPosts($this->getParameter('number_of_product_posts'));
