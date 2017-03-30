@@ -90,11 +90,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        return; //todo: @TomasJancar - uncomment when the necktie version on amazon has the newest code
-
-        if (!$event->isMasterRequest() &&
-            $event->getRequest()->get('_route') !== 'downloads_dashboard'
-        ) {
+        if (!$event->isMasterRequest()) {
             return;
         }
 
@@ -110,7 +106,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
             return;
         }
 
-        $this->processUserAccess($user);
+        $this->giveUserTrialAccess($user);
     }
 
 
@@ -119,13 +115,13 @@ class UserTrialAccessListener implements EventSubscriberInterface
      *
      * @throws \Exception
      */
-    private function processUserAccess(User $user)
+    public function giveUserTrialAccess(User $user)
     {
         $userId = $user->getId();
         [$trialStart, $trialEnd] = $this->getStartAndEndDate($userId);
         $now = new \DateTime();
 
-        if ($trialStart <= $now && $trialEnd <= $now) {
+        if ($trialStart <= $now && $trialEnd >= $now) {
             // had trial and the trial is over, now
             $product = $this
                 ->entityManager

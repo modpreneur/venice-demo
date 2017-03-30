@@ -36,6 +36,11 @@ class DefaultController extends FrontController
      */
     public function indexAction(Request $request)
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $this->get('flofit.trial.listener')->giveUserTrialAccess($this->getUser());
+        $entityManager->refresh($this->getUser());
+
         $productService = $this->get('flofit.product_posts_service');
         $products = $productService
             ->getLatestProductPosts($this->getParameter('number_of_product_posts'));
@@ -49,7 +54,6 @@ class DefaultController extends FrontController
             $socialStream = $socialService->getLatestPosts($postsCount);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
 
         $category = $entityManager->getRepository('AppBundle:Category')
             ->findOneBy(['name' => 'blog']);

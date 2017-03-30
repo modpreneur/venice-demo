@@ -297,7 +297,7 @@ class ProductsController extends Controller
         return $this->render(
             $product->getCustomTemplateName(),
             [
-                'access' => $user->haveAccess($product),
+                'access' => $this->hasAccessToProduct($user, $product),
                 'productsService' => $productsService,
                 'upsellProducts' => $upsellProducts,
                 'bundleProduct' => $product,
@@ -355,6 +355,35 @@ class ProductsController extends Controller
                 'vlogProduct' => $vlogProduct
             ]
         );
+    }
+
+    /**
+     * @param User $user
+     * @param StandardProduct $product
+     *
+     * @return bool
+     */
+    protected function hasAccessToProduct(User $user, StandardProduct $product)
+    {
+        $flofit = $this->getDoctrine()->getRepository(StandardProduct::class)
+            ->findOneBy(['handle' => ProductGroup::HANDLE_FLOFIT]);
+
+        if (!$flofit) {
+            //ruuun! no flofit found... the world is ending...
+            return $user->hasAccessToProduct($product);
+        }
+
+        if ($user->hasAccessToProduct($flofit)) {
+            //the flofit consists of 3 more products:
+            if ($product->getHandle() === ProductGroup::HANDLE_7_DAY_RIP_MIX ||
+                $product->getHandle() === ProductGroup::HANDLE_NUTRITION_AND_MEALS ||
+                $product->getHandle() === ProductGroup::HANDLE_PLATINUM_MIX) {
+                return true;
+            }
+        }
+
+        //platinum club, basically
+        return $user->hasAccessToProduct($product);
     }
 }
 
