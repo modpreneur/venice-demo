@@ -1,15 +1,15 @@
 parameters:
-    database_host:     database
+    database_host:     mysql
     database_port:     3306
     database_name:     venice
     database_user:     user
     database_password: pass
 
-    database_host_flofit: mysql
+    database_host_flofit: flofit-prod.cfj2nhpkl30r.us-west-2.rds.amazonaws.com
     database_port_flofit: 3306
     database_name_flofit: flofit_venice
-    database_user_flofit: venice
-    database_password_flofit: pass
+    database_user_flofit: fajkus
+    database_password_flofit: M8hVwKu6knkz(
     necktie_client_id: 3_1opf66rtd32848cw8s00k0wcs0k0sg4so4g8o08ogw0g8gg4k4
     necktie_client_short_id: 3
     necktie_client_secret: 2l3ytusjnzc48gcog0skk88880soss4kc4gwgs0s408cgwwkww
