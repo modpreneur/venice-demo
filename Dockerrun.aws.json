@@ -10,7 +10,7 @@
     {
       "name" : "nginx-css-conf",
       "host" : {
-        "sourcePath": "/var/app/current/docker/nginx/css.conf"
+        "sourcePath": "/var/app/current/docker/nginx/myflofit.conf"
       }
     }
   ],
@@ -64,7 +64,7 @@
         },
         {
           "sourceVolume": "nginx-css-conf",
-          "containerPath": "/etc/nginx/sites-available/css.conf",
+          "containerPath": "/etc/nginx/sites-available/symfony.conf",
           "readOnly": true
         }
       ]
