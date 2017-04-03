@@ -6,6 +6,12 @@
       "host": {
         "sourcePath": "/var/app/current"
       }
+    },
+    {
+      "name" : "nginx-css-conf",
+      "host" : {
+        "sourcePath": "/var/app/current/docker/nginx/css.conf"
+      }
     }
   ],
   "containerDefinitions": [
@@ -55,6 +61,11 @@
         {
           "sourceVolume": "awseb-logs-nginx-proxy",
           "containerPath": "/var/log/nginx"
+        },
+        {
+          "sourceVolume": "nginx-css-conf",
+          "containerPath": "/etc/nginx/sites-available/css.conf",
+          "readOnly": true
         }
       ]
     }
