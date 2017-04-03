@@ -41,7 +41,7 @@ parameters:
     forum_read_conversation_url: '%forum_url%/messages/'
     forum_send_new_message: '%forum_url%/messages/add/'
 
-    messages_url: '%forum_url%/messages'
+    messages_url: '%forum_url%messages/inbox'
 
     connector_service_name: flofit.dev_env_connector
     forum_service_name:     flofit.prod_env_forum_connector
