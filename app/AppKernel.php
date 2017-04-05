@@ -22,6 +22,7 @@ class AppKernel extends Venice\AppBundle\Kernel\VeniceKernel
         $veniceBundles[] = new \AdminBundle\AdminBundle();
         $veniceBundles[] = new \BunnyBundle\BunnyBundle();
         $veniceBundles[] = new \FrontBundle\FrontBundle();
+        $veniceBundles[] = new \ApiBundle\ApiBundle();
 
         $veniceBundles[] = new \DataTransferBundle\DataTransferBundle();
 
