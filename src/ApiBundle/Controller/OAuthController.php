@@ -5,6 +5,7 @@ namespace ApiBundle\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +25,7 @@ class OAuthController extends Controller
 {
     /**
      * @Route("/v2/token", name="app_api_oauth", options={})
+     * @Method({"POST"})
      * @internal param Request $request
      *
      * @param Request $request
