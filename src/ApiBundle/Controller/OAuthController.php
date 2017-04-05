@@ -3,9 +3,12 @@
 namespace ApiBundle\Controller;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ServerException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -25,13 +28,13 @@ class OAuthController extends Controller
      *
      * @param Request $request
      *
-     * @return
+     * @return JsonResponse
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      * @throws \RuntimeException
      * @throws \LogicException
      */
     public function oauthAction(Request $request)
     {
-        // use okResponse?
         $url = $this->getParameter('necktie_url') . '/oauth/v2/token';
         $clientId = $this->getParameter('mobile_app_client_id');
         $clientSecret = $this->getParameter('mobile_app_client_secret');
@@ -41,21 +44,28 @@ class OAuthController extends Controller
         $necktieRequestBody = $request->request->all();
         $necktieRequestBody['client_id'] = $clientId;
         $necktieRequestBody['client_secret'] = $clientSecret;
-        $necktieRequestBody['grant_type'] = 'password';
+
+        $grantType = (array_key_exists('refresh_token', $necktieRequestBody)? 'refresh_token' : 'password');
+
+        $necktieRequestBody['grant_type'] = $grantType;
 
         $necktieRequestBody = json_encode($necktieRequestBody);
 
-        $response = $client->request(
-            'POST',
-            $url,
-            [
-                'headers' => ['Content-Type' => 'application/json'],
-                'body' => $necktieRequestBody,
-            ]
-        );
+        try {
+            $response = $client->request(
+                'POST',
+                $url,
+                [
+                    'headers' => ['Content-Type' => 'application/json'],
+                    'body' => $necktieRequestBody,
+                ]
+            );
+        } catch (RequestException $exception) {
+            $response = $exception->getResponse();
+        }
 
-        $response = $response->getBody()->getContents();
+        $responseBody = $response->getBody()->getContents();
 
-        return new JsonResponse($response, 200, [], true);
+        return new JsonResponse($responseBody, $response->getStatusCode(), [], true);
     }
 }
