@@ -21,7 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
+use Venice\AppBundle\Entity\Order;
 
 
 /**
@@ -473,7 +473,7 @@ class ProfilerController extends Controller
         $user = $this->getUser();
 
         $connector = $this->get('venice.app.necktie_gateway');
-        $userInvoices = $connector->getInvoices($user);
+        $userOrders = $connector->getOrders($user);
 
         $flofitFeaturesService = $this->get('front.twig.flofit_features');
 
@@ -492,7 +492,7 @@ class ProfilerController extends Controller
             'ocb-shipping'
         );
 
-        if (count($userInvoices) === 0) {
+        if (count($userOrders) === 0) {
             return $this->render(
                 'VeniceFrontBundle:Core:orderHistory.html.twig',
                 [
@@ -504,15 +504,15 @@ class ProfilerController extends Controller
         }
         $viewData = [];
 
-        foreach ($userInvoices as $userInvoice) {
-            /** @var Invoice $userInvoice */
+        foreach ($userOrders as $userOrder) {
+            /** @var Order $userOrder */
             $row = [];
-            $row['invoice'] = $userInvoice;
+            $row['order'] = $userOrder;
 
-            if ($userInvoice->getStatus() === Invoice::STATUS_RECURRING) {
+            if ($userOrder->getStatus() === Order::STATUS_RECURRING) {
                 $profileUrl = $this->generateUrl('core_front_user_order_history');
 
-                $receipt = $userInvoice->getReceipt();
+                $receipt = $userOrder->getReceipt();
                 $necktieUrl =  $this->getParameter('necktie_url');
                 $row['cancelLink'] = "$necktieUrl/payment/click-bank/cancel/$receipt?projectUrl=$profileUrl";
             }

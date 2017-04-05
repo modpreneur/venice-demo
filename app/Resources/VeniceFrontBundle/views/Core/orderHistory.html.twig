@@ -47,44 +47,44 @@
                 {% else %}
                     {% for orderHistoryData in viewData %}
                         {% block orderHistory %}
-                            <div class="news row {% if orderHistoryData.invoice.status != constant('STATUS_CANCELED', orderHistoryData.invoice) %}current{% endif %}" id="orderHistory{{ orderHistoryData.invoice.id }}">
+                            <div class="news row {% if orderHistoryData.order.status != constant('STATUS_CANCELED', orderHistoryData.order) %}current{% endif %}" id="orderHistory{{ orderHistoryData.order.necktieId }}">
                                 <div >
                                     <div class="news-name span-xlarge-7 span-large-7 span-medium-7 span-small-15 span-mini-24 offset-large-2 offset-medium-0 offset-small-0">
                                         <span>
-                                            {% for invoiceItem in orderHistoryData.invoice.items %}
-                                                {{ invoiceItem }}
+                                            {% for orderItem in orderHistoryData.order.items %}
+                                                {{ orderItem.productName }}
                                             {% endfor %}
                                         </span>
                                     </div>
                                     <div class="span-xlarge-3 span-large-3 span-medium-4 span-small-9 span-mini-24 date">
-                                        <span>{{ orderHistoryData.invoice.getFirstPaymentDate|date("m/d/Y") }}</span>
+                                        <span>{{ orderHistoryData.order.getFirstPaymentDate|date("m/d/Y") }}</span>
                                     </div>
                                     <div class="span-medium-1 span-vector">
                                         <span class="vector"></span>
                                     </div>
                                     <div class="span-xlarge-7 span-large-6 span-medium-7 span-small-15 span-mini-24 price">
-                                        <span>{{ orderHistoryData.invoice.stringPrice }}</span>
+                                        <span>{{ orderHistoryData.order.stringPrice }}</span>
                                     </div>
                                     <div class="span-xlarge-4 span-large-5 span-medium-6 span-small-9 span-mini-24 info-pay">
-                                        {% if orderHistoryData.invoice.status == constant('STATUS_RECURRING', orderHistoryData.invoice) %}
+                                        {% if orderHistoryData.order.status == constant('STATUS_RECURRING', orderHistoryData.order) %}
                                             <div class="button-group">
-                                            {#todo: if the invoice is recurring and was a trial(determine with bp-tag#}
-                                            {#{% if orderHistoryData.invoice.haveAnyInvoiceItemWithCategory("PRODUCT TRIAL") %}#}{# todo: use billing plan to determine the trial? #}
+                                            {#todo: if the order is recurring and was a trial(determine with bp-tag#}
+                                            {#{% if orderHistoryData.order.haveAnyInvoiceItemWithCategory("PRODUCT TRIAL") %}#}{# todo: use billing plan to determine the trial? #}
                                                 {#<button onclick="openUpgradeDialog();" class="upgrade">Upgrade</button>#}
                                                 {#<span>{{ form(orderHistoryData.form) }}</span>#}
-                                            {#todo: the invoice was recurring but it was not a trial#}
+                                            {#todo: the order was recurring but it was not a trial#}
                                             {#shows Cancel button#}
                                             {#{% else %}#}
-                                                {#<span id="{{ orderHistoryData.invoice.id }}">{{ form(orderHistoryData.form) }}</span>#}
+                                                {#<span id="{{ orderHistoryData.order.necktieId }}">{{ form(orderHistoryData.form) }}</span>#}
                                                 <a class="button" href="{{ orderHistoryData.cancelLink }}">Cancel</a>
                                             {#{% endif %}#}
 
                                             </div>
-                                        {% elseif orderHistoryData.invoice.status == constant('STATUS_CANCELED', orderHistoryData.invoice) %}
+                                        {% elseif orderHistoryData.order.status == constant('STATUS_CANCELED', orderHistoryData.order) %}
                                             <span class="canceled"><i class="ff-remove"></i>Canceled</span>
-                                        {% elseif orderHistoryData.invoice.status == constant('STATUS_NORMAL', orderHistoryData.invoice) %}
+                                        {% elseif orderHistoryData.order.status == constant('STATUS_NORMAL', orderHistoryData.order) %}
                                             <span class="purchased"><i class="ff-ok-circle"></i>Paid</span>
-                                        {% elseif orderHistoryData.invoice.status == constant('STATUS_PENDING', orderHistoryData.invoice) %}
+                                        {% elseif orderHistoryData.order.status == constant('STATUS_PENDING', orderHistoryData.order) %}
                                             <span class="pending"><i class="ff-exclamation-mark4"></i>Pending</span>
                                         {% endif %}
                                     </div>

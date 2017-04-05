@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use Venice\AppBundle\Entity\Invoice as VeniceInvoice;
+use Venice\AppBundle\Entity\Order as VeniceInvoice;
 
 /**
  * Class Invoice
