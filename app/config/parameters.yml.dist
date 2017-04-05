@@ -49,3 +49,6 @@ parameters:
     amazon_cloud_front_link_expiration: 300
     forum_url: 'necktie.docker:8889'
     facebook_trial_necktie_billing_plan_id: 592
+
+    mobile_app_client_id: 5_4tp8nh0rxke8sckkgg00wsk4wo0co8wwsw8sgko840cg4w0wsw
+    mobile_app_client_secret: s3r572xvqv4w4o4w88socggok80wkkcc4wgswcgok8ogw4ko8
