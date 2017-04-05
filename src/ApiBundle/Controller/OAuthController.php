@@ -32,7 +32,7 @@ class OAuthController extends Controller
     public function oauthAction(Request $request)
     {
         // use okResponse?
-        $url = $this->getParameter('necktie_url') . '/oauth/v2/tokennigga';
+        $url = $this->getParameter('necktie_url') . '/oauth/v2/token';
         $clientId = $this->getParameter('mobile_app_client_id');
         $clientSecret = $this->getParameter('mobile_app_client_secret');
 
@@ -43,7 +43,7 @@ class OAuthController extends Controller
         $necktieRequestBody['client_secret'] = $clientSecret;
         $necktieRequestBody['grant_type'] = 'password';
 
-        $necktieRequestBody = \GuzzleHttp\json_encode($necktieRequestBody);
+        $necktieRequestBody = json_encode($necktieRequestBody);
 
         $response = $client->request(
             'POST',
