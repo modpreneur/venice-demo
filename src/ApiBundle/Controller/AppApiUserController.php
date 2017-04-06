@@ -71,6 +71,10 @@ class AppApiUserController extends FOSRestController
      */
     public function getUserProfileAction(Request $request)
     {
+
+        dump($this->getUser());
+        return [];
+
         /** @var GlobalUser $user */
         $user = $this->getUser();
         $arrayizer = $this->get('general_backend_core.services.arrayizer');

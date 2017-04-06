@@ -1,3 +1,17 @@
 services:
 
+  api.security.authentication.provider:
+    class: ApiBundle\Api\ApiProvider
+    arguments:
+        - '' # User Provider
+        - '@cache.app'
+    public: false
 
+
+  api.security.authentication.listener:
+    class: ApiBundle\Api\ApiListener
+    arguments:
+      - '@security.token_storage'
+      - '@security.authentication.manager'
+      - '@doctrine.orm.entity_manager'
+    public: false

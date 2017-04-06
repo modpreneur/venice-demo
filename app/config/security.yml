@@ -44,6 +44,8 @@ security:
             - ROLE_USER_SWITCHER
 
     providers:
+        api:
+            id: fos_user.user_provider.username_email
         fos_userbundle:
             id: fos_user.user_provider.username_email
 
@@ -55,6 +57,11 @@ security:
         notify_api:
             pattern: ^/notify/^
             anonymous: true
+
+
+        mobile_app:
+          pattern: ^/api
+          api: true
 
 
         main:
@@ -72,6 +79,8 @@ security:
 
     access_control:
         # pages
+        - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
         - { path: ^/about, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/terms-of-use, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/privacy-policy, role: IS_AUTHENTICATED_ANONYMOUSLY }
