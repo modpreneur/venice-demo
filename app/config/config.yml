@@ -124,6 +124,8 @@ trinity_settings:
       user.displayQuickStartGuide: true
       user.firstLogin: true
       user.communityId: ~
+      user.api_token: ~
+      user.api_refresh_token: ~
 
 trinity_messages:
     sender_identification: "client_3"
