@@ -8,12 +8,15 @@
 
 namespace ApiBundle;
 
-
 use Doctrine\ORM\EntityManager;
 use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
+/**
+ * Class Api
+ * @package ApiBundle
+ */
 trait Api
 {
     protected $API_KEY_PARAMETER = '_key';
@@ -33,7 +36,7 @@ trait Api
     {
         $apiKeyString = $this->getRequestParameter($request, $this->API_KEY_PARAMETER);
 
-        return $apiKeyString == $this->getParameterFromContainer('api_key');
+        return $apiKeyString === $this->getParameterFromContainer('api_key');
     }
 
     public function getUserFromRequest(Request $request)
@@ -53,7 +56,7 @@ trait Api
     {
         $response = ['status' => 'not ok', 'message' => $message];
 
-        if (!is_null($data)) {
+        if (null !== $data) {
             $response['data'] = $data;
         }
 
@@ -64,7 +67,7 @@ trait Api
     {
         $response = ['status' => 'ok', 'data' => $data];
 
-        if (!is_null($data)) {
+        if (null !== $data) {
             $response['data'] = $data;
         }
 
@@ -94,7 +97,5 @@ trait Api
         } else {
             throw new MethodNotAllowedException(['GET', 'POST', 'PUT', 'PATCH']);
         }
-
-
     }
 }
