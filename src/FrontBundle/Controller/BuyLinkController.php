@@ -286,8 +286,8 @@ class BuyLinkController extends Controller
                 ]]);
 
             $product = $billingPlan->getProduct(); // if not null
-            $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-            return $this->redirectToRoute($url, $cbParameters);
+            $url = $generator->generateBuyUrl($product, $billingPlan->getId(), false, $cbParameters);
+            return $this->redirect($url);
         }
 
         $userTrialStart = $settings->get('trialStart', $user->getId(), 'user');
@@ -322,7 +322,7 @@ class BuyLinkController extends Controller
 
         $product = $billingPlan->getProduct(); // if not null
         $url = $generator->generateBuyUrl($product, $billingPlan->getId(), false, $cbParameters);
-        return $this->redirectToRoute($url);
+        return $this->redirect($url);
     }
 
     /**
