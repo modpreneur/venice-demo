@@ -9,7 +9,6 @@
 namespace FrontBundle\Controller;
 
 use AppBundle\Entity\Product\StandardProduct;
-use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\DownloadsBundle\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;

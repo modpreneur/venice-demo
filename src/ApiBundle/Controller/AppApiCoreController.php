@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
  * Class AppApiUserController
  *
  * @Route("/api/core")
- * @package GeneralBackend\CoreBundle\Controller\AppApi
  */
 class AppApiCoreController extends FOSRestController
 {

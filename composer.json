@@ -20,17 +20,6 @@
                     "privkey_file": "~/.ssh/id_rsa"
                 }
             }
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:modpreneur/flofit-entities.git",
-            "options": {
-                "ssh2": {
-                    "username": "Jakub-Fajkus",
-                    "pubkey_file": "~/.ssh/id_rsa.pub",
-                    "privkey_file": "~/.ssh/id_rsa"
-                }
-            }
         }
     ],
 
@@ -39,7 +28,6 @@
         "twig/twig": "~2.0",
 
         "modpreneur/venice": "dev-master",
-        "modpreneur/flofit-entities": "dev-master",
         "doctrine/doctrine-migrations-bundle": "~1.2",
         "doctrine/doctrine-fixtures-bundle": "~2",
         "facebook/php-sdk-v4" : "~5.4",
@@ -67,30 +55,28 @@
     "require-dev": {
     },
     "scripts": {
-        "post-install-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "php bin/console doctrine:migrations:migrate --no-interaction --env=prod",
-            "php bin/console venice:elastic:migration --env=prod",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "chmod -R 777 var/cache",
-            "chmod -R 777 var/logs"
-        ],
-        "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "php bin/console doctrine:migrations:migrate --no-interaction",
-            "php bin/console venice:elastic:migration",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "chmod -R 777 var/cache",
-            "chmod -R 777 var/logs"
-        ]
+      "post-install-cmd": [
+        "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+        "php bin/console doctrine:migrations:migrate --no-interaction --env=prod",
+        "php bin/console doctrine:cache:clear-metadata",
+        "php bin/console venice:elastic:migration --env=prod",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+      ],
+      "post-update-cmd": [
+        "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+        "php bin/console doctrine:migrations:migrate --no-interaction",
+        "php bin/console venice:elastic:migration",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+        "chmod -R 777 var/cache",
+        "chmod -R 777 var/logs"
+    ]
     },
     "config": {
         "bin-dir": "bin"
