@@ -1,21 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ondrej
- * Date: 15.12.14
- * Time: 14:53
- */
 
-namespace GeneralBackend\CoreBundle\Controller\AppApi;
+namespace ApiBundle\Controller;
 
+use ApiBundle\Api;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
-use ApiBundle\Api;
-//use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+
+//use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Class AppApiUserController
@@ -26,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AppApiCoreController extends FOSRestController
 {
     use Api;
+
 
     /**
      * Get latest versions of applications and return ios, android
@@ -48,7 +43,9 @@ class AppApiCoreController extends FOSRestController
      *  resource=false,
      *  description="Get latest versions of mobile applications (ios, android)",
      * )
+     *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function appLatestVersions(Request $request)
@@ -56,7 +53,7 @@ class AppApiCoreController extends FOSRestController
         $iosVersion = $this->getParameter('app_version_ios');
         $androidVersion = $this->getParameter('app_version_android');
 
-        $data = ['ios' => $iosVersion, 'android'=>$androidVersion];
+        $data = ['ios' => $iosVersion, 'android' => $androidVersion];
 
         return new JsonResponse($this->okResponse($data));
     }

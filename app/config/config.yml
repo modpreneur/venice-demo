@@ -115,6 +115,14 @@ trinity_settings:
       user_settings.displayLocation: true
       user_settings.displayForumActivity: true
       user_settings.displaySocialMedia: true
+
+      user_settings.youtubeLink: ""
+      user_settings.snapchatNickname: ""
+      user_settings.twitterAccessToken: ""
+      user_settings.facebookAccessToken: ""
+      user_settings.facebookId: ""
+      user_settings.twitterId: ""
+
       user.productOfferId: ~
       user.trialStart: ~
       user.trialEnd: ~

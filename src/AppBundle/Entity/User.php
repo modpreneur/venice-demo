@@ -207,7 +207,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     public function getLastPasswordChange(): \DateTime
     {
-        return new \DateTime(); // @todo
+        return $this->createdAt ?? new \DateTime(); // @todo
         return $this->lastPasswordChange;
     }
 
