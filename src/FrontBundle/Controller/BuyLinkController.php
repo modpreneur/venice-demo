@@ -423,7 +423,7 @@ class BuyLinkController extends Controller
             $userId = $request->get('user_id', false);
 
             /** @var User $user */
-            $user = $em->getRepository('ModernEntrepreneurGeneralBackendCoreBundle:User')
+            $user = $em->getRepository('AppBundle:User')
                 ->findOneBy(['id' => $userId]);
         }
 

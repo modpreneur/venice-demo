@@ -20,7 +20,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * @Route("/api/social-stream")
  *
  * Class AppApiSocialStreamController
- * @package GeneralBackend\CoreBundle\Controller\AppApi
+ * @package ApiBundle\Controller
  */
 class AppApiSocialStreamController extends FOSRestController
 {
