@@ -111,4 +111,5 @@ security:
         - { path: ^/api/social-stream, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/social/parameters, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/core/latest-versions, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/forum, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
