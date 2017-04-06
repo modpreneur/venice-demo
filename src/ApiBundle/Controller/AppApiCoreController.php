@@ -6,7 +6,7 @@
  * Time: 14:53
  */
 
-namespace AppApi\Controller\AppApi;
+namespace ApiBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
