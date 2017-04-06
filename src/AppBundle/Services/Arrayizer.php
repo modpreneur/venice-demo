@@ -18,7 +18,7 @@ use ReflectionProperty;
  * NOTE: All entities should have all properties at least protected,
  * so child object would have access to parent's properties.
  *
- * @package GeneralBackend\CoreBundle\Services
+ * @package AppBundle\Services
  */
 class Arrayizer
 {

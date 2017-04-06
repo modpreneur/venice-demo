@@ -2,7 +2,7 @@
 
 namespace AppBundle\Services;
 
-use GeneralBackend\CoreBundle\Entity\ProfilePhoto;
+use AppBundle\Entity\ProfilePhoto;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

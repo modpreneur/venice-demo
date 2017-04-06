@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @Route("api/social")
  *
  * Class AppApiSocialController
- * @package GeneralBackend\CoreBundle\Controller\AppApi
+ * @package ApiBundle\Controller
  */
 class AppApiSocialController extends FOSRestController
 {
