@@ -67,7 +67,7 @@ class AppApiSocialStreamController extends FOSRestController
      *           "message": "Parameter count is missing"
      *       }
      *
-     * @ApiDoc(
+     * ApiDoc(
      *  resource=false,
      *  description="Get social stream posts",
      *  requirements={
