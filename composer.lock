@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c182569c97ff6b5e70c9fdd730061087",
+    "content-hash": "cc5958b22154c26de5c687430d7838d3",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.25.3",
+            "version": "3.25.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "c5d85fbaaea30e598eab4ff07c4213787b00b080"
+                "reference": "f5181b893c8822c5dc3986e4e52eddff66bbd04f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c5d85fbaaea30e598eab4ff07c4213787b00b080",
-                "reference": "c5d85fbaaea30e598eab4ff07c4213787b00b080",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f5181b893c8822c5dc3986e4e52eddff66bbd04f",
+                "reference": "f5181b893c8822c5dc3986e4e52eddff66bbd04f",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-04-04T20:52:10+00:00"
+            "time": "2017-04-05T23:01:19+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -2032,16 +2032,16 @@
         },
         {
             "name": "friendsofsymfony/user-bundle",
-            "version": "dev-master",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "298695ac5c23cae37a131acac63e4894a33d73aa"
+                "reference": "2e0243e9e8a3ca0dab753fc5f2e79b4b3093ac9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/298695ac5c23cae37a131acac63e4894a33d73aa",
-                "reference": "298695ac5c23cae37a131acac63e4894a33d73aa",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/2e0243e9e8a3ca0dab753fc5f2e79b4b3093ac9a",
+                "reference": "2e0243e9e8a3ca0dab753fc5f2e79b4b3093ac9a",
                 "shasum": ""
             },
             "require": {
@@ -2105,7 +2105,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-04-03 15:08:26"
+            "time": "2017-03-29T13:21:34+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -3795,7 +3795,7 @@
             ],
             "authors": [
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -3853,7 +3853,7 @@
             ],
             "authors": [
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -4163,66 +4163,17 @@
             "time": "2015-09-15 14:48:11"
         },
         {
-            "name": "modpreneur/flofit-entities",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:modpreneur/flofit-entities.git",
-                "reference": "58f230141fb238188d0e153085697d60193996fa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/flofit-entities/zipball/58f230141fb238188d0e153085697d60193996fa",
-                "reference": "58f230141fb238188d0e153085697d60193996fa",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/doctrine-bundle": "^1.6",
-                "doctrine/doctrine-cache-bundle": "^1.2",
-                "doctrine/orm": "^2.5",
-                "friendsofsymfony/oauth-server-bundle": "~1.4",
-                "friendsofsymfony/user-bundle": "dev-master",
-                "incenteev/composer-parameter-handler": "^2.0",
-                "php": ">=5.6",
-                "symfony/monolog-bundle": "^3.0",
-                "symfony/polyfill-apcu": "^1.0",
-                "xiidea/easy-audit": "~1.4"
-            },
-            "require-dev": {
-                "sensio/generator-bundle": "^3.0",
-                "symfony/phpunit-bridge": "^3.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": null
-            },
-            "autoload": {
-                "psr-4": {
-                    "FlofitEntities\\Bundle\\FlofitEntitiesBundle\\": ""
-                }
-            },
-            "license": [
-                "proprietary"
-            ],
-            "description": "Flofit entities",
-            "support": {
-                "source": "https://github.com/modpreneur/flofit-entities/tree/master",
-                "issues": "https://github.com/modpreneur/flofit-entities/issues"
-            },
-            "time": "2017-01-30 10:53:23"
-        },
-        {
             "name": "modpreneur/venice",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "be9123a6f4d61022f857e870486040ea52229557"
+                "reference": "5ed3c08e44b0d8d6d7d07fbd6351250e0af697f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/be9123a6f4d61022f857e870486040ea52229557",
-                "reference": "be9123a6f4d61022f857e870486040ea52229557",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/5ed3c08e44b0d8d6d7d07fbd6351250e0af697f3",
+                "reference": "5ed3c08e44b0d8d6d7d07fbd6351250e0af697f3",
                 "shasum": ""
             },
             "require": {
@@ -4292,7 +4243,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-04-05 06:42:39"
+            "time": "2017-04-06 14:14:39"
         },
         {
             "name": "monolog/monolog",
@@ -7034,59 +6985,6 @@
             "time": "2017-03-26T11:55:59+00:00"
         },
         {
-            "name": "symfony/polyfill-apcu",
-            "version": "v1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-apcu.git",
-                "reference": "5d4474f447403c3348e37b70acc2b95475b7befa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-apcu/zipball/5d4474f447403c3348e37b70acc2b95475b7befa",
-                "reference": "5d4474f447403c3348e37b70acc2b95475b7befa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting apcu_* functions to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "apcu",
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2016-11-14T01:06:16+00:00"
-        },
-        {
             "name": "symfony/polyfill-intl-icu",
             "version": "v1.3.0",
             "source": {
@@ -7431,16 +7329,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.2.6",
+            "version": "v3.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "b0f8a7fa4b8baadf9db299cb6ac87c96a8977dbe"
+                "reference": "1631040ea8fc5e0e405c00d35cbf2c0b7b555f64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/b0f8a7fa4b8baadf9db299cb6ac87c96a8977dbe",
-                "reference": "b0f8a7fa4b8baadf9db299cb6ac87c96a8977dbe",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/1631040ea8fc5e0e405c00d35cbf2c0b7b555f64",
+                "reference": "1631040ea8fc5e0e405c00d35cbf2c0b7b555f64",
                 "shasum": ""
             },
             "require": {
@@ -7571,7 +7469,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-03-10T18:35:48+00:00"
+            "time": "2017-04-05T12:52:29+00:00"
         },
         {
             "name": "trinity/admin",
@@ -7579,12 +7477,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "bf95828fd234b342b5724e0688fc7f15eb4975d4"
+                "reference": "860d6062eae9e61282f28e088bafab4c149d5629"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/bf95828fd234b342b5724e0688fc7f15eb4975d4",
-                "reference": "bf95828fd234b342b5724e0688fc7f15eb4975d4",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/860d6062eae9e61282f28e088bafab4c149d5629",
+                "reference": "860d6062eae9e61282f28e088bafab4c149d5629",
                 "shasum": ""
             },
             "require": {
@@ -7628,7 +7526,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2017-03-10 14:02:13"
+            "time": "2017-04-06 12:06:38"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -8859,7 +8757,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "modpreneur/venice": 20,
-        "modpreneur/flofit-entities": 20,
         "siciarek/getresponse-api-bundle": 20
     },
     "prefer-stable": true,
