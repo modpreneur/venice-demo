@@ -240,7 +240,7 @@ class ProductsController extends Controller
         $generator = $this->get('venice.app.buy_url_generator');
 
         $billingPlan = $em->getRepository(BillingPlan::class)
-            ->findOneBy(['necktieId' => 578]); // WHERE TO STORE THIS CONSTANTS?
+            ->findOneBy(['necktieId' => 578]); // TODO: PETR WHERE TO STORE THIS CONSTANT(S)? rewrite find?
         $parameters = [];
 
         $product = $billingPlan->getProduct();

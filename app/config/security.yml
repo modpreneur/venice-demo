@@ -107,3 +107,6 @@ security:
         - { path: ^/registration, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/*, role: [IS_AUTHENTICATED, IS_AUTHENTICATED_REMEMBERED, IS_AUTHENTICATED_FULLY ]}
 
+        # api
+        - { path: ^/api/social-stream, role: IS_AUTHENTICATED_ANONYMOUSLY }
+

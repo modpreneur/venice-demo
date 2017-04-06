@@ -184,6 +184,8 @@ services:
          class: AppBundle\Services\SocialFeed
          arguments: ["@service_container"]
 
+    flofit.services.arrayizer:
+        class: AppBundle\Services\Arrayizer
 
     flofit.privacy_settings:
         class: AppBundle\Privacy\PrivacySettingsManager

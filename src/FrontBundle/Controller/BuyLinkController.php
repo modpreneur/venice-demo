@@ -143,6 +143,7 @@ class BuyLinkController extends Controller
 
 
     /**
+     * @todo Petr delete before putting live
      * @Route("/buy-link/testtrialshow", name="buy_link_show_test")
      * @param Request $request
      *
@@ -158,6 +159,7 @@ class BuyLinkController extends Controller
         return new JsonResponse(['url' => 'OK', 'start' => $dateFrom, 'end' => $dateTo]);
     }
     /**
+     * @todo Petr delete before putting live
      * @Route("/buy-link/testtrialclear", name="buy_link_clear_test")
      * @param Request $request
      *
@@ -175,6 +177,7 @@ class BuyLinkController extends Controller
     }
 
     /**
+     * @todo Petr delete before putting live
      * @Route("/buy-link/test7days", name="buy_link_7_test")
      * @param Request $request
      *
@@ -192,6 +195,7 @@ class BuyLinkController extends Controller
     }
 
     /**
+     * @todo Petr delete before putting live
      * @Route("/buy-link/test14days", name="buy_link_14_test")
      * @param Request $request
      *
@@ -209,6 +213,7 @@ class BuyLinkController extends Controller
     }
 
     /**
+     * @todo Petr delete before putting live
      * @Route("/buy-link/test2days", name="buy_link_2_test")
      * @param Request $request
      *
@@ -236,6 +241,11 @@ class BuyLinkController extends Controller
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
+        // default CB parameters
+        $cbParameters['cbskin'] = 13358;
+        $cbParameters['vtid'] = 'introfreebe2408';
+        $cbParameters['cbfid'] = 26406;
+
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
@@ -244,6 +254,19 @@ class BuyLinkController extends Controller
             /** @var User $user */
             $user = $em->getRepository(User::class)
                 ->findOneBy(['id' => $userId]);
+        }
+
+        $splitVariant = $request->cookies->get('flosplitvar');
+        if ($splitVariant) {
+            if ($splitVariant === 'control') {
+                $cbParameters['vtid'] = 'introfreebecon';
+            }
+            if ($splitVariant === 'io') {
+                $cbParameters['vtid'] = 'introfreebeio';
+            }
+            if ($splitVariant === 'an') {
+                $cbParameters['vtid'] = 'introfreebean';
+            }
         }
 
         /** @var BuyUrlGen $generator */
@@ -263,8 +286,7 @@ class BuyLinkController extends Controller
                 ]]);
 
             $product = $billingPlan->getProduct(); // if not null
-            $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-//            return new JsonResponse(['url' => $url]);
+            $url = $generator->generateBuyUrl($product, $billingPlan->getId(), false, $cbParameters);
             return $this->redirect($url);
         }
 
@@ -272,12 +294,24 @@ class BuyLinkController extends Controller
         $now = new \DateTime();
         $daysToTrial = $now->diff($userTrialStart, true)->d + 1;
 
+        // i dont know why it isn't in elsif/switch -> didn't refactor
+        if ($settings->get('productOfferId', $user->getId(), 'user') == 'introFree') {
+            $productId = $this->productsExtend895($daysToTrial);
+            $cbParameters['vtid'] = 'introFree';
+            $cbParameters['cbfid'] = '27220';
+        }
+
         if ($settings->get('productOfferId', $user->getId(), 'user') == 'introFreePa') {
             $productId = $this->productsExtend895($daysToTrial);
+            $cbParameters['vtid'] = 'introFreePa';
+            $cbParameters['cbfid'] = '26600';
         } elseif ($settings->get('productOfferId', $user->getId(), 'user') == 'introFreeHp') {
             $productId = $this->productsExtend1295($daysToTrial);
+            $cbParameters['vtid'] = 'introFreeHp';
+            $cbParameters['cbfid'] = '26601';
         } else {
             $productId = $this->productsExtend895($daysToTrial);
+            $cbParameters['cbfid'] = '27220';
         }
 
         /** @var \AppBundle\Entity\BillingPlan $billingPlan */
@@ -287,10 +321,7 @@ class BuyLinkController extends Controller
             ]]);
 
         $product = $billingPlan->getProduct(); // if not null
-        $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-//        return new JsonResponse(['url' => $url]);
-////        return $this->redirect("http://{$productId}.flofit.pay.clickbank.net/?cbfid={$cbfid}&vtid={$vtid}&cbskin=13358&email={$user->getEmail()}&name={$user->getFirstName()} {$user->getLastName()}");
-//        return $this->redirect("http://{$productId}.flofit.pay.clickbank.net/?cbfid={$cbfid}&vtid=hello&cbskin=13358&email={$user->getEmail()}&name={$user->getFirstName()} {$user->getLastName()}");
+        $url = $generator->generateBuyUrl($product, $billingPlan->getId(), false, $cbParameters);
         return $this->redirect($url);
     }
 
@@ -303,6 +334,12 @@ class BuyLinkController extends Controller
 
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
+
+        // default CB parameters
+        $cbParameters['cbskin'] = 13358;
+        $cbParameters['vtid'] = '';
+        $cbParameters['cbfid'] = 26406;
+
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
@@ -318,7 +355,6 @@ class BuyLinkController extends Controller
 
         $settings = $this->get('trinity.settings');
 
-
         if (!$user || !$choice) {
             /** @var \AppBundle\Entity\BillingPlan $billingPlan */
             $billingPlan = $em->getRepository(\AppBundle\Entity\BillingPlan::class)
@@ -327,23 +363,29 @@ class BuyLinkController extends Controller
                 ]]);
 
             $product = $billingPlan->getProduct(); // if not null
-            $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-//            return new JsonResponse(['url' => $url]);
+            $url = $generator->generateBuyUrl($product, $billingPlan->getId(), false, $cbParameters);
             return $this->redirect($url);
-//            return $this->redirect("http://30.flofit.pay.clickbank.net/?vtid={$vtid}&cbskin=13358&cbfid={$cbfId}");
         }
 
+
+        if ($settings->get('productOfferId', $user->getId(), 'user') == 'introFree') {
+//            $prodCbf = $this->productsAfter895($choice); // i know this make no sense, was there
+            $cbParameters['vtid'] = 'introFree';
+        }
 
         if ($settings->get('productOfferId', $user->getId(), 'user') == 'introFreePa') {
             $prodCbf = $this->productsAfter895($choice);
+            $cbParameters['vtid'] = 'introFreePa';
         } elseif ($settings->get('productOfferId', $user->getId(), 'user') == 'introFreeHp') {
             $prodCbf = $this->productsAfter1295($choice);
+            $cbParameters['vtid'] = 'introFreeHp';
         } else {
             $prodCbf = $this->productsAfter495($choice);
+            $cbParameters['vtid'] = 'introfrafbe2408';
         }
 
         $productId = $prodCbf['product'];
-        $cbfid = $prodCbf['cbfid'];
+        $cbParameters['cbfid'] = $prodCbf['cbfid'];
 
         /** @var \AppBundle\Entity\BillingPlan $billingPlan */
         $billingPlan = $em->getRepository(\AppBundle\Entity\BillingPlan::class)
@@ -352,7 +394,7 @@ class BuyLinkController extends Controller
             ]]);
 
         $product = $billingPlan->getProduct(); // if not null
-        $url = $generator->generateBuyUrl($product, $billingPlan->getId());
+        $url = $generator->generateBuyUrl($product, $billingPlan->getId(), false, $cbParameters);
 //        return new JsonResponse(['url' => $url]);
         return $this->redirect($url);
 
@@ -370,6 +412,12 @@ class BuyLinkController extends Controller
     {
         /** @var EntityManager $entityManager */
         $em = $this->getDoctrine()->getManager();
+
+        // default CB parameters
+        $cbParameters['cbskin'] = 13358;
+        $cbParameters['vtid'] = 'introfreebe2408';
+        $cbParameters['cbfid'] = 26406;
+
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
@@ -383,21 +431,14 @@ class BuyLinkController extends Controller
         /** @var BuyUrlGen $generator */
         $generator = $this->get('venice.app.buy_url_generator');
 
-
         /** @var \AppBundle\Entity\BillingPlan $billingPlan */
         $billingPlan = $em->getRepository(\AppBundle\Entity\BillingPlan::class)
             ->findOneBy(['necktieId' => $this->CBID_to_necktieId[
                 $this->FLOFIT_67dollarsPlusDVDs
             ]]);
         $product = $billingPlan->getProduct(); // if not null
-        $url = $generator->generateBuyUrl($product, $billingPlan->getId());
-//        return new JsonResponse(['url' => $url]);
+        $url = $generator->generateBuyUrl($product, $billingPlan->getId(), false, $cbParameters);
         return $this->redirect($url);
-//        if (!$user) {
-//            return $this->redirect('http://25.flofit.pay.clickbank.net?cbfid=26406&vtid=introfreebe2408&cbskin=13358');
-//        } else {
-//            return $this->redirect('http://25.flofit.pay.clickbank.net?cbfid=26406&vtid=introfreebe2408&cbskin=13358&email=' . $user->getEmail() . '&name=' . $user->getFullName());
-//        }
     }
 
 
