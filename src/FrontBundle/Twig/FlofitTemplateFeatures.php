@@ -5,7 +5,6 @@ namespace FrontBundle\Twig;
 use AppBundle\Entity\BillingPlan;
 use AppBundle\Entity\Content\PdfContent;
 use AppBundle\Entity\Product\ShippingProduct;
-use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Vanilla\Conversation;
 use AppBundle\Services\AbstractConnector;

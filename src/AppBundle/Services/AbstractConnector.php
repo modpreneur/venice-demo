@@ -5,7 +5,6 @@ namespace AppBundle\Services;
 use AppBundle\Entity\BillingPlan;
 use AppBundle\Entity\Invoice;
 use AppBundle\Entity\User;
-use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\CoreBundle\Newsletter;
 
 
 /**
@@ -37,7 +36,7 @@ abstract class AbstractConnector extends Connector
      *
      * @return string
      */
-     abstract function generateBuyLink(BillingPlan $parameters, User $user, $userStoredCC);
+     abstract public function generateBuyLink(BillingPlan $parameters, User $user, $userStoredCC);
 
 
     /**
@@ -45,7 +44,7 @@ abstract class AbstractConnector extends Connector
      *
      * @return Invoice[]
      */
-    abstract function getUserInvoices(User $user);
+    abstract public function getUserInvoices(User $user);
 
 
     /**
@@ -54,40 +53,32 @@ abstract class AbstractConnector extends Connector
      *
      * @return bool
      */
-    abstract function cancelInvoice(Invoice $invoice, User $user);
+    abstract public function cancelInvoice(Invoice $invoice, User $user);
 
 
     /**
      * @param User $user
      *
-     * @return Newsletter[]
+     * @return []
      */
-    abstract function getNewsletters(User $user);
+    abstract public function getNewsletters(User $user);
 
 
     /**
-     * @param Newsletter $newsletter
-     * @param User $user
-     *
-     * @return bool
-     */
-    abstract function updateNewsletter(Newsletter $newsletter, User $user);
-
-
-    /**
-     * @param User $user
-     *
-     * @return LastPaymentInfo
-     */
-    abstract function getLastPaymentInfo(User $user);
-
-
-    /**
+     * @param  $newsletter
      * @param User $user
      *
      * @return bool
      */
-    abstract function loginInBaseService(User $user);
+    abstract public function updateNewsletter($newsletter, User $user);
+
+
+    /**
+     * @param User $user
+     *
+     * @return
+     */
+    abstract public function getLastPaymentInfo(User $user);
 
 
     /**
@@ -95,7 +86,15 @@ abstract class AbstractConnector extends Connector
      *
      * @return bool
      */
-    abstract function updateUser(User $user, array $propertyNames);
+    abstract public function loginInBaseService(User $user);
+
+
+    /**
+     * @param User $user
+     *
+     * @return bool
+     */
+    abstract public function updateUser(User $user, array $propertyNames);
 
 
     /**
@@ -104,7 +103,7 @@ abstract class AbstractConnector extends Connector
      *
      * @return bool
      */
-    abstract function changeUserPassword(User $user, $plainTextPassword);
+    abstract public function changeUserPassword(User $user, $plainTextPassword);
 
 
     /**
@@ -112,5 +111,5 @@ abstract class AbstractConnector extends Connector
      *
      * @return bool
      */
-    abstract function fireUpdateEvent(User $user);
+    abstract public function fireUpdateEvent(User $user);
 }

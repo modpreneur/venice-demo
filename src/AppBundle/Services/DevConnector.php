@@ -5,7 +5,6 @@ namespace AppBundle\Services;
 use AppBundle\Entity\BillingPlan;
 use AppBundle\Entity\Invoice;
 use AppBundle\Entity\User;
-use FlofitEntities\Bundle\FlofitEntitiesBundle\FlofitEntities\CoreBundle\Newsletter;
 
 
 /**
@@ -71,24 +70,23 @@ class DevConnector extends AbstractConnector
     /**
      * @param User $user
      *
-     * @return Newsletter[]
+     * @return []
      */
     public function getNewsletters(User $user)
     {
         return [
-            new Newsletter($user, 1, 'Test newsletter 1', true),
-            new Newsletter($user, 2, 'Test newsletter 2', false)
+
         ];
     }
 
 
     /**
-     * @param Newsletter $newsletter
+     * @param  $newsletter
      * @param User $user
      *
      * @return bool
      */
-    public function updateNewsletter(Newsletter $newsletter, User $user)
+    public function updateNewsletter($newsletter, User $user)
     {
         return true;
     }
@@ -97,7 +95,7 @@ class DevConnector extends AbstractConnector
     /**
      * @param User $user
      *
-     * @return LastPaymentInfo
+     * @return
      */
     public function getLastPaymentInfo(User $user)
     {
