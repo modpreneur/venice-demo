@@ -24,8 +24,6 @@ class AppKernel extends Venice\AppBundle\Kernel\VeniceKernel
         $veniceBundles[] = new \FrontBundle\FrontBundle();
         $veniceBundles[] = new \ApiBundle\ApiBundle();
 
-        $veniceBundles[] = new \DataTransferBundle\DataTransferBundle();
-
         // others ------------
         $veniceBundles[] = new CocurHumanDateBundle();
         $veniceBundles[] = new Uran1980FancyBoxBundle;
