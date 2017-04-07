@@ -63,7 +63,19 @@ class ApiListener implements ListenerInterface
         $request = $event->getRequest();
 
         try {
-            $accessToken = $request->get('accesstoken');
+            $accessToken = $request->headers->get('Authorization');
+            $split = explode(' ', $accessToken);
+
+            if (count($split) < 1) {
+                return;
+            }
+
+            if (strtolower($split[0]) !== 'bearer') {
+                return;
+            }
+
+            $accessToken = $split[1];
+
             $len = strlen($accessToken);
             $settings    = $this
                 ->entityManager
