@@ -9,7 +9,6 @@
 namespace ApiBundle\Filters;
 
 use AppBundle\Entity\BlogArticle;
-use ApiBundle\Filters\BaseFilter;
 use AppBundle\Services\Arrayizer;
 
 /**
@@ -23,7 +22,7 @@ class BlogFilter
      * @param Arrayizer $arrayizer
      * @return array
      */
-    public function filter($data, $arrayizer)
+    public function filter(array $data, Arrayizer $arrayizer)
     {
         $blogBlogArticles = $data;
 
@@ -36,12 +35,10 @@ class BlogFilter
 
         $output = [];
 
+        /** @var BlogArticle $blogBlogArticle */
         foreach ($blogBlogArticles as $blogBlogArticle) {
             $output[] = $arrayizer->arrayize($blogBlogArticle);
         }
-
-        var_dump($output);
-        die;
 
         return $output;
     }
@@ -59,8 +56,9 @@ class BlogFilter
         return function ($currentObject, $properties, & $propertiesArray) {
             if ($currentObject instanceof BlogArticle) {
                 $author = $currentObject->getPublisher();
-                $propertiesArray['author'] = $author->getFirstName() . " " . $author->getLastName();
+                $propertiesArray['author'] = $author->getFirstName() . ' ' . $author->getLastName();
                 $propertiesArray['authorUsername'] = $author->getUsername();
+                $propertiesArray['dateWritten'] = $currentObject->getCreatedAt()->format('Y-m-d H:i:s');
             }
         };
     }
@@ -70,7 +68,7 @@ class BlogFilter
      */
     public function getEachCallback()
     {
-        return function($currentObject, $propertyName, $propertyValue, & $propertiesArray){
+        return function ($currentObject, $propertyName, $propertyValue, & $propertiesArray) {
 
         };
     }
@@ -80,7 +78,7 @@ class BlogFilter
      */
     public function getAfterCallback()
     {
-        return function(& $arrayedObject) {
+        return function (& $arrayedObject) {
 
         };
     }
@@ -92,13 +90,21 @@ class BlogFilter
     {
         return [
             '<User>.products',
+            '<User>.productAccesses',
             '<User>.privacySettings',
             '<User>.groups',
-            '<User>.tags.BlogArticles',
+            '<User>.tags.blogArticles',
+            '<User>.blogArticles',
             '<BlogArticle>.publisher',
+            '<BlogArticle>.products',
             '<BlogArticle>.category',
+            '<BlogArticle>.categories',
+            '<BlogArticle>.tags',
             '<BlogArticle>.lastAllowedDotPosition',
             '<BlogArticle>.maxCountOfCharacters',
+            '<BlogArticle>.BlogArticleChild',
+            '<BlogArticle>.updatedAt',
+            '<BlogArticle>.createdAt',
         ];
     }
 }
