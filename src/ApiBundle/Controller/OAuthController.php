@@ -42,13 +42,14 @@ class OAuthController extends Controller
         $clientId = $request->request->get('client_id');
         $clientSecret = $request->request->get('client_secret');
 
+        $entityManager = $this->getDoctrine()->getManager();
         $client = new Client();
 
         $necktieRequestBody = $request->request->all();
         $necktieRequestBody['client_id'] = $clientId;
         $necktieRequestBody['client_secret'] = $clientSecret;
 
-        $grantType = (array_key_exists('refresh_token', $necktieRequestBody)? 'refresh_token' : 'password');
+        $grantType = (array_key_exists('refresh_token', $necktieRequestBody) ? 'refresh_token' : 'password');
 
         $necktieRequestBody['grant_type'] = $grantType;
         $username = $necktieRequestBody['username'];
@@ -65,6 +66,7 @@ class OAuthController extends Controller
             );
         } catch (RequestException $exception) {
             $response = $exception->getResponse();
+
             return new JsonResponse($response->getBody()->getContents(), $response->getStatusCode(), [], true);
         }
 
@@ -72,18 +74,28 @@ class OAuthController extends Controller
 
         $resArray = json_decode($responseBody, true);
 
-        $accessToken = $resArray['access_token'];
-        $refreshToken = $resArray['refresh_token'];
+        if ($resArray === null) {
+            return new JsonResponse('Invalid necktie response - cannot parse json', 500);
+        }
 
-        $user = $this->get('doctrine.orm.entity_manager')
-            ->getRepository(User::class)
-            ->findOneBy(['username' => $username]);
+        $gwHelper = $this->get('venice.app.necktie_gateway_helper');
+        $token = $gwHelper->createOAuthTokenFromArray($resArray);
 
-        $this->get('trinity.settings')
-            ->set('api_token', $accessToken, $user->getId(), 'user');
+        if ($token === null) {
+            return new JsonResponse('Invalid necktie response - cannot parse token', 500);
+        }
 
-        $this->get('trinity.settings')
-            ->set('api_refresh_token', $refreshToken, $user->getId(), 'user');
+        $user = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+
+        if (!$user) {
+            return new JsonResponse('User not found', 404);
+        }
+
+        $user->addOAuthToken($token);
+        $token->setUser($user);
+        $entityManager->persist($user);
+        $entityManager->persist($token);
+        $entityManager->flush();
 
         return new JsonResponse($responseBody, $response->getStatusCode(), [], true);
     }

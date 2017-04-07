@@ -2,15 +2,13 @@
 
 namespace ApiBundle\Api;
 
-use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
-use Trinity\Bundle\SettingsBundle\Entity\Setting;
+use AppBundle\Entity\OAuthToken;
 
 
 /**
@@ -76,25 +74,20 @@ class ApiListener implements ListenerInterface
 
             $accessToken = $split[1];
 
-            $len = strlen($accessToken);
-            $settings    = $this
-                ->entityManager
-                ->getRepository(Setting::class)
-                ->findOneBy(['value' => 's:'.$len.':"'.$accessToken.'";']);
+            $token = $this->entityManager->getRepository(OAuthToken::class)->findOneBy(['accessToken' => $accessToken]);
 
-            if ($settings === null) {
-                $response = new Response();
+            if ($token === null) {
+                $response = new Response('The token is not known to the flofit');
                 $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
                 $event->setResponse($response);
 
                 return;
             }
 
-            $userId = $settings->getOwnerId();
-            $user   = $this->entityManager->getRepository(User::class)->find($userId);
+            $user = $token->getUser();
 
             if ($user === null) {
-                $response = new Response();
+                $response = new Response('No user for the token');
                 $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
                 $event->setResponse($response);
 
@@ -113,9 +106,5 @@ class ApiListener implements ListenerInterface
 
             return;
         }
-
-        $response = new Response();
-        $response->setStatusCode(Response::HTTP_FORBIDDEN);
-        $event->setResponse($response);
     }
 }
