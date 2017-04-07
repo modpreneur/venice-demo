@@ -39,8 +39,8 @@ class OAuthController extends Controller
     public function oauthAction(Request $request)
     {
         $url = $this->getParameter('necktie_url') . '/oauth/v2/token';
-        $clientId = $this->getParameter('mobile_app_client_id');
-        $clientSecret = $this->getParameter('mobile_app_client_secret');
+        $clientId = $request->request->get('client_id');
+        $clientSecret = $request->request->get('client_secret');
 
         $client = new Client();
 
@@ -65,12 +65,13 @@ class OAuthController extends Controller
             );
         } catch (RequestException $exception) {
             $response = $exception->getResponse();
+            return new JsonResponse($response->getBody()->getContents(), $response->getStatusCode(), [], true);
         }
 
         $responseBody = $response->getBody()->getContents();
 
         $resArray = json_decode($responseBody, true);
-        return new JsonResponse($resArray);
+
         $accessToken = $resArray['access_token'];
         $refreshToken = $resArray['refresh_token'];
 
