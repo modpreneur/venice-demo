@@ -656,7 +656,10 @@ class VanillaForumConnector extends AbstractForumConnector
         if (array_key_exists('Code', $response) && $response['Code'] == 404) {
             return null;
         }
-        $postArray = $response['Discussion'];
+        if (!array_key_exists('Discussion', $response)) {
+            throw new InvalidArgumentException('Discussion with id '.$forumPostId. ' not found');
+        }
+        $postArray = $response['Discussion']; // throws 500 for wrong post id
         $comments = $response['Comments'];
         $forumPostObject = new ForumPost(
             $postArray['DiscussionID'],
