@@ -11,7 +11,6 @@ namespace ApiBundle\Controller;
 use ApiBundle\Api;
 use ApiBundle\Filters\BlogFilter;
 use AppBundle\Entity\Category;
-use AppBundle\Services\Arrayizer;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -128,7 +127,9 @@ class AppApiBlogController extends FOSRestController
             ->findArticlesByCategory($category, true, $offset, $limit);
 
         $blogFilter = new BlogFilter();
-        $output = $blogFilter->filter($blogArticles, new Arrayizer);
+        $arrayizer = $this->get('flofit.services.arrayizer');
+
+        $output = $blogFilter->filter($blogArticles, $arrayizer);
 
         return new JsonResponse($this->okResponse($output));
     }
