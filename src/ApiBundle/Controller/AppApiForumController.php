@@ -390,7 +390,7 @@ class AppApiForumController extends FOSRestController
      */
     public function getAllUsersAction(Request $request)
     {
-        $forumService = $this->get('flofit.services.arrayizer');
+        $forumService = $this->get('flofit.prod_env_forum_connector');
 
         $users = $forumService->getAllUsers($this->getUser());
 

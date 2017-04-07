@@ -3,12 +3,14 @@
 namespace AppBundle\Services;
 
 use AppBundle\Entity\User;
+use AppBundle\Entity\Vanilla\Comment;
 use AppBundle\Entity\Vanilla\Conversation;
 use AppBundle\Entity\Vanilla\Category;
 use AppBundle\Entity\Vanilla\ForumPost;
 use AppBundle\Entity\Vanilla\Message;
 use Doctrine\ORM\EntityManager;
 use GuzzleHttp\Cookie\CookieJar;
+use Imagine\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Cookie;
 
@@ -515,9 +517,12 @@ class VanillaForumConnector extends AbstractForumConnector
             ->getParameter('forum_auth_cookie_name'), '', $exp, null, $domain);
 
         $cookies[] = new Cookie(
-            $this
-                ->serviceContainer
-                ->getParameter('forum_auth_cookie_name') . '-Volatile', '', $exp, null, $domain);
+            $this->serviceContainer->getParameter('forum_auth_cookie_name') . '-Volatile',
+            '',
+            $exp,
+            null,
+            $domain
+        );
 
         return $cookies;
     }
@@ -584,5 +589,100 @@ class VanillaForumConnector extends AbstractForumConnector
 
         return $categoriesObjects;
     }
-}
+    /**
+     * @param User $user
+     * @param int|string|Category $category
+     *
+     * @return mixed
+     */
+    public function getForumPostsByCategory(User $user, $category)
+    {
+        $forumPosts = $this->getLatestForumPosts($user);
+        if (is_object($category)) {
+            if ($category->getId() != null) {
+                $category = $category->getId();
+            } elseif ($category->getName() != null) {
+                $category = $category->getName();
+            } else {
+                throw new InvalidArgumentException("Category object has to contain id or name");
+            }
+        }
+        //it is category id
+        if (is_numeric($category)) {
+            /** @var ForumPost $post */
+            foreach ($forumPosts as $key => $post) {
+                if ($category != $post->getCategoryId()) {
+                    unset($forumPosts[$key]);
+                }
+            }
+        } elseif (is_string($category)) { //it is category name
+            /** @var ForumPost $post */
+            foreach ($forumPosts as $key => $post) {
+                if ($category != $post->getCategoryName()) {
+                    unset($forumPosts[$key]);
+                }
+            }
+        } else {
+            throw new InvalidArgumentException;
+        }
+        return $forumPosts;
+    }
 
+    /**
+     * Discussion aka ForumPost
+     *
+     *
+     * @param User    $user
+     * @param ForumPost|int $forumPost
+     * @param bool          $raw
+     *
+     * @return mixed
+     */
+    public function getForumPostDetail(User $user, $forumPost, $raw = false)
+    {
+        if (is_object($forumPost) && $forumPost->getId() != null) {
+            $forumPostId = $forumPost->getId();
+        } elseif (is_numeric($forumPost)) {
+            $forumPostId = $forumPost;
+        } else {
+            throw new InvalidArgumentException('Discussion parameter ');
+        }
+        $postUrl = $this->createUrl($user, self::API_DISCUSSIONS_FIND);
+        $postUrl = str_replace(':id', $forumPostId, $postUrl);
+        $response = $this->getJson($postUrl);
+        if ($raw === true) {
+            return $response;
+        }
+        if (array_key_exists('Code', $response) && $response['Code'] == 404) {
+            return null;
+        }
+        $postArray = $response['Discussion'];
+        $comments = $response['Comments'];
+        $forumPostObject = new ForumPost(
+            $postArray['DiscussionID'],
+            $postArray['Url'],
+            $postArray['Name'],
+            $postArray['Body'],
+            $postArray['CategoryID'],
+            $postArray['Category'],
+            $postArray['LastDate'],
+            $postArray['CountViews'],
+            $postArray['CountComments'],
+            $postArray['InsertName']
+        );
+        foreach ($comments as $commentArray) {
+            $comment = new Comment(
+                $commentArray['CommentID'],
+                $commentArray['DiscussionID'],
+                $commentArray['InsertName'],
+                $commentArray['Body'],
+                ($commentArray['DateUpdated'])? : $commentArray['DateInserted']
+            );
+            $forumPostObject->addComment($comment);
+        }
+        return $forumPostObject;
+    }
+
+
+
+}
