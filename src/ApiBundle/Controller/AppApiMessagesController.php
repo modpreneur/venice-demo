@@ -319,7 +319,7 @@ class AppApiMessagesController extends FOSRestController
         if ($id == 'new') {
             //no conversation id
             //we want to create a new conversation
-            $participants = $request->get("participants");
+            $participants = $request->get('participants');
 
             if (!is_string($participants) || empty($participants)) {
                 return new JsonResponse($this->notOkResponse('Invalid participants'));
@@ -374,7 +374,7 @@ class AppApiMessagesController extends FOSRestController
         $user = $this->getUser();
         $forumService = $this->get('flofit.prod_env_forum_connector');
 
-        $participants = $request->get("participants");
+        $participants = $request->get('participants');
 
         if (!is_string($participants) || empty($participants)) {
             return new JsonResponse($this->notOkResponse('Invalid participants'));

@@ -500,6 +500,24 @@ class VanillaForumConnector extends AbstractForumConnector
         return $msgParsed;
     }
 
+    /**
+     * @param User $user
+     * @param Message $message
+     *
+     * @return array|bool|mixed
+     */
+    public function sendMessage(User $user, Message $message)
+    {
+        $url = $this->createUrl($user, self::API_NEW_MESSAGE);
+        $url = str_replace(':id', $message->getConversationId(), $url);
+        $response = $this->postJson($url, ['Body' => $message->getBody()]);
+        if (array_key_exists('Messages', $response)) {
+            return true;
+        } else {
+            return $response;
+        }
+    }
+
 
     /**
      * @param null $domain
