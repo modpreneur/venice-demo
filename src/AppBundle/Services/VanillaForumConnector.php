@@ -510,7 +510,7 @@ class VanillaForumConnector extends AbstractForumConnector
     {
         $url = $this->createUrl($user, self::API_NEW_MESSAGE);
         $url = str_replace(':id', $message->getConversationId(), $url);
-        $response = $this->postJson($url, ['Body' => $message->getBody()]);
+        $response = $this->postJson($url, ['body' => $message->getBody()]);
         if (array_key_exists('Messages', $response)) {
             return true;
         } else {
