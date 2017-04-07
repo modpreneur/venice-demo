@@ -45,7 +45,6 @@
         "knplabs/knp-snappy-bundle" : "1.*",
         "leafo/lessphp" : "0.5.*",
         "liip/imagine-bundle" : "1.7.*",
-        "siciarek/getresponse-api-bundle" : "dev-master",
         "uran1980/fancybox-bundle" : "0.0.*",
         "vich/uploader-bundle" : "1.4.*",
         "xiidea/easy-audit" : "1.4.*",
