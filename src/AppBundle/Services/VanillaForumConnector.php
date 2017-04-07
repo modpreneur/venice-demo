@@ -4,6 +4,7 @@ namespace AppBundle\Services;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Vanilla\Conversation;
+use AppBundle\Entity\Vanilla\Category;
 use AppBundle\Entity\Vanilla\ForumPost;
 use AppBundle\Entity\Vanilla\Message;
 use Doctrine\ORM\EntityManager;
@@ -556,4 +557,32 @@ class VanillaForumConnector extends AbstractForumConnector
 
         return $users;
     }
+
+    /**
+     * @param User $user
+     *
+     * @return array
+     */
+    public function getCategories(User $user)
+    {
+        $categoriesUrl = self::API_CATEGORIES;
+        $url = $this->createUrl($user, $categoriesUrl);
+
+        $categories = $this->getJson($url)['Categories'];
+
+        $categoriesObjects = [];
+        foreach ($categories as $category) {
+            $categoriesObjects[] = new Category(
+                $category['CategoryID'],
+                $category['CountDiscussions'],
+                $category['CountComments'],
+                $category['Name'],
+                $category['Description'],
+                $category['DateUpdated']
+            );
+        }
+
+        return $categoriesObjects;
+    }
 }
+
