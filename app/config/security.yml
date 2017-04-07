@@ -95,12 +95,6 @@ security:
         - { path: ^/schema/check-email, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/schema/change-password, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        # api
-        - { path: ^/api/social-stream, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/social/parameters, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/core/latest-versions, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/forum, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
         - { path: ^/css, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/js, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/public, role: IS_AUTHENTICATED_ANONYMOUSLY }
