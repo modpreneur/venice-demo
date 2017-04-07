@@ -70,6 +70,7 @@ class OAuthController extends Controller
         $responseBody = $response->getBody()->getContents();
 
         $resArray = json_decode($responseBody, true);
+        return new JsonResponse($resArray);
         $accessToken = $resArray['access_token'];
         $refreshToken = $resArray['refresh_token'];
 
