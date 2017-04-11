@@ -48,13 +48,12 @@ class OAuthController extends Controller
         $necktieRequestBody = $request->request->all();
 
         $grantType = (array_key_exists('refresh_token', $necktieRequestBody) ? 'refresh_token' : 'password');
+        $oldRefreshToken = $necktieRequestBody['refresh_token']?:'';
 
         $necktieRequestBody['grant_type'] = $grantType;
         if ($grantType === 'password') {
             $username = $necktieRequestBody['username'];
         }
-
-        $refreshToken = $necktieRequestBody['refresh_token'];
 
         $necktieRequestBody = json_encode($necktieRequestBody);
 
@@ -88,23 +87,24 @@ class OAuthController extends Controller
             return new JsonResponse('Invalid necktie response - cannot parse token', 500);
         }
 
-        // We don't need to do this when processing a refresh token
+        $user = null;
         if ($grantType === 'password') {
             $user = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
-
-            if (!$user) {
-                return new JsonResponse('User not found', 404);
-            }
-
-            $user->addOAuthToken($token);
-            $token->setUser($user);
-            $entityManager->persist($user);
-            $entityManager->persist($token);
-            $entityManager->flush();
+        } elseif ($grantType === 'refresh_token') {
+            $oldToken = $entityManager->getRepository(OAuthToken::class)
+                ->findOneBy(['refreshToken' => $oldRefreshToken]);
+            $user = $oldToken->getUser();
         }
-//        elseif ($grantType === 'refresh_token' & null !== $refreshToken) {
 
+        if (!$user) {
+            return new JsonResponse('User not found', 404);
+        }
 
+        $user->addOAuthToken($token);
+        $token->setUser($user);
+        $entityManager->persist($user);
+        $entityManager->persist($token);
+        $entityManager->flush();
 
         return new JsonResponse($responseBody, $response->getStatusCode(), [], true);
     }
