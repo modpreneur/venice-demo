@@ -2,6 +2,7 @@
 
 namespace ApiBundle\Controller;
 
+use AppBundle\Entity\Repositories\OAuthTokenRepository;
 use AppBundle\Entity\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Venice\AppBundle\Entity\OAuthToken;
 
 /**
  * Class OAuthController
@@ -39,20 +41,21 @@ class OAuthController extends Controller
     public function oauthAction(Request $request)
     {
         $url = $this->getParameter('necktie_url') . '/oauth/v2/token';
-        $clientId = $request->request->get('client_id');
-        $clientSecret = $request->request->get('client_secret');
 
         $entityManager = $this->getDoctrine()->getManager();
         $client = new Client();
 
         $necktieRequestBody = $request->request->all();
-        $necktieRequestBody['client_id'] = $clientId;
-        $necktieRequestBody['client_secret'] = $clientSecret;
 
         $grantType = (array_key_exists('refresh_token', $necktieRequestBody) ? 'refresh_token' : 'password');
 
         $necktieRequestBody['grant_type'] = $grantType;
-        $username = $necktieRequestBody['username'];
+        if ($grantType === 'password') {
+            $username = $necktieRequestBody['username'];
+        }
+
+        $refreshToken = $necktieRequestBody['refresh_token'];
+
         $necktieRequestBody = json_encode($necktieRequestBody);
 
         try {
@@ -85,17 +88,23 @@ class OAuthController extends Controller
             return new JsonResponse('Invalid necktie response - cannot parse token', 500);
         }
 
-        $user = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+        // We don't need to do this when processing a refresh token
+        if ($grantType === 'password') {
+            $user = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
 
-        if (!$user) {
-            return new JsonResponse('User not found', 404);
+            if (!$user) {
+                return new JsonResponse('User not found', 404);
+            }
+
+            $user->addOAuthToken($token);
+            $token->setUser($user);
+            $entityManager->persist($user);
+            $entityManager->persist($token);
+            $entityManager->flush();
         }
+//        elseif ($grantType === 'refresh_token' & null !== $refreshToken) {
 
-        $user->addOAuthToken($token);
-        $token->setUser($user);
-        $entityManager->persist($user);
-        $entityManager->persist($token);
-        $entityManager->flush();
+
 
         return new JsonResponse($responseBody, $response->getStatusCode(), [], true);
     }
