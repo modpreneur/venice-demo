@@ -48,11 +48,13 @@ class OAuthController extends Controller
         $necktieRequestBody = $request->request->all();
 
         $grantType = (array_key_exists('refresh_token', $necktieRequestBody) ? 'refresh_token' : 'password');
-        $oldRefreshToken = $necktieRequestBody['refresh_token']?:'';
+        $oldRefreshToken = '';
 
         $necktieRequestBody['grant_type'] = $grantType;
         if ($grantType === 'password') {
             $username = $necktieRequestBody['username'];
+        } elseif ($grantType === 'refresh_token') {
+            $oldRefreshToken = $necktieRequestBody['refresh_token'];
         }
 
         $necktieRequestBody = json_encode($necktieRequestBody);
