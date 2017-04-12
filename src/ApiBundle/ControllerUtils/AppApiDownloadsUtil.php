@@ -1,13 +1,18 @@
 <?php
-namespace ApiBundle\Controller;
+namespace ApiBundle\ControllerUtils;
 
 use AppBundle\Entity\BillingPlan;
+use AppBundle\Entity\Content\ContentInGroup;
 use AppBundle\Entity\Content\GroupContent;
+use AppBundle\Entity\Content\PdfContent;
+use AppBundle\Entity\Content\VideoContent;
+use AppBundle\Entity\ContentProduct;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductGroup;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Trinity\Component\Utils\Services\PriceStringGenerator;
+use Venice\AppBundle\Entity\Content\Content;
 use Venice\AppBundle\Services\BuyUrlGenerator;
 
 /**
@@ -36,6 +41,46 @@ class AppApiDownloadsUtil
     protected $user;
 
     /**
+     * AppApiDownloadsUtil constructor.
+     * @param BuyUrlGenerator $buyUrlGenerator
+     * @param PriceStringGenerator $priceGenerator
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(BuyUrlGenerator $buyUrlGenerator, PriceStringGenerator $priceGenerator, EntityManagerInterface $entityManager)
+    {
+        $this->buyUrlGenerator = $buyUrlGenerator;
+        $this->priceGenerator = $priceGenerator;
+        $this->entityManager = $entityManager;
+    }
+
+    public function getDataForProduct(User $user, StandardProduct $product)
+    {
+        if ($product->getHandle() === ProductGroup::HANDLE_FLOFIT) {
+            $repo = $this->entityManager->getRepository(StandardProduct::class);
+            $data = [];
+
+            $data[] = $this->getProductData($user, $product);
+
+            $product = $repo->findOneBy(['handle' => ProductGroup::HANDLE_7_DAY_RIP_MIX]);
+            if ($product) {
+                $data[] = $this->getProductData($user, $product);
+            }
+
+            $product = $repo->findOneBy(['handle' => ProductGroup::HANDLE_NUTRITION_AND_MEALS]);
+            if ($product) {
+                $data[] = $this->getProductData($user, $product);
+            }
+
+            $product = $repo->findOneBy(['handle' => ProductGroup::HANDLE_PLATINUM_MIX]);
+            if ($product) {
+                $data[] = $this->getProductData($user, $product);
+            }
+        }
+
+        return $data;
+    }
+
+    /**
      * @param User $user
      * @param StandardProduct $product
      *
@@ -44,7 +89,7 @@ class AppApiDownloadsUtil
      * @throws \Symfony\Component\Intl\Exception\MethodArgumentValueNotImplementedException
      * @throws \Symfony\Component\Intl\Exception\MethodArgumentNotImplementedException
      */
-    public function getProductData(User $user, StandardProduct $product)
+    protected function getProductData(User $user, StandardProduct $product)
     {
         $this->user = $user;
 
@@ -55,7 +100,7 @@ class AppApiDownloadsUtil
             'openIn' => 0,
             'buylink' => $this->getProductBuyLink($product),
             'price' => $this->getProductPrice($product),
-            'subProducts' => $this->getSubProducts($product),
+            'subProducts' => $this->getContentFromProduct($product),
             'shortName' => $product->getShortName(),
             'upselMiniatureMobile' => $product->getUpselMiniatureMobile(),
             'shortDescription' => $product->getShortDescription(),
@@ -81,7 +126,7 @@ class AppApiDownloadsUtil
      * @param GroupContent $group
      * @return array
      */
-    public function getGroupContentData(User $user, StandardProduct $product, GroupContent $group)
+    protected function getGroupContentData(User $user, StandardProduct $product, GroupContent $group)
     {
         $this->user = $user;
 
@@ -92,7 +137,7 @@ class AppApiDownloadsUtil
             'openIn' => 0,
             'buylink' => $this->getProductBuyLink($product),
             'price' => $this->getProductPrice($product),
-            'subProducts' => $this->getSubContents($group),
+            'subProducts' => $this->getContentsFromGroup($group, $this->user->hasAccessToProduct($product)),
             'shortName' => $group->getName(),
             'upselMiniatureMobile' => $product->getUpselMiniatureMobile(),
             'shortDescription' => $group->getDescription(),
@@ -116,32 +161,97 @@ class AppApiDownloadsUtil
      * @param GroupContent $groupContent
      * @return array
      */
-    protected function getSubContents(GroupContent $groupContent)
+    protected function getContentsFromGroup(GroupContent $groupContent, $hasAccess)
     {
-        //todo:!
-        //return
-        return [];
+
+        /** @var ContentInGroup $contentInGroup */
+        foreach ($groupContent->getItems() as $contentInGroup) {
+            $content = $this->getContentData($contentInGroup->getContent(), $contentInGroup->getOrderNumber(), $hasAccess);
+
+            $groupContents[] = $content;
+        }
+
+        return $groupContents;
     }
 
-    protected function getSubProducts(StandardProduct $product)
+    protected function getContentFromProduct(StandardProduct $product)
     {
-        //todo: return array of contents in the appropriate format
+//      return array of contents in the appropriate format
+
         if ($product->getHandle() === ProductGroup::HANDLE_FLOFIT) {
             $groupContents = $this->getAllContentFromAllGroups($product);
 
+            /** @var ContentProduct $contentProduct */
             foreach ($product->getContentProducts() as $contentProduct) {
-                $content = [];
-                //todo: ....
+                $content = $this->getContentData($contentProduct->getContent(), $contentProduct->getOrderNumber(), $this->user->hasAccessToProduct($product));
 
-                array_merge($groupContents, $content);
+                $groupContents[] = $content;
             }
 
-            return []; //todo
+            return $groupContents;
         } elseif ($product->getHandle() === ProductGroup::HANDLE_FLOMERSION) {
             return $this->getAllContentFromAllGroups($product);
         } else {
             return [];
         }
+    }
+
+    /**
+     * Get appropriate data for each content
+     *
+     * @param Content $content
+     */
+    protected function getContentData(Content $content, $orderNumber, $hasAccess)
+    {
+        if ($content->getType() === VideoContent::TYPE) {
+            /** @var VideoContent $content*/
+
+            $data = [
+                'type' => 'videoproduct',
+                'access' => $hasAccess,
+                'lastPlayed' => '2016-11-11 02:12:57', //todo: ???
+                'length' => $content->getDuration(),
+                'previewImage' => $content->getPreviewImage(),
+                'needGear' => $content->isNeedGear(),
+                'videoMobile' => $content->getVideoMobile(),
+                'videoLq' => $content->getVideoLq(),
+                'videoHq' => $content->getVideoHq(),
+                'videoHd' => $content->getVideoHd(),
+                'HTTPstream' => $content->getHttpStream(),
+                'vimeoThumbnailId' => $content->getVimeoThumbnailId(),
+                'id' => $content->getId(),
+                'name' => $content->getId(),
+                'image' => $content->getPreviewImage(),
+                'description' => $content->getDescription(),
+                'orderNumber' => $orderNumber,
+                'delayed' => false,
+                'sendInApi' => true,
+            ];
+
+        } elseif ($content->getType() === PdfContent::TYPE) {
+            /** @var PdfContent $content*/
+
+            $data = [
+                'type' => 'downloadproduct',
+                'access' =>  $hasAccess,
+                'file' => $content->getLink(),
+                'fileProtected' => $content->getFileProtected(),
+                'downloadType' => 0, //constant in referential api
+                'fileSize' => $content->getFileSize(),
+                'downloadName' => '',
+                'id' => $content->getId(),
+                'name' => $content->getName(),
+                'image' => '',
+                'description' => $content->getDescription(),
+                'orderNumber' => $orderNumber,
+                'delayed' => false,
+                'sendInApi' => true,
+            ];
+        } else { //unknown content type
+            $data = ['UNKNOWNTYPE'.$content->getType().$content->getName()];
+        }
+
+        return $data;
     }
 
     /**
@@ -153,6 +263,12 @@ class AppApiDownloadsUtil
      */
     protected function getProductPrice(StandardProduct $product)
     {
+        $bp = $this->getBillingPlanForProduct($product);
+
+        if (!$bp) {
+            return '';
+        }
+
         return $this->priceGenerator->generateFullPriceStr($this->getBillingPlanForProduct($product));
     }
 
@@ -163,7 +279,13 @@ class AppApiDownloadsUtil
      */
     protected function getProductBuyLink(StandardProduct $product)
     {
-        return $this->buyUrlGenerator->generateBuyUrl($product, $this->getBillingPlanForProduct($product)->getId());
+        $bp = $this->getBillingPlanForProduct($product);
+
+        if (!$bp) {
+            return '';
+        }
+
+        return $this->buyUrlGenerator->generateBuyUrl($product, $bp->getId());
     }
 
     /**
