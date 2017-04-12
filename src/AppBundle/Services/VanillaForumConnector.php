@@ -396,7 +396,7 @@ class VanillaForumConnector extends AbstractForumConnector
                     $participantEnt = $entityManager->getRepository(User::class)
                         ->findOneBy(['username' => $participant['Name']]);
 
-                    if (is_null($participantEnt)) {
+                    if (null === $participantEnt) {
                         $participants[] = $participant['Name'];
                     } else {
                         $participants[] = $participantEnt;
@@ -416,6 +416,59 @@ class VanillaForumConnector extends AbstractForumConnector
         }
 
         return $convParsed;
+    }
+
+    /**
+     * @param User $sender
+     * @param $participants
+     * @param $body
+     *
+     * @return array|bool|mixed
+     */
+    public function createConversation(User $sender, $participants, $body)
+    {
+        $url = $this->createUrl($sender, self::API_CONVERSATIONS);
+
+        $response = $this->postJson($url, ["To" => $participants, "Body" => $body]);
+
+        if(!array_key_exists("Code", $response))
+            return true;
+        else
+            return $response;
+    }
+
+    /**
+     * @param User $user
+     * @param $participants
+     *
+     * @return Conversation|null
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \InvalidArgumentException
+     */
+    public function getExistingConversation(User $user, $participants)
+    {
+        $conversations = $this->getConversations($user);
+
+        /** @var Conversation $conversation */
+        foreach ($conversations as $conversation) {
+            $participantsArray = [];
+            /** @var Conversation $conversation */
+            foreach ($conversation->getParticipants() as $obj) {
+                if ($obj instanceof User) {
+                    $participantsArray[] = $obj->getUsername();
+                } else {
+                    $participantsArray[] = $obj;
+                }
+            }
+
+            $participantsString = implode(',', $participantsArray);
+
+            if ($participantsString === $participants) {
+                return $conversation;
+            }
+        }
+
+        return null;
     }
 
 
@@ -439,7 +492,7 @@ class VanillaForumConnector extends AbstractForumConnector
 
         /** @var ForumPost $post */
         foreach ($posts as $post) {
-            if ($post->getAuthor() == $author->getUsername()) {
+            if ($post->getAuthor() === $author->getUsername()) {
                 $filteredPosts[] = $post;
 
                 if (++$filteredCount >= $count) {

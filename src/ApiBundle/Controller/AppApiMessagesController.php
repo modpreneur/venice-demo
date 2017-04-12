@@ -22,8 +22,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class AppApiForumController
- * @package GeneralBackend\CoreBundle\Controller\AppApi
+ * Class AppApiMessagesController
+ * @package ApiBundle\Controller\AppApi
  */
 class AppApiMessagesController extends FOSRestController
 {
@@ -251,7 +251,6 @@ class AppApiMessagesController extends FOSRestController
         return new JsonResponse($this->okResponse($messagesArray));
     }
 
-
     /**
      * Create new message
      *
@@ -303,7 +302,9 @@ class AppApiMessagesController extends FOSRestController
      *
      * @Post("api/conversations/{id}/messages", name="api_new_message")
      * @param Request $request
+     *
      * @return JsonResponse
+     * @throws \LogicException
      */
     public function sendMessageAction(Request $request, $id)
     {
@@ -312,11 +313,11 @@ class AppApiMessagesController extends FOSRestController
         $messageBody = $request->get('body');
         $conversation = null;
 
-        if (is_null($messageBody) || empty($messageBody)) {
+        if (null === $messageBody || empty($messageBody)) {
             return new JsonResponse($this->notOkResponse('Message body is missing'));
         }
 
-        if ($id == 'new') {
+        if ($id === 'new') {
             //no conversation id
             //we want to create a new conversation
             $participants = $request->get('participants');
@@ -328,20 +329,21 @@ class AppApiMessagesController extends FOSRestController
             //check, if the conversation already exists
             $conversation = $forumService->getExistingConversation($user, $participants);
 
-            if (is_null($conversation)) {
+            if (null === $conversation) {
                 $response = $forumService->createConversation($this->getUser(), $participants, $messageBody);
                 if ($response !== true) {
                     return new JsonResponse($this->notOkResponse('Can not create a new conversation', $response));
                 }
                 //because there is no know way to get last inserted conversation id from vanilla,
                 // we have to find that conversation by ourselves
-                $conversation = $forumService->getExistingConversation($user, $participants, true);
+                $conversation = $forumService->getExistingConversation($user, $participants);
 
-                if ($conversation == null) {
+                /** @var Conversation $conversation */
+                if ($conversation === null) {
                     return new JsonResponse($this->notOkResponse('Can not create a new conversation2'));
-                } else {
-                    return $this->getMessagesAction($request, $conversation->getConversationId());
                 }
+
+                return $this->getMessagesAction($request, $conversation->getConversationId());
             }
         } elseif (is_numeric($id)) {
             //we have conversation id
