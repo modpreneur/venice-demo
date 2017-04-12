@@ -87,16 +87,20 @@ class Connector
 
     /**
      * @param $url
-     * @param array $parameters
+     * @param array|string $parameters
      *
      * @return array|mixed
      */
     public function postJson($url, $parameters = [])
     {
-        $response = $this->getClient()->post($url, $parameters);
+        $parameters = json_encode($parameters);
+
+        $response = $this->getClient()->request('POST', $url, [
+           'body' => $parameters
+        ]);
 
         $decoded = json_decode($response->getBody(), true);
 
-        return is_null($decoded) ? [] : $decoded;
+        return $decoded ?? [];
     }
 }
