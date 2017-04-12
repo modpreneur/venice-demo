@@ -397,7 +397,7 @@ class VanillaForumConnector extends AbstractForumConnector
                         ->findOneBy(['username' => $participant['Name']]);
 
                     if (is_null($participantEnt)) {
-                        $participantModernEntrepreneurGeneralBackendCoreBundles[] = $participant['Name'];
+                        $participants[] = $participant['Name'];
                     } else {
                         $participants[] = $participantEnt;
                     }
