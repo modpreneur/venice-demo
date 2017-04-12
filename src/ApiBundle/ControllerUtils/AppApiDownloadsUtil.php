@@ -165,7 +165,6 @@ class AppApiDownloadsUtil
      */
     protected function getContentsFromGroup(GroupContent $groupContent, $hasAccess)
     {
-
         /** @var ContentInGroup $contentInGroup */
         foreach ($groupContent->getItems() as $contentInGroup) {
             $content = $this->getContentData($contentInGroup->getContent(), $contentInGroup->getOrderNumber(), $hasAccess);
@@ -194,7 +193,15 @@ class AppApiDownloadsUtil
         } elseif ($product->getHandle() === ProductGroup::HANDLE_FLOMERSION) {
             return $this->getAllContentFromAllGroups($product);
         } else {
-            return [];
+            $data = [];
+            foreach ($product->getContentProducts() as $contentProduct) {
+                $data[] = $this->getContentData(
+                    $contentProduct->getContent(),
+                    $contentProduct->getOrderNumber(),
+                    $this->user->hasAccessToProduct($product)
+                );
+            }
+            return $data;
         }
     }
 
@@ -250,7 +257,8 @@ class AppApiDownloadsUtil
                 'sendInApi' => true,
             ];
         } else { //unknown content type
-            $data = ['UNKNOWNTYPE'.$content->getType().$content->getName()];
+//            $data = ['UNKNOWNTYPE'.$content->getType().$content->getName()];
+            return null;
         }
 
         return $data;
