@@ -22,13 +22,17 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
      */
     protected $fileProtected;
 
-
     /**
      * @var string
      * @ORM\Column(type="string")
      */
     protected $downloadType;
 
+    /**
+     * @var string
+     * @ORM\Column(type="integer")
+     */
+    protected $fileSize;
 
     /**
      * @return string
@@ -94,5 +98,21 @@ class PdfContent extends \Venice\AppBundle\Entity\Content\PdfContent
     public function haveDownloadName()
     {
         return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileSize()
+    {
+        return $this->fileSize;
+    }
+
+    /**
+     * @param string $fileSize
+     */
+    public function setFileSize($fileSize)
+    {
+        $this->fileSize = $fileSize;
     }
 }

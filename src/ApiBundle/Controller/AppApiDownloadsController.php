@@ -41,7 +41,7 @@ class AppApiDownloadsController extends FOSRestController
         } elseif ($group === 'platinumclub') {
             $handle = ProductGroup::HANDLE_FLOMERSION;
         } else {
-            return new JsonResponse($this->notOkResponse('Group not found'));
+            return new JsonResponse($this->notOkResponse('Unknown group'));
         }
 
         $product = $this->getDoctrine()
@@ -52,6 +52,10 @@ class AppApiDownloadsController extends FOSRestController
         if (!$product) {
             return new JsonResponse($this->notOkResponse('Group not found'));
         }
+
+        $user = $this->getUser();
+        $utils = $this->get('api.controller_utils.downloads_util');
+        $data = $utils->getDataForProduct($user, $product);
 
         return new JsonResponse($this->okResponse($data));
     }

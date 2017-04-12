@@ -15,3 +15,10 @@ services:
       - '@security.authentication.manager'
       - '@doctrine.orm.entity_manager'
     public: false
+
+  api.controller_utils.downloads_util:
+    class: ApiBundle\ControllerUtils\AppApiDownloadsUtil
+    arguments:
+      - "@venice.app.buy_url_generator"
+      - "@trinity.services.price_string_generator"
+      - "@doctrine.orm.entity_manager"

@@ -139,8 +139,16 @@ class VideoContent extends \Venice\AppBundle\Entity\Content\VideoContent
     /**
      * @param string $httpStream
      */
-    public function setHttpStream(string $httpStream)
+    public function setHttpStream($httpStream)
     {
         $this->httpStream = $httpStream;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVimeoThumbnailId()
+    {
+        return $this->vimeoThumbnailId;
     }
 }
