@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Venice\AppBundle\Entity\Order;
+use Venice\AppBundle\Entity\OrderItem;
 
 /**
  * @Route("/api/invoices")
@@ -143,7 +144,19 @@ class AppApiOrderController extends FOSRestController
                 $propertiesArray['startedDate'] = $currentObject->getFirstPaymentDate()
                     ->format('Y-m-d H:i:s');
 
-                $propertiesArray['invoiceItems'] = $currentObject->getItems();
+                $orderItems = $currentObject->getItems();
+
+                if (!empty($orderItems)) {
+                    $orderItemTitles = [];
+
+                    /** @var array $orderItems */
+                    /** @var OrderItem $item */
+                    foreach ($orderItems as $item) {
+                        $orderItemTitles[]['title'] = $item->getProductName();
+                    }
+
+                    $propertiesArray['invoiceItems'] = $orderItemTitles;
+                }
             }
         };
     }
