@@ -75,9 +75,11 @@ class AppApiDownloadsUtil
             if ($product) {
                 $data[] = $this->getProductData($user, $product);
             }
-        }
 
-        return $data;
+            return $data;
+        } else {
+            return [$this->getProductData($user, $product)];
+        }
     }
 
     /**
@@ -220,7 +222,7 @@ class AppApiDownloadsUtil
                 'HTTPstream' => $content->getHttpStream(),
                 'vimeoThumbnailId' => $content->getVimeoThumbnailId(),
                 'id' => $content->getId(),
-                'name' => $content->getId(),
+                'name' => $content->getName(),
                 'image' => $content->getPreviewImage(),
                 'description' => $content->getDescription(),
                 'orderNumber' => $orderNumber,
