@@ -214,6 +214,7 @@ venice_app:
         Venice\AppBundle\Entity\User: AppBundle\Entity\User
         Venice\AppBundle\Entity\Category: AppBundle\Entity\Category
         Venice\AppBundle\Entity\Tag: AppBundle\Entity\Tag
+        Venice\AppBundle\Entity\OAuthToken: AppBundle\Entity\OAuthToken
 
 
     entity_mapping:

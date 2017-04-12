@@ -2,7 +2,6 @@
 
 namespace ApiBundle\Controller;
 
-use AppBundle\Entity\Repositories\OAuthTokenRepository;
 use AppBundle\Entity\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -11,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Venice\AppBundle\Entity\OAuthToken;
+use AppBundle\Entity\OAuthToken;
 
 /**
  * Class OAuthController
@@ -93,6 +92,11 @@ class OAuthController extends Controller
         } elseif ($grantType === 'refresh_token') {
             $oldToken = $entityManager->getRepository(OAuthToken::class)
                 ->findOneBy(['refreshToken' => $oldRefreshToken]);
+
+            if (!$oldToken) {
+                return new JsonResponse('Invalid refresh token', 404);
+            }
+
             $user = $oldToken->getUser();
         }
 
