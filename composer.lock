@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.25.6",
+            "version": "3.25.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "fe98140a4811abbe9104477b167dc3c7f9a8391b"
+                "reference": "d4f1104f5ac9c755875c5e6e9bade2c70708219a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/fe98140a4811abbe9104477b167dc3c7f9a8391b",
-                "reference": "fe98140a4811abbe9104477b167dc3c7f9a8391b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d4f1104f5ac9c755875c5e6e9bade2c70708219a",
+                "reference": "d4f1104f5ac9c755875c5e6e9bade2c70708219a",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-04-07T20:21:45+00:00"
+            "time": "2017-04-11T22:31:27+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -3270,16 +3270,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "5e9008cbb0bac2986979d905a87ae48efcf578c4"
+                "reference": "2cf3b1aac0c93e9f5fed759c1a7441c76801e045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/5e9008cbb0bac2986979d905a87ae48efcf578c4",
-                "reference": "5e9008cbb0bac2986979d905a87ae48efcf578c4",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/2cf3b1aac0c93e9f5fed759c1a7441c76801e045",
+                "reference": "2cf3b1aac0c93e9f5fed759c1a7441c76801e045",
                 "shasum": ""
             },
             "require": {
@@ -3345,7 +3345,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2017-03-24T13:11:23+00:00"
+            "time": "2017-04-12T14:28:35+00:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -3853,7 +3853,7 @@
             ],
             "authors": [
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -4168,12 +4168,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "41b82303cfa7cdac806efb337e6def395d3976ca"
+                "reference": "927fa25cea3957d46dac2b8df49ec297e0971478"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/41b82303cfa7cdac806efb337e6def395d3976ca",
-                "reference": "41b82303cfa7cdac806efb337e6def395d3976ca",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/927fa25cea3957d46dac2b8df49ec297e0971478",
+                "reference": "927fa25cea3957d46dac2b8df49ec297e0971478",
                 "shasum": ""
             },
             "require": {
@@ -4243,7 +4243,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-04-10 09:56:03"
+            "time": "2017-04-12 13:01:00"
         },
         {
             "name": "monolog/monolog",
@@ -4380,16 +4380,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe"
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/5a5a9fc8025a08d8919be87d6884d5a92520cefe",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/8e6e04167378abf1ddb4d3522d8755c5fd90d102",
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102",
                 "shasum": ""
             },
             "require": {
@@ -4418,7 +4418,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-01-26T22:05:40+00:00"
+            "time": "2017-04-12T18:52:22+00:00"
         },
         {
             "name": "nette/utils",
@@ -7759,12 +7759,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "339bbde025ac9f55d70b17168caa4156f7e40568"
+                "reference": "6195edeec0cda6dbe6b9bfb19df1151a58f80843"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/339bbde025ac9f55d70b17168caa4156f7e40568",
-                "reference": "339bbde025ac9f55d70b17168caa4156f7e40568",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/6195edeec0cda6dbe6b9bfb19df1151a58f80843",
+                "reference": "6195edeec0cda6dbe6b9bfb19df1151a58f80843",
                 "shasum": ""
             },
             "require": {
@@ -7810,7 +7810,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2017-03-30 12:52:01"
+            "time": "2017-04-12 12:43:49"
         },
         {
             "name": "trinity/messages",
