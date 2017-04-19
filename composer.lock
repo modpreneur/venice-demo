@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.25.7",
+            "version": "3.25.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "d4f1104f5ac9c755875c5e6e9bade2c70708219a"
+                "reference": "8c12f611bf5d89318141db7bc8dee644423957bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d4f1104f5ac9c755875c5e6e9bade2c70708219a",
-                "reference": "d4f1104f5ac9c755875c5e6e9bade2c70708219a",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8c12f611bf5d89318141db7bc8dee644423957bd",
+                "reference": "8c12f611bf5d89318141db7bc8dee644423957bd",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-04-11T22:31:27+00:00"
+            "time": "2017-04-18T18:47:31+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -3270,16 +3270,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "2cf3b1aac0c93e9f5fed759c1a7441c76801e045"
+                "reference": "b8683d206e7297f54034f67a877f966c14dc12ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/2cf3b1aac0c93e9f5fed759c1a7441c76801e045",
-                "reference": "2cf3b1aac0c93e9f5fed759c1a7441c76801e045",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/b8683d206e7297f54034f67a877f966c14dc12ea",
+                "reference": "b8683d206e7297f54034f67a877f966c14dc12ea",
                 "shasum": ""
             },
             "require": {
@@ -3345,7 +3345,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2017-04-12T14:28:35+00:00"
+            "time": "2017-04-17T15:27:46+00:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -3853,7 +3853,7 @@
             ],
             "authors": [
                 {
-                    "name": "KNPLabs Team",
+                    "name": "KnpLabs Team",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -4168,12 +4168,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "927fa25cea3957d46dac2b8df49ec297e0971478"
+                "reference": "9e111cf042e8669a9f5202e0f0e344279273cda2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/927fa25cea3957d46dac2b8df49ec297e0971478",
-                "reference": "927fa25cea3957d46dac2b8df49ec297e0971478",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/9e111cf042e8669a9f5202e0f0e344279273cda2",
+                "reference": "9e111cf042e8669a9f5202e0f0e344279273cda2",
                 "shasum": ""
             },
             "require": {
@@ -4243,7 +4243,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-04-12 13:01:00"
+            "time": "2017-04-19 09:13:23"
         },
         {
             "name": "monolog/monolog",
@@ -7437,12 +7437,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "4dac07be6ef0d59b8e5054c080de91aa41b577ef"
+                "reference": "a696adc571def540a235bf7a29ddb6b567c9fa74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/4dac07be6ef0d59b8e5054c080de91aa41b577ef",
-                "reference": "4dac07be6ef0d59b8e5054c080de91aa41b577ef",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/a696adc571def540a235bf7a29ddb6b567c9fa74",
+                "reference": "a696adc571def540a235bf7a29ddb6b567c9fa74",
                 "shasum": ""
             },
             "require": {
@@ -7486,7 +7486,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2017-04-10 11:25:07"
+            "time": "2017-04-18 08:33:25"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -8168,16 +8168,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25"
+                "reference": "437efc435619c8e67acacda37b3984344854142c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9718186a5df85a4f7917e78d3ffcabc204c75d25",
-                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/437efc435619c8e67acacda37b3984344854142c",
+                "reference": "437efc435619c8e67acacda37b3984344854142c",
                 "shasum": ""
             },
             "require": {
@@ -8227,7 +8227,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-03-22T15:41:51+00:00"
+            "time": "2017-04-18T21:50:11+00:00"
         },
         {
             "name": "uran1980/fancybox-bundle",
