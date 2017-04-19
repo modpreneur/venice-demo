@@ -77,8 +77,8 @@ class AppApiNewsletterController extends FOSRestController
     {
         $user = $this->getUser();
 
-        $connectorName = $this->getParameter('flofit.services.maropost_connector');
-        $connector = $this->get($connectorName);
+//        $connectorName = $this->getParameter();
+        $connector = $this->get('flofit.services.maropost_connector');
 
         $newsletters = $connector->getNewsletters($user);
         $data = [];
@@ -149,8 +149,8 @@ class AppApiNewsletterController extends FOSRestController
     {
         $user = $this->getUser();
 
-        $connectorName = $this->getParameter('connector_service_name');
-        $connector = $this->get($connectorName);
+//        $connectorName = $this->getParameter('flofit.services.maropost_connector');
+        $connector = $this->get('flofit.services.marop$connectorNameost_connector');
 
         $newsletters = json_decode($request->get(self::NEWSLETTERS_PARAMETER), true);
 
