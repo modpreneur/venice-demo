@@ -11,6 +11,7 @@ use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductGroup;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Trinity\Component\Utils\Services\PriceStringGenerator;
 use Venice\AppBundle\Entity\Content\Content;
 use Venice\AppBundle\Services\BuyUrlGenerator;
@@ -95,6 +96,10 @@ class AppApiDownloadsUtil
     {
         $this->user = $user;
 
+        $subProducts = [];
+        if ($product->getHandle() === ProductGroup::HANDLE_FLOFIT) {
+            $subProducts[] = $this->getFlofitShippingProductData();
+        }
         return [
             'type' => 'bundleproduct',
             'access' => $user->hasAccessToProduct($product),
@@ -102,7 +107,7 @@ class AppApiDownloadsUtil
             'openIn' => 0,
             'buylink' => $this->getProductBuyLink($product),
             'price' => $this->getProductPrice($product),
-            'subProducts' => $this->getContentFromProduct($product),
+            'subProducts' => array_merge($subProducts, $this->getContentFromProduct($product)),
             'shortName' => $product->getShortName(),
             'upselMiniatureMobile' => $product->getUpselMiniatureMobile(),
             'shortDescription' => $product->getShortDescription(),
@@ -169,7 +174,9 @@ class AppApiDownloadsUtil
         foreach ($groupContent->getItems() as $contentInGroup) {
             $content = $this->getContentData($contentInGroup->getContent(), $contentInGroup->getOrderNumber(), $hasAccess);
 
-            $groupContents[] = $content;
+            if ($content !== null) {
+                $groupContents[] = $content;
+            }
         }
 
         return $groupContents;
@@ -186,7 +193,9 @@ class AppApiDownloadsUtil
             foreach ($product->getContentProducts() as $contentProduct) {
                 $content = $this->getContentData($contentProduct->getContent(), $contentProduct->getOrderNumber(), $this->user->hasAccessToProduct($product));
 
-                $groupContents[] = $content;
+                if ($content !== null) {
+                    $groupContents[] = $content;
+                }
             }
 
             return $groupContents;
@@ -195,11 +204,15 @@ class AppApiDownloadsUtil
         } else {
             $data = [];
             foreach ($product->getContentProducts() as $contentProduct) {
-                $data[] = $this->getContentData(
+                $content = $this->getContentData(
                     $contentProduct->getContent(),
                     $contentProduct->getOrderNumber(),
                     $this->user->hasAccessToProduct($product)
                 );
+
+                if ($content !== null) {
+                    $data[] = $content;
+                }
             }
             return $data;
         }
@@ -306,6 +319,8 @@ class AppApiDownloadsUtil
     {
         if ($product->getHandle() === ProductGroup::HANDLE_NUTRITION_AND_MEALS) {
             return $this->entityManager->getRepository(BillingPlan::class)->findOneBy(['itemId' => 402]); //cb id
+        } if ($product->getHandle() === ProductGroup::HANDLE_FLOFIT_PHYSICAL) {
+            return $this->entityManager->getRepository(BillingPlan::class)->findOneBy(['itemId' => 206]); //cb id
         } elseif ($product->getHandle() === ProductGroup::HANDLE_PLATINUM_MIX) {
             return $this->entityManager->getRepository(BillingPlan::class)->findOneBy(['itemId' => 401]); //cb id
         } elseif ($product->getHandle() === ProductGroup::HANDLE_7_DAY_RIP_MIX) {
@@ -330,5 +345,33 @@ class AppApiDownloadsUtil
         }
 
         return $ret;
+    }
+
+    /**
+     * @return array|null
+     * @throws \Exception
+     */
+    protected function getFlofitShippingProductData()
+    {
+        $product = $this->entityManager->getRepository(StandardProduct::class)->findOneBy(['handle' => ProductGroup::HANDLE_FLOFIT_PHYSICAL]);
+
+        if ($product === null) {
+            return null;
+        }
+
+        return [
+            'type' => 'shippingproduct',
+            'access' => true,
+            'buylink' => $this->getProductBuyLink($product),
+            'price' => $this->getProductPrice($product),
+            'shippingPrice' => 'already included',
+            'id' => $product->getId(),
+            'name' => 'Shipping-product',
+            'image' => null,
+            'description' => $product->getDescription(),
+            'orderNumber' => 0,
+            'delayed' => false,
+            'sendInApi' => true
+        ];
     }
 }
