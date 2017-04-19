@@ -6,8 +6,7 @@
  * Time: 12:28
  */
 
-namespace GeneralBackend\CoreBundle\Controller\AppApi;
-
+namespace ApiBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
