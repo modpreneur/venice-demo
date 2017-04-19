@@ -143,8 +143,8 @@ class MaropostConnector
     public function getUserInfo(User $user)
     {
 
-//        $curl = curl_init($this->getUrl(self::URL_CONTACT . $user->getEmail()));
-        $curl = curl_init($this->getUrl('/contacts/email.json?contact[email]=kostelecky@webvalley.com'));
+        $curl = curl_init($this->getUrl(self::URL_CONTACT . $user->getEmail()));
+//        $curl = curl_init($this->getUrl('/contacts/email.json?contact[email]=kostelecky@webvalley.com'));
 
         $headers = [
             'Content-Type: application/json',
