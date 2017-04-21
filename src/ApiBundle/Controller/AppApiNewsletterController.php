@@ -30,9 +30,11 @@ class AppApiNewsletterController extends FOSRestController
 {
     use Api;
 
-    const NEWSLETTERS_PARAMETER = "newsletters";
-    const LIST_ID_PARAMETER = "listId";
-    const IS_SUBSCRIBED_PARAMETER = "isSubscribed";
+    const NEWSLETTERS_PARAMETER   = 'newsletters';
+    const LIST_ID_PARAMETER       = 'listId';
+    const IS_SUBSCRIBED_PARAMETER = 'isSubscribed';
+
+
     /**
      * Get newsletters for user
      *
@@ -71,29 +73,23 @@ class AppApiNewsletterController extends FOSRestController
      * @Get("", name="api_newsletters_get")
      *
      * @return JsonResponse
+     * @throws \Venice\AppBundle\Exceptions\UnsuccessfulNecktieResponseException
+     * @throws \Venice\AppBundle\Exceptions\ExpiredRefreshTokenException
+     * @throws \RuntimeException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Exception
      */
     public function getNewslettersAction()
     {
         $user = $this->getUser();
 
-//        $connectorName = $this->getParameter();
-        $connector = $this->get('flofit.services.maropost_connector');
+        $newsletters = $this
+            ->get('venice.app.necktie_gateway')
+            ->getNewsletters($user);
 
-        $newsletters = $connector->getNewsletters($user);
-        $data = [];
-
-        //set custom key isSubscribed
-        /** @var Newsletter $newsletter */
-        foreach ($newsletters as $newsletter) {
-            $array[self::LIST_ID_PARAMETER] = $newsletter->getListId();
-            $array[self::TITLE_PARAMETER] = $newsletter->getTitle();
-            $array[self::IS_SUBSCRIBED_PARAMETER] = $newsletter->isSubscribed();
-
-            $data[] = $array;
-        }
-
-        return new JsonResponse($this->okResponse($data));
+        return new JsonResponse($this->okResponse($newsletters));
     }
+
 
     const TITLE_PARAMETER = 'title';
 
@@ -148,33 +144,15 @@ class AppApiNewsletterController extends FOSRestController
     {
         $user = $this->getUser();
 
-//        $connectorName = $this->getParameter('flofit.services.maropost_connector');
-        $connector = $this->get('flofit.services.maropost_connector');
-
         $newsletters = json_decode($request->get(self::NEWSLETTERS_PARAMETER), true);
 
         if (!$newsletters || !is_array($newsletters) || empty($newsletters)) {
             return new JsonResponse($this->notOkResponse('No data'));
         }
 
-        $listIdParameter = self::LIST_ID_PARAMETER;
-        $isSubscribedParameter = self::IS_SUBSCRIBED_PARAMETER;
-
-        foreach ($newsletters as $newsletter) {
-            if (!isset($newsletter[$listIdParameter]) || !isset($newsletter[$isSubscribedParameter])) {
-                return new JsonResponse(
-                    $this->notOkResponse("Missing $listIdParameter or $isSubscribedParameter field.")
-                );
-            }
-            $newsletterObject = new Newsletter(
-                $user,
-                $newsletter[$listIdParameter],
-                null,
-                $newsletter[$isSubscribedParameter]
-            );
-
-            $connector->updateNewsletter($newsletterObject, $user);
-        }
+        $res = $this
+            ->get('venice.app.necktie_gateway')
+            ->updateNewsletters($user, $newsletters);
 
         return $this->getNewslettersAction();
     }
