@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\User;
 use AppBundle\Privacy\PrivacySettings;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,9 +17,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class PrivacySettingsType extends SingleItemType
 {
     private $classicChoice = ['Public' => true, 'Private' => false];
-
-    /** @var User */
-    protected $user;
 
 
     /**

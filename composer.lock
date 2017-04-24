@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.25.8",
+            "version": "3.26.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "8c12f611bf5d89318141db7bc8dee644423957bd"
+                "reference": "05df1887d7b8cea9fba9ad59e1513c3815e883ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8c12f611bf5d89318141db7bc8dee644423957bd",
-                "reference": "8c12f611bf5d89318141db7bc8dee644423957bd",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/05df1887d7b8cea9fba9ad59e1513c3815e883ae",
+                "reference": "05df1887d7b8cea9fba9ad59e1513c3815e883ae",
                 "shasum": ""
             },
             "require": {
@@ -84,33 +84,29 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-04-18T18:47:31+00:00"
+            "time": "2017-04-21T20:25:16+00:00"
         },
         {
             "name": "behat/transliterator",
-            "version": "v1.2.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Transliterator.git",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
+                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/868e05be3a9f25ba6424c2dd4849567f50715003",
+                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "require-dev": {
-                "chuyskywalker/rolling-curl": "^3.1",
-                "php-yaoi/php-yaoi": "^1.0"
-            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -128,7 +124,7 @@
                 "slug",
                 "transliterator"
             ],
-            "time": "2017-04-04T11:38:05+00:00"
+            "time": "2015-09-28T16:26:35+00:00"
         },
         {
             "name": "bmatzner/jquery-bundle",
@@ -1666,16 +1662,16 @@
         },
         {
             "name": "facebook/php-sdk-v4",
-            "version": "5.4.4",
+            "version": "5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-graph-sdk.git",
-                "reference": "5d0c4865e80e231d48a4571841bd018828fe58e1"
+                "reference": "93d7dc87e55a541d2e27d38f3aed40abbffdf6e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/5d0c4865e80e231d48a4571841bd018828fe58e1",
-                "reference": "5d0c4865e80e231d48a4571841bd018828fe58e1",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/93d7dc87e55a541d2e27d38f3aed40abbffdf6e1",
+                "reference": "93d7dc87e55a541d2e27d38f3aed40abbffdf6e1",
                 "shasum": ""
             },
             "require": {
@@ -1721,7 +1717,7 @@
                 "sdk"
             ],
             "abandoned": "facebook/graph-sdk",
-            "time": "2017-01-19T15:42:20+00:00"
+            "time": "2017-04-20T14:15:02+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -2157,20 +2153,20 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.27",
+            "version": "v2.4.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "fe152e1239f2f46287d369e43cc9fa817cc3cd36"
+                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/fe152e1239f2f46287d369e43cc9fa817cc3cd36",
-                "reference": "fe152e1239f2f46287d369e43cc9fa817cc3cd36",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/58038d5d217b6ba2c75de90cb2f6d424d86fab56",
+                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56",
                 "shasum": ""
             },
             "require": {
-                "behat/transliterator": "~1.0",
+                "behat/transliterator": "1.1",
                 "doctrine/common": "~2.4",
                 "php": ">=5.3.2"
             },
@@ -2231,7 +2227,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2017-03-22T09:48:22+00:00"
+            "time": "2017-04-23T08:59:41+00:00"
         },
         {
             "name": "google/apiclient",
@@ -3017,16 +3013,16 @@
         },
         {
             "name": "jackalope/jackalope",
-            "version": "1.2.8",
+            "version": "1.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jackalope/jackalope.git",
-                "reference": "6302ca8ae9ba756085ae3a01896520672a1e3cdf"
+                "reference": "e8a59194dafef569b0c08fc322beb3a72d5842f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jackalope/jackalope/zipball/6302ca8ae9ba756085ae3a01896520672a1e3cdf",
-                "reference": "6302ca8ae9ba756085ae3a01896520672a1e3cdf",
+                "url": "https://api.github.com/repos/jackalope/jackalope/zipball/e8a59194dafef569b0c08fc322beb3a72d5842f6",
+                "reference": "e8a59194dafef569b0c08fc322beb3a72d5842f6",
                 "shasum": ""
             },
             "require": {
@@ -3066,7 +3062,7 @@
             "keywords": [
                 "phpcr"
             ],
-            "time": "2017-03-28T08:58:07+00:00"
+            "time": "2017-04-19T13:59:44+00:00"
         },
         {
             "name": "jackalope/jackalope-doctrine-dbal",
@@ -4168,12 +4164,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "9e111cf042e8669a9f5202e0f0e344279273cda2"
+                "reference": "3d06e02552738da00cb53724cb2da36171611dd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/9e111cf042e8669a9f5202e0f0e344279273cda2",
-                "reference": "9e111cf042e8669a9f5202e0f0e344279273cda2",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/3d06e02552738da00cb53724cb2da36171611dd2",
+                "reference": "3d06e02552738da00cb53724cb2da36171611dd2",
                 "shasum": ""
             },
             "require": {
@@ -4243,7 +4239,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-04-19 09:13:23"
+            "time": "2017-04-24 09:56:04"
         },
         {
             "name": "monolog/monolog",
@@ -6429,16 +6425,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.18",
+            "version": "v5.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "17846680901003d26d823c2e3ac9228702837916"
+                "reference": "654c4fa3d11448c8005400a244987896243a990a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/17846680901003d26d823c2e3ac9228702837916",
-                "reference": "17846680901003d26d823c2e3ac9228702837916",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/654c4fa3d11448c8005400a244987896243a990a",
+                "reference": "654c4fa3d11448c8005400a244987896243a990a",
                 "shasum": ""
             },
             "require": {
@@ -6477,7 +6473,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2017-01-10T14:58:45+00:00"
+            "time": "2017-04-23T22:28:23+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -6762,16 +6758,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.6",
+            "version": "v5.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e"
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
                 "shasum": ""
             },
             "require": {
@@ -6812,7 +6808,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-02-13T07:52:53+00:00"
+            "time": "2017-04-20T17:32:18+00:00"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -7437,12 +7433,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-admin.git",
-                "reference": "a696adc571def540a235bf7a29ddb6b567c9fa74"
+                "reference": "16c061542695d1bb3e7f676f17e8a562fece75ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/a696adc571def540a235bf7a29ddb6b567c9fa74",
-                "reference": "a696adc571def540a235bf7a29ddb6b567c9fa74",
+                "url": "https://api.github.com/repos/modpreneur/trinity-admin/zipball/16c061542695d1bb3e7f676f17e8a562fece75ac",
+                "reference": "16c061542695d1bb3e7f676f17e8a562fece75ac",
                 "shasum": ""
             },
             "require": {
@@ -7457,7 +7453,7 @@
             "require-dev": {
                 "knplabs/knp-menu-bundle": "~2.1",
                 "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~5.0",
+                "phpunit/phpunit": "~6.0",
                 "sensio/generator-bundle": "~3.0"
             },
             "suggest": {
@@ -7486,7 +7482,7 @@
                 }
             ],
             "description": "Trinity Admin bundle",
-            "time": "2017-04-18 08:33:25"
+            "time": "2017-04-21 11:37:51"
         },
         {
             "name": "trinity/bunny-bundle",
@@ -7532,12 +7528,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-core-entities.git",
-                "reference": "9c4eca4519e06d263a4667db3adb5aa4221f6d14"
+                "reference": "6fb9db6c3780ada34b8de9456c90d0058013c77e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-core-entities/zipball/9c4eca4519e06d263a4667db3adb5aa4221f6d14",
-                "reference": "9c4eca4519e06d263a4667db3adb5aa4221f6d14",
+                "url": "https://api.github.com/repos/modpreneur/trinity-core-entities/zipball/6fb9db6c3780ada34b8de9456c90d0058013c77e",
+                "reference": "6fb9db6c3780ada34b8de9456c90d0058013c77e",
                 "shasum": ""
             },
             "require": {
@@ -7577,7 +7573,7 @@
                 }
             ],
             "description": "Trinity Framework",
-            "time": "2017-03-30 17:46:41"
+            "time": "2017-04-24 05:26:42"
         },
         {
             "name": "trinity/core-interfaces",
@@ -7632,12 +7628,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity.git",
-                "reference": "586f938c46ce722435ca8803f2c526632b5cf8fb"
+                "reference": "bab6cfae0dc1c961fba31ed916aab785683c6471"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity/zipball/586f938c46ce722435ca8803f2c526632b5cf8fb",
-                "reference": "586f938c46ce722435ca8803f2c526632b5cf8fb",
+                "url": "https://api.github.com/repos/modpreneur/trinity/zipball/bab6cfae0dc1c961fba31ed916aab785683c6471",
+                "reference": "bab6cfae0dc1c961fba31ed916aab785683c6471",
                 "shasum": ""
             },
             "require": {
@@ -7686,7 +7682,7 @@
                 }
             ],
             "description": "Trinity Framework",
-            "time": "2017-03-30 17:52:56"
+            "time": "2017-04-21 11:12:22"
         },
         {
             "name": "trinity/grid",
@@ -7694,12 +7690,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-grid.git",
-                "reference": "bfc4844a9a472717f5c85c923e0a6f4905169fa9"
+                "reference": "80274c2d249827d926a91142baae124ba2d99de8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/bfc4844a9a472717f5c85c923e0a6f4905169fa9",
-                "reference": "bfc4844a9a472717f5c85c923e0a6f4905169fa9",
+                "url": "https://api.github.com/repos/modpreneur/trinity-grid/zipball/80274c2d249827d926a91142baae124ba2d99de8",
+                "reference": "80274c2d249827d926a91142baae124ba2d99de8",
                 "shasum": ""
             },
             "require": {
@@ -7751,7 +7747,7 @@
                 }
             ],
             "description": "Trinity Grid bundle",
-            "time": "2017-02-10 13:57:12"
+            "time": "2017-04-21 11:27:43"
         },
         {
             "name": "trinity/logger",
@@ -7759,12 +7755,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-logger.git",
-                "reference": "6195edeec0cda6dbe6b9bfb19df1151a58f80843"
+                "reference": "c9333104e248c15019627e607d7876c26864d6fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/6195edeec0cda6dbe6b9bfb19df1151a58f80843",
-                "reference": "6195edeec0cda6dbe6b9bfb19df1151a58f80843",
+                "url": "https://api.github.com/repos/modpreneur/trinity-logger/zipball/c9333104e248c15019627e607d7876c26864d6fb",
+                "reference": "c9333104e248c15019627e607d7876c26864d6fb",
                 "shasum": ""
             },
             "require": {
@@ -7810,7 +7806,7 @@
                 }
             ],
             "description": "Trinity Logger bundle",
-            "time": "2017-04-12 12:43:49"
+            "time": "2017-04-21 08:48:38"
         },
         {
             "name": "trinity/messages",
@@ -7931,12 +7927,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-search.git",
-                "reference": "7f788061c3a2b452c7bbb852e4d564731fb637bc"
+                "reference": "3fbac572be4fe44f4f38bf38ad1d0e0d9cd01f24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-search/zipball/7f788061c3a2b452c7bbb852e4d564731fb637bc",
-                "reference": "7f788061c3a2b452c7bbb852e4d564731fb637bc",
+                "url": "https://api.github.com/repos/modpreneur/trinity-search/zipball/3fbac572be4fe44f4f38bf38ad1d0e0d9cd01f24",
+                "reference": "3fbac572be4fe44f4f38bf38ad1d0e0d9cd01f24",
                 "shasum": ""
             },
             "require": {
@@ -7944,8 +7940,9 @@
                 "doctrine/orm": "~2.5",
                 "friendsofsymfony/rest-bundle": "~2.0",
                 "jms/serializer-bundle": "~1.1",
-                "php": ">=7",
+                "php": ">=7.1",
                 "sensio/framework-extra-bundle": "~3.0",
+                "symfony/asset": "3.2.*",
                 "symfony/config": "~2.8 | ~3.0",
                 "symfony/dependency-injection": "~2.8 | ~3.0",
                 "symfony/http-kernel": "~2.8 | ~3.0",
@@ -7995,7 +7992,7 @@
                 }
             ],
             "description": "Trinity Search bundle",
-            "time": "2017-03-31 09:44:10"
+            "time": "2017-04-21 11:06:22"
         },
         {
             "name": "trinity/settings",
@@ -8065,12 +8062,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-utils.git",
-                "reference": "7361fa0e8f4408853fbde48607e62149e8a07f3e"
+                "reference": "73379b1b91c9dd46251b577762865073f5cda2a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-utils/zipball/7361fa0e8f4408853fbde48607e62149e8a07f3e",
-                "reference": "7361fa0e8f4408853fbde48607e62149e8a07f3e",
+                "url": "https://api.github.com/repos/modpreneur/trinity-utils/zipball/73379b1b91c9dd46251b577762865073f5cda2a5",
+                "reference": "73379b1b91c9dd46251b577762865073f5cda2a5",
                 "shasum": ""
             },
             "require": {
@@ -8112,7 +8109,7 @@
                 }
             ],
             "description": "Trinity Utils bundle",
-            "time": "2017-03-22 14:41:55"
+            "time": "2017-04-21 11:24:02"
         },
         {
             "name": "twig/extensions",
@@ -8168,16 +8165,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "437efc435619c8e67acacda37b3984344854142c"
+                "reference": "85e8372c451510165c04bf781295f9d922fa524b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/437efc435619c8e67acacda37b3984344854142c",
-                "reference": "437efc435619c8e67acacda37b3984344854142c",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/85e8372c451510165c04bf781295f9d922fa524b",
+                "reference": "85e8372c451510165c04bf781295f9d922fa524b",
                 "shasum": ""
             },
             "require": {
@@ -8227,7 +8224,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-04-18T21:50:11+00:00"
+            "time": "2017-04-21T00:13:02+00:00"
         },
         {
             "name": "uran1980/fancybox-bundle",

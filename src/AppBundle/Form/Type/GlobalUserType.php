@@ -44,6 +44,8 @@ class GlobalUserType extends SingleItemType
                 GlobalUserType::$availableFields[] = 'fullPassword';
                 GlobalUserType::$availableFields[] = 'newPassword';
                 GlobalUserType::$availableFields[] = 'location';
+                GlobalUserType::$availableFields[] = 'dateOfBirth';
+                GlobalUserType::$availableFields[] = 'birthDate';
                 GlobalUserType::$availableFields[] = 'socialNetworks';
                 GlobalUserType::$availableFields[] = 'profilePhotoWithDeleteButton';
             }
@@ -83,7 +85,22 @@ class GlobalUserType extends SingleItemType
     public function setDateOfBirth(FormInterface $form, array $options)
     {
         $form->add('dateOfBirth', DateType::class, [
-            'years' => range(date('Y') - 100, date('Y') - 10)
+            'years' => range(date('Y') - 100, date('Y') - 10),
+        ]);
+    }
+
+    /**
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     */
+    public function setBirthDate(FormInterface $form, array $options)
+    {
+        $form->add('birthDate', DateType::class, [
+            'years' => range(date('Y') - 100, date('Y') - 10),
         ]);
     }
 
@@ -167,8 +184,8 @@ class GlobalUserType extends SingleItemType
             ChoiceType::class,
             [
                 'choices' => [
-                    User::PREFERRED_IMPERIAL => 'Imperial',
-                    User::PREFERRED_METRIC   => 'Metric'
+                    User::PREFERRED_IMPERIAL => 'imperial',
+                    User::PREFERRED_METRIC   => 'metric'
                 ]
             ]
         );

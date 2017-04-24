@@ -315,6 +315,6 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     public function getfacebookId()
     {
-        return 'id';
+        return null;
     }
 }

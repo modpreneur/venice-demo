@@ -2,7 +2,9 @@
 
 namespace ApiBundle\Api;
 
+use ApiBundle\Api;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
@@ -10,13 +12,14 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 use AppBundle\Entity\OAuthToken;
 
-
 /**
  * Class ApiListener
  * @package ApiBundle\Api
  */
 class ApiListener implements ListenerInterface
 {
+    use Api;
+
     /**
      * @var TokenStorageInterface
      */
@@ -77,8 +80,7 @@ class ApiListener implements ListenerInterface
             $token = $this->entityManager->getRepository(OAuthToken::class)->findOneBy(['accessToken' => $accessToken]);
 
             if ($token === null) {
-                $response = new Response('The token is not known to the flofit');
-                $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
+                $response = new JsonResponse($this->notOkResponse('The token is not known to the flofit'));
                 $event->setResponse($response);
 
                 return;
@@ -87,8 +89,7 @@ class ApiListener implements ListenerInterface
             $user = $token->getUser();
 
             if ($user === null) {
-                $response = new Response('No user for the token');
-                $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
+                $response = new JsonResponse($this->notOkResponse('No user for the token'));
                 $event->setResponse($response);
 
                 return;

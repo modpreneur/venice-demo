@@ -1,5 +1,4 @@
 <?php
-
 namespace ApiBundle\Controller;
 
 use ApiBundle\Api;
@@ -7,7 +6,7 @@ use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProfilePhoto;
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\PrivacySettingsType;
-use AppBundle\Form\User\UserType;
+use AppBundle\Form\Type\GlobalUserType;
 use AppBundle\Privacy\PrivacySettings;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
@@ -16,11 +15,13 @@ use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Request\ParameterBag;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use Nette\Utils\DateTime;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-
-;
 
 /**
  * Class AppApiUserController
@@ -31,7 +32,6 @@ class AppApiUserController extends FOSRestController
 {
     use Api;
 
-    use Api;
     const USERNAME_PARAMETER = 'username';
     const PASSWORD_PARAMETER = 'password';
     const NEW_PASSWORD_PARAMETER = 'newPassword';
@@ -108,11 +108,11 @@ class AppApiUserController extends FOSRestController
         return new JsonResponse($this->okResponse($data));
     }
 
-
     /**
      * @param User $user
      *
      * @return array
+     * @throws \Trinity\Bundle\SettingsBundle\Exception\PropertyNotExistsException
      */
     private function getUserAsArray(User $user)
     {
@@ -123,15 +123,16 @@ class AppApiUserController extends FOSRestController
         $data['id'] = $user->getId();
         $data['firstName'] = $user->getFirstName();
         $data['lastName'] = $user->getLastName();
-        $data['avatarPhoto'] = $user->getAvatar();
+//        $data['avatarPhoto'] = $user->getAvatar();
         $data['avatarPhoto'] = '';
         $data['email'] = $user->getEmail();
         $data['username'] = $user->getUsername();
         $data['preferredUnits'] = $user->getPreferredUnits();
         $data['dateOfBirth'] = ($user->getDateOfBirth()) ? $user->getDateOfBirth()->format(self::DATE_FORMAT) : null;
         //$data['birthDateStyle'] = $user->getPrivacySettings()->getBirthDateStyle();
-        $data['birthDateStyle'] = $this->get('trinity.settings')->get('birthDateStyle', $user->getId(), 'user_settings');
-        //$data['facebookId'] = $user->getFacebookId();
+        $data['birthDateStyle'] = $this->get('trinity.settings')
+            ->get('birthDateStyle', $user->getId(), 'user_settings');
+        $data['facebookId'] = $user->getFacebookId();
         //$data['googleId']   = $user->getGoogleId();
         $data['googleId']   = '';
         //$data['twitterId']  = $user->getTwitterId();
@@ -162,7 +163,8 @@ class AppApiUserController extends FOSRestController
             $data['cropStartY'] = $profilePhoto->getCropStartY();
             $data['cropSize'] = $profilePhoto->getCropSize();
         } else {
-            $data['profilePhotoOriginal'] = 'http://my.flofit.com/Resources/public/images/site/default-profile-photo.png';
+            $data['profilePhotoOriginal'] =
+                'http://my.flofit.com/Resources/public/images/site/default-profile-photo.png';
             $data['profilePhotoCropped'] = $data['profilePhotoOriginal'];
             $data['cropStartX'] = 0;
             $data['cropStartY'] = 0;
@@ -195,7 +197,6 @@ class AppApiUserController extends FOSRestController
 
         return $data;
     }
-
 
     /**
      * Get user privacy settings
@@ -238,11 +239,20 @@ class AppApiUserController extends FOSRestController
      * @param Request $request
      *
      * @return JsonResponse
+     * @throws \LogicException
      */
     public function getPrivacyAction(Request $request)
     {
         $arrayizer = $this->get('flofit.services.arrayizer');
         $arrayizer->setWithout(['user']);
+
+        $arrayizer->setCallbacks(
+            function ($currentObject, $properties, & $propertiesArray) {
+                if ($currentObject instanceof PrivacySettings) {
+                    $propertiesArray['id']=$this->getUser()->getId();
+                }
+            }
+        );
 
         $privacySettings = $this->getUserPrivateSettings();
 
@@ -308,7 +318,7 @@ class AppApiUserController extends FOSRestController
             ->getRepository(User::class)
             ->findOneBy(['username' => $username]);
 
-        if (is_null($user)) {
+        if (null === $user) {
             return new JsonResponse($this->notOkResponse("No user with username: {$username} found"));
         }
 
@@ -371,7 +381,6 @@ class AppApiUserController extends FOSRestController
         return new JsonResponse($this->okResponse($userInfo));
     }
 
-
     /**
      * Edit user's privacy settings
      *
@@ -422,6 +431,7 @@ class AppApiUserController extends FOSRestController
      * @param Request $request
      *
      * @return JsonResponse
+     * @throws \LogicException
      */
     public function editPrivacyAction(Request $request)
     {
@@ -436,38 +446,32 @@ class AppApiUserController extends FOSRestController
             'displaySocialMedia'
         ];
 
+
         $user = $this->getUser();
-        $privacySettings = $user->getPrivacySettings();
+        $privacySettings = $this->get('flofit.privacy_settings')
+            ->getPrivacySettings($user);
 
         foreach ($formFields as $formField) {
-            $formType = new PrivacySettingsType($this->getUser(), $formField);
-            $formName = $formType->getName();
+            $formName = 'privacysettings' . strtolower($formField);
+            $formData = $request->get($formName);
 
-            $form = $this
-                ->createForm($formType, $privacySettings, ['csrf_protection' => false, 'method' => 'patch']);
-
-            Request::enableHttpMethodParameterOverride();
-            $form->handleRequest($request);
-
-            if ($form->isValid()) {
-                //form is valid even through a value of field is null. that would cause DB exception
-                if ($request->get($formName)[$formField] == null) {
+            if ($formData !== null) {
+                if (array_key_exists($formField, $formData) && $formData[$formField] === null) {
                     return new JsonResponse($this->notOkResponse("Invalid value in $formName [$formField]."));
                 }
 
-                /** @var EntityManager $em */
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($privacySettings);
-                $em->flush();
-            } else {
-                if ($form->isSubmitted() && !$form->isValid()) {
-                    $output = $this->notOkResponse($this->getFormErrors($form));
-                    $output['additional'] = 'The form was posted, but it is not valid.';
-
-                    return new JsonResponse($output);
+                if ((int)$formData[$formField] >= 0 || (int)$formData[$formField] <= 3) {
+                    if ($formField === 'birthDateStyle') {
+                        $privacySettings->setBirthDateStyle((int)$formData[$formField]);
+                    } else {
+                        $privacySettings->{'set' . ucfirst($formField)}((int)$formData[$formField] === 1);
+                    }
                 }
             }
         }
+
+        $this->get('flofit.privacy_settings')
+            ->save($privacySettings, $user);
 
         return $this->redirectToRoute('api_get_user_privacy');
     }
@@ -493,7 +497,6 @@ class AppApiUserController extends FOSRestController
 
         return $errors;
     }
-
 
     /**
      * Edit user's profile
@@ -553,80 +556,37 @@ class AppApiUserController extends FOSRestController
      * @param Request $request
      *
      * @return JsonResponse
+     * @throws \LogicException
      */
     public function editProfileAction(Request $request)
     {
-        //fields, which will not be accepted
-        $ignoredFields = [
-            'id',
-            'amemberId',
-            'firstName',
-            'lastName',
-//            'fullName',
-            'profilePhoto',
-            'avatarPhoto',
-            'haveValidEmail',
-            'isPublic',
-//            'preferredUnits',
-//            'dateOfBirth',
-            'products',
-            'lastPasswordChange',
-            'privacySettings',
-            'replayHistory',
-//            'username',
-            'usernameCanonical',
-//            'email',
-            'emailCanonical',
-            'enabled',
-            'salt',
-            'password',
-            'fullPassword',
-            'plainPassword',
-            'lastLogin',
-            'confirmationToken',
-            'passwordRequestedAt',
-            'groups',
-            'locked',
-            'expired',
-            'expiresAt',
-            'roles',
-//            'location',
-            'credentialsExpired',
-            'credentialsExpireAt',
-            '__initializer__',
-            '__cloner__',
-            '__isInitialized__',
-            'lazyPropertiesDefaults', /* this property of User(probably added by Doctrine) was causing exception:
-                                         Runtime Notice: Accessing static property
-                                         Proxies\__CG__\GeneralBackend\CoreBundle\Entity\User::$lazyPropertiesDefaults as non static */
-        ];
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 
         $form = $this->createForm(
-            new UserType(
-                $user,
-                null,
-                null,
-                $ignoredFields
-            ),
+            GlobalUserType::class,
             $user,
             ['csrf_protection' => false, 'method' => 'patch']
         );
-        $newUsername = null;
 
-        if (array_key_exists('username', $request->request->get('User'))) {
-            $newUsername = $request->get('User')['username'];
+        $newUsername = null;
+        if (array_key_exists('username', $request->request->get('globaluser'))) {
+            $newUsername = $request->get('globaluser')['username'];
         }
 
         if ($newUsername !== null) {
-            $existingUser = $em->getRepository('ModernEntrepreneurGeneralBackendCoreBundle:User')
+            $existingUser = $em->getRepository(User::class)
                 ->findOneBy(['username' => $newUsername]);
 
             if ($existingUser !== null && $existingUser !== $user) {
                 return new JsonResponse($this->notOkResponse('Username is already taken'));
             }
         }
+
+        $requestBody = $request->request->all()['globaluser'];
+
+        $request->request->set('global_user', $requestBody);
+        $request->request->remove('globaluser');
 
         Request::enableHttpMethodParameterOverride();
         $form->handleRequest($request);
@@ -636,18 +596,17 @@ class AppApiUserController extends FOSRestController
             $em->flush();
 
             return $this->redirectToRoute('api_get_user_profile');
-        } else {
-            if ($form->isSubmitted() && !$form->isValid()) {
-                $output = $this->notOkResponse($this->getFormErrors($form));
-                $output['additional'] = 'The form was posted, but it is not valid.';
+        }
 
-                return new JsonResponse($output);
-            }
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $output = $this->notOkResponse($this->getFormErrors($form));
+            $output['additional'] = 'The form was posted, but it is not valid.';
+
+            return new JsonResponse($output);
         }
 
         return new JsonResponse($this->notOkResponse(''));
     }
-
 
     /**
      * Change user password
@@ -692,6 +651,9 @@ class AppApiUserController extends FOSRestController
      * @param Request $request
      *
      * @return JsonResponse
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
+     * @throws \LogicException
      */
     public function changePasswordAction(Request $request)
     {
@@ -704,23 +666,46 @@ class AppApiUserController extends FOSRestController
         $oldPassword = $request->get(self::PASSWORD_PARAMETER);
         $newPassword = $request->get(self::NEW_PASSWORD_PARAMETER);
 
-        $userManager = $this->get('fos_user.user_manager');
-        $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+        $client =  new Client();
 
-        if ($encoder->isPasswordValid($user->getPassword(), $oldPassword, $user->getSalt())) {
-            //old password is current user's password, so set a new one
-            $user->setPlainPassword($newPassword);
-            $user->setLastPasswordChange(new \DateTime());
-            $userManager->updatePassword($user);
+        $necktieRequestBody = [
+            'oldPassword' => $oldPassword,
+            'newPassword' => $newPassword
+        ];
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+        $necktieRequestHeaders = [
+            'Authorization' => 'Bearer ' . $user->getLastAccessToken(),
+            'Content-Type' => 'application/json',
+        ];
 
-            return new JsonResponse($this->okResponse('Password changed.'));
-        } else {
-            return new JsonResponse($this->notOkResponse('Bad user password.'));
+        try {
+            $response = $client->request(
+                'PUT',
+                $this->getParameter('necktie_url') . '/api/v1/user/change-password',
+                [
+                    'headers' => $necktieRequestHeaders,
+                    'body' => json_encode($necktieRequestBody),
+                ]
+            );
+        } catch (RequestException $exception) {
+            $statusCode = $exception->getResponse()->getStatusCode();
+
+            if ($statusCode === 400) {
+                $errorMessage = $this->notOkResponse('Invalid password');
+            } elseif ($statusCode === 404) {
+                $errorMessage = $this->notOkResponse('User not found');
+            } else {
+                $errorMessage = $this->notOkResponse(json_decode($exception->getResponse()->getBody()->getContents()));
+            }
+
+            return new JsonResponse($errorMessage);
         }
+
+        if ($response->getStatusCode() === 200) {
+            return new JsonResponse($this->okResponse());
+        }
+
+            return new JsonResponse($this->notOkResponse('Bad user password.'));
     }
 
 
@@ -841,10 +826,11 @@ class AppApiUserController extends FOSRestController
         $settings = [
             'publicProfile',
             'displayEmail',
-            'birthDateStyle',
             'displayLocation',
             'displayForumActivity',
-            'displaySocialMedia',
+            'displayFullName',
+            'birthDateStyle',
+            'displaySocialMedia'
         ];
 
         $entity = new PrivacySettings();
