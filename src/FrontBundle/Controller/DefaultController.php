@@ -5,6 +5,7 @@ namespace FrontBundle\Controller;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Services\VanillaForumConnector;
 use FrontBundle\Helpers\Ajax;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Venice\FrontBundle\Controller\FrontController;
@@ -75,7 +76,10 @@ class DefaultController extends FrontController
         $nutritionGuide = $entityManager->getRepository(StandardProduct::class)
             ->findOneBy(['handle' => 'nutrition-guide']);
 
-        // @todo
+        $surveyManager = $this->get('flofit.survey_settings_manager');
+        if (!$surveyManager->getSurvey($this->getUser())) {
+            return $this->redirectToRoute('core_after_purchase_survey');
+        }
 
         $render = $this->render(
             'VeniceFrontBundle:Front:index.html.twig',

@@ -1,0 +1,124 @@
+{% extends "@VeniceApp/base.html.twig" %}
+
+{% block title %}
+    After purchase survey
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block jumbotronClass %}jumbotron-survey{% endblock %}
+
+{% block headerInside %}
+    <div class="row">
+        {#<div class="span-medium-24">#}
+            <div class="abs-center-vertical">
+                <h1>THANK YOU FOR PURCHASING <span>FLO&nbsp;FIT</span></h1>
+            </div>
+        {#</div>#}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <section class="survey">
+        <div class="row">
+            <div class="span-medium-24">
+                <p>To help us better help you, please fill out this short quick questionnaire</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span-medium-12">
+
+            </div>
+            <div class="span-medium-12">
+
+            </div>
+        </div>
+        {% form_theme afterPurchaseForm 'VeniceFrontBundle:Default:bowtieFormsSurvey.html.twig' %}
+        {{ form_start(afterPurchaseForm) }}
+
+        <div class="row">
+            <div class="span-medium-24">
+                <hr>
+                <h2>STEP 1</h2>
+                <h3>General Info</h3>
+
+                <div class="survey-field-gender-block">
+                    <div class="center-div">
+                        {{ form_row((afterPurchaseForm.male)) }}
+                    </div>
+                </div>
+
+                <div class="survey-field-age-block">
+                    <div class="center-div">
+                        {{ form_row((afterPurchaseForm.old)) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span-medium-24 center-div">
+                <hr>
+
+                <h2>STEP 2</h2>
+                <h3 class="margin-bottom-20">What is your biggest obstacle?</h3>
+                {{ form_row((afterPurchaseForm.biggestObstacle)) }}
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span-medium-24 center-div">
+                <hr>
+                <h2>STEP 3</h2>
+                <h3 class="margin-bottom-20">What is your main goal?</h3>
+                {{ form_row((afterPurchaseForm.mainGoal)) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span-medium-24 center-div">
+                <hr>
+                <h2>STEP 4</h2>
+                <h3 class="margin-bottom-20">Why do you want to get in better shape?</h3>
+                {{ form_row((afterPurchaseForm.betterShape)) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span-medium-24 text-center">
+                <hr>
+                <h2>STEP 5</h2>
+                <h3>Click "Submit" and You're In</h3>
+                <div class="margin-bottom-20">
+                    {{ form_row((afterPurchaseForm.submit)) }}
+                </div>
+                <a class="link survey-skip-button font-20" href="{{ skipRedirect }}">SKIP</a>
+            </div>
+        </div>
+
+        {{ form_end(afterPurchaseForm) }}
+    </section>
+    <style>
+        input[type=radio] + label:before{
+            border-radius: 50% !important;
+        }
+    </style>
+{% endblock %}
+
+{% block bodyjavascripts %}
+    <script>
+        function heightFix(){
+            $('.main-label').children().each(function(){
+                var h = $(this).css('height');
+                if (parseInt(h) > 25) {
+                    $(".main-label label").css("min-height",h).css("margin-bottom", "10px");
+                }
+            });
+        }
+        $( function() {
+            heightFix();
+        });
+    </script>
+{% endblock %}

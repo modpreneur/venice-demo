@@ -131,6 +131,11 @@ services:
         tags:
             - { name: form.type }
 
+    app.form.after_purchase_survey:
+        class: AppBundle\Form\Type\AfterPurchaseSurveyType
+        tags:
+            - { name: form.type }
+
     #------------------------------------------
 
 
@@ -191,6 +196,10 @@ services:
         class: AppBundle\Privacy\PrivacySettingsManager
         arguments:
           - "@trinity.settings"
+
+    flofit.survey_settings_manager:
+        class: AppBundle\Survey\SurveySettingsManager
+        arguments: ['@trinity.settings']
 
 
     flofit.services.profile_photo_url_generator:
