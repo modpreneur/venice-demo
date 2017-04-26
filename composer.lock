@@ -3551,7 +3551,7 @@
                     "homepage": "http://github.com/knplabs/Gaufrette/contributors"
                 },
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 }
             ],
@@ -3791,7 +3791,7 @@
             ],
             "authors": [
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -3849,7 +3849,7 @@
             ],
             "authors": [
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -4164,12 +4164,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:modpreneur/venice.git",
-                "reference": "3d06e02552738da00cb53724cb2da36171611dd2"
+                "reference": "0127e726c68351a9821cd08ab441a73100713078"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/venice/zipball/3d06e02552738da00cb53724cb2da36171611dd2",
-                "reference": "3d06e02552738da00cb53724cb2da36171611dd2",
+                "url": "https://api.github.com/repos/modpreneur/venice/zipball/0127e726c68351a9821cd08ab441a73100713078",
+                "reference": "0127e726c68351a9821cd08ab441a73100713078",
                 "shasum": ""
             },
             "require": {
@@ -4239,7 +4239,7 @@
                 "source": "https://github.com/modpreneur/venice/tree/master",
                 "issues": "https://github.com/modpreneur/venice/issues"
             },
-            "time": "2017-04-24 09:56:04"
+            "time": "2017-04-24 14:51:21"
         },
         {
             "name": "monolog/monolog",
