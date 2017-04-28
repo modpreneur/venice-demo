@@ -11,6 +11,7 @@ use AppBundle\Entity\ContentProduct;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductGroup;
 use AppBundle\Entity\User;
+use AppBundle\Entity\UserPlayedVideos;
 use Doctrine\ORM\EntityManagerInterface;
 use Trinity\Component\Utils\Services\PriceStringGenerator;
 use Venice\AppBundle\Entity\Content\Content;
@@ -155,7 +156,10 @@ class AppApiDownloadsUtil
             'description' => $product->getDescription(),
             'orderNumber' => $product->getOrderNumber(),
             'delayed' => false,
-            'invoiceOrder' => $this->invoiceOrderService->getInvoiceOrderForProductName($this->userOrders, $product->getName())
+            'invoiceOrder' => $this->invoiceOrderService->getInvoiceOrderForProductName(
+                $this->userOrders,
+                $product->getName()
+            ),
         ];
     }
 
@@ -192,7 +196,7 @@ class AppApiDownloadsUtil
             'description' => $group->getDescription(),
             'orderNumber' => 0,
             'delayed' => false,
-            'invoiceOrder' => 0
+            'invoiceOrder' => 0,
         ];
     }
 
@@ -266,7 +270,8 @@ class AppApiDownloadsUtil
             $data = [
                 'type' => 'videoproduct',
                 'access' => $hasAccess,
-                'lastPlayed' => '2016-11-11 02:12:57', //todo: ???
+                'lastPlayed' => $this->entityManager->getRepository(UserPlayedVideos::class)
+                    ->getDateOfLastUserPlayOfVideo($this->user, $content),
                 'length' => $content->getDuration(),
                 'previewImage' => $content->getPreviewImage(),
                 'needGear' => $content->isNeedGear(),

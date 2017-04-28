@@ -1,6 +1,9 @@
 <?php
+
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Content\VideoContent;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Trinity\NotificationBundle\Annotations as N;
 use Venice\AppBundle\Entity\Product\Product;
@@ -16,19 +19,20 @@ use Venice\AppBundle\Entity\Product\Product;
 class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\Core\Interfaces\UserInterface
 {
     const PREFERRED_IMPERIAL = 'imperial';
-    const PREFERRED_METRIC   = 'metric';
+    const PREFERRED_METRIC = 'metric';
 
     const DEFAULT_PREFERRED_METRICS = self::PREFERRED_IMPERIAL;
 
-    const DIR_PICTURES    = 'images/profile/';
+    const DIR_PICTURES = 'images/profile/';
     const PROFILE_PICTURE = 'empty_profile.png';
-    const PROFILE_AVATAR  = 'empty_profile.png';
+    const PROFILE_AVATAR = 'empty_profile.png';
 
 
     /**
      * @var ProfilePhoto
      *
-     * @ORM\OneToOne(targetEntity="ProfilePhoto", inversedBy="user", cascade={"persist","merge","remove"}, orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="ProfilePhoto", inversedBy="user", cascade={"persist","merge","remove"},
+     *     orphanRemoval=true)
      * @ORM\JoinColumn(name="profile_photo_id", referencedColumnName="id", nullable=true)
      */
     protected $profilePhoto;
@@ -89,6 +93,13 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      */
     protected $flomersionEnd;
 
+    /**
+     * @var ArrayCollection<UserPlayedVideos>
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserPlayedVideos", mappedBy="user", cascade={"persist"})
+     * @ORM\OrderBy({"playedDate" = "DESC"})
+     */
+    protected $replayHistory;
 
     /**
      * User constructor.
@@ -97,8 +108,9 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     {
         parent::__construct();
 
-        $this->dateOfBirth        = new \DateTime(); //todo;
+        $this->dateOfBirth = new \DateTime(); //todo;
         $this->lastPasswordChange = new \DateTime();
+        $this->replayHistory = new ArrayCollection();
     }
 
 
@@ -208,6 +220,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     public function getLastPasswordChange(): \DateTime
     {
         return $this->createdAt ?? new \DateTime(); // @todo
+
         return $this->lastPasswordChange;
     }
 
@@ -259,7 +272,8 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
             return null;
         }
 
-        $now  = new \DateTime();
+        $now = new \DateTime();
+
         return $now->diff($date)->y;
     }
 
@@ -316,5 +330,50 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     public function getfacebookId()
     {
         return null;
+    }
+
+    /**
+     *
+     * @param VideoContent $video
+     * @param \DateTime $watchedDate
+     */
+    public function watchVideo(VideoContent $video, \DateTime $watchedDate = null)
+    {
+        $history = $this->replayHistory;
+        $changed = false;
+
+        /** @var UserPlayedVideos $historyItem */
+        foreach ($history as $historyItem) {
+            if ($historyItem->getVideo()->getId() === $video->getId()) {
+                if ($watchedDate != null) {
+                    if ($watchedDate > $historyItem->getPlayedDate()) {
+                        $historyItem->setPlayedDate($watchedDate);
+                        $changed = true;
+                    }
+                } else {
+                    $historyItem->setPlayedDate(new \DateTime('now'));
+                    $changed = true;
+                }
+            }
+        }
+        //no entity was changed, so it is the first time that this user watches this video
+        if (!$changed) {
+            $historyItem = new UserPlayedVideos();
+            $historyItem
+                ->setUser($this)
+                ->setVideo($video)
+                ->setPlayedDate(($watchedDate) ?: new \DateTime('now'));
+
+            $this->replayHistory->add($historyItem);
+        }
+    }
+
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getReplayHistory()
+    {
+        return $this->replayHistory;
     }
 }

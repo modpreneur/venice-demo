@@ -3,6 +3,7 @@
 namespace ApiBundle\Controller;
 
 use ApiBundle\Api;
+use AppBundle\Entity\Content\VideoContent;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductGroup;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -152,7 +153,7 @@ class AppApiDownloadsController extends FOSRestController
     public function postLastPlayedVideoProductsAction(Request $request)
     {
         $user = $this->getUser();
-        $videos = json_decode($request->get('videos'), true);
+        $videos = \json_decode($request->get('videos'), true);
 
         if (!$videos || !is_array($videos) || empty($videos)) {
             return new JsonResponse($this->notOkResponse('Missing videos data.'));
@@ -174,10 +175,11 @@ class AppApiDownloadsController extends FOSRestController
                 return new JsonResponse($this->notOkResponse('Bad date format in video with id ' . $id . '.'));
             }
 
-            $videoObject = $manager->getRepository('ModernEntrepreneurGeneralBackendDownloadsBundle:VideoProduct')->findOneBy(['id' => $id]);
+            $videoObject = $manager->getRepository(VideoContent::class)->findOneBy(['id' => $id]);
 
-            if (!$videoObject)
+            if (!$videoObject) {
                 return new JsonResponse($this->notOkResponse('No video product with id ' . $id . ' found.'));
+            }
 
             $user->watchVideo($videoObject, $dateObject);
         }
