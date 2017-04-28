@@ -1,4 +1,5 @@
 <?php
+
 namespace ApiBundle\ControllerUtils;
 
 use AppBundle\Entity\BillingPlan;
@@ -11,10 +12,12 @@ use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\ProductGroup;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Trinity\Component\Utils\Services\PriceStringGenerator;
 use Venice\AppBundle\Entity\Content\Content;
+use Venice\AppBundle\Entity\Order;
 use Venice\AppBundle\Services\BuyUrlGenerator;
+use Venice\AppBundle\Services\InvoiceOrderService;
+use Venice\AppBundle\Services\NecktieGateway;
 
 /**
  * Class AppApiDownloadsUtil
@@ -37,25 +40,55 @@ class AppApiDownloadsUtil
     protected $entityManager;
 
     /**
+     * @var InvoiceOrderService
+     */
+    protected $invoiceOrderService;
+
+    /**
      * @var User
      */
     protected $user;
+
+    /**
+     * @var NecktieGateway
+     */
+    protected $necktieGateway;
+
+    /**
+     * @var Order[]
+     */
+    protected $userOrders;
 
     /**
      * AppApiDownloadsUtil constructor.
      * @param BuyUrlGenerator $buyUrlGenerator
      * @param PriceStringGenerator $priceGenerator
      * @param EntityManagerInterface $entityManager
+     * @param InvoiceOrderService $orderService
+     * @param NecktieGateway $necktieGateway
      */
-    public function __construct(BuyUrlGenerator $buyUrlGenerator, PriceStringGenerator $priceGenerator, EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        BuyUrlGenerator $buyUrlGenerator,
+        PriceStringGenerator $priceGenerator,
+        EntityManagerInterface $entityManager,
+        InvoiceOrderService $orderService,
+        NecktieGateway $necktieGateway
+    ) {
         $this->buyUrlGenerator = $buyUrlGenerator;
         $this->priceGenerator = $priceGenerator;
         $this->entityManager = $entityManager;
+        $this->invoiceOrderService = $orderService;
+        $this->necktieGateway = $necktieGateway;
     }
 
     public function getDataForProduct(User $user, StandardProduct $product)
     {
+        try {
+            $this->userOrders = $this->necktieGateway->getOrders($user);
+        } catch (\Throwable $exception) {
+            $this->userOrders = [];
+        }
+
         if ($product->getHandle() === ProductGroup::HANDLE_FLOFIT) {
             $repo = $this->entityManager->getRepository(StandardProduct::class);
             $data = [];
@@ -100,6 +133,7 @@ class AppApiDownloadsUtil
         if ($product->getHandle() === ProductGroup::HANDLE_FLOFIT) {
             $subProducts[] = $this->getFlofitShippingProductData();
         }
+
         return [
             'type' => 'bundleproduct',
             'access' => $user->hasAccessToProduct($product),
@@ -121,7 +155,7 @@ class AppApiDownloadsUtil
             'description' => $product->getDescription(),
             'orderNumber' => $product->getOrderNumber(),
             'delayed' => false,
-            'invoiceOrder' => 0 //todo? wtf?
+            'invoiceOrder' => $this->invoiceOrderService->getInvoiceOrderForProductName($this->userOrders, $product->getName())
         ];
     }
 
@@ -158,7 +192,7 @@ class AppApiDownloadsUtil
             'description' => $group->getDescription(),
             'orderNumber' => 0,
             'delayed' => false,
-            'invoiceOrder' => 0 //todo? wtf?
+            'invoiceOrder' => 0
         ];
     }
 
@@ -214,6 +248,7 @@ class AppApiDownloadsUtil
                     $data[] = $content;
                 }
             }
+
             return $data;
         }
     }
@@ -226,7 +261,7 @@ class AppApiDownloadsUtil
     protected function getContentData(Content $content, $orderNumber, $hasAccess)
     {
         if ($content->getType() === VideoContent::TYPE) {
-            /** @var VideoContent $content*/
+            /** @var VideoContent $content */
 
             $data = [
                 'type' => 'videoproduct',
@@ -251,11 +286,11 @@ class AppApiDownloadsUtil
             ];
 
         } elseif ($content->getType() === PdfContent::TYPE) {
-            /** @var PdfContent $content*/
+            /** @var PdfContent $content */
 
             $data = [
                 'type' => 'downloadproduct',
-                'access' =>  $hasAccess,
+                'access' => $hasAccess,
                 'file' => $content->getLink(),
                 'fileProtected' => $content->getFileProtected(),
                 'downloadType' => 0, //constant in referential api
@@ -319,7 +354,8 @@ class AppApiDownloadsUtil
     {
         if ($product->getHandle() === ProductGroup::HANDLE_NUTRITION_AND_MEALS) {
             return $this->entityManager->getRepository(BillingPlan::class)->findOneBy(['itemId' => 402]); //cb id
-        } if ($product->getHandle() === ProductGroup::HANDLE_FLOFIT_PHYSICAL) {
+        }
+        if ($product->getHandle() === ProductGroup::HANDLE_FLOFIT_PHYSICAL) {
             return $this->entityManager->getRepository(BillingPlan::class)->findOneBy(['itemId' => 206]); //cb id
         } elseif ($product->getHandle() === ProductGroup::HANDLE_PLATINUM_MIX) {
             return $this->entityManager->getRepository(BillingPlan::class)->findOneBy(['itemId' => 401]); //cb id
@@ -371,7 +407,7 @@ class AppApiDownloadsUtil
             'description' => $product->getDescription(),
             'orderNumber' => 0,
             'delayed' => false,
-            'sendInApi' => true
+            'sendInApi' => true,
         ];
     }
 }

@@ -22,3 +22,4 @@ services:
       - "@venice.app.buy_url_generator"
       - "@trinity.services.price_string_generator"
       - "@doctrine.orm.entity_manager"
+      - "@venice.app.invoice_order_service"
