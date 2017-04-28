@@ -1,0 +1,4 @@
+services:
+    app.bunny.messages_consumer:
+        class: BunnyBundle\MessagesConsumer
+        parent: venice.bunny.messages_consumer
