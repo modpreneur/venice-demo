@@ -23,3 +23,4 @@ services:
       - "@trinity.services.price_string_generator"
       - "@doctrine.orm.entity_manager"
       - "@venice.app.invoice_order_service"
+      - "@venice.app.necktie_gateway"
