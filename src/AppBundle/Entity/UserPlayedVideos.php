@@ -56,7 +56,7 @@ class UserPlayedVideos
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -65,7 +65,7 @@ class UserPlayedVideos
     /**
      * @return User
      */
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }
@@ -85,7 +85,7 @@ class UserPlayedVideos
     /**
      * @return VideoContent
      */
-    public function getVideo()
+    public function getVideo(): Content\VideoContent
     {
         return $this->video;
     }
@@ -105,7 +105,7 @@ class UserPlayedVideos
     /**
      * @return \DateTime
      */
-    public function getPlayedDate()
+    public function getPlayedDate(): \DateTime
     {
         return $this->playedDate;
     }
@@ -117,7 +117,7 @@ class UserPlayedVideos
      */
     public function setPlayedDate(\DateTime $playedDate = null)
     {
-        if (!is_null($playedDate)) {
+        if (null !== $playedDate) {
             $this->playedDate = $playedDate;
         }
 

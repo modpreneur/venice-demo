@@ -33,9 +33,14 @@ class AppApiDownloadsController extends FOSRestController
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws \Trinity\Bundle\SettingsBundle\Exception\PropertyNotExistsException
+     * @throws \Symfony\Component\Intl\Exception\MethodArgumentValueNotImplementedException
+     * @throws \Symfony\Component\Intl\Exception\MethodArgumentNotImplementedException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \LogicException
      * @throws \InvalidArgumentException
      */
-    public function getFlofitProductsAction(Request $request, $group)
+    public function getFlofitProductsAction(Request $request, $group): JsonResponse
     {
         if ($group === 'flofit') {
             $handle = ProductGroup::HANDLE_FLOFIT;
@@ -87,11 +92,12 @@ class AppApiDownloadsController extends FOSRestController
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws \LogicException
      */
-    public function getLastPlayedVideoProductsAction(Request $request)
+    public function getLastPlayedVideoProductsAction(Request $request): JsonResponse
     {
         $user = $this->getUser();
-        $count = ($this->getRequestParameter($request, self::COUNT_PARAMETER)) ?: 10;
+        $count = $this->getRequestParameter($request, self::COUNT_PARAMETER) ?: 10;
 
         $replayHistoryIds = [];
         //get last played videos of user
@@ -149,8 +155,9 @@ class AppApiDownloadsController extends FOSRestController
      *
      * @Post("/last-played-video-products", name="api_post_last_played_video")
      * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @throws \LogicException
      */
-    public function postLastPlayedVideoProductsAction(Request $request)
+    public function postLastPlayedVideoProductsAction(Request $request): JsonResponse
     {
         $user = $this->getUser();
         $videos = \json_decode($request->get('videos'), true);
@@ -162,7 +169,7 @@ class AppApiDownloadsController extends FOSRestController
         $manager = $this->getDoctrine()->getManager();
 
         foreach ($videos as $video) {
-            if (!isset($video['id']) || !isset($video['date'])) {
+            if (!isset($video['id'], $video['date'])) {
                 return new JsonResponse($this->notOkResponse('Videos data is not valid.'));
             }
 

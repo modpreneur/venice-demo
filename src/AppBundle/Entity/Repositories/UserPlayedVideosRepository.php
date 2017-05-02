@@ -15,9 +15,9 @@ class UserPlayedVideosRepository extends EntityRepository
      * @param User $user
      * @param VideoContent $video
      *
-     * @return null
+     * @return \DateTime|null
      */
-    public function getDateOfLastUserPlayOfVideo(User $user, VideoContent $video)
+    public function getDateOfLastUserPlayOfVideo(User $user, VideoContent $video): ?\DateTime
     {
         $history = $this->findOneBy(
             [
@@ -28,9 +28,9 @@ class UserPlayedVideosRepository extends EntityRepository
 
         if ($history) {
             return $history->getPlayedDate();
-        } else {
-            return null;
         }
+
+        return null;
     }
 }
 
