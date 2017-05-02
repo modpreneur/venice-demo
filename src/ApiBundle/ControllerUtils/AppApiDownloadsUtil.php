@@ -15,6 +15,7 @@ use AppBundle\Entity\UserPlayedVideos;
 use Doctrine\ORM\EntityManagerInterface;
 use Trinity\Component\Utils\Services\PriceStringGenerator;
 use Venice\AppBundle\Entity\Content\Content;
+use Venice\AppBundle\Entity\Interfaces\ContentInterface;
 use Venice\AppBundle\Entity\Order;
 use Venice\AppBundle\Services\BuyUrlGenerator;
 use Venice\AppBundle\Services\InvoiceOrderService;
@@ -82,7 +83,16 @@ class AppApiDownloadsUtil
         $this->necktieGateway = $necktieGateway;
     }
 
-    public function getDataForProduct(User $user, StandardProduct $product)
+    /**
+     * @param User $user
+     * @param StandardProduct $product
+     * @return array|null
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Trinity\Bundle\SettingsBundle\Exception\PropertyNotExistsException
+     * @throws \Symfony\Component\Intl\Exception\MethodArgumentValueNotImplementedException
+     * @throws \Symfony\Component\Intl\Exception\MethodArgumentNotImplementedException
+     */
+    public function getDataForProduct(User $user, StandardProduct $product): ?array
     {
         try {
             $this->userOrders = $this->necktieGateway->getOrders($user);
@@ -112,9 +122,8 @@ class AppApiDownloadsUtil
             }
 
             return $data;
-        } else {
-            return [$this->getProductData($user, $product)];
         }
+        return [$this->getProductData($user, $product)];
     }
 
     /**
@@ -125,8 +134,9 @@ class AppApiDownloadsUtil
      * @throws \Trinity\Bundle\SettingsBundle\Exception\PropertyNotExistsException
      * @throws \Symfony\Component\Intl\Exception\MethodArgumentValueNotImplementedException
      * @throws \Symfony\Component\Intl\Exception\MethodArgumentNotImplementedException
+     * @throws \Exception
      */
-    protected function getProductData(User $user, StandardProduct $product)
+    protected function getProductData(User $user, StandardProduct $product): array
     {
         $this->user = $user;
 
@@ -170,8 +180,9 @@ class AppApiDownloadsUtil
      * @param StandardProduct $product
      * @param GroupContent $group
      * @return array
+     * @throws \Exception
      */
-    protected function getGroupContentData(User $user, StandardProduct $product, GroupContent $group)
+    protected function getGroupContentData(User $user, StandardProduct $product, GroupContent $group): array
     {
         $this->user = $user;
 
@@ -204,10 +215,13 @@ class AppApiDownloadsUtil
      * Get array of all contents of the group(uses ProductInGroup to determine the order)
      *
      * @param GroupContent $groupContent
+     * @param $hasAccess
      * @return array
      */
-    protected function getContentsFromGroup(GroupContent $groupContent, $hasAccess)
+    protected function getContentsFromGroup(GroupContent $groupContent, $hasAccess): array
     {
+        $groupContents = [];
+
         /** @var ContentInGroup $contentInGroup */
         foreach ($groupContent->getItems() as $contentInGroup) {
             $content = $this->getContentData($contentInGroup->getContent(), $contentInGroup->getOrderNumber(), $hasAccess);
@@ -220,9 +234,14 @@ class AppApiDownloadsUtil
         return $groupContents;
     }
 
-    protected function getContentFromProduct(StandardProduct $product)
+    /**
+     * @param StandardProduct $product
+     * @return array
+     * @throws \Exception
+     */
+    protected function getContentFromProduct(StandardProduct $product): array
     {
-//      return array of contents in the appropriate format
+        // return array of contents in the appropriate format
 
         if ($product->getHandle() === ProductGroup::HANDLE_FLOFIT) {
             $groupContents = $this->getAllContentFromAllGroups($product);
@@ -237,33 +256,41 @@ class AppApiDownloadsUtil
             }
 
             return $groupContents;
-        } elseif ($product->getHandle() === ProductGroup::HANDLE_FLOMERSION) {
-            return $this->getAllContentFromAllGroups($product);
-        } else {
-            $data = [];
-            foreach ($product->getContentProducts() as $contentProduct) {
-                $content = $this->getContentData(
-                    $contentProduct->getContent(),
-                    $contentProduct->getOrderNumber(),
-                    $this->user->hasAccessToProduct($product)
-                );
-
-                if ($content !== null) {
-                    $data[] = $content;
-                }
-            }
-
-            return $data;
         }
+
+        if ($product->getHandle() === ProductGroup::HANDLE_FLOMERSION) {
+            return $this->getAllContentFromAllGroups($product);
+        }
+
+        // Else
+        $data = [];
+        foreach ($product->getContentProducts() as $contentProduct) {
+            $content = $this->getContentData(
+                $contentProduct->getContent(),
+                $contentProduct->getOrderNumber(),
+                $this->user->hasAccessToProduct($product)
+            );
+
+            if ($content !== null) {
+                $data[] = $content;
+            }
+        }
+
+        return $data;
     }
 
     /**
      * Get appropriate data for each content
      *
-     * @param Content $content
+     * @param Content|ContentInterface $content
+     * @param $orderNumber
+     * @param $hasAccess
+     *
+     * @return array|null
      */
-    protected function getContentData(Content $content, $orderNumber, $hasAccess)
+    protected function getContentData(ContentInterface $content, $orderNumber, $hasAccess): ?array
     {
+        $data = null;
         if ($content->getType() === VideoContent::TYPE) {
             /** @var VideoContent $content */
 
@@ -309,9 +336,6 @@ class AppApiDownloadsUtil
                 'delayed' => false,
                 'sendInApi' => true,
             ];
-        } else { //unknown content type
-//            $data = ['UNKNOWNTYPE'.$content->getType().$content->getName()];
-            return null;
         }
 
         return $data;
@@ -324,15 +348,15 @@ class AppApiDownloadsUtil
      * @throws \Symfony\Component\Intl\Exception\MethodArgumentValueNotImplementedException
      * @throws \Symfony\Component\Intl\Exception\MethodArgumentNotImplementedException
      */
-    protected function getProductPrice(StandardProduct $product)
+    protected function getProductPrice(StandardProduct $product): string
     {
-        $bp = $this->getBillingPlanForProduct($product);
+        $billingPlan = $this->getBillingPlanForProduct($product);
 
-        if (!$bp) {
+        if (!$billingPlan) {
             return '';
         }
 
-        return $this->priceGenerator->generateFullPriceStr($this->getBillingPlanForProduct($product));
+        return $this->priceGenerator->generateFullPriceStr($billingPlan);
     }
 
     /**
@@ -340,22 +364,22 @@ class AppApiDownloadsUtil
      * @return string
      * @throws \Exception
      */
-    protected function getProductBuyLink(StandardProduct $product)
+    protected function getProductBuyLink(StandardProduct $product): string
     {
-        $bp = $this->getBillingPlanForProduct($product);
+        $billingPlan = $this->getBillingPlanForProduct($product);
 
-        if (!$bp) {
+        if (!$billingPlan) {
             return '';
         }
 
-        return $this->buyUrlGenerator->generateBuyUrl($product, $bp->getId());
+        return $this->buyUrlGenerator->generateBuyUrl($product, $billingPlan->getId());
     }
 
     /**
      * @param StandardProduct $product
      * @return BillingPlan|null
      */
-    protected function getBillingPlanForProduct(StandardProduct $product)
+    protected function getBillingPlanForProduct(StandardProduct $product): ?BillingPlan
     {
         if ($product->getHandle() === ProductGroup::HANDLE_NUTRITION_AND_MEALS) {
             return $this->entityManager->getRepository(BillingPlan::class)->findOneBy(['itemId' => 402]); //cb id
@@ -376,8 +400,9 @@ class AppApiDownloadsUtil
     /**
      * @param StandardProduct $product
      * @return array
+     * @throws \Exception
      */
-    protected function getAllContentFromAllGroups(StandardProduct $product)
+    protected function getAllContentFromAllGroups(StandardProduct $product): array
     {
         $ret = [];
         //get all groups
@@ -392,7 +417,7 @@ class AppApiDownloadsUtil
      * @return array|null
      * @throws \Exception
      */
-    protected function getFlofitShippingProductData()
+    protected function getFlofitShippingProductData(): ?array
     {
         $product = $this->entityManager->getRepository(StandardProduct::class)->findOneBy(['handle' => ProductGroup::HANDLE_FLOFIT_PHYSICAL]);
 
