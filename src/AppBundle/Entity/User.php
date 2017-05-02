@@ -108,7 +108,6 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     {
         parent::__construct();
 
-        $this->dateOfBirth = new \DateTime(); //todo;
         $this->lastPasswordChange = new \DateTime();
         $this->replayHistory = new ArrayCollection();
     }
