@@ -7864,12 +7864,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modpreneur/trinity-notifications.git",
-                "reference": "7772b903aba0eed1d66a4887c64807039a016ea4"
+                "reference": "61708d0ad16dee4159d325ba2a1c8373b68328e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/7772b903aba0eed1d66a4887c64807039a016ea4",
-                "reference": "7772b903aba0eed1d66a4887c64807039a016ea4",
+                "url": "https://api.github.com/repos/modpreneur/trinity-notifications/zipball/61708d0ad16dee4159d325ba2a1c8373b68328e6",
+                "reference": "61708d0ad16dee4159d325ba2a1c8373b68328e6",
                 "shasum": ""
             },
             "require": {
@@ -7924,7 +7924,7 @@
                 }
             ],
             "description": "Trinity Notification bundle",
-            "time": "2017-03-17 14:59:13"
+            "time": "2017-05-22 15:44:06"
         },
         {
             "name": "trinity/search",
