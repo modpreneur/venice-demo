@@ -5,7 +5,6 @@ namespace AppBundle\Entity\Product;
 use AppBundle\Entity\ProductGroup;
 use Doctrine\ORM\Mapping as ORM;
 use Trinity\NotificationBundle\Annotations as N;
-use Venice\AppBundle\Entity\Interfaces\ContentProductInterface;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\StandardProductRepository")

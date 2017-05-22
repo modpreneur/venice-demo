@@ -15,7 +15,6 @@ use AppBundle\Entity\UserPlayedVideos;
 use Doctrine\ORM\EntityManagerInterface;
 use Trinity\Component\Utils\Services\PriceStringGenerator;
 use Venice\AppBundle\Entity\Content\Content;
-use Venice\AppBundle\Entity\Interfaces\ContentInterface;
 use Venice\AppBundle\Entity\Order;
 use Venice\AppBundle\Services\BuyUrlGenerator;
 use Venice\AppBundle\Services\InvoiceOrderService;
@@ -282,13 +281,13 @@ class AppApiDownloadsUtil
     /**
      * Get appropriate data for each content
      *
-     * @param Content|ContentInterface $content
+     * @param Content|Content $content
      * @param $orderNumber
      * @param $hasAccess
      *
      * @return array|null
      */
-    protected function getContentData(ContentInterface $content, $orderNumber, $hasAccess): ?array
+    protected function getContentData(Content $content, $orderNumber, $hasAccess): ?array
     {
         $data = null;
         if ($content->getType() === VideoContent::TYPE) {

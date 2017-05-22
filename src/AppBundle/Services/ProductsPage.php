@@ -6,9 +6,7 @@ use AppBundle\Entity\Content\GroupContent;
 use AppBundle\Entity\Product\StandardProduct;
 use AppBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Venice\AppBundle\Entity\Content\Content;
 use Venice\AppBundle\Entity\Content\ContentInGroup;
-use Venice\AppBundle\Entity\Interfaces\ContentProductInterface;
 use Venice\AppBundle\Entity\Product\Product;
 
 /**
