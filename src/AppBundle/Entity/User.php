@@ -125,7 +125,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @param mixed $UserChild
      */
-    public function setUserChild($UserChild): void
+    public function setUserChild($UserChild)
     {
         $this->UserChild = $UserChild;
     }
@@ -136,7 +136,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      *
      * @return bool
      */
-    public function haveAccess(Product $product): bool
+    public function haveAccess(Product $product)
     {
         return $this->hasAccessToProduct($product);
     }
@@ -148,7 +148,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      * @param ProfilePhoto $profilePhoto
      * @return User
      */
-    public function setProfilePhoto($profilePhoto = null): User
+    public function setProfilePhoto($profilePhoto = null)
     {
         if (is_array($profilePhoto)) {
             $profilePhoto = new ProfilePhoto($profilePhoto);
@@ -169,7 +169,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      *
      * @return ProfilePhoto
      */
-    public function getProfilePhoto(): ProfilePhoto
+    public function getProfilePhoto()
     {
         return $this->profilePhoto;
     }
@@ -180,7 +180,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      *
      * @return int
      */
-    public function daysRemainingToUnlock(Product $product): int
+    public function daysRemainingToUnlock(Product $product)
     {
         return $product->daysRemainingToUnlock($this);
     }
@@ -189,7 +189,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @return \DateTime
      */
-    public function getDateOfBirth(): \DateTime
+    public function getDateOfBirth()
     {
         return $this->dateOfBirth;
     }
@@ -198,7 +198,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @param \DateTime $dateOfBirth
      */
-    public function setDateOfBirth($dateOfBirth): void
+    public function setDateOfBirth($dateOfBirth)
     {
         $this->dateOfBirth = $dateOfBirth;
     }
@@ -207,7 +207,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @return string
      */
-    public function getLocation(): string
+    public function getLocation()
     {
         return $this->location;
     }
@@ -227,7 +227,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @param \DateTime $lastPasswordChange
      */
-    public function setLastPasswordChange(\DateTime $lastPasswordChange): void
+    public function setLastPasswordChange(\DateTime $lastPasswordChange)
     {
         $this->lastPasswordChange = $lastPasswordChange;
     }
@@ -236,7 +236,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @return bool
      */
-    public function getPublic(): bool
+    public function getPublic()
     {
         return $this->isPublic();
     }
@@ -245,7 +245,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @return bool
      */
-    public function isMaropostSynced(): bool
+    public function isMaropostSynced()
     {
         return $this->maropostSynced;
     }
@@ -254,7 +254,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @param bool $maropostSynced
      */
-    public function setMaropostSynced(bool $maropostSynced): void
+    public function setMaropostSynced(bool $maropostSynced)
     {
         $this->maropostSynced = $maropostSynced;
     }
@@ -263,7 +263,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @return int
      */
-    public function getAge(): int
+    public function getAge()
     {
         $date = $this->getDateOfBirth();
 
@@ -280,9 +280,8 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @return int
      */
-    public function getCommunityId(): int
+    public function getCommunityId()
     {
-        // TODO @TomasJancar I think there should be some code ?
         return 0;
     }
 
@@ -290,7 +289,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @return \DateTime
      */
-    public function getFlomersionStart(): \DateTime
+    public function getFlomersionStart()
     {
         return $this->flomersionStart;
     }
@@ -299,7 +298,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @param \DateTime $flomersionStart
      */
-    public function setFlomersionStart($flomersionStart): void
+    public function setFlomersionStart($flomersionStart)
     {
         $this->flomersionStart = $flomersionStart;
     }
@@ -308,7 +307,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @return \DateTime
      */
-    public function getFlomersionEnd(): \DateTime
+    public function getFlomersionEnd()
     {
         return $this->flomersionEnd;
     }
@@ -317,7 +316,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
     /**
      * @param \DateTime $flomersionEnd
      */
-    public function setFlomersionEnd($flomersionEnd): void
+    public function setFlomersionEnd($flomersionEnd)
     {
         $this->flomersionEnd = $flomersionEnd;
     }
@@ -337,7 +336,7 @@ class User extends \Venice\AppBundle\Entity\User implements \Trinity\Component\C
      * @param VideoContent $video
      * @param \DateTime $watchedDate
      */
-    public function watchVideo(VideoContent $video, \DateTime $watchedDate = null): void
+    public function watchVideo(VideoContent $video, \DateTime $watchedDate = null)
     {
         $history = $this->replayHistory;
         $changed = false;
