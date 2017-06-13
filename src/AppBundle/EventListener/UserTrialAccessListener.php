@@ -140,7 +140,7 @@ class UserTrialAccessListener implements EventSubscriberInterface
             }
 
             if ($product && !$user->hasAccessToProduct($product)) {
-                $this->createUserAccess($user, $product);
+                $this->createUserAccess($user);
             }
         }
     }
@@ -177,32 +177,21 @@ class UserTrialAccessListener implements EventSubscriberInterface
     /**
      * @param User $user
      *
-     * @param $product
-     *
      * @return ProductAccess
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Exception
      */
-    private function createUserAccess(User $user, StandardProduct $product)
+    private function createUserAccess(User $user)
     {
         $billPlanId = $this->necktieFacebookTrialBillingPlan;
         $givenProductAccess = null;
         $this->entityManager->beginTransaction();
 
         try {
-            $productAccessId = $this->necktieGateway
-                ->createTrialProductAccess($user, $billPlanId);
-
-            if (!$productAccessId) {
-                $this->logger->error('Could not create trial product access on necktie with necktie id: '.$billPlanId);
-
-                return null;
-            }
-
-            $givenProductAccess = $this->necktieGateway->getProductAccess($user, $productAccessId);
-            if (!$givenProductAccess) {
+            $givenProductAccess = $this->necktieGateway->createTrialProductAccess($user, $billPlanId);
+            if ($givenProductAccess === null) {
                 $this->logger->error(
-                    'Could not get trial product access from necktie with necktie id: '.$productAccessId
+                    'Could not create trial product access for billing plan with necktie id: '.$billPlanId
                 );
 
                 return null;
